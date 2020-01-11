@@ -1,0 +1,31 @@
+{
+  "presets": [
+    "react-app"
+  ],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": [
+          "./src"
+        ],
+        "alias": {
+          "~": "./src",
+          "~components": "./src/components",
+          "~contexts": "./src/contexts",
+          "~utils": "./src/utils",
+          /* *****  modules *****  */
+          "~Auth": "./src/modules/Auth",
+          "~ErrorHandler": "./src/modules/ErrorHandler",
+          "~Home": "./src/modules/Home",
+          "~Layout": "./src/modules/Layout",
+        }
+      }
+    ],
+    ["babel-plugin-styled-components", {
+      "ssr": true,
+      "displayName": true
+    }]
+  ]
+}
+

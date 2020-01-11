@@ -1,25 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import constants from '~utils/constants';
+import Auth from '~Auth';
+import Home from '~Home';
+import Layout from '~Layout';
+import ErrorHandler, { NotFound } from '~ErrorHandler';
 
+const { AUTH, DEFAULT } = constants.PATHS;
+
+/**
+ * description
+ * modules that start by uppercase ( example ~Auth) are located at src/modules
+ */
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <ErrorHandler>
+        <Layout>
+          <Switch>
+            <Route exact path={DEFAULT} component={Home} />
+            <Route path={AUTH} component={Auth} />
+            <Route component={NotFound} />
+          </Switch>
+        </Layout>
+      </ErrorHandler>
+    </Router>
   );
 }
 
