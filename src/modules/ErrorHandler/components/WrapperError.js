@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useTheme } from '~contexts/ThemeContext';
-
 import Wrapper from '~components/Wrapper';
+import { useTheme } from '~contexts/ThemeContext';
 
 /**
  * WrapperError
@@ -10,25 +9,25 @@ import Wrapper from '~components/Wrapper';
  *
  */
 function WrapperError(props) {
-  const { fullpage, ...restProps } = props;
+  const { fullpage, children } = props;
   const { colors } = useTheme();
-  const styledProps = { ...restProps };
+  const styledProps = {};
+  styledProps.display = 'flex';
+  styledProps['flex-direction'] = 'column';
+  styledProps['align-items'] = 'center';
+  styledProps['justify-content'] = 'center';
   if (fullpage) {
     styledProps.height = '100vh';
     styledProps['background-color'] = colors.SECONDARY;
     styledProps['font-size'] = '1.5em';
   }
-  styledProps.display = 'flex';
-  styledProps.padding = '0 3%';
-  styledProps['align-items'] = 'center';
-  styledProps['flex-direction'] = 'column';
-  styledProps['justify-content'] = 'center';
-  return <Wrapper {...styledProps} />;
+  return <Wrapper {...styledProps}>{children}</Wrapper>;
 }
 WrapperError.defaultProps = {
   fullpage: false,
 };
 WrapperError.propTypes = {
+  children: PropTypes.node.isRequired,
   fullpage: PropTypes.bool,
 };
 

@@ -5,6 +5,14 @@ import { useTheme } from '~contexts/ThemeContext';
 
 const AdaptedWrapper = styled(Wrapper)`
   margin: 3%;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-radius: 4px;
+  display: flex;
+  padding: 0 3% 2em 3%;
+  background-color: ${({ bgcolor }) => bgcolor};
+  box-shadow: 0 2px -1px ${({ boxshadowcolor }) => boxshadowcolor};
+  min-height: 5em;
   form {
     display: flex;
     flex-direction: column;
@@ -30,17 +38,13 @@ const AdaptedWrapper = styled(Wrapper)`
  */
 function WrapperAuth(props) {
   const { colors } = useTheme();
-  const styledProps = {
-    display: 'flex',
-    padding: '0 3% 2em 3%',
-  };
-  styledProps['flex-direction'] = 'column';
-  styledProps['justify-content'] = 'flex-start';
-  styledProps['border-radius'] = '4px';
-  styledProps['background-color'] = colors.BACKGROUND;
-  styledProps['box-shadow'] = `0 0 2px -1px ${colors.FOREGROUND}`;
-  styledProps['min-height'] = '5em';
-  return <AdaptedWrapper {...styledProps} {...props} />;
+  return (
+    <AdaptedWrapper
+      bgcolor={colors.BACKGROUND}
+      boxshadowcolor={colors.BACKGROUND}
+      {...props}
+    />
+  );
 }
 
 export default WrapperAuth;

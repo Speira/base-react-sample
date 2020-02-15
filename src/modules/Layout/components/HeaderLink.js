@@ -11,13 +11,13 @@ import Link from '~components/Link';
 function HeaderLink(props) {
   const { colors } = useTheme();
   const { TERTIARY, QUATERNARY, BACKGROUND, FOREGROUND } = colors;
-  const { children, isActive, type, to, ...rest } = props;
+  const { children, isActive, type, to } = props;
   const styledProps = {
+    'border-radius': '4px',
     color: FOREGROUND,
     padding: '8px',
     margin: '0 4px 0 0',
   };
-  styledProps['border-radius'] = '4px';
   if (type === 'nav') {
     styledProps.color = BACKGROUND;
     styledProps['background-color'] = isActive ? QUATERNARY : TERTIARY;
@@ -27,7 +27,7 @@ function HeaderLink(props) {
     styledProps['font-weight'] = '600';
   }
   return (
-    <Link to={to} {...styledProps} {...rest}>
+    <Link to={to} {...styledProps}>
       {children}
     </Link>
   );

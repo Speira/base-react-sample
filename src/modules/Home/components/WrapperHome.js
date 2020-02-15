@@ -14,9 +14,8 @@ const AdaptedWrapper = styled(Wrapper)`
  */
 function WrapperHome(props) {
   const { children } = props;
-  const styledProps = {
-    display: 'flex',
-  };
+  const styledProps = {};
+  styledProps.display = 'flex';
   styledProps['flex-direction'] = 'column';
   styledProps['align-items'] = 'center';
 
