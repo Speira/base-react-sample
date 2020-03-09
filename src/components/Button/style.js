@@ -10,7 +10,7 @@ const BaseButton = styled.button.attrs((props) => {
   const themeColor = theme.COLORS[color.toUpperCase()];
   return {
     style: {
-      color: inversed ? '#ffffff' : '#000000cc',
+      color: inversed ? theme.COLORS.BACKGROUND : theme.COLORS.FOREGROUND,
       backgroundColor: themeColor,
     },
   };
