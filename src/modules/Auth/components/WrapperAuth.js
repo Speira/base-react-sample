@@ -13,13 +13,6 @@ const AdaptedWrapper = styled(Wrapper)`
   background-color: ${({ bgcolor }) => bgcolor};
   box-shadow: 0 2px -1px ${({ boxshadowcolor }) => boxshadowcolor};
   min-height: 5em;
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    width: 24em;
-    margin-bottom: 1em;
-  }
   label {
     margin-bottom: 8px;
   }

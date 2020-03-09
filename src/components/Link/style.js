@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { propsToCSS } from '~utils/functions';
 
 /**
  * BaseLink
@@ -10,16 +9,28 @@ import { propsToCSS } from '~utils/functions';
 const BaseLink = styled(Link)`
   cursor: pointer;
   text-decoration: none;
-  ${(props) => propsToCSS(props)}
-  &:hover {
-    ${(props) => propsToCSS(props, 'hover')}
-  }
-  &:active {
-    ${(props) => propsToCSS(props, 'active')}
-  }
+  padding: 8px;
+  margin: 0 4px;
+  color: ${({ theme }) => theme.COLORS.FOREGROUND};
+  font-size: ${({ size }) => size || '1em'};
   &:disabled {
     opacity: 0.6;
   }
 `;
 
 export default BaseLink;
+
+/**
+ * BoxedLink
+ * @component
+ *
+ */
+export const BoxedLink = styled(BaseLink).attrs(({ active, theme }) => ({
+  style: {
+    backgroundColor: active ? theme.COLORS.QUATERNARY : theme.COLORS.TERTIARY,
+  },
+}))`
+  font-weight: 600;
+  color: ${({ theme }) => theme.COLORS.BACKGROUND};
+  border-radius: 4px;
+`;

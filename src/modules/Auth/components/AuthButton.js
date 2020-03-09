@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTheme } from '~contexts/ThemeContext';
 // import PropTypes from 'prop-types'
 
 import Button from '~components/Button';
@@ -10,11 +9,7 @@ import Button from '~components/Button';
  *
  */
 function AuthButton(props) {
-  const { colors } = useTheme();
-  const styledProps = {};
-  styledProps['background-color'] = colors.INFO;
-  styledProps.padding = '0.5em';
-  return <Button {...styledProps} {...props} />;
+  return <Button color="info" {...props} />;
 }
 AuthButton.defaultProps = {};
 AuthButton.propTypes = {};

@@ -9,7 +9,7 @@ import HomeButton from '~Home/components/HomeButton';
  */
 function HomeContainer(props) {
   // eslint-disable-next-line
-  const errorClick = () => shleg();
+  const errorClick = () => undefinedFunction();
   return (
     <WrapperHome {...props}>
       <HomeButton>Button </HomeButton>

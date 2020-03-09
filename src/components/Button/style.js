@@ -1,27 +1,38 @@
 import styled from 'styled-components';
-import { propsToCSS } from '~utils/functions';
 
 /**
  * BaseButton
  * @component
  *
  */
-const BaseButton = styled.button`
+const BaseButton = styled.button.attrs((props) => {
+  const { color, theme, inversed } = props;
+  const themeColor = theme.COLORS[color.toUpperCase()];
+  return {
+    style: {
+      color: inversed ? '#ffffff' : '#000000cc',
+      backgroundColor: themeColor,
+    },
+  };
+})`
+  width: ${({ width }) => width || 'auto'};
+  height: ${({ height }) => height || 'auto'};
   border: none;
-  box-shadow: ${({ boxcolor }) => `1px 1px 2px -1px ${boxcolor}`};
+  border-radius: 2px;
+  box-shadow: 1px 1px 2px -1px black;
   cursor: pointer;
   position: relative;
   outline: none;
   transition: all 0.18s ease-in-out;
-  ${(props) => propsToCSS(props)}
+  padding: 0.5em;
   &:after {
     content: '';
-    background-color: white;
+    background-color: #ffffff;
     width: 100%;
     height: 100%;
     position: absolute;
     display: flex;
-    border-radius: ${({ borderradius }) => borderradius};
+    border-radius: 2px;
     top: 0;
     left: 0;
     opacity: 0.25;
@@ -29,19 +40,17 @@ const BaseButton = styled.button`
     transform-origin: left;
     transition: none;
   }
-  &:focus:after {
+  &:hover:after {
     transform: scale(1, 1);
     transition: all 0.2s ease-in-out;
   }
+  &:disabled:after {
+    transform: none;
+  }
   &:hover {
-  ${(props) => propsToCSS(props, 'hover')}
-    box-shadow: ${({ boxcolorhover, boxcolor }) =>
-      `1px 1px 2px -1px ${boxcolorhover || boxcolor}`};
   }
   &:active {
-  ${(props) => propsToCSS(props, 'active')}
-    box-shadow: ${({ boxcoloractive, boxcolor }) =>
-      `0px 0px 6px -3px ${boxcoloractive || boxcolor} inset`};
+    opacity: 0.5;
   }
   &:disabled {
     box-shadow: none;
@@ -50,3 +59,7 @@ const BaseButton = styled.button`
 `;
 
 export default BaseButton;
+
+export const RoundedButton = styled(BaseButton)`
+  border-radius: 100%;
+`;

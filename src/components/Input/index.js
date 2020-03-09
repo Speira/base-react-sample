@@ -8,7 +8,7 @@ import BaseInput from './style';
  * @component
  *
  */
-function Input(props) {
+export function Input(props) {
   return <BaseInput {...props} />;
 }
 Input.defaultProps = {

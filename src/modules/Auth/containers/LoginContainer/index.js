@@ -6,13 +6,7 @@ import AuthButton from '~Auth/components/AuthButton';
 import AuthInput from '~Auth/components/AuthInput';
 import AuthTitle from '~Auth/components/AuthTitle';
 import AuthAlert from '~Auth/components/AuthAlert';
-
-const MESSAGES = {
-  ERROR: {
-    message: 'Identifiants incorrect',
-    type: 'error',
-  },
-};
+import AuthForm from '~Auth/components/AuthForm';
 
 /**
  * LoginContainer
@@ -20,23 +14,26 @@ const MESSAGES = {
  *
  */
 function LoginContainer(props) {
+  const { signin } = useAuth();
   const { switchAuth } = props;
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const { signin } = useAuth();
-  const [alert, setAlert] = React.useState({ isOpen: false });
+  const [hasLoginError, toggleLoginError] = React.useState(false);
+  const [isLoading, toggleLoading] = React.useState(false);
   const goSignup = (e) => {
     e.preventDefault();
     switchAuth();
   };
   const authenticateUser = () => {
+    toggleLoading(true);
     signin({ username, password })
       .then(() => {
+        toggleLoading(false);
         console.warn('connected');
       })
       .catch(() => {
-        setAlert({ ...MESSAGES.ERROR, isOpen: true });
-        console.error('error of authentication');
+        toggleLoading(false);
+        toggleLoginError(true);
       });
   };
   return (
@@ -44,8 +41,8 @@ function LoginContainer(props) {
       <div className="row">
         <AuthTitle>Connexion</AuthTitle>
       </div>
-      <AuthAlert {...alert} />
-      <form>
+      <AuthAlert hasLoginError={hasLoginError} isLoading={isLoading} />
+      <AuthForm>
         <label>
           <span>ID:</span>
           <AuthInput
@@ -66,7 +63,7 @@ function LoginContainer(props) {
         <AuthButton className="center" onClick={authenticateUser}>
           Valider
         </AuthButton>
-      </form>
+      </AuthForm>
       <a href="#" onClick={goSignup}>
         Pas encore enregistré ? Je m&apos;enregistre
       </a>

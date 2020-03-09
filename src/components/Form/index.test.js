@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { Link } from './index';
+import Form from './index';
 
-const wrapper = shallow(<Link />);
+const wrapper = shallow(<Form />);
 
 describe('render', () => {
-  it('Link must be rendered', () => {
+  it('Form must be rendered', () => {
     expect(wrapper).toBeDefined();
   });
 });

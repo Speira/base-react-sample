@@ -1,43 +1,43 @@
 Simple Button example:
 
 ```js
-<Button
-  backgroundcolor="aliceblue"
-  boxcolor="black"
-  boxcolorhover="blue"
-  borderradius="4px"
-  colorhover="blue"
-  height="40px"
-  transition="all 0.2s ease-in-out"
-  width="100px">
+<Button color="info">Hello world</Button>
+```
+
+```js
+<Button color="success" variant="rounded" height="2.5em">
+  yes !
+</Button>
+```
+
+```js
+<Button color="warning">Hello world</Button>
+```
+
+```js
+<Button color="danger">Hello world</Button>
+```
+
+```js
+<Button color="primary" disabled>
   Hello world
 </Button>
 ```
 
-Rounded buuton:
-
 ```js
-<Button
-  backgroundcolor="palegreen"
-  backgroundcoloractive="lightgreen"
-  borderradius="40px"
-  boxcolor="black"
-  color="black"
-  height="60px"
-  width="60px">
-  Rounded
+<Button color="secondary" inversed>
+  Hello world
 </Button>
 ```
 
-Disabled button:
+```js
+<Button color="tertiary" height="4em" inversed variant="rounded">
+  Hello world
+</Button>
+```
 
 ```js
-<Button
-  backgroundcolor="darkgrey"
-  borderradius="4px"
-  color="black"
-  disabled
-  padding="4px 8px">
-  disabled
+<Button color="quaternary" inversed>
+  Hello world
 </Button>
 ```

@@ -47,6 +47,7 @@ export const useError = () => {
 
 /**
  * withAsynErrorHandling
+ * @desc inject an Error Handler on Component events
  * @return Component
  *
  */

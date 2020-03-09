@@ -1,52 +1,76 @@
 import styled from 'styled-components';
-import { propsToCSS } from '~utils/functions';
+
+/**
+ * DropdownButton
+ * @desc :: The button who is always visible
+ * @component
+ *
+ */
+export const DropdownButton = styled.button.attrs(() => ({
+  type: 'button',
+}))`
+  background-color: ${({ theme, color }) => theme.COLORS[color.toUpperCase()]};
+  padding: 1em;
+  box-shadow: 1px 1px 2px -1px black;
+  font-size: 1em;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+  &:active {
+    opacity: 0.6;
+  }
+  &:focus {
+    outline: none;
+  }
+`;
+
+/**
+ * DropdownContent
+ * @desc :: the content containing all the items
+ * @component
+ *
+ */
+export const DropdownContent = styled.div.attrs((props) => {
+  const { opened } = props;
+  return {
+    style: {
+      transform: `scale(1, ${opened ? '1' : '0'})`,
+    },
+  };
+})`
+  position: absolute;
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND};
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  transform-origin: top;
+  transition: all 0.2s ease-out;
+  z-index: 1;
+  button {
+    background-color: transparent;
+    border-bottom: 1px solid ${({ theme }) => theme.COLORS.FOREGROUND};
+    border: none;
+    color: ${({ theme }) => theme.COLORS.FOREGROUND};
+    cursor: pointer;
+    display: block;
+    padding: 12px 16px;
+    text-decoration: none;
+    transition: all 0.18s ease-in-out;
+  }
+  button:hover {
+    background-color: ${({ theme, color }) =>
+      theme.COLORS[color.toUpperCase()]};
+  }
+`;
 
 /**
  * BaseDropdown
  * @component
  *
  */
-const BaseDropdown = styled.button`
-  border: none;
-  box-shadow: ${({ boxcolor }) => `1px 1px 2px -1px ${boxcolor}`};
-  cursor: pointer;
+const BaseDropdown = styled.div`
   position: relative;
-  outline: none;
-  transition: all 0.18s ease-in-out;
-  ${(props) => propsToCSS(props)}
-  &:after {
-    content: '';
-    background-color: white;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    display: flex;
-    border-radius: ${({ borderradius }) => borderradius};
-    top: 0;
-    left: 0;
-    opacity: 0.25;
-    transform: scale(0, 1);
-    transform-origin: left;
-    transition: none;
-  }
-  &:focus:after {
-    transform: scale(1, 1);
-    transition: all 0.2s ease-in-out;
-  }
-  &:hover {
-  ${(props) => propsToCSS(props, 'hover')}
-    box-shadow: ${({ boxcolorhover, boxcolor }) =>
-      `1px 1px 2px -1px ${boxcolorhover || boxcolor}`};
-  }
-  &:active {
-  ${(props) => propsToCSS(props, 'active')}
-    box-shadow: ${({ boxcoloractive, boxcolor }) =>
-      `0px 0px 6px -3px ${boxcoloractive || boxcolor} inset`};
-  }
-  &:disabled {
-    box-shadow: none;
-    opacity: 0.6;
-  }
+  display: inline-block;
 `;
 
 export default BaseDropdown;

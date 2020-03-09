@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useTheme } from '~contexts/ThemeContext';
 import Link from '~components/Link';
 
 /**
@@ -9,25 +8,17 @@ import Link from '~components/Link';
  *
  */
 function HeaderLink(props) {
-  const { colors } = useTheme();
-  const { TERTIARY, QUATERNARY, BACKGROUND, FOREGROUND } = colors;
   const { children, isActive, type, to } = props;
-  const styledProps = {
-    'border-radius': '4px',
-    color: FOREGROUND,
-    padding: '8px',
-    margin: '0 4px 0 0',
-  };
-  if (type === 'nav') {
-    styledProps.color = BACKGROUND;
-    styledProps['background-color'] = isActive ? QUATERNARY : TERTIARY;
-  }
+  const linkProps = {};
   if (type === 'brand') {
-    styledProps['font-size'] = '2em';
-    styledProps['font-weight'] = '600';
+    linkProps.size = '2em';
+  }
+  if (type === 'nav') {
+    linkProps.boxactive = isActive;
+    linkProps.variant = 'box';
   }
   return (
-    <Link to={to} {...styledProps}>
+    <Link to={to} {...linkProps}>
       {children}
     </Link>
   );

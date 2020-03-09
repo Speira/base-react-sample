@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useTheme } from '~contexts/ThemeContext';
 import Button from '~components/Button';
 
 /**
@@ -9,14 +8,10 @@ import Button from '~components/Button';
  *
  */
 function HomeButton(props) {
-  const { colors } = useTheme();
-  const styledProps = {
-    padding: '10px',
-  };
-  styledProps['background-color'] = colors.SUCCESS;
   const { danger, ...rest } = props;
-  if (danger) styledProps['background-color'] = colors.DANGER;
-  return <Button {...styledProps} {...rest} />;
+  let color = 'success';
+  if (danger) color = 'danger';
+  return <Button color={color} {...rest} />;
 }
 HomeButton.defaultProps = {
   danger: false,

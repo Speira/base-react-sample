@@ -1,4 +1,5 @@
 import React from 'react';
+import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 import constants from '~utils/constants';
 
 const ThemeContext = React.createContext();
@@ -7,10 +8,17 @@ const STORAGE_ITEM = constants.STORAGE_ITEMS.THEME;
 const defaultTheme = Object.values(themes)[0];
 const defaultThemeKey = Object.keys(themes)[0];
 
+export const colorsThemesList = Object.keys(
+  constants.THEMES.DEFAULT.COLORS,
+).map((color) => color.toLowerCase());
+
 /**
  * ThemeProvider
  * @component
  * @context
+ * @desc use localStorage to persist theme key, and StyledThemeProvider
+ * provide this theme (@see THEMES in src/utils/constants) as props for all
+ * styled components
  *
  */
 function ThemeProvider(props) {
@@ -24,8 +32,11 @@ function ThemeProvider(props) {
       localStorage.setItem(STORAGE_ITEM, defaultThemeKey);
     },
   };
-
-  return <ThemeContext.Provider {...props} value={value} />;
+  return (
+    <StyledThemeProvider theme={theme}>
+      <ThemeContext.Provider {...props} value={value} />
+    </StyledThemeProvider>
+  );
 }
 
 /**

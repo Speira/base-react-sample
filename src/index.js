@@ -6,6 +6,11 @@ import App from 'App';
 import 'normalize.css';
 import './index.css';
 
+/**
+ * All contexts (Theme, user, error management, ...)
+ * are defined in src/contexts
+ *
+ */
 ReactDOM.render(
   <Contexts>
     <App />

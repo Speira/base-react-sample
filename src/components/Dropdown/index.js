@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import BaseDropdown from './style';
+import { colorsThemesList } from '~contexts/ThemeContext';
+import BaseDropdown, { DropdownButton, DropdownContent } from './style';
 
 /**
  * Dropdown
@@ -8,25 +9,38 @@ import BaseDropdown from './style';
  *
  */
 function Dropdown(props) {
-  return <BaseDropdown {...props} />;
+  const { items, handler, color, ...rest } = props;
+  const [isOpen, setIsOpen] = React.useState(false);
+  const toggleOpen = (nextState) => {
+    const time = isOpen ? 150 : 0;
+    setTimeout(() => {
+      setIsOpen(typeof nextState === 'boolean' ? nextState : !isOpen);
+    }, time);
+  };
+  const closeContent = () => toggleOpen(false);
+  return (
+    <BaseDropdown {...rest} onBlur={closeContent}>
+      <DropdownButton onClick={toggleOpen} color={color}>
+        Dropdown
+      </DropdownButton>
+      <DropdownContent opened={isOpen ? 1 : 0} color={color}>
+        {items.map((itemsElement) => (
+          <button key={itemsElement} type="button" onClick={handler}>
+            {itemsElement}
+          </button>
+        ))}
+      </DropdownContent>
+    </BaseDropdown>
+  );
 }
 Dropdown.defaultProps = {
-  boxcolor: 'none',
-  boxcoloractive: '',
-  boxcolorhover: '',
-  className: '',
-  onBlur: () => null,
-  onClick: () => null,
-  type: 'button',
+  handler: () => null,
+  color: colorsThemesList[0],
 };
 Dropdown.propTypes = {
-  boxcolor: PropTypes.string,
-  boxcoloractive: PropTypes.string,
-  boxcolorhover: PropTypes.string,
-  className: PropTypes.string,
-  onBlur: PropTypes.func,
-  onClick: PropTypes.func,
-  type: PropTypes.string,
+  items: PropTypes.arrayOf(PropTypes.string).isRequired,
+  color: PropTypes.oneOf(colorsThemesList),
+  handler: PropTypes.func,
 };
 
 export default Dropdown;

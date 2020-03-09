@@ -10,17 +10,17 @@ Simple Alert example:
 Warning Alert example:
 
 ```js
-<Alert type="warning" isOpen message="Attention" isOpen />
+<Alert type="warning" isOpen message="Attention" />
 ```
 
 Info Alert example:
 
 ```js
-<Alert type="info" isOpen message="Example" isOpen />
+<Alert type="info" isOpen message="Example" />
 ```
 
 Success Alert example:
 
 ```js
-<Alert type="success" isOpen message="Very nice" isOpen />
+<Alert type="success" isOpen message="Very nice" />
 ```
