@@ -8,6 +8,7 @@
     "lint": "NODE_ENV=development eslint src",
     "start": "yarn lint && yarn clean-cache && node scripts/start.js",
     "styleguide": "styleguidist server",
+    "styleguidebuild": "styleguidist build",
     "test": "node scripts/test.js --env=jsdom"
   },
   "devDependencies": {
