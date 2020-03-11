@@ -1,23 +1,23 @@
 Title examples:
 
 ```js
-<Title> Big H1 Title </Title>
+<Title> H1 Title </Title>
 ```
 
 ```js
-<Title textalign="center" fontsize="28px">
-  Center Title
+<Title align="left" size="28px">
+  Left Title
 </Title>
 ```
 
 ```js
-<Title type="h2" fontsize="24px" display="inline-block" color="blue">
-  H2 blue inline Title
+<Title type="h2" size="32px" color="info">
+  H2 Title with themeColor
 </Title>
 ```
 
 ```js
-<Title type="h2" fontsize="20px" margin="10px">
+<Title type="h2" size="20px" margin="10px">
   Small H2 Title
 </Title>
 ```

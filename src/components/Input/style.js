@@ -1,31 +1,36 @@
 import styled from 'styled-components';
-import { propsToCSS } from '~utils/functions';
 
 /**
  * BaseInput
  * @component
  *
  */
-const BaseInput = styled.input`
-  border: none;
-  border: 1px solid ${({ boxcolor }) => boxcolor};
-  padding: 0.4em;
+const BaseInput = styled.input.attrs((props) => {
+  const { color, theme } = props;
+  const themeColor = theme.COLORS[color.toUpperCase()];
+  return {
+    style: {
+      border: `1px solid ${themeColor}`,
+    },
+  };
+})`
   border-radius: 2px;
   cursor: pointer;
-  position: relative;
+  margin: 0 1em;
   outline: none;
+  padding: 0.4em;
+  position: relative;
   transition: all 0.18s ease-in-out;
-  ${(props) => propsToCSS(props)}
+  width: ${({ width }) => width || 'auto'};
   &:after {
     content: '';
   }
   &:focus:after {
   }
   &:hover {
-    ${(props) => propsToCSS(props, 'hover')}
   }
-  &:active {
-    ${(props) => propsToCSS(props, 'active')}
+  &:focus {
+    box-shadow: 0px 0px 4px -2px;
   }
   &:disabled {
     box-shadow: none;

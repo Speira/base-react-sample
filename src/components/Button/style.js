@@ -25,6 +25,15 @@ const BaseButton = styled.button.attrs((props) => {
   outline: none;
   transition: all 0.18s ease-in-out;
   padding: 0.5em;
+  &:hover {
+  }
+  &:active {
+    opacity: 0.5;
+  }
+  &:disabled {
+    box-shadow: none;
+    opacity: 0.6;
+  }
   &:after {
     content: '';
     background-color: #ffffff;
@@ -46,15 +55,6 @@ const BaseButton = styled.button.attrs((props) => {
   }
   &:disabled:after {
     transform: none;
-  }
-  &:hover {
-  }
-  &:active {
-    opacity: 0.5;
-  }
-  &:disabled {
-    box-shadow: none;
-    opacity: 0.6;
   }
 `;
 

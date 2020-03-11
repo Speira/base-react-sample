@@ -1,12 +1,34 @@
 import React from 'react';
+import Contexts from '~contexts';
 import { shallow } from 'enzyme';
+import { colorsThemesList } from '~contexts/ThemeContext';
 
-import Droptown from './index';
+import { DropdownButton, DropdownContent } from './style';
+import Dropdown from './index';
 
-const wrapper = shallow(<Droptown items={['1', '2', '3', '4']} />);
+const handler = jest.fn();
+const shallowWrapper = shallow(
+  <Contexts>
+    <Dropdown items={['1', '2', '3', '4']} handler={handler} />
+  </Contexts>,
+);
 
 describe('render', () => {
-  it('Droptown must be rendered', () => {
+  const wrapper = shallowWrapper.find(Dropdown);
+  it('Dropdown must be rendered', () => {
     expect(wrapper).toBeDefined();
+  });
+  it('Dropdown must have an array of items', () => {
+    expect([expect.any(String)]).toEqual(
+      expect.arrayContaining(wrapper.props().items),
+    );
+  });
+  it('Dropdown can only have an preselected color', () => {
+    expect([...colorsThemesList, undefined]).toEqual(
+      expect.arrayContaining([wrapper.props().color]),
+    );
+  });
+  it('Dropdown can a click event handler', () => {
+    expect(wrapper.props().handler).toEqual(expect.any(Function));
   });
 });

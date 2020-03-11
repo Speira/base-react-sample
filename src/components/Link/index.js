@@ -12,14 +12,13 @@ export function Link(props) {
   const { href, to, variant, boxactive, ...rest } = props;
   const adaptedProps = {
     to: to || href,
-    active: (boxactive && 1) || 0,
-    ...rest,
   };
   let LinkComponent = BaseLink;
   if (variant === 'box') {
     LinkComponent = BoxedLink;
+    adaptedProps.active = (boxactive && 1) || 0;
   }
-  return <LinkComponent {...adaptedProps} />;
+  return <LinkComponent {...rest} {...adaptedProps} />;
 }
 Link.defaultProps = {
   boxactive: false,

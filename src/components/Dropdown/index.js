@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { colorsThemesList } from '~contexts/ThemeContext';
+import { withAsyncErrorHandling } from '~contexts/ErrorContext';
 import BaseDropdown, { DropdownButton, DropdownContent } from './style';
 
 /**
@@ -25,7 +26,11 @@ function Dropdown(props) {
       </DropdownButton>
       <DropdownContent opened={isOpen ? 1 : 0} color={color}>
         {items.map((itemsElement) => (
-          <button key={itemsElement} type="button" onClick={handler}>
+          <button
+            className="item"
+            key={itemsElement}
+            type="button"
+            onClick={handler}>
             {itemsElement}
           </button>
         ))}
@@ -43,4 +48,4 @@ Dropdown.propTypes = {
   handler: PropTypes.func,
 };
 
-export default Dropdown;
+export default withAsyncErrorHandling(Dropdown);

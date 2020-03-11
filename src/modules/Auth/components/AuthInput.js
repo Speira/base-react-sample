@@ -9,11 +9,7 @@ import Input from '~components/Input';
  *
  */
 function AuthInput(props) {
-  const styledProps = {
-    margin: '0 1em',
-  };
-
-  return <Input {...styledProps} {...props} />;
+  return <Input {...props} />;
 }
 AuthInput.defaultProps = {};
 AuthInput.propTypes = {};

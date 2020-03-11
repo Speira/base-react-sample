@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { colorsThemesList } from '~contexts/ThemeContext';
 import TitleH1, { TitleH2 } from './style';
 
 /**
@@ -15,8 +16,10 @@ function Title(props) {
 }
 Title.defaultProps = {
   type: 'h1',
+  color: '',
 };
 Title.propTypes = {
+  color: PropTypes.oneOf([...colorsThemesList, '']),
   type: PropTypes.oneOf(['h1', 'h2']),
 };
 

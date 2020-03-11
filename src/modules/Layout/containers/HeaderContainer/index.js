@@ -24,6 +24,9 @@ function HeaderContainer() {
       <HeaderLink to={PATHS.DEFAULT} type="brand">
         Brand
       </HeaderLink>
+      <a href="https://base-react-style.speira.me/" target="blank">
+        You can see all styles availables on this website here ! &#x2197;
+      </a>
       <div>
         <HeaderLink
           to={PATHS.DEFAULT}
