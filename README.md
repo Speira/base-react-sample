@@ -18,13 +18,22 @@ Paths to modules are often absolute and configured in the .babelrc file.
 
 ## Start the project
 
-For the styleguide :
+First you have to clone this project:
+```bash
+git clone https://github.com/Speira/base-react-sample.git
+cd base-react-sample
+```
+```bash
+ yarn
+```
+
+For the styleguide (listening to the port 6060):
 
 ```bash
 yarn styleguide
 ```
 
-For the application :
+For the application (port 3000):
 
 ```
 yarn start
