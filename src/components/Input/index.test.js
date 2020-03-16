@@ -1,14 +1,20 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import Contexts from '~contexts';
 import { colorsThemesList } from '~contexts/ThemeContext';
 
-import { Input } from './index';
+import Input from './index';
 
 const onChange = jest.fn();
 const onBlur = jest.fn();
-const wrapper = shallow(<Input onBlur={onBlur} onChange={onChange} />);
+const shallowWrapper = shallow(
+  <Contexts>
+    <Input onBlur={onBlur} onChange={onChange} />
+  </Contexts>,
+);
 
 describe('render', () => {
+  const wrapper = shallowWrapper.find(Input);
   it('Input must be rendered', () => {
     expect(wrapper).toBeDefined();
   });

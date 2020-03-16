@@ -5,6 +5,9 @@ import Wrapper from '~components/Wrapper';
 
 const AdaptedWrapper = styled(Wrapper)`
   padding: 3%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 /**
@@ -13,13 +16,8 @@ const AdaptedWrapper = styled(Wrapper)`
  *
  */
 function WrapperHome(props) {
-  const { children } = props;
-  const styledProps = {};
-  styledProps.display = 'flex';
-  styledProps['flex-direction'] = 'column';
-  styledProps['align-items'] = 'center';
-
-  return <AdaptedWrapper {...styledProps}>{children}</AdaptedWrapper>;
+  const { children, ...rest } = props;
+  return <AdaptedWrapper {...rest}>{children}</AdaptedWrapper>;
 }
 
 WrapperHome.propTypes = {

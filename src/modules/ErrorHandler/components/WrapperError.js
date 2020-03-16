@@ -1,7 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import Wrapper from '~components/Wrapper';
-import { useTheme } from '~contexts/ThemeContext';
+
+const AdaptedWrapper = styled(Wrapper)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const FullPageWrapper = styled(AdaptedWrapper)`
+  height: 100vh;
+  background-color: ${({ theme }) => theme.COLORS.SECONDARY};
+  font-size: 1.5em;
+`;
 
 /**
  * WrapperError
@@ -9,19 +22,12 @@ import { useTheme } from '~contexts/ThemeContext';
  *
  */
 function WrapperError(props) {
-  const { fullpage, children } = props;
-  const { colors } = useTheme();
-  const styledProps = {};
-  styledProps.display = 'flex';
-  styledProps['flex-direction'] = 'column';
-  styledProps['align-items'] = 'center';
-  styledProps['justify-content'] = 'center';
+  const { fullpage, children, ...rest } = props;
+  let StyledWrapper = AdaptedWrapper;
   if (fullpage) {
-    styledProps.height = '100vh';
-    styledProps['background-color'] = colors.SECONDARY;
-    styledProps['font-size'] = '1.5em';
+    StyledWrapper = FullPageWrapper;
   }
-  return <Wrapper {...styledProps}>{children}</Wrapper>;
+  return <StyledWrapper {...rest}>{children}</StyledWrapper>;
 }
 WrapperError.defaultProps = {
   fullpage: false,

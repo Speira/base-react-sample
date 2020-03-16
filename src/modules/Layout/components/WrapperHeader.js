@@ -1,6 +1,16 @@
 import React from 'react';
-import { useTheme } from '~contexts/ThemeContext';
-import Wrapper from '~components/Wrapper';
+import styled from 'styled-components';
+import BaseWrapper from '~components/Wrapper';
+
+const Wrapper = styled(BaseWrapper)`
+  color: ${({ theme }) => theme.COLORS.FOREGROUND};
+  height: 72px;
+  padding: 0 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: ${({ theme }) => theme.COLORS.SECONDARY};
+`;
 
 /**
  * WrapperHeader
@@ -8,17 +18,7 @@ import Wrapper from '~components/Wrapper';
  *
  */
 function WrapperHeader(props) {
-  const { colors } = useTheme();
-  const styledProps = {
-    color: colors.FOREGROUND,
-    height: '72px',
-    padding: '0 1em',
-    display: 'flex',
-  };
-  styledProps['align-items'] = 'center';
-  styledProps['justify-content'] = 'space-between';
-  styledProps['background-color'] = colors.SECONDARY;
-  return <Wrapper {...styledProps} {...props} />;
+  return <Wrapper {...props} />;
 }
 
 export default WrapperHeader;

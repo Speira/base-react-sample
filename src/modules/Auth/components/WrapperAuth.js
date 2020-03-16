@@ -1,7 +1,6 @@
 import React from 'react';
 import Wrapper from '~components/Wrapper';
 import styled from 'styled-components';
-import { useTheme } from '~contexts/ThemeContext';
 
 const AdaptedWrapper = styled(Wrapper)`
   margin: 3%;
@@ -10,8 +9,8 @@ const AdaptedWrapper = styled(Wrapper)`
   border-radius: 4px;
   display: flex;
   padding: 0 3% 2em 3%;
-  background-color: ${({ bgcolor }) => bgcolor};
-  box-shadow: 0 2px -1px ${({ boxshadowcolor }) => boxshadowcolor};
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND};
+  box-shadow: 0 2px -1px ${({ theme }) => theme.COLORS.BACKGROUND};
   min-height: 5em;
   label {
     margin-bottom: 8px;
@@ -30,14 +29,7 @@ const AdaptedWrapper = styled(Wrapper)`
  *
  */
 function WrapperAuth(props) {
-  const { colors } = useTheme();
-  return (
-    <AdaptedWrapper
-      bgcolor={colors.BACKGROUND}
-      boxshadowcolor={colors.BACKGROUND}
-      {...props}
-    />
-  );
+  return <AdaptedWrapper {...props} />;
 }
 
 export default WrapperAuth;

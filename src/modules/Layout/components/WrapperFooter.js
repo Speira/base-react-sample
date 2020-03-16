@@ -1,6 +1,17 @@
 import React from 'react';
-import { useTheme } from '~contexts/ThemeContext';
-import Wrapper from '~components/Wrapper';
+import styled from 'styled-components';
+import BaseWrapper from '~components/Wrapper';
+
+/**
+ * Wrapper
+ * @component
+ *
+ */
+const Wrapper = styled(BaseWrapper)`
+  height: 100px;
+  width: 100%;
+  background-color: ${({ theme }) => theme.COLORS.SECONDARY};
+`;
 
 /**
  * WrapperFooter
@@ -8,13 +19,7 @@ import Wrapper from '~components/Wrapper';
  *
  */
 function WrapperFooter(props) {
-  const { colors } = useTheme();
-  const styledProps = {
-    height: '100px',
-    width: '100%',
-  };
-  styledProps['background-color'] = colors.SECONDARY;
-  return <Wrapper {...styledProps} {...props} />;
+  return <Wrapper {...props} />;
 }
 
 export default WrapperFooter;

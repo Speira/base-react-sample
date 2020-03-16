@@ -1,6 +1,15 @@
 import React from 'react';
-import { useTheme } from '~contexts/ThemeContext';
-import Wrapper from '~components/Wrapper';
+import styled from 'styled-components';
+import BaseWrapper from '~components/Wrapper';
+
+const Wrapper = styled(BaseWrapper)`
+  width: 100%;
+  display: flex;
+  background-color: ${({ theme }) => theme.COLORS.PRIMARY};
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
+`;
 
 /**
  * WrapperBody
@@ -8,16 +17,7 @@ import Wrapper from '~components/Wrapper';
  *
  */
 function WrapperBody(props) {
-  const { colors } = useTheme();
-  const styledProps = {
-    width: '100%',
-    display: 'flex',
-  };
-  styledProps['background-color'] = colors.PRIMARY;
-  styledProps['min-height'] = '100vh';
-  styledProps['flex-direction'] = 'column';
-  styledProps['justify-content'] = 'space-between';
-  return <Wrapper {...styledProps} {...props} />;
+  return <Wrapper {...props} />;
 }
 
 export default WrapperBody;

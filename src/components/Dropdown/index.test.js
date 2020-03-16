@@ -15,6 +15,8 @@ const shallowWrapper = shallow(
 
 describe('render', () => {
   const wrapper = shallowWrapper.find(Dropdown);
+  const wrapperButton = wrapper.find(DropdownButton);
+  const wrapperContent = wrapper.find(DropdownContent);
   it('Dropdown must be rendered', () => {
     expect(wrapper).toBeDefined();
   });
@@ -30,5 +32,9 @@ describe('render', () => {
   });
   it('Dropdown can a click event handler', () => {
     expect(wrapper.props().handler).toEqual(expect.any(Function));
+  });
+  it('DropdownButton must have button and content', () => {
+    expect(wrapperButton).toBeDefined();
+    expect(wrapperContent).toBeDefined();
   });
 });

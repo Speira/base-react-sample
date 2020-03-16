@@ -8,7 +8,7 @@ import BaseLink, { BoxedLink } from './style';
  * @component
  *
  */
-export function Link(props) {
+function Link(props) {
   const { href, to, variant, boxactive, ...rest } = props;
   const adaptedProps = {
     to: to || href,
