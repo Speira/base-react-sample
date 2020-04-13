@@ -2,6 +2,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # speira-base-react
 
+## Added modules
+default packages:
+```bash
+yarn add babel-plugin-module-resolver normalize.css prop-types react-router-dom styled-components react-is 
+```
+
+development packages:
+```bash
+yarn add -D babel-plugin-styled-components prettier eslint-config-airbnb eslint-config-prettier eslint-import-resolver-babel-module eslint-plugin-prettier react-styleguidist enzyme enzyme-adapter-react-16
+```
 ## Structure
 
 This project has a module oriented conception, that main all functionalities are
@@ -44,3 +54,4 @@ For the unit tests:
 ```
 yarn test
 ```
+
