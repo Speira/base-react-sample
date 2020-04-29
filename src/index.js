@@ -1,20 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import * as serviceWorker from 'serviceWorker';
-import Contexts from '~contexts';
-import App from 'App';
-import 'normalize.css';
-import './index.css';
 
-/**
- * All contexts (Theme, user, error management, ...)
- * are defined in src/contexts
- *
- */
+import Contexts from '~contexts';
+
+import './index.css';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
+
 ReactDOM.render(
-  <Contexts>
-    <App />
-  </Contexts>,
+  <React.StrictMode>
+    <Contexts>
+      <App />
+    </Contexts>
+  </React.StrictMode>,
   document.getElementById('root'),
 );
 

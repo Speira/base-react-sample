@@ -1,5 +1,8 @@
 import React from 'react';
-import fakeAuthUser from '~utils/api/authAPI';
+import fakeAuthUser, {
+  fakeCreateUser,
+  fakeUpdateUser,
+} from '~utils/api/authAPI';
 
 const AuthContext = React.createContext();
 
@@ -13,12 +16,20 @@ function AuthProvider(props) {
   const [user, setUser] = React.useState({});
   const value = {
     user,
-    isAuthenticated: !!user.id,
+    isAuthenticated: !!user.username,
+    /**
+     * logout
+     * @desc logout an user
+     */
     logout() {
-      setUser({});
+      return new Promise((resolve) => {
+        setUser({});
+        resolve();
+      });
     },
     /**
      * signin
+     * @param {Object} reqUser
      * @param {String} reqUser.name
      * @param {String} reqUser.password
      * @desc allow to auth an registered user
@@ -34,6 +45,40 @@ function AuthProvider(props) {
           .catch((err) => reject(err));
       });
     },
+    /**
+     * signup
+     * @param {Object} reqUser
+     * @param {String} reqUser.name
+     * @param {String} reqUser.password
+     * @desc allow to register an new user
+     */
+    signup(reqUser) {
+      return new Promise((resolve, reject) => {
+        if (!reqUser) reject();
+        fakeCreateUser(reqUser)
+          .then((authenicatedUser) => {
+            setUser({});
+            resolve(authenicatedUser);
+          })
+          .catch((err) => reject(err));
+      });
+    },
+    /**
+     * update
+     * @param {Object} reqUser
+     * @desc allow to update an existing user
+     */
+    update(reqUser) {
+      return new Promise((resolve, reject) => {
+        if (!reqUser) reject();
+        fakeUpdateUser(reqUser)
+          .then((updatedUser) => {
+            setUser(updatedUser);
+            resolve(updatedUser);
+          })
+          .catch((err) => reject(err));
+      });
+    },
   };
 
   return <AuthContext.Provider {...props} value={value} />;
@@ -41,6 +86,7 @@ function AuthProvider(props) {
 
 /**
  * useAuth
+ * @context
  * @return context
  *
  */
@@ -49,4 +95,5 @@ export const useAuth = () => {
   if (!context) throw new Error('AuthContext must be called in AuthProvider');
   return context;
 };
+
 export default AuthProvider;

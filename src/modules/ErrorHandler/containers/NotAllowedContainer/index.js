@@ -3,12 +3,12 @@ import WrapperError from '~ErrorHandler/components/WrapperError';
 import ErrorLink from '~ErrorHandler/components/ErrorLink';
 
 /**
- * NotFoundContainer
+ * NotAllowedContainer
  * @component
  *
  */
-function NotFoundContainer() {
-  const text = 'Error 404: Page not found.';
+function NotAllowedContainer() {
+  const text = 'Error 403: Forbidden.';
   const backText = 'Go home';
   return (
     <WrapperError>
@@ -17,5 +17,7 @@ function NotFoundContainer() {
     </WrapperError>
   );
 }
+NotAllowedContainer.defaultProps = {};
+NotAllowedContainer.propTypes = {};
 
-export default NotFoundContainer;
+export default NotAllowedContainer;

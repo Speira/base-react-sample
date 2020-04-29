@@ -5,28 +5,28 @@ import AuthInput from '~Auth/components/AuthInput';
 import AuthButton from '~Auth/components/AuthButton';
 import * as AuthContext from '~contexts/AuthContext';
 
-import SignupContainer from './index';
+import ProfileContainer from './index';
 
-const switchAuth = jest.fn();
-const signin = jest.fn();
+const update = jest.fn();
 
 jest.spyOn(AuthContext, 'useAuth').mockImplementation(() => ({
-  signin,
+  update,
+  user: { username: 'toto', password: '123' },
 }));
 
-const wrapper = shallow(<SignupContainer switchAuth={switchAuth} />);
+const wrapper = shallow(<ProfileContainer />);
 
 describe('render', () => {
-  it('SignupContainer must be rendered', () => {
+  it('ProfileContainer must be rendered', () => {
     expect(wrapper).toBeDefined();
   });
-  it('SignupContainer must have inputs', () => {
+  it('ProfileContainer must have inputs', () => {
     const inputs = wrapper.find(AuthInput);
-    expect(inputs).toHaveLength(2);
+    expect(inputs).toHaveLength(1);
   });
-  it('SignupContainer must have username input', () => {
+  it('ProfileContainer must have username input', () => {
     const username = wrapper.find(AuthInput).at(0);
-    username.simulate('change', { target: { value: 'test' } });
+    username.simulate('blur', { target: { value: 'test' } });
     expect(
       wrapper
         .find(AuthInput)
@@ -34,7 +34,7 @@ describe('render', () => {
         .props().value,
     ).toEqual('test');
   });
-  it('SignupContainer must have buttons', () => {
+  it('ProfileContainer must have buttons', () => {
     const buttons = wrapper.find(AuthButton);
     expect(buttons).toHaveLength(2);
   });

@@ -8,7 +8,7 @@ import Link from '~components/Link';
  *
  */
 function HeaderLink(props) {
-  const { children, isActive, type, to } = props;
+  const { children, isActive, type, to, ...restProps } = props;
   const linkProps = {};
   if (type === 'brand') {
     linkProps.size = '2em';
@@ -18,7 +18,7 @@ function HeaderLink(props) {
     linkProps.variant = 'box';
   }
   return (
-    <Link to={to} {...linkProps}>
+    <Link to={to} {...linkProps} {...restProps}>
       {children}
     </Link>
   );

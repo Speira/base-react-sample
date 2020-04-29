@@ -20,7 +20,4 @@ describe('render', () => {
       expect.arrayContaining([wrapper.props().variant]),
     );
   });
-  it('Alert prop isOpen must be close if isOpen is not set', () => {
-    expect(wrapper.props().active).toEqual(0);
-  });
 });

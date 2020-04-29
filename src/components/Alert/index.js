@@ -8,9 +8,13 @@ import BaseAlert from './style';
  *
  */
 function Alert(props) {
-  const { message, isOpen, type, title, ...rest } = props;
+  const { message, onClose, title, type, ...rest } = props;
+  const isOpen = message !== '';
   const [isAlertOpen, toggleOpen] = React.useState(isOpen);
-  const closeAlert = () => toggleOpen(false);
+  const closeAlert = () => {
+    toggleOpen(false);
+    onClose();
+  };
   React.useEffect(() => {
     toggleOpen(isOpen);
   }, [isOpen, message, type]);
@@ -34,19 +38,19 @@ function Alert(props) {
 }
 Alert.defaultProps = {
   className: '',
-  title: '',
   message: 'Alert !',
-  isOpen: false,
+  onClose: () => null,
+  title: '',
   type: 'danger',
 };
 Alert.propTypes = {
   className: PropTypes.string,
-  title: PropTypes.string,
   message: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
   ]),
-  isOpen: PropTypes.bool,
+  onClose: PropTypes.func,
+  title: PropTypes.string,
   type: PropTypes.oneOf(['info', 'warning', 'success', 'danger']),
 };
 

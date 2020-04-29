@@ -35,6 +35,7 @@ const BaseInput = styled.input.attrs((props) => {
   &:disabled {
     box-shadow: none;
     opacity: 0.6;
+    cursor: text;
   }
 `;
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import Contexts from '~contexts';
 import { shallow } from 'enzyme';
+import Contexts from '~contexts';
 
 import Link from './index';
 

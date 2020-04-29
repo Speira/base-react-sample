@@ -4,6 +4,28 @@
  *
  */
 export default {
+  ALERTS: {
+    DEFAULT: {
+      message: '',
+      title: '',
+      type: 'info',
+    },
+    IS_MISSING: {
+      message: 'Some required fields are missing',
+      title: '',
+      type: 'danger',
+    },
+    IS_INCORRECT: {
+      message: 'Incorrect Ids',
+      title: '',
+      type: 'danger',
+    },
+    IS_LOADING: {
+      message: 'Loading ...',
+      title: '',
+      type: 'info',
+    },
+  },
   ERRORS: {
     CLIENT: '400',
     NOT_FOUND: '404',
@@ -19,7 +41,9 @@ export default {
   },
   PATHS: {
     AUTH: '/auth',
+    AUTH_PROFILE: '/auth/profile',
     CONTACT: '/contact',
+    FORBIDDEN: '/unauthorized',
     DEFAULT: '/',
     HOME: '/home',
     LOGIN: 'login',

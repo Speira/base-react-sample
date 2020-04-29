@@ -1,12 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+
 import { useAuth } from '~contexts/AuthContext';
+import useAlert from '~hooks/useAlert';
+import DefaultUser from '~utils/constructors/DefaultUser';
+
 import WrapperAuth from '~Auth/components/WrapperAuth';
 import AuthButton from '~Auth/components/AuthButton';
+import AuthForm from '~Auth/components/AuthForm';
 import AuthInput from '~Auth/components/AuthInput';
 import AuthTitle from '~Auth/components/AuthTitle';
-import AuthAlert from '~Auth/components/AuthAlert';
-import AuthForm from '~Auth/components/AuthForm';
+import AuthLoading from '~Auth/components/AuthLoading';
+
+import constants from '~utils/constants';
+
+const { AUTH_PROFILE } = constants.PATHS;
 
 /**
  * LoginContainer
@@ -15,64 +24,66 @@ import AuthForm from '~Auth/components/AuthForm';
  */
 function LoginContainer(props) {
   const { signin } = useAuth();
-  const { switchAuth } = props;
-  const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [hasLoginError, toggleLoginError] = React.useState(false);
+  const { HookAlert, alertIncorrect, alertMissing } = useAlert();
+  const { switchAuth, history } = props;
+  const [tempUser, setTempUser] = React.useState(new DefaultUser());
   const [isLoading, toggleLoading] = React.useState(false);
-  const goSignup = (e) => {
-    e.preventDefault();
-    switchAuth();
-  };
+  const setValue = (field, value) =>
+    setTempUser(new DefaultUser({ ...tempUser, [field]: value }));
   const authenticateUser = () => {
+    if (Object.values(tempUser).some((v) => v === '')) {
+      return alertMissing();
+    }
     toggleLoading(true);
-    signin({ username, password })
+    return signin(tempUser)
       .then(() => {
-        toggleLoading(false);
-        console.warn('connected');
+        history.push(AUTH_PROFILE);
       })
       .catch(() => {
         toggleLoading(false);
-        toggleLoginError(true);
+        alertIncorrect();
       });
   };
+  if (isLoading) {
+    return <AuthLoading messageLogin />;
+  }
   return (
     <WrapperAuth>
       <div className="row">
-        <AuthTitle>Connexion</AuthTitle>
+        <AuthTitle>Authentication</AuthTitle>
       </div>
-      <AuthAlert hasLoginError={hasLoginError} isLoading={isLoading} />
+      <HookAlert />
       <AuthForm>
         <label>
-          <span>ID:</span>
+          <span>Username:</span>
           <AuthInput
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="identifiants"
+            value={tempUser.username}
+            onChange={(e) => setValue('username', e.target.value)}
+            placeholder="username"
           />
         </label>
         <label>
           <span>Password:</span>
           <AuthInput
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={tempUser.password}
+            onChange={(e) => setValue('password', e.target.value)}
             type="password"
             placeholder="password"
           />
         </label>
-        <AuthButton className="center" onClick={authenticateUser}>
-          Valider
+        <AuthButton className="center" onClick={authenticateUser} success>
+          Validate
         </AuthButton>
       </AuthForm>
-      <a href="#" onClick={goSignup}>
-        Pas encore enregistré ? Je m&apos;enregistre
-      </a>
+      <AuthButton className="center" onClick={switchAuth}>
+        I don&apos;t have any account ?
+      </AuthButton>
     </WrapperAuth>
   );
 }
-
 LoginContainer.propTypes = {
   switchAuth: PropTypes.func.isRequired,
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
-export default LoginContainer;
+export default withRouter(LoginContainer);

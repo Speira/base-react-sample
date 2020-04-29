@@ -26,4 +26,5 @@ function ErrorHandler(props) {
   );
 }
 export { default as NotFound } from './containers/NotFoundContainer';
+export { default as NotAllowed } from './containers/NotAllowedContainer';
 export default ErrorHandler;

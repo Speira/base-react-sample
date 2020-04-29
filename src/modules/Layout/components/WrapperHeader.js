@@ -9,7 +9,7 @@ const Wrapper = styled(BaseWrapper)`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: ${({ theme }) => theme.COLORS.SECONDARY};
+  background-color: transparent;
 `;
 
 /**

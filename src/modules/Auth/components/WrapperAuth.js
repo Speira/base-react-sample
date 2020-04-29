@@ -1,6 +1,6 @@
 import React from 'react';
-import Wrapper from '~components/Wrapper';
 import styled from 'styled-components';
+import Wrapper from '~components/Wrapper';
 
 const AdaptedWrapper = styled(Wrapper)`
   margin: 3%;
@@ -17,6 +17,12 @@ const AdaptedWrapper = styled(Wrapper)`
   }
   .center {
     align-self: center;
+  }
+  .left {
+    align-self: flex-start;
+  }
+  .right {
+    align-self: flex-end;
   }
   @media (min-width: 1024px) {
     margin: 0 20%;

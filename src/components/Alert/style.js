@@ -26,6 +26,9 @@ const BaseAlert = styled.div.attrs((props) => {
       backgroundColor: color,
       boxShadow: `0 0 3px -1px ${color}`,
       transform: active ? 'scale(1,1)' : 'scale(1,0)',
+      padding: active ? '0.5em' : '0',
+      margin: active ? '0.5em 0 1em' : '0',
+      height: active ? 'auto' : '0',
     },
   };
 })`
@@ -34,8 +37,6 @@ const BaseAlert = styled.div.attrs((props) => {
   font-family: arial;
   font-size: 0.9em;
   font-weight: 600;
-  margin: 0.5em 0 1em;
-  padding: 0.5em;
   position: relative;
   transition: all 0.18s ease-in-out;
   transform-origin: top;
