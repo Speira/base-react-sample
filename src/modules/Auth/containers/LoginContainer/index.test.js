@@ -5,7 +5,7 @@ import AuthInput from '~Auth/components/AuthInput';
 import AuthButton from '~Auth/components/AuthButton';
 import * as AuthContext from '~contexts/AuthContext';
 
-import LoginContainer from './index';
+import { LoginContainer } from './index';
 
 const switchAuth = jest.fn();
 const signin = jest.fn();
@@ -13,8 +13,12 @@ const signin = jest.fn();
 jest.spyOn(AuthContext, 'useAuth').mockImplementation(() => ({
   signin,
 }));
-
-const wrapper = shallow(<LoginContainer switchAuth={switchAuth} />);
+const history = {
+  push: jest.fn(),
+};
+const wrapper = shallow(
+  <LoginContainer history={history} switchAuth={switchAuth} />,
+);
 
 describe('render', () => {
   it('LoginContainer must be rendered', () => {

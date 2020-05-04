@@ -22,7 +22,7 @@ const { AUTH_PROFILE } = constants.PATHS;
  * @component
  *
  */
-function LoginContainer(props) {
+export function LoginContainer(props) {
   const { signin } = useAuth();
   const { HookAlert, alertIncorrect, alertMissing } = useAlert();
   const { switchAuth, history } = props;

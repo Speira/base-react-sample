@@ -26,7 +26,7 @@ describe('render', () => {
   });
   it('ProfileContainer must have username input', () => {
     const username = wrapper.find(AuthInput).at(0);
-    username.simulate('blur', { target: { value: 'test' } });
+    username.simulate('change', { target: { value: 'test' } });
     expect(
       wrapper
         .find(AuthInput)
