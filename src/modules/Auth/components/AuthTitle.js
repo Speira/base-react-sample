@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 // import PropTypes from 'prop-types'
 
-import Title from '~components/Title';
+import Title from '~components/Title'
 
 /**
  * AuthTitle
@@ -9,9 +9,9 @@ import Title from '~components/Title';
  *
  */
 function AuthTitle(props) {
-  return <Title {...props} />;
+  return <Title {...props} />
 }
-AuthTitle.defaultProps = {};
-AuthTitle.propTypes = {};
+AuthTitle.defaultProps = {}
+AuthTitle.propTypes = {}
 
-export default AuthTitle;
+export default AuthTitle

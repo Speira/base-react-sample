@@ -1,3 +1,5 @@
+import themes from './themes'
+
 /**
  * constants
  * @desc ::  constants provided accross all files
@@ -46,25 +48,12 @@ export default {
     FORBIDDEN: '/unauthorized',
     DEFAULT: '/',
     HOME: '/home',
-    LOGIN: 'login',
+    CATEGORY: '/category',
   },
   STORAGE_ITEMS: {
     THEME: 'themeContextStorage',
   },
   THEMES: {
-    DEFAULT: {
-      COLORS: {
-        PRIMARY: '#e7eaf6',
-        SECONDARY: '#a2a8d3',
-        TERTIARY: '#38598b',
-        QUATERNARY: '#113f67',
-        INFO: '#a1eafb',
-        SUCCESS: '#cfee91',
-        WARNING: '#fcc88a',
-        DANGER: '#f59292',
-        BACKGROUND: '#fffdfb',
-        FOREGROUND: '#000000b3',
-      },
-    },
+    ...themes,
   },
-};
+}

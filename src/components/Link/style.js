@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
 /**
  * BaseLink
@@ -9,16 +9,19 @@ import styled from 'styled-components';
 const BaseLink = styled(Link)`
   cursor: pointer;
   text-decoration: none;
-  padding: 8px;
+  padding: 5px;
   margin: 0 4px;
   color: ${({ theme }) => theme.COLORS.FOREGROUND};
   font-size: ${({ size }) => size || '1em'};
   &:disabled {
     opacity: 0.6;
   }
-`;
+  @media (min-width: 768px) {
+    padding: 8px;
+  }
+`
 
-export default BaseLink;
+export default BaseLink
 
 /**
  * BoxedLink
@@ -33,4 +36,4 @@ export const BoxedLink = styled(BaseLink).attrs(({ active, theme }) => ({
   font-weight: 600;
   color: ${({ theme }) => theme.COLORS.BACKGROUND};
   border-radius: 4px;
-`;
+`

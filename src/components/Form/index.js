@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import BaseForm from './style';
+import React from 'react'
+import PropTypes from 'prop-types'
+import BaseForm from './style'
 
 /**
  * Form
@@ -8,17 +8,17 @@ import BaseForm from './style';
  *
  */
 function Form(props) {
-  const { children, ...rest } = props;
+  const { children, ...rest } = props
 
-  return <BaseForm {...rest}>{children}</BaseForm>;
+  return <BaseForm {...rest}>{children}</BaseForm>
 }
 Form.defaultProps = {
   children: undefined,
   className: '',
-};
+}
 Form.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-};
+}
 
-export default Form;
+export default Form

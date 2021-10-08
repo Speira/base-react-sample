@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-import BaseWrapper from './style';
+import BaseWrapper from './style'
 
 /**
  * Wrapper
@@ -8,9 +8,9 @@ import BaseWrapper from './style';
  *
  */
 function Wrapper(props) {
-  return <BaseWrapper {...props} />;
+  return <BaseWrapper {...props} />
 }
-Wrapper.defaultProps = {};
-Wrapper.propTypes = {};
+Wrapper.defaultProps = {}
+Wrapper.propTypes = {}
 
-export default Wrapper;
+export default Wrapper

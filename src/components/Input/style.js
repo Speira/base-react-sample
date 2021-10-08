@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 /**
  * BaseInput
@@ -6,13 +6,13 @@ import styled from 'styled-components';
  *
  */
 const BaseInput = styled.input.attrs((props) => {
-  const { color, theme } = props;
-  const themeColor = theme.COLORS[color.toUpperCase()];
+  const { color, theme } = props
+  const themeColor = theme.COLORS[color.toUpperCase()]
   return {
     style: {
       border: `1px solid ${themeColor}`,
     },
-  };
+  }
 })`
   border-radius: 2px;
   cursor: pointer;
@@ -37,6 +37,6 @@ const BaseInput = styled.input.attrs((props) => {
     opacity: 0.6;
     cursor: text;
   }
-`;
+`
 
-export default BaseInput;
+export default BaseInput

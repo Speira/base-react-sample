@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import Alert from '~components/Alert';
+import Alert from '~components/Alert'
 
 const ALERTS = {
   DEFAULT: {
@@ -19,7 +19,7 @@ const ALERTS = {
     type: 'danger',
     isOpen: true,
   },
-};
+}
 
 /**
  * AuthAlert
@@ -27,21 +27,21 @@ const ALERTS = {
  *
  */
 function AuthAlert(props) {
-  const { hasLoginError, isLoading } = props;
-  const [alert, setAlert] = React.useState(ALERTS.DEFAULT);
+  const { hasLoginError, isLoading } = props
+  const [alert, setAlert] = React.useState(ALERTS.DEFAULT)
   React.useEffect(() => {
-    if (hasLoginError) setAlert(ALERTS.LOGIN);
-    if (isLoading) setAlert(ALERTS.LOADING);
-  }, [hasLoginError, isLoading]);
-  return <Alert {...alert} />;
+    if (hasLoginError) setAlert(ALERTS.LOGIN)
+    if (isLoading) setAlert(ALERTS.LOADING)
+  }, [hasLoginError, isLoading])
+  return <Alert {...alert} />
 }
 AuthAlert.defaultProps = {
   hasLoginError: false,
   isLoading: false,
-};
+}
 AuthAlert.propTypes = {
   hasLoginError: PropTypes.bool,
   isLoading: PropTypes.bool,
-};
+}
 
-export default AuthAlert;
+export default AuthAlert

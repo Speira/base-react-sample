@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 const BaseForm = styled.form`
   width: ${({ width }) => width || 'auto'};
@@ -13,6 +13,6 @@ const BaseForm = styled.form`
     justify-content: center;
     align-items: center;
   }
-`;
+`
 
-export default BaseForm;
+export default BaseForm

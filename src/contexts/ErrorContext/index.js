@@ -1,9 +1,9 @@
-import React from 'react';
-import constants from '~utils/constants';
+import React from 'react'
+import constants from '~utils/constants'
 
-const { CLIENT, SERVER, NOT_FOUND } = constants.ERRORS;
+const { CLIENT, SERVER, NOT_FOUND } = constants.ERRORS
 
-const ErrorContext = React.createContext();
+const ErrorContext = React.createContext()
 
 /**
  * ErrorProvider
@@ -12,8 +12,8 @@ const ErrorContext = React.createContext();
  *
  */
 function ErrorProvider(props) {
-  const [errorType, setErrorType] = React.useState(null);
-  const [errorMessage, setErrorMessage] = React.useState('');
+  const [errorType, setErrorType] = React.useState(null)
+  const [errorMessage, setErrorMessage] = React.useState('')
   const value = {
     errorMessage,
     errorType,
@@ -22,16 +22,16 @@ function ErrorProvider(props) {
     isNotFoundError: errorType === NOT_FOUND,
     isServerError: errorType === SERVER,
     resetError() {
-      setErrorType(null);
-      setErrorMessage('');
+      setErrorType(null)
+      setErrorMessage('')
     },
     setError({ type, message }) {
-      setErrorType(type);
-      setErrorMessage(message);
+      setErrorType(type)
+      setErrorMessage(message)
     },
-  };
+  }
 
-  return <ErrorContext.Provider {...props} value={value} />;
+  return <ErrorContext.Provider {...props} value={value} />
 }
 
 /**
@@ -40,10 +40,10 @@ function ErrorProvider(props) {
  *
  */
 export const useError = () => {
-  const context = React.useContext(ErrorContext);
-  if (!context) throw new Error('ErrorContext must be called in ErrorProvider');
-  return context;
-};
+  const context = React.useContext(ErrorContext)
+  if (!context) throw new Error('ErrorContext must be called in ErrorProvider')
+  return context
+}
 
 /**
  * withAsynErrorHandling
@@ -52,22 +52,22 @@ export const useError = () => {
  *
  */
 export const withAsyncErrorHandling = (Component) => (props) => {
-  const { setError } = useError();
+  const { setError } = useError()
   const safeFn = (fn) => (params) => {
     try {
-      fn(params);
+      fn(params)
     } catch (e) {
       console.error(
         'Error Caught in contexts/ErrorContext withAsyncErrorHandling function: \n',
         e,
-      );
+      )
       setError({
         type: SERVER,
         message: 'Oops something get wrong, please contact the developer.',
-      });
+      })
     }
-  };
-  const adaptedProps = { ...props };
+  }
+  const adaptedProps = { ...props }
   const eventsList = [
     'onBlur',
     'onChange',
@@ -97,14 +97,14 @@ export const withAsyncErrorHandling = (Component) => (props) => {
     'onMouseUp',
     'onSelect',
     'onSubmit',
-  ];
+  ]
   eventsList.forEach((e) => {
-    const handler = props[e];
+    const handler = props[e]
     if (typeof handler === 'function') {
-      adaptedProps[e] = safeFn(handler);
+      adaptedProps[e] = safeFn(handler)
     }
-  });
-  return <Component {...adaptedProps} />;
-};
+  })
+  return <Component {...adaptedProps} />
+}
 
-export default ErrorProvider;
+export default ErrorProvider

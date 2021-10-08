@@ -1,10 +1,10 @@
-import React from 'react';
+import React from 'react'
 import fakeAuthUser, {
   fakeCreateUser,
   fakeUpdateUser,
-} from '~utils/api/authAPI';
+} from '~utils/api/authAPI'
 
-const AuthContext = React.createContext();
+const AuthContext = React.createContext()
 
 /**
  * AuthProvider
@@ -13,7 +13,7 @@ const AuthContext = React.createContext();
  *
  */
 function AuthProvider(props) {
-  const [user, setUser] = React.useState({});
+  const [user, setUser] = React.useState({})
   const value = {
     user,
     isAuthenticated: !!user.username,
@@ -23,9 +23,9 @@ function AuthProvider(props) {
      */
     logout() {
       return new Promise((resolve) => {
-        setUser({});
-        resolve();
-      });
+        setUser({})
+        resolve()
+      })
     },
     /**
      * signin
@@ -36,14 +36,14 @@ function AuthProvider(props) {
      */
     signin(reqUser) {
       return new Promise((resolve, reject) => {
-        if (!reqUser) reject();
+        if (!reqUser) reject()
         fakeAuthUser(reqUser)
           .then((authenicatedUser) => {
-            setUser(authenicatedUser);
-            resolve(authenicatedUser);
+            setUser(authenicatedUser)
+            resolve(authenicatedUser)
           })
-          .catch((err) => reject(err));
-      });
+          .catch((err) => reject(err))
+      })
     },
     /**
      * signup
@@ -54,14 +54,14 @@ function AuthProvider(props) {
      */
     signup(reqUser) {
       return new Promise((resolve, reject) => {
-        if (!reqUser) reject();
+        if (!reqUser) reject()
         fakeCreateUser(reqUser)
           .then((authenicatedUser) => {
-            setUser({});
-            resolve(authenicatedUser);
+            setUser({})
+            resolve(authenicatedUser)
           })
-          .catch((err) => reject(err));
-      });
+          .catch((err) => reject(err))
+      })
     },
     /**
      * update
@@ -70,18 +70,18 @@ function AuthProvider(props) {
      */
     update(reqUser) {
       return new Promise((resolve, reject) => {
-        if (!reqUser) reject();
+        if (!reqUser) reject()
         fakeUpdateUser(reqUser)
           .then((updatedUser) => {
-            setUser(updatedUser);
-            resolve(updatedUser);
+            setUser(updatedUser)
+            resolve(updatedUser)
           })
-          .catch((err) => reject(err));
-      });
+          .catch((err) => reject(err))
+      })
     },
-  };
+  }
 
-  return <AuthContext.Provider {...props} value={value} />;
+  return <AuthContext.Provider {...props} value={value} />
 }
 
 /**
@@ -91,9 +91,9 @@ function AuthProvider(props) {
  *
  */
 export const useAuth = () => {
-  const context = React.useContext(AuthContext);
-  if (!context) throw new Error('AuthContext must be called in AuthProvider');
-  return context;
-};
+  const context = React.useContext(AuthContext)
+  if (!context) throw new Error('AuthContext must be called in AuthProvider')
+  return context
+}
 
-export default AuthProvider;
+export default AuthProvider

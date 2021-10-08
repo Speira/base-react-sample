@@ -1,6 +1,6 @@
 const fakeUser = {
-  username: 'test',
-};
+  username: 'toto',
+}
 
 /**
  * fakeAuthUser
@@ -11,10 +11,10 @@ const fakeUser = {
 export default function fakeAuthUser(inputs) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (inputs.username === 'toto') resolve(fakeUser);
-      else reject();
-    }, 3000);
-  });
+      if (inputs.username === 'toto') resolve(fakeUser)
+      else reject()
+    }, 3000)
+  })
 }
 
 /**
@@ -26,9 +26,9 @@ export default function fakeAuthUser(inputs) {
 export function fakeCreateUser(inputs) {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(inputs);
-    }, 3000);
-  });
+      resolve(inputs)
+    }, 3000)
+  })
 }
 
 /**
@@ -39,8 +39,8 @@ export function fakeCreateUser(inputs) {
 export function fakeUpdateUser(inputs) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (inputs) resolve(fakeUser);
-      else reject();
-    }, 3000);
-  });
+      if (inputs) resolve(inputs)
+      else reject()
+    }, 3000)
+  })
 }

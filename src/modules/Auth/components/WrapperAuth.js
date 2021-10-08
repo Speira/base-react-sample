@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import Wrapper from '~components/Wrapper';
+import React from 'react'
+import styled from 'styled-components'
+import Wrapper from '~components/Wrapper'
 
 const AdaptedWrapper = styled(Wrapper)`
   margin: 3%;
@@ -27,7 +27,7 @@ const AdaptedWrapper = styled(Wrapper)`
   @media (min-width: 1024px) {
     margin: 0 20%;
   }
-`;
+`
 
 /**
  * WrapperAuth
@@ -35,7 +35,7 @@ const AdaptedWrapper = styled(Wrapper)`
  *
  */
 function WrapperAuth(props) {
-  return <AdaptedWrapper {...props} />;
+  return <AdaptedWrapper {...props} />
 }
 
-export default WrapperAuth;
+export default WrapperAuth

@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { colorsThemesList } from '~contexts/ThemeContext';
-import { withAsyncErrorHandling } from '~contexts/ErrorContext';
-import BaseDropdown, { DropdownButton, DropdownContent } from './style';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { colorsThemesList } from '~contexts/ThemeContext'
+import { withAsyncErrorHandling } from '~contexts/ErrorContext'
+import BaseDropdown, { DropdownButton, DropdownContent } from './style'
 
 /**
  * Dropdown
@@ -10,15 +10,15 @@ import BaseDropdown, { DropdownButton, DropdownContent } from './style';
  *
  */
 function Dropdown(props) {
-  const { items, handler, color, ...rest } = props;
-  const [isOpen, setIsOpen] = React.useState(false);
+  const { items, handler, color, ...rest } = props
+  const [isOpen, setIsOpen] = React.useState(false)
   const toggleOpen = (nextState) => {
-    const time = isOpen ? 150 : 0;
+    const time = isOpen ? 150 : 0
     setTimeout(() => {
-      setIsOpen(typeof nextState === 'boolean' ? nextState : !isOpen);
-    }, time);
-  };
-  const closeContent = () => toggleOpen(false);
+      setIsOpen(typeof nextState === 'boolean' ? nextState : !isOpen)
+    }, time)
+  }
+  const closeContent = () => toggleOpen(false)
   return (
     <BaseDropdown {...rest} onBlur={closeContent}>
       <DropdownButton onClick={toggleOpen} color={color}>
@@ -36,16 +36,16 @@ function Dropdown(props) {
         ))}
       </DropdownContent>
     </BaseDropdown>
-  );
+  )
 }
 Dropdown.defaultProps = {
   handler: () => null,
   color: colorsThemesList[0],
-};
+}
 Dropdown.propTypes = {
   items: PropTypes.arrayOf(PropTypes.string).isRequired,
   color: PropTypes.oneOf(colorsThemesList),
   handler: PropTypes.func,
-};
+}
 
-export default withAsyncErrorHandling(Dropdown);
+export default withAsyncErrorHandling(Dropdown)

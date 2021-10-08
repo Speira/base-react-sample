@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import BaseWrapper from '~components/Wrapper';
+import React from 'react'
+import styled from 'styled-components'
+import BaseWrapper from '~components/Wrapper'
 
 /**
  * Wrapper
@@ -11,7 +11,7 @@ const Wrapper = styled(BaseWrapper)`
   height: 100px;
   width: 100%;
   background-color: ${({ theme }) => theme.COLORS.SECONDARY};
-`;
+`
 
 /**
  * WrapperFooter
@@ -19,7 +19,7 @@ const Wrapper = styled(BaseWrapper)`
  *
  */
 function WrapperFooter(props) {
-  return <Wrapper {...props} />;
+  return <Wrapper {...props} />
 }
 
-export default WrapperFooter;
+export default WrapperFooter

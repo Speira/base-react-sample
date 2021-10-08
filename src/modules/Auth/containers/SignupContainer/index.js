@@ -1,16 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import { useAuth } from '~contexts/AuthContext';
-import useAlert from '~hooks/useAlert';
-import DefaultUser from '~utils/constructors/DefaultUser';
+import { useAuth } from '~contexts/AuthContext'
+import useAlert from '~hooks/useAlert'
+import DefaultUser from '~utils/constructors/DefaultUser'
 
-import AuthButton from '~Auth/components/AuthButton';
-import AuthForm from '~Auth/components/AuthForm';
-import AuthInput from '~Auth/components/AuthInput';
-import AuthLoading from '~Auth/components/AuthLoading';
-import AuthTitle from '~Auth/components/AuthTitle';
-import WrapperAuth from '~Auth/components/WrapperAuth';
+import AuthButton from '~Auth/components/AuthButton'
+import AuthForm from '~Auth/components/AuthForm'
+import AuthInput from '~Auth/components/AuthInput'
+import AuthLoading from '~Auth/components/AuthLoading'
+import AuthTitle from '~Auth/components/AuthTitle'
+import WrapperAuth from '~Auth/components/WrapperAuth'
 
 /**
  * SignupContainer
@@ -18,33 +18,33 @@ import WrapperAuth from '~Auth/components/WrapperAuth';
  *
  */
 function SignupContainer(props) {
-  const { switchAuth } = props;
-  const { signup } = useAuth();
-  const { HookAlert, alertIncorrect, alertMissing, clearAlert } = useAlert();
-  const [tempUser, setTempUser] = React.useState(new DefaultUser());
-  const [isLoading, toggleLoading] = React.useState(false);
-  const [isRegistered, toggleRegistered] = React.useState(false);
+  const { switchAuth } = props
+  const { signup } = useAuth()
+  const { HookAlert, alertIncorrect, alertMissing, clearAlert } = useAlert()
+  const [tempUser, setTempUser] = React.useState(new DefaultUser())
+  const [isLoading, toggleLoading] = React.useState(false)
+  const [isRegistered, toggleRegistered] = React.useState(false)
   const setValue = (field, value) => {
-    setTempUser(new DefaultUser({ ...tempUser, [field]: value }));
-  };
+    setTempUser(new DefaultUser({ ...tempUser, [field]: value }))
+  }
   const signUp = () => {
     if (Object.values(tempUser).some((v) => v === '')) {
-      return alertMissing;
+      return alertMissing
     }
-    toggleLoading(true);
+    toggleLoading(true)
     return signup(tempUser)
       .then(() => {
-        clearAlert();
-        toggleLoading(false);
-        toggleRegistered(true);
+        clearAlert()
+        toggleLoading(false)
+        toggleRegistered(true)
       })
       .catch(() => {
-        toggleLoading(false);
-        alertIncorrect();
-      });
-  };
+        toggleLoading(false)
+        alertIncorrect()
+      })
+  }
   if (isLoading) {
-    return <AuthLoading messageSignup />;
+    return <AuthLoading messageSignup />
   }
   if (isRegistered) {
     return (
@@ -57,7 +57,7 @@ function SignupContainer(props) {
           instructions which will allow you to finalize your registration.
         </div>
       </WrapperAuth>
-    );
+    )
   }
   return (
     <WrapperAuth>
@@ -88,14 +88,14 @@ function SignupContainer(props) {
         </AuthButton>
       </AuthForm>
       <AuthButton className="center" onClick={switchAuth}>
-        I have already an account ?
+        I already have an account ?
       </AuthButton>
     </WrapperAuth>
-  );
+  )
 }
 
 SignupContainer.propTypes = {
   switchAuth: PropTypes.func.isRequired,
-};
+}
 
-export default SignupContainer;
+export default SignupContainer

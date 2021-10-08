@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 // import PropTypes from 'prop-types'
 
-import Input from '~components/Input';
+import Input from '~components/Input'
 
 /**
  * AuthInput
@@ -9,9 +9,9 @@ import Input from '~components/Input';
  *
  */
 function AuthInput(props) {
-  return <Input {...props} />;
+  return <Input {...props} />
 }
-AuthInput.defaultProps = {};
-AuthInput.propTypes = {};
+AuthInput.defaultProps = {}
+AuthInput.propTypes = {}
 
-export default AuthInput;
+export default AuthInput

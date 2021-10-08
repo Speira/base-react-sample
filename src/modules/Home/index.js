@@ -1,5 +1,5 @@
-import React from 'react';
-import HomeContainer from '~Home/containers/HomeContainer';
+import React from 'react'
+import HomeContainer from '~Home/containers/HomeContainer'
 
 /**
  * Home
@@ -7,7 +7,7 @@ import HomeContainer from '~Home/containers/HomeContainer';
  *
  */
 function Home(props) {
-  return <HomeContainer {...props} />;
+  return <HomeContainer {...props} />
 }
 
-export default Home;
+export default Home

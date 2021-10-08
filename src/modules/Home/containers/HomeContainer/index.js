@@ -1,6 +1,6 @@
-import React from 'react';
-import WrapperHome from '~Home/components/WrapperHome';
-import HomeButton from '~Home/components/HomeButton';
+import React from 'react'
+import WrapperHome from '~Home/components/WrapperHome'
+import HomeButton from '~Home/components/HomeButton'
 
 /**
  * HomeContainer
@@ -9,7 +9,7 @@ import HomeButton from '~Home/components/HomeButton';
  */
 function HomeContainer(props) {
   // eslint-disable-next-line
-  const errorClick = () => undefinedFunction();
+  const errorClick = () => undefinedFunction()
   return (
     <WrapperHome {...props}>
       <HomeButton>Button </HomeButton>
@@ -18,7 +18,7 @@ function HomeContainer(props) {
         Button that cause error
       </HomeButton>
     </WrapperHome>
-  );
+  )
 }
 
-export default HomeContainer;
+export default HomeContainer

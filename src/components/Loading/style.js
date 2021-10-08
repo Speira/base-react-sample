@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 /**
  * BaseLoading
@@ -30,6 +30,6 @@ const BaseLoading = styled.div`
       }
     }
   }
-`;
+`
 
-export default BaseLoading;
+export default BaseLoading

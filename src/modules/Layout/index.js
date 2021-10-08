@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import FooterContainer from '~Layout/containers/FooterContainer';
-import HeaderContainer from '~Layout/containers/HeaderContainer';
-import BodyContainer from '~Layout/containers/BodyContainer';
+import React from 'react'
+import PropTypes from 'prop-types'
+import FooterContainer from '~Layout/containers/FooterContainer'
+import HeaderContainer from '~Layout/containers/HeaderContainer'
+import BodyContainer from '~Layout/containers/BodyContainer'
 
 /**
  * Layout
@@ -10,17 +10,17 @@ import BodyContainer from '~Layout/containers/BodyContainer';
  *
  */
 function Layout(props) {
-  const { children } = props;
+  const { children } = props
   return (
     <BodyContainer>
       <HeaderContainer />
       {children}
       <FooterContainer />
     </BodyContainer>
-  );
+  )
 }
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-};
+}
 
-export default Layout;
+export default Layout

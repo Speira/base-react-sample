@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 /**
  * DropdownButton
@@ -24,7 +24,7 @@ export const DropdownButton = styled.button.attrs(() => ({
   &:focus {
     outline: none;
   }
-`;
+`
 
 /**
  * DropdownContent
@@ -33,12 +33,12 @@ export const DropdownButton = styled.button.attrs(() => ({
  *
  */
 export const DropdownContent = styled.div.attrs((props) => {
-  const { opened } = props;
+  const { opened } = props
   return {
     style: {
       transform: `scale(1, ${opened ? '1' : '0'})`,
     },
-  };
+  }
 })`
   position: absolute;
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND};
@@ -61,7 +61,7 @@ export const DropdownContent = styled.div.attrs((props) => {
     background-color: ${({ theme, color }) =>
       theme.COLORS[color.toUpperCase()]};
   }
-`;
+`
 
 /**
  * BaseDropdown
@@ -71,6 +71,6 @@ export const DropdownContent = styled.div.attrs((props) => {
 const BaseDropdown = styled.div`
   position: relative;
   display: inline-block;
-`;
+`
 
-export default BaseDropdown;
+export default BaseDropdown

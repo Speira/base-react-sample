@@ -1,5 +1,5 @@
-import React from 'react';
-import WrapperBody from '~Layout/components/WrapperBody';
+import React from 'react'
+import WrapperBody from '~Layout/components/WrapperBody'
 
 /**
  * BodyContainer
@@ -7,7 +7,7 @@ import WrapperBody from '~Layout/components/WrapperBody';
  *
  */
 function BodyContainer(props) {
-  return <WrapperBody {...props} />;
+  return <WrapperBody {...props} />
 }
 
-export default BodyContainer;
+export default BodyContainer

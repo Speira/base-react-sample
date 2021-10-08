@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import BaseWrapper from '~components/Wrapper';
+import React from 'react'
+import styled from 'styled-components'
+import BaseWrapper from '~components/Wrapper'
 
 const Wrapper = styled(BaseWrapper)`
   color: ${({ theme }) => theme.COLORS.FOREGROUND};
@@ -10,7 +10,7 @@ const Wrapper = styled(BaseWrapper)`
   align-items: center;
   justify-content: space-between;
   background-color: transparent;
-`;
+`
 
 /**
  * WrapperHeader
@@ -18,7 +18,7 @@ const Wrapper = styled(BaseWrapper)`
  *
  */
 function WrapperHeader(props) {
-  return <Wrapper {...props} />;
+  return <Wrapper {...props} />
 }
 
-export default WrapperHeader;
+export default WrapperHeader

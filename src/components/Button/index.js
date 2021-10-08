@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { colorsThemesList } from '~contexts/ThemeContext';
-import { withAsyncErrorHandling } from '~contexts/ErrorContext';
-import BaseButton, { RoundedButton } from './style';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { colorsThemesList } from '~contexts/ThemeContext'
+import { withAsyncErrorHandling } from '~contexts/ErrorContext'
+import BaseButton, { RoundedButton } from './style'
 
 /**
  * Button
@@ -10,10 +10,10 @@ import BaseButton, { RoundedButton } from './style';
  *
  */
 function Button(props) {
-  const { inversed, variant, ...rest } = props;
-  let ComponentButton = BaseButton;
-  if (variant === 'rounded') ComponentButton = RoundedButton;
-  return <ComponentButton inversed={inversed ? 1 : 0} {...rest} />;
+  const { inversed, variant, ...rest } = props
+  let ComponentButton = BaseButton
+  if (variant === 'rounded') ComponentButton = RoundedButton
+  return <ComponentButton inversed={inversed ? 1 : 0} {...rest} />
 }
 Button.defaultProps = {
   className: '',
@@ -26,7 +26,7 @@ Button.defaultProps = {
   type: 'button',
   variant: '',
   width: '',
-};
+}
 Button.propTypes = {
   className: PropTypes.string,
   /** colors are located in src/utils/constants file */
@@ -39,6 +39,6 @@ Button.propTypes = {
   type: PropTypes.string,
   variant: PropTypes.oneOf(['', 'rounded']),
   width: PropTypes.string,
-};
+}
 
-export default withAsyncErrorHandling(Button);
+export default withAsyncErrorHandling(Button)

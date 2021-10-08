@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
-export default () => <div />;
-export { default as AuthenticatedRoute } from './AuthenticatedRoute';
+export default () => <div />
+export { default as AuthenticatedRoute } from './AuthenticatedRoute'

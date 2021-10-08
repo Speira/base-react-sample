@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 /**
  * BaseButton
@@ -6,14 +6,14 @@ import styled from 'styled-components';
  *
  */
 const BaseButton = styled.button.attrs((props) => {
-  const { color, theme, inversed } = props;
-  const themeColor = theme.COLORS[color.toUpperCase()];
+  const { color, theme, inversed } = props
+  const themeColor = theme.COLORS[color.toUpperCase()]
   return {
     style: {
       color: inversed ? theme.COLORS.BACKGROUND : theme.COLORS.FOREGROUND,
       backgroundColor: themeColor,
     },
-  };
+  }
 })`
   width: ${({ width }) => width || 'auto'};
   height: ${({ height }) => height || 'auto'};
@@ -56,10 +56,10 @@ const BaseButton = styled.button.attrs((props) => {
   &:disabled:after {
     transform: none;
   }
-`;
+`
 
-export default BaseButton;
+export default BaseButton
 
 export const RoundedButton = styled(BaseButton)`
   border-radius: 100%;
-`;
+`

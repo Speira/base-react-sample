@@ -1,14 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withRouter } from 'react-router-dom'
 
-import { useAuth } from '~contexts/AuthContext';
-import constants from '~/utils/constants';
+import { useAuth } from '~contexts/AuthContext'
+import constants from '~/utils/constants'
 
-import WrapperHeader from '~Layout/components/WrapperHeader';
-import HeaderLink from '~Layout/components/HeaderLink';
+import WrapperHeader from '~Layout/components/WrapperHeader'
+import HeaderLink from '~Layout/components/HeaderLink'
 
-const { PATHS } = constants;
+const { PATHS } = constants
 
 /**
  * HeaderContainer
@@ -16,15 +16,15 @@ const { PATHS } = constants;
  *
  */
 function HeaderContainer(props) {
-  const { history } = props;
-  const { pathname: path } = document.location;
-  const { isAuthenticated, logout } = useAuth();
+  const { history } = props
+  const { pathname: path } = document.location
+  const { isAuthenticated, logout } = useAuth()
   const disconnect = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     logout().then(() => {
-      history.push(PATHS.DEFAULT);
-    });
-  };
+      history.push(PATHS.DEFAULT)
+    })
+  }
   return (
     <WrapperHeader>
       <HeaderLink to={PATHS.DEFAULT} type="brand">
@@ -70,10 +70,10 @@ function HeaderContainer(props) {
         </HeaderLink>
       </div>
     </WrapperHeader>
-  );
+  )
 }
 HeaderContainer.propTypes = {
   history: PropTypes.objectOf(PropTypes.any).isRequired,
-};
+}
 
-export default withRouter(HeaderContainer);
+export default withRouter(HeaderContainer)

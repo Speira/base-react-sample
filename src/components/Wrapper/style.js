@@ -1,10 +1,10 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 /**
  * BaseWrapper
  * @component
  *
  */
-const BaseWrapper = styled.section``;
+const BaseWrapper = styled.section``
 
-export default BaseWrapper;
+export default BaseWrapper

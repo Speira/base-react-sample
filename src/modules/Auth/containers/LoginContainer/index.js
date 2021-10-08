@@ -1,51 +1,51 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withRouter } from 'react-router-dom'
 
-import { useAuth } from '~contexts/AuthContext';
-import useAlert from '~hooks/useAlert';
-import DefaultUser from '~utils/constructors/DefaultUser';
+import { useAuth } from '~contexts/AuthContext'
+import useAlert from '~hooks/useAlert'
+import DefaultUser from '~utils/constructors/DefaultUser'
 
-import WrapperAuth from '~Auth/components/WrapperAuth';
-import AuthButton from '~Auth/components/AuthButton';
-import AuthForm from '~Auth/components/AuthForm';
-import AuthInput from '~Auth/components/AuthInput';
-import AuthTitle from '~Auth/components/AuthTitle';
-import AuthLoading from '~Auth/components/AuthLoading';
+import WrapperAuth from '~Auth/components/WrapperAuth'
+import AuthButton from '~Auth/components/AuthButton'
+import AuthForm from '~Auth/components/AuthForm'
+import AuthInput from '~Auth/components/AuthInput'
+import AuthTitle from '~Auth/components/AuthTitle'
+import AuthLoading from '~Auth/components/AuthLoading'
 
-import constants from '~utils/constants';
+import constants from '~utils/constants'
 
-const { AUTH_PROFILE } = constants.PATHS;
+const { AUTH_PROFILE } = constants.PATHS
 
 /**
  * LoginContainer
  * @component
  *
  */
-export function LoginContainer(props) {
-  const { signin } = useAuth();
-  const { HookAlert, alertIncorrect, alertMissing } = useAlert();
-  const { switchAuth, history } = props;
-  const [tempUser, setTempUser] = React.useState(new DefaultUser());
-  const [isLoading, toggleLoading] = React.useState(false);
+export function BaseLoginContainer(props) {
+  const { signin } = useAuth()
+  const { HookAlert, alertIncorrect, alertMissing } = useAlert()
+  const { switchAuth, history } = props
+  const [tempUser, setTempUser] = React.useState(new DefaultUser())
+  const [isLoading, toggleLoading] = React.useState(false)
   const setValue = (field, value) =>
-    setTempUser(new DefaultUser({ ...tempUser, [field]: value }));
+    setTempUser(new DefaultUser({ ...tempUser, [field]: value }))
   const authenticateUser = () => {
     if (Object.values(tempUser).some((v) => v === '')) {
-      return alertMissing();
+      return alertMissing()
     }
-    toggleLoading(true);
+    toggleLoading(true)
     return signin(tempUser)
       .then(() => {
-        history.push(AUTH_PROFILE);
+        history.push(AUTH_PROFILE)
       })
       .catch(() => {
-        toggleLoading(false);
-        alertIncorrect();
-      });
-  };
+        toggleLoading(false)
+        alertIncorrect()
+      })
+  }
   if (isLoading) {
-    return <AuthLoading messageLogin />;
+    return <AuthLoading messageLogin />
   }
   return (
     <WrapperAuth>
@@ -79,11 +79,12 @@ export function LoginContainer(props) {
         I don&apos;t have any account ?
       </AuthButton>
     </WrapperAuth>
-  );
+  )
 }
-LoginContainer.propTypes = {
+BaseLoginContainer.propTypes = {
   switchAuth: PropTypes.func.isRequired,
   history: PropTypes.objectOf(PropTypes.any).isRequired,
-};
+}
 
-export default withRouter(LoginContainer);
+const LoginContainer = withRouter(BaseLoginContainer)
+export default LoginContainer

@@ -1,15 +1,15 @@
-import React from 'react';
+import React from 'react'
 // import PropTypes from 'prop-types';
 
-import { useAuth } from '~contexts/AuthContext';
-import useAlert from '~hooks/useAlert';
-import DefaultUser from '~utils/constructors/DefaultUser';
+import { useAuth } from '~contexts/AuthContext'
+import useAlert from '~hooks/useAlert'
+import DefaultUser from '~utils/constructors/DefaultUser'
 
-import WrapperAuth from '~Auth/components/WrapperAuth';
-import AuthButton from '~Auth/components/AuthButton';
-import AuthForm from '~Auth/components/AuthForm';
-import AuthInput from '~Auth/components/AuthInput';
-import AuthTitle from '~Auth/components/AuthTitle';
+import WrapperAuth from '~Auth/components/WrapperAuth'
+import AuthButton from '~Auth/components/AuthButton'
+import AuthForm from '~Auth/components/AuthForm'
+import AuthInput from '~Auth/components/AuthInput'
+import AuthTitle from '~Auth/components/AuthTitle'
 
 /**
  * ProfileContainer
@@ -17,33 +17,33 @@ import AuthTitle from '~Auth/components/AuthTitle';
  *
  */
 function ProfileContainer() {
-  const { update, user } = useAuth();
+  const { update, user } = useAuth()
   const {
     HookAlert,
     alertIncorrect,
     alertLoading,
     alertMissing,
     clearAlert,
-  } = useAlert();
-  const [tempUser, setTempUser] = React.useState(user);
-  const [isEditMode, toggleEditMode] = React.useState(false);
-  const changeMode = () => toggleEditMode(!isEditMode);
+  } = useAlert()
+  const [tempUser, setTempUser] = React.useState(user)
+  const [isEditMode, toggleEditMode] = React.useState(false)
+  const changeMode = () => toggleEditMode(!isEditMode)
   const setValue = (field, value) =>
-    setTempUser(new DefaultUser({ ...tempUser, [field]: value }));
-  const disabledProps = isEditMode ? {} : { disabled: true };
+    setTempUser(new DefaultUser({ ...tempUser, [field]: value }))
+  const disabledProps = isEditMode ? {} : { disabled: true }
   const updateUser = () => {
     if (Object.values(tempUser).some((v) => v === '')) {
-      return alertMissing();
+      return alertMissing()
     }
-    alertLoading();
+    alertLoading()
     return update(tempUser)
       .then(() => {
-        clearAlert();
+        clearAlert()
       })
       .catch(() => {
-        alertIncorrect();
-      });
-  };
+        alertIncorrect()
+      })
+  }
   return (
     <WrapperAuth>
       <div className="row">
@@ -79,8 +79,8 @@ function ProfileContainer() {
         {isEditMode ? 'Cancel' : 'Edit'}
       </AuthButton>
     </WrapperAuth>
-  );
+  )
 }
-ProfileContainer.propTypes = {};
+ProfileContainer.propTypes = {}
 
-export default ProfileContainer;
+export default ProfileContainer

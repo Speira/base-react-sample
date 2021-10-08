@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 /**
  * getAlertColor
@@ -7,11 +7,11 @@ import styled from 'styled-components';
  * @return String
  */
 const getAlertColor = (theme, variant) => {
-  if (variant === 'info') return theme.COLORS.INFO;
-  if (variant === 'warning') return theme.COLORS.WARNING;
-  if (variant === 'success') return theme.COLORS.SUCCESS;
-  return theme.COLORS.DANGER;
-};
+  if (variant === 'info') return theme.COLORS.INFO
+  if (variant === 'warning') return theme.COLORS.WARNING
+  if (variant === 'success') return theme.COLORS.SUCCESS
+  return theme.COLORS.DANGER
+}
 
 /**
  * BaseAlert
@@ -19,8 +19,8 @@ const getAlertColor = (theme, variant) => {
  *
  */
 const BaseAlert = styled.div.attrs((props) => {
-  const { theme, variant, active } = props;
-  const color = getAlertColor(theme, variant);
+  const { theme, variant, active } = props
+  const color = getAlertColor(theme, variant)
   return {
     style: {
       backgroundColor: color,
@@ -30,7 +30,7 @@ const BaseAlert = styled.div.attrs((props) => {
       margin: active ? '0.5em 0 1em' : '0',
       height: active ? 'auto' : '0',
     },
-  };
+  }
 })`
   border-radius: 2px;
   color: ${({ theme }) => theme.COLORS.FOREGROUND};
@@ -60,6 +60,6 @@ const BaseAlert = styled.div.attrs((props) => {
   }
   &:focus:after {
   }
-`;
+`
 
-export default BaseAlert;
+export default BaseAlert

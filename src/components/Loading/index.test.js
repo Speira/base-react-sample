@@ -1,12 +1,12 @@
-import React from 'react';
-import { shallow } from 'enzyme';
+import React from 'react'
+import { shallow } from 'enzyme'
 
-import Loading from './index';
+import Loading from './index'
 
-const wrapper = shallow(<Loading />);
+const wrapper = shallow(<Loading />)
 
 describe('render', () => {
   it('Loading must be rendered', () => {
-    expect(wrapper).toBeDefined();
-  });
-});
+    expect(wrapper).toBeDefined()
+  })
+})

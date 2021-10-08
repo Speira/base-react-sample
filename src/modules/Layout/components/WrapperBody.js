@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import BaseWrapper from '~components/Wrapper';
+import React from 'react'
+import styled from 'styled-components'
+import BaseWrapper from '~components/Wrapper'
 
 const Wrapper = styled(BaseWrapper)`
   width: 100%;
@@ -9,7 +9,7 @@ const Wrapper = styled(BaseWrapper)`
   min-height: 100vh;
   flex-direction: column;
   justify-content: space-between;
-`;
+`
 
 /**
  * WrapperBody
@@ -17,7 +17,7 @@ const Wrapper = styled(BaseWrapper)`
  *
  */
 function WrapperBody(props) {
-  return <Wrapper {...props} />;
+  return <Wrapper {...props} />
 }
 
-export default WrapperBody;
+export default WrapperBody

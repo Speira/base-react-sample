@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 // import PropTypes from 'prop-types'
 
-import BaseForm from '~components/Form';
+import BaseForm from '~components/Form'
 
 /**
  * AuthForm
@@ -9,9 +9,9 @@ import BaseForm from '~components/Form';
  *
  */
 function AuthForm(props) {
-  return <BaseForm className="column" width="24em" {...props} />;
+  return <BaseForm className="column" width="24em" {...props} />
 }
-AuthForm.defaultProps = {};
-AuthForm.propTypes = {};
+AuthForm.defaultProps = {}
+AuthForm.propTypes = {}
 
-export default AuthForm;
+export default AuthForm

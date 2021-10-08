@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import ServerContainer from '~ErrorHandler/containers/ServerContainer';
+import React from 'react'
+import PropTypes from 'prop-types'
+import ServerContainer from '~ErrorHandler/containers/ServerContainer'
 
 /**
  * ErrorBoundary
@@ -9,26 +9,26 @@ import ServerContainer from '~ErrorHandler/containers/ServerContainer';
  */
 class ErrorBoundary extends React.PureComponent {
   constructor(props) {
-    super(props);
-    this.state = { hasSyncError: false };
+    super(props)
+    this.state = { hasSyncError: false }
   }
 
   static getDerivedStateFromError(error) {
-    console.error('derived', error);
-    return { hasSyncError: true };
+    console.error('derived', error)
+    return { hasSyncError: true }
   }
 
   componentDidCatch(error, info) {
-    const { handleSyncError } = this.props;
-    handleSyncError(info);
-    console.error(error);
+    const { handleSyncError } = this.props
+    handleSyncError(info)
+    console.error(error)
   }
 
   render() {
-    const { children, hasAsyncError } = this.props;
-    const { hasSyncError } = this.state;
-    if (hasSyncError || hasAsyncError) return <ServerContainer />;
-    return children;
+    const { children, hasAsyncError } = this.props
+    const { hasSyncError } = this.state
+    if (hasSyncError || hasAsyncError) return <ServerContainer />
+    return children
   }
 }
 
@@ -36,6 +36,6 @@ ErrorBoundary.propTypes = {
   children: PropTypes.node.isRequired,
   handleSyncError: PropTypes.func.isRequired,
   hasAsyncError: PropTypes.bool.isRequired,
-};
+}
 
-export default ErrorBoundary;
+export default ErrorBoundary

@@ -1,9 +1,9 @@
-import React from 'react';
-import { useError } from '~contexts/ErrorContext';
-import WrapperError from '~ErrorHandler/components/WrapperError';
-import ErrorLink from '~ErrorHandler/components/ErrorLink';
+import React from 'react'
+import { useError } from '~contexts/ErrorContext'
+import WrapperError from '~ErrorHandler/components/WrapperError'
+import ErrorLink from '~ErrorHandler/components/ErrorLink'
 
-const backMessage = 'Back to Home';
+const backMessage = 'Back to Home'
 
 /**
  * ServerContainer
@@ -11,7 +11,7 @@ const backMessage = 'Back to Home';
  *
  */
 function ServerContainer() {
-  const { errorMessage, resetError } = useError();
+  const { errorMessage, resetError } = useError()
   return (
     <WrapperError fullpage>
       <p>Server Error (500): {errorMessage}</p>
@@ -19,9 +19,9 @@ function ServerContainer() {
         {backMessage}
       </ErrorLink>
     </WrapperError>
-  );
+  )
 }
-ServerContainer.defaultProps = {};
-ServerContainer.propTypes = {};
+ServerContainer.defaultProps = {}
+ServerContainer.propTypes = {}
 
-export default ServerContainer;
+export default ServerContainer
