@@ -26,10 +26,11 @@ function TableRow(props) {
   } = props
   const ref = React.useRef(null)
   const [isSticky, setIsSticky] = React.useState(false)
-  const newProps = { ...rest, children }
-  const nbChilds = React.Children.count(children)
-  newProps.className = isHead ? `${className} head` : className
-  newProps.columns = columns || `repeat(${nbChilds}, 1fr)`
+
+  const styleProps = { ...rest, columns, className }
+  if (isHead) styleProps.className = `${className} head`
+  if (!columns)
+    styleProps.columns = `repeat(${React.Children.count(children)}, 1fr)`
 
   React.useEffect(() => {
     if (isHead && isSticky !== isTableScrolling) {
@@ -38,7 +39,9 @@ function TableRow(props) {
   }, [isHead, isSticky, isTableScrolling])
 
   return (
-    <BaseTableRow ref={ref} scrolltop={(isSticky && 1) || 0} {...newProps} />
+    <BaseTableRow ref={ref} scrolltop={(isSticky && 1) || 0} {...styleProps}>
+      {children}
+    </BaseTableRow>
   )
 }
 TableRow.defaultProps = {

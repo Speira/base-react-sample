@@ -13,12 +13,12 @@ const Wrapper = styled(BaseWrapper)`
 `
 
 /**
- * WrapperHeader
+ * HeaderWrapper
  * @component
  *
  */
-function WrapperHeader(props) {
+function HeaderWrapper(props) {
   return <Wrapper {...props} />
 }
 
-export default WrapperHeader
+export default HeaderWrapper

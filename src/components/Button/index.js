@@ -1,8 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { colorsThemesList } from '~contexts/ThemeContext'
 import { withAsyncErrorHandling } from '~contexts/ErrorContext'
-import BaseButton, { RoundedButton } from './style'
+import constants from '~utils/constants'
+import BaseButton from './style'
+
+const { STATUS } = constants
 
 /**
  * Button
@@ -10,34 +12,44 @@ import BaseButton, { RoundedButton } from './style'
  *
  */
 function Button(props) {
-  const { inversed, variant, ...rest } = props
-  let ComponentButton = BaseButton
-  if (variant === 'rounded') ComponentButton = RoundedButton
-  return <ComponentButton inversed={inversed ? 1 : 0} {...rest} />
+  const { children, status, unboxed, active, rounded, ...rest } = props
+
+  const styledProps = { ...rest }
+  if (rounded) styledProps.className = `${styledProps.className} rounded`
+  if (unboxed) styledProps.className = `${styledProps.className} unboxed`
+
+  return (
+    <BaseButton status={status} active={active ? 1 : 0} {...styledProps}>
+      {children}
+    </BaseButton>
+  )
 }
 Button.defaultProps = {
+  active: false,
+  children: undefined,
   className: '',
-  color: colorsThemesList[0],
   disabled: false,
   height: '',
-  inversed: false,
   onBlur: () => null,
   onClick: () => null,
+  rounded: false,
+  status: STATUS.INFO,
   type: 'button',
-  variant: '',
+  unboxed: false,
   width: '',
 }
 Button.propTypes = {
+  active: PropTypes.bool,
+  children: PropTypes.node,
   className: PropTypes.string,
-  /** colors are located in src/utils/constants file */
-  color: PropTypes.oneOf(colorsThemesList),
   disabled: PropTypes.bool,
   height: PropTypes.string,
-  inversed: PropTypes.bool,
   onBlur: PropTypes.func,
   onClick: PropTypes.func,
+  rounded: PropTypes.bool,
+  status: PropTypes.oneOf(Object.values(STATUS)),
   type: PropTypes.string,
-  variant: PropTypes.oneOf(['', 'rounded']),
+  unboxed: PropTypes.bool,
   width: PropTypes.string,
 }
 

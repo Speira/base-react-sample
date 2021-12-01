@@ -9,10 +9,16 @@ const BaseTableRowItem = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  border-left: 1px solid ${({ theme }) => theme.COLORS.TERTIARY};
+  box-shadow: -1px 0 4px -2px ${({ theme }) => theme.COLORS.PRIMARY};
+  padding: 4px;
+  overflow-x: auto;
   &.head {
     justify-content: center;
     font-weight: bold;
+    cursor: pointer;
+  }
+  &.center {
+    justify-content: center;
   }
   &:first-child {
     border-left: none;

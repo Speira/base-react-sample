@@ -14,12 +14,12 @@ const Wrapper = styled(BaseWrapper)`
 `
 
 /**
- * WrapperFooter
+ * FooterWrapper
  * @component
  *
  */
-function WrapperFooter(props) {
+function FooterWrapper(props) {
   return <Wrapper {...props} />
 }
 
-export default WrapperFooter
+export default FooterWrapper

@@ -5,7 +5,7 @@ import AuthInput from '~Auth/components/AuthInput'
 import AuthButton from '~Auth/components/AuthButton'
 import * as AuthContext from '~contexts/AuthContext'
 
-import { BaseLoginContainer } from './index'
+import LoginContainer from './index'
 
 const switchAuth = jest.fn()
 const signin = jest.fn()
@@ -17,7 +17,7 @@ const history = {
   push: jest.fn(),
 }
 const wrapper = shallow(
-  <BaseLoginContainer history={history} switchAuth={switchAuth} />,
+  <LoginContainer history={history} switchAuth={switchAuth} />,
 )
 
 describe('render', () => {

@@ -1,5 +1,6 @@
 import React from 'react'
 import { ThemeProvider as StyledThemeProvider } from 'styled-components'
+
 import constants from '~utils/constants'
 
 const ThemeContext = React.createContext()

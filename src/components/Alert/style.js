@@ -1,17 +1,5 @@
 import styled from 'styled-components'
-
-/**
- * getAlertColor
- * @param {Object} theme
- * @param {String} variant
- * @return String
- */
-const getAlertColor = (theme, variant) => {
-  if (variant === 'info') return theme.COLORS.INFO
-  if (variant === 'warning') return theme.COLORS.WARNING
-  if (variant === 'success') return theme.COLORS.SUCCESS
-  return theme.COLORS.DANGER
-}
+import { getStatusColor } from '~utils/functions'
 
 /**
  * BaseAlert
@@ -19,16 +7,18 @@ const getAlertColor = (theme, variant) => {
  *
  */
 const BaseAlert = styled.div.attrs((props) => {
-  const { theme, variant, active } = props
-  const color = getAlertColor(theme, variant)
+  const { theme, status, active } = props
+  const color = getStatusColor({ theme, status })
+  const bgColor = getStatusColor({ theme, status, alpha: 0.2 })
   return {
     style: {
-      backgroundColor: color,
+      backgroundColor: bgColor,
       boxShadow: `0 0 3px -1px ${color}`,
-      transform: active ? 'scale(1,1)' : 'scale(1,0)',
-      padding: active ? '0.5em' : '0',
-      margin: active ? '0.5em 0 1em' : '0',
+      color,
       height: active ? 'auto' : '0',
+      margin: active ? '0.5em 0 1em' : '0',
+      padding: active ? '0.5em' : '0',
+      transform: active ? 'scale(1,1)' : 'scale(1,0)',
     },
   }
 })`

@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withAsyncErrorHandling } from '~contexts/ErrorContext'
-import BaseLink, { BoxedLink } from './style'
+import { adaptBoolProps } from '~utils/functions'
+import BaseLink from './style'
 
 /**
  * Link
@@ -9,32 +10,29 @@ import BaseLink, { BoxedLink } from './style'
  *
  */
 function Link(props) {
-  const { href, to, variant, boxactive, ...rest } = props
-  const adaptedProps = {
-    to: to || href,
-  }
-  let LinkComponent = BaseLink
-  if (variant === 'box') {
-    LinkComponent = BoxedLink
-    adaptedProps.active = (boxactive && 1) || 0
-  }
-  return <LinkComponent {...rest} {...adaptedProps} />
+  const { href, to, ...rest } = props
+  const adaptedParams = adaptBoolProps(rest)
+  return <BaseLink {...adaptedParams} to={to || href} />
 }
 Link.defaultProps = {
-  boxactive: false,
   className: '',
-  href: '',
+  href: '#',
+  primary: false,
+  quaternary: false,
+  secondary: false,
+  tertiary: false,
   size: '',
   to: '',
-  variant: 'default',
 }
 Link.propTypes = {
-  boxactive: PropTypes.bool,
   className: PropTypes.string,
   href: PropTypes.string,
+  primary: PropTypes.bool,
+  quaternary: PropTypes.bool,
+  secondary: PropTypes.bool,
+  tertiary: PropTypes.bool,
   size: PropTypes.string,
   to: PropTypes.string,
-  variant: PropTypes.oneOf(['box', 'default']),
 }
 
 export default withAsyncErrorHandling(Link)

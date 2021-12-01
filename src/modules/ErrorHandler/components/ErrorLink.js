@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useTheme } from '~contexts/ThemeContext'
 import Link from '~components/Link'
 
 /**
@@ -9,17 +8,9 @@ import Link from '~components/Link'
  *
  */
 function ErrorLink(props) {
-  const { colors } = useTheme()
-  const { TERTIARY, BACKGROUND } = colors
   const { children, to, ...rest } = props
-  const linkProps = {
-    backgroundcolor: TERTIARY,
-    color: BACKGROUND,
-    size: '0.8em',
-    variant: 'box',
-  }
   return (
-    <Link to={to} {...rest} {...linkProps}>
+    <Link {...rest} to={to} tertiary size="0.8em">
       {children}
     </Link>
   )

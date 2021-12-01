@@ -12,12 +12,12 @@ const Wrapper = styled(BaseWrapper)`
 `
 
 /**
- * WrapperBody
+ * BodyWrapper
  * @component
  *
  */
-function WrapperBody(props) {
+function BodyWrapper(props) {
   return <Wrapper {...props} />
 }
 
-export default WrapperBody
+export default BodyWrapper

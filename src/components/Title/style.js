@@ -15,9 +15,14 @@ const TitleH1 = styled.h1.attrs((props) => {
     },
   }
 })`
-  text-align: ${({ align }) => align || 'center'};
   font-size: ${({ size }) => size || '2.5em'};
-  margin: ${({ margin }) => margin || '1em'};
+  margin: ${({ margin }) => margin || '0 0 0.5em'};
+  .left {
+    text-align: left;
+  }
+  .right {
+    text-align: right;
+  }
 `
 
 /**
@@ -35,9 +40,14 @@ export const TitleH2 = styled.h2.attrs((props) => {
     },
   }
 })`
-  text-align: ${({ align }) => align || 'center'};
   font-size: ${({ size }) => size || '2em'};
-  margin: ${({ margin }) => margin || '1em'};
+  margin: ${({ margin }) => margin || '0.3em 0'};
+  .left {
+    text-align: left;
+  }
+  .right {
+    text-align: right;
+  }
 `
 
 export default TitleH1

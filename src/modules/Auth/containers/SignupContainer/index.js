@@ -7,7 +7,7 @@ import DefaultUser from '~utils/constructors/DefaultUser'
 
 import AuthButton from '~Auth/components/AuthButton'
 import AuthForm from '~Auth/components/AuthForm'
-import AuthInput from '~Auth/components/AuthInput'
+import { UsernameInput, PasswordInput } from '~Auth/components/AuthInput'
 import AuthLoading from '~Auth/components/AuthLoading'
 import AuthTitle from '~Auth/components/AuthTitle'
 import WrapperAuth from '~Auth/components/WrapperAuth'
@@ -66,23 +66,14 @@ function SignupContainer(props) {
       </div>
       <HookAlert />
       <AuthForm>
-        <label>
-          <span>Username:</span>
-          <AuthInput
-            value={tempUser.username}
-            onChange={(e) => setValue('username', e.target.value)}
-            placeholder="username"
-          />
-        </label>
-        <label>
-          <span>Password:</span>
-          <AuthInput
-            value={tempUser.password}
-            onChange={(e) => setValue('password', e.target.value)}
-            type="password"
-            placeholder="password"
-          />
-        </label>
+        <UsernameInput
+          value={tempUser.username}
+          onChange={(nextValue) => setValue('username', nextValue)}
+        />
+        <PasswordInput
+          value={tempUser.password}
+          onChange={(nextValue) => setValue('password', nextValue)}
+        />
         <AuthButton className="center" onClick={signUp} success>
           Validate
         </AuthButton>

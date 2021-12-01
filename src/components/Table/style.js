@@ -7,7 +7,7 @@ import styled from 'styled-components'
  */
 const BaseTable = styled.section`
   border-radius: 4px;
-  border: 2px solid ${({ theme }) => theme.COLORS.TERTIARY};
+  border: 2px solid ${({ theme }) => theme.COLORS.PRIMARY};
   box-shadow: 0 0 12px -3px ${({ theme }) => theme.COLORS.TERTIARY} inset;
   padding: 0em;
   max-width: 100%;
@@ -17,8 +17,8 @@ const BaseTable = styled.section`
   overflow: hidden auto;
   position: relative;
   @media (min-width: 768px) {
-    max-width: ${({ width }) => width || '60%'};
-    max-height: ${({ height }) => height || '400px'};
+    max-width: ${({ width }) => width || '88%'};
+    max-height: ${({ height }) => height || '500px'};
   }
 `
 

@@ -10,16 +10,16 @@ const BaseInput = styled.input.attrs((props) => {
   const themeColor = theme.COLORS[color.toUpperCase()]
   return {
     style: {
-      border: `1px solid ${themeColor}`,
+      border: `2px solid ${themeColor}`,
     },
   }
 })`
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND};
   border-radius: 2px;
-  cursor: pointer;
-  margin: 0 1em;
+  margin: auto;
   outline: none;
-  padding: 0.4em;
   position: relative;
+  padding: 0.4em;
   transition: all 0.18s ease-in-out;
   width: ${({ width }) => width || 'auto'};
   &:after {
@@ -30,13 +30,46 @@ const BaseInput = styled.input.attrs((props) => {
   &:hover {
   }
   &:focus {
-    box-shadow: 0px 0px 4px -2px;
+    box-shadow: 0 0 4px 0px ${({ theme }) => theme.COLORS.PRIMARY};
   }
   &:disabled {
     box-shadow: none;
     opacity: 0.6;
     cursor: text;
   }
+  &:disabled:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transition: none;
+    background-color: ${({ theme }) => theme.COLORS.FOREGROUND};
+  }
 `
 
 export default BaseInput
+
+export const BaseTextarea = styled.textarea.attrs((props) => {
+  const { color, theme } = props
+  const themeColor = theme.COLORS[color.toUpperCase()]
+  return {
+    style: {
+      border: `1px solid ${themeColor}`,
+    },
+  }
+})`
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND};
+  border-radius: 4px;
+  border: none;
+  margin: auto;
+  min-height: 4em;
+  min-width: 400px;
+  padding: 0.8em;
+  vertical-align: middle;
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 4px 0px ${({ theme }) => theme.COLORS.PRIMARY};
+  }
+`
