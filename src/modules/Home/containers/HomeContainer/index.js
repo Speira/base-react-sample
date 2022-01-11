@@ -1,6 +1,6 @@
 import React from 'react'
 import WrapperHome from '~Home/components/WrapperHome'
-import HomeButton from '~Home/components/HomeButton'
+import { DefaultButton, DangerButton } from '~Home/components/HomeButton'
 
 /**
  * HomeContainer
@@ -12,11 +12,9 @@ function HomeContainer(props) {
   const errorClick = () => undefinedFunction()
   return (
     <WrapperHome {...props}>
-      <HomeButton>Button </HomeButton>
+      <DefaultButton />
       <br />
-      <HomeButton onClick={errorClick} danger>
-        Button that cause error
-      </HomeButton>
+      <DangerButton onClick={errorClick} />
     </WrapperHome>
   )
 }

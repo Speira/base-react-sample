@@ -8,26 +8,40 @@ import { getThemeColor } from '~utils/functions'
  *
  */
 const BaseLink = styled(Link).attrs((props) => {
-  const { primary, quaternary, secondary, tertiary, theme } = props
-  const themeColor = getThemeColor({
+  const {
+    className,
+    active,
     primary,
     quaternary,
     secondary,
     tertiary,
     theme,
-  })
-  const style = {}
-  if (themeColor) {
-    style.backgroundColor = themeColor
+  } = props
+  if (className.includes('boxed')) {
+    const backgroundColor = getThemeColor({
+      primary,
+      quaternary,
+      secondary,
+      tertiary,
+      theme,
+    })
+    const color = active ? theme.COLORS.BACKGROUND : theme.COLORS.FOREGROUND
+    return {
+      style: {
+        backgroundColor,
+        color,
+      },
+    }
   }
-  return { style }
+  return {
+    style: { color: theme.COLORS.FOREGROUND, textDecoration: 'underline' },
+  }
 })`
   cursor: pointer;
   display: inline-block;
   text-decoration: none;
   padding: 5px;
   margin: 0 4px;
-  color: ${({ theme }) => theme.COLORS.FOREGROUND};
   font-size: ${({ size }) => size || '1em'};
   &:disabled {
     opacity: 0.6;
@@ -35,8 +49,6 @@ const BaseLink = styled(Link).attrs((props) => {
   }
   &.boxed {
     font-weight: 600;
-    color: ${({ theme }) => theme.COLORS.FOREGROUND};
-    background-color: ${({ theme }) => theme.COLORS.QUATERNARY};
     border-radius: 4px;
     box-shadow: 1px 1px 2px -1px;
   }

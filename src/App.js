@@ -1,13 +1,12 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import constants from '~utils/constants'
-import Auth, { ProfileContainer } from '~Auth'
+import Auth from '~Auth'
 import Home from '~Home'
 import Layout from '~Layout'
 import ErrorHandler, { NotFound } from '~ErrorHandler'
-import { AuthenticatedRoute } from '~utils/routes'
 
-const { AUTH, DEFAULT, AUTH_PROFILE } = constants.PATHS
+const { AUTH, DEFAULT } = constants.PATHS
 
 /**
  * description
@@ -20,11 +19,7 @@ function App() {
         <Layout>
           <Switch>
             <Route exact path={DEFAULT} component={Home} />
-            <Route exact path={AUTH} component={Auth} />
-            <AuthenticatedRoute
-              path={AUTH_PROFILE}
-              component={ProfileContainer}
-            />
+            <Route path={AUTH} component={Auth} />
             <Route component={NotFound} />
           </Switch>
         </Layout>

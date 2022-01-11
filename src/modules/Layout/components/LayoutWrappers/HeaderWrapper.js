@@ -1,15 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
-import BaseWrapper from '~components/Wrapper'
+import constants from '~utils/constants'
+import Wrapper from '~components/Wrapper'
 
-const Wrapper = styled(BaseWrapper)`
+const {
+  HTML_WRAPPER_TAGS: { NAV },
+} = constants
+
+const ColoredWrapper = styled(Wrapper)`
   color: ${({ theme }) => theme.COLORS.FOREGROUND};
-  height: 72px;
-  padding: 0 1em;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: transparent;
 `
 
 /**
@@ -18,7 +17,15 @@ const Wrapper = styled(BaseWrapper)`
  *
  */
 function HeaderWrapper(props) {
-  return <Wrapper {...props} />
+  const options = {
+    height: '72px',
+    padding: '0 1em',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: 'transparent',
+  }
+  return <ColoredWrapper type={NAV} options={options} {...props} />
 }
 
 export default HeaderWrapper

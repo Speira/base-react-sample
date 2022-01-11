@@ -1,7 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
+import { withI18NWords } from '~contexts/I18NContext'
 import Button from '~components/Button'
+import constants from '~utils/constants'
+
+const { STATUS } = constants
 
 /**
  * AuthButton
@@ -9,19 +12,23 @@ import Button from '~components/Button'
  *
  */
 function AuthButton(props) {
-  const { success, danger } = props
-  let color = 'info'
-  if (success) color = 'success'
-  if (danger) color = 'danger'
-  return <Button color={color} {...props} />
+  const { label, status } = props
+  return (
+    <Button className="center" status={status}>
+      {label}
+    </Button>
+  )
 }
 AuthButton.defaultProps = {
-  success: false,
-  danger: false,
+  status: STATUS.INFO,
 }
 AuthButton.propTypes = {
-  success: PropTypes.bool,
-  danger: PropTypes.bool,
+  label: PropTypes.string.isRequired,
+  status: PropTypes.func,
 }
 
 export default AuthButton
+
+export const ValidateButton = withI18NWords(({ words, ...props }) => (
+  <AuthButton {...props} label={words.VALIDATE} status={STATUS.INFO} />
+))

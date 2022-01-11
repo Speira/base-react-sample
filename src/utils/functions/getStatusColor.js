@@ -4,6 +4,9 @@ const { STATUS } = constants
 
 /**
  * getStatusColor
+ * @desc ::: return the color corresponding to the status
+ *           We can add the additional option {Float} "alpha" [0-1] to apply
+ *           some transparency effect
  * @param {Object} param
  *        {Object} param.theme
  *        {String} param.status

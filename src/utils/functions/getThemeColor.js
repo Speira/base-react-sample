@@ -1,7 +1,7 @@
 /**
  * getThemeColor
  * @function
- * @desc :: return color corresponding to the theme set to 1
+ * @desc :: return color corresponding to the theme value
  * @param {Object} params
  *        {number} params.primary
  *        {number} params.secondary

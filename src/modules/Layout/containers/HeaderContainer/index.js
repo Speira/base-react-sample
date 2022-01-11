@@ -1,8 +1,7 @@
 import React from 'react'
-
 import { useAuth } from '~contexts/AuthContext'
-import useRouter from '~hooks/useRouter'
 import constants from '~/utils/constants'
+import useRouter from '~hooks/useRouter'
 
 import { HeaderWrapper } from '~Layout/components/LayoutWrappers'
 import { BrandLink, NavLink } from '~Layout/components/LayoutLinks'
@@ -15,14 +14,11 @@ const { PATHS } = constants
  *
  */
 function HeaderContainer() {
-  const { pathname: path } = document.location
+  const { pathname } = useRouter()
   const { isAuthenticated, logout } = useAuth()
-  const { push } = useRouter()
   const disconnect = (e) => {
     e.preventDefault()
-    logout().then(() => {
-      push(PATHS.DEFAULT)
-    })
+    logout()
   }
   return (
     <HeaderWrapper>
@@ -31,24 +27,29 @@ function HeaderContainer() {
         You can see all styles availables on this website here ! &#x2197;
       </a>
       <nav>
-        <NavLink to={PATHS.DEFAULT} active={path === PATHS.DEFAULT}>
+        <NavLink to={PATHS.DEFAULT} active={pathname === PATHS.DEFAULT}>
           Home
         </NavLink>
         {isAuthenticated ? (
-          <NavLink to="" onClick={disconnect} active={path === PATHS.AUTH}>
+          <NavLink
+            to=""
+            onClick={disconnect}
+            active={pathname === PATHS.AUTH_SIGNUP}>
             Logout
           </NavLink>
         ) : (
-          <NavLink to={PATHS.AUTH} active={path === PATHS.AUTH}>
-            Login
+          <NavLink to={PATHS.AUTH} active={pathname.startsWith(PATHS.AUTH)}>
+            Login/Signup
           </NavLink>
         )}
         {isAuthenticated && (
-          <NavLink to={PATHS.AUTH_PROFILE} active={path === PATHS.AUTH_PROFILE}>
+          <NavLink
+            to={PATHS.AUTH_PROFILE}
+            active={pathname === PATHS.AUTH_PROFILE}>
             Profile
           </NavLink>
         )}
-        <NavLink to="/a-no-exist-url" active={path === '/a-no-exist-url'}>
+        <NavLink to="/a-no-exist-url" active={pathname === '/a-no-exist-url'}>
           No existent page
         </NavLink>
       </nav>

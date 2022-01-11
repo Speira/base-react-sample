@@ -1,23 +1,32 @@
 import React from 'react'
-// import PropTypes from 'prop-types';
+import { Redirect, Route, Switch } from 'react-router-dom'
+import { AuthenticatedRoute } from '~utils/routes'
+import constants from '~utils/constants'
 
 import LoginContainer from '~Auth/containers/LoginContainer'
+import ProfileContainer from '~Auth/containers/ProfileContainer'
 import SignupContainer from '~Auth/containers/SignupContainer'
+
+const { AUTH_LOGIN, AUTH_PROFILE, AUTH_SIGNUP } = constants.PATHS
 
 /**
  * Auth
- * @component
+ * @module
  *
  */
 function Auth() {
-  const [isLogin, toggleIsLogin] = React.useState(true)
-  return isLogin ? (
-    <LoginContainer switchAuth={() => toggleIsLogin(false)} />
-  ) : (
-    <SignupContainer switchAuth={() => toggleIsLogin(true)} />
+  return (
+    <Switch>
+      <Route path={AUTH_LOGIN} component={LoginContainer} />
+      <AuthenticatedRoute
+        exact
+        path={AUTH_PROFILE}
+        component={ProfileContainer}
+      />
+      <Route exact path={AUTH_SIGNUP} component={SignupContainer} />
+      <Redirect to={AUTH_LOGIN} />
+    </Switch>
   )
 }
-Auth.propTypes = {}
 
 export default Auth
-export { default as ProfileContainer } from '~Auth/containers/ProfileContainer'

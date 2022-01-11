@@ -1,6 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import constants from '~utils/constants'
 import BaseFieldset from './style'
+
+const {
+  POSITIONS: { CENTER, LEFT, RIGHT },
+} = constants
 
 /**
  * Fieldset
@@ -8,11 +13,10 @@ import BaseFieldset from './style'
  *
  */
 function Fieldset(props) {
-  const { children, center, right, legend, ...rest } = props
+  const { children, position, legend, ...rest } = props
 
   const styledProps = { ...rest }
-  if (center) styledProps.className = `${styledProps.className} center`
-  if (right) styledProps.className = `${styledProps.className} right`
+  styledProps.className = `${styledProps.className} ${position}`
 
   return (
     <BaseFieldset {...styledProps}>
@@ -25,15 +29,13 @@ Fieldset.defaultProps = {
   children: undefined,
   className: '',
   legend: '',
-  center: false,
-  right: false,
+  position: LEFT,
 }
 Fieldset.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   legend: PropTypes.string,
-  center: PropTypes.bool,
-  right: PropTypes.bool,
+  position: PropTypes.oneOf([CENTER, LEFT, RIGHT]),
 }
 
 export default Fieldset

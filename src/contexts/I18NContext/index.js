@@ -1,7 +1,7 @@
 import React from 'react'
 import constants from '~utils/constants'
 
-const { WORDS } = constants
+const { STORAGE_ITEMS, WORDS } = constants
 const I18NContext = React.createContext()
 
 /**
@@ -13,14 +13,15 @@ const I18NContext = React.createContext()
  */
 function I18NProvider(props) {
   const [langage, setLangage] = React.useState(WORDS.FRENCH.NAME)
+
+  const getLanguage = () => localStorage.getItem(STORAGE_ITEMS.LANGUAGE)
+
+  const changeLanguage = React.useCallback((language) => {
+    setLanguage(language)
+    localStorage.setItem(STORAGE_ITEMS.LANGUAGE, language)
+  }, [])
+
   const value = {
-    words: WORDS[langage].VALUES,
-    setEnglish() {
-      if (langage !== WORDS.ENGLISH.NAME) setLangage(WORDS.ENGLISH.NAME)
-    },
-    setFrench() {
-      if (langage !== WORDS.FRENCH.NAME) setLangage(WORDS.FRENCH.NAME)
-    },
     /**
      * areWordsSet
      * @function
@@ -41,7 +42,33 @@ function I18NProvider(props) {
         return false
       })
     },
+    words: WORDS[langage].VALUES,
+    /**
+     * setEnglish
+     * @function
+     * @desc ::: set the translation to English
+     *
+     */
+    setEnglish() {
+      if (langage !== WORDS.ENGLISH.NAME) changeLanguage(WORDS.ENGLISH.NAME)
+    },
+    /**
+     * setFrench
+     * @function
+     * @desc ::: set the translation to French
+     *
+     */
+    setFrench() {
+      if (langage !== WORDS.FRENCH.NAME) changeLanguage(WORDS.FRENCH.NAME)
+    },
   }
+
+  React.useEffect(() => {
+    const lang = getLanguage()
+    if (!lang) {
+      changeLanguage(WORDS.FRENCH.NAME)
+    }
+  }, [changeLanguage])
 
   return <I18NContext.Provider {...props} value={value} />
 }
@@ -56,4 +83,19 @@ export const useI18N = () => {
   if (!context) throw new Error('I18NContext must be called in I18NProvider')
   return context
 }
+
+/**
+ * withI18NWords
+ * @function
+ * @decorator
+ * @desc ::: add translated words object  to the component
+ * @param {React Component} Component
+ * @return {React Component}
+ *
+ */
+export const withI18NWords = (Component) => (props) => {
+  const { words } = useI18N()
+  return <Component {...props} words={words} />
+}
+
 export default I18NProvider

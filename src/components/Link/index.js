@@ -10,11 +10,14 @@ import BaseLink from './style'
  *
  */
 function Link(props) {
-  const { href, to, ...rest } = props
+  const { boxed, className, href, to, ...rest } = props
   const adaptedParams = adaptBoolProps(rest)
+  adaptedParams.className = `${className} ${boxed && 'boxed'}`
   return <BaseLink {...adaptedParams} to={to || href} />
 }
 Link.defaultProps = {
+  active: false,
+  boxed: false,
   className: '',
   href: '#',
   primary: false,
@@ -25,6 +28,8 @@ Link.defaultProps = {
   to: '',
 }
 Link.propTypes = {
+  active: PropTypes.bool,
+  boxed: PropTypes.bool,
   className: PropTypes.string,
   href: PropTypes.string,
   primary: PropTypes.bool,

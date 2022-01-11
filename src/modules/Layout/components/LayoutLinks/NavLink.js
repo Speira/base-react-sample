@@ -13,7 +13,7 @@ function NavLink(props) {
   if (active) bgStyle.tertiary = true
   else bgStyle.secondary = true
   return (
-    <Link to={to} {...bgStyle} active={active}>
+    <Link to={to} {...bgStyle} boxed active={active}>
       {children}
     </Link>
   )

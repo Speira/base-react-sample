@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { translate as t } from '~utils/functions'
 
 import Input from '~components/Input'
-import Label from '~components/Label'
+import Fieldset from '~components/Fieldset'
 
 /**
  * AuthInput
@@ -12,10 +13,9 @@ import Label from '~components/Label'
 function AuthInput(props) {
   const { label, ...rest } = props
   return (
-    <Label>
-      <span>{label}:&nbsp;</span>
-      <Input {...rest} />
-    </Label>
+    <Fieldset legend={label}>
+      <Input {...rest} width="96%" />
+    </Fieldset>
   )
 }
 AuthInput.defaultProps = {}
@@ -26,13 +26,13 @@ AuthInput.propTypes = {
 export default AuthInput
 
 export const UsernameInput = (props) => (
-  <AuthInput label="username" placeholder="username" {...props} />
+  <AuthInput label={t`USERNAME`} placeholder="example@example.com" {...props} />
 )
 
 export const PasswordInput = (props) => (
   <AuthInput
-    label="password"
-    placeholder="password"
+    label={t`PASSWORD`}
+    placeholder={t`PASSWORD`}
     type="password"
     {...props}
   />

@@ -17,17 +17,20 @@ const { ARTICLE, ASIDE, DIV, SECTION, NAV } = HTML_WRAPPER_TAGS
  *
  */
 function Wrapper(props) {
-  const { type } = props
-  if (type === ARTICLE) return BaseWrapperArticle
-  if (type === ASIDE) return BaseWrapperAside
-  if (type === DIV) return BaseWrapperDiv
-  if (type === NAV) return BaseWrapperNav
-  return <BaseWrapper {...props} />
+  const { options, type } = props
+  let Component = BaseWrapper
+  if (type === ARTICLE) Component = BaseWrapperArticle
+  if (type === ASIDE) Component = BaseWrapperAside
+  if (type === DIV) Component = BaseWrapperDiv
+  if (type === NAV) Component = BaseWrapperNav
+  return <Component options={options} {...props} />
 }
 Wrapper.defaultProps = {
+  options: {},
   type: SECTION,
 }
 Wrapper.propTypes = {
+  options: PropTypes.objectOf(PropTypes.string),
   type: PropTypes.oneOf(Object.values(HTML_WRAPPER_TAGS)),
 }
 

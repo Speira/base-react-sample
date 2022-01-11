@@ -1,13 +1,16 @@
+import constants from '~utils/constants'
+
+const { USERNAME, PASSWORD } = constants.FIELDS
+
 /**
  * createUser
  * @factory
  * @return {Object}
  */
 function createUser(obj = {}) {
-  const { password = '', username = '' } = obj
   return {
-    password,
-    username,
+    [PASSWORD]: obj[PASSWORD] || '',
+    [USERNAME]: obj[USERNAME] || '',
   }
 }
 

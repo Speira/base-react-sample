@@ -1,31 +1,36 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-
 import { useAuth } from '~contexts/AuthContext'
+import constants from '~utils/constants'
+import { createUser } from '~utils/functions'
 import useAlert from '~hooks/useAlert'
-import DefaultUser from '~utils/constructors/DefaultUser'
 
-import AuthButton from '~Auth/components/AuthButton'
+import { ValidateButton } from '~Auth/components/AuthButton'
 import AuthForm from '~Auth/components/AuthForm'
 import { UsernameInput, PasswordInput } from '~Auth/components/AuthInput'
 import AuthLoading from '~Auth/components/AuthLoading'
-import AuthTitle from '~Auth/components/AuthTitle'
+import { ExistingAccountLink } from '~Auth/components/AuthLink'
+import {
+  RegistrationTitle,
+  RegistrationSentTitle,
+} from '~Auth/components/AuthTitle'
 import WrapperAuth from '~Auth/components/WrapperAuth'
+
+const { AUTH_LOGIN } = constants.PATHS
+const { USERNAME, PASSWORD } = constants.FIELDS
 
 /**
  * SignupContainer
- * @component
+ * @container
  *
  */
-function SignupContainer(props) {
-  const { switchAuth } = props
+function SignupContainer() {
   const { signup } = useAuth()
   const { HookAlert, alertIncorrect, alertMissing, clearAlert } = useAlert()
-  const [tempUser, setTempUser] = React.useState(new DefaultUser())
+  const [tempUser, setTempUser] = React.useState(createUser())
   const [isLoading, toggleLoading] = React.useState(false)
   const [isRegistered, toggleRegistered] = React.useState(false)
   const setValue = (field, value) => {
-    setTempUser(new DefaultUser({ ...tempUser, [field]: value }))
+    setTempUser(createUser({ ...tempUser, [field]: value }))
   }
   const signUp = () => {
     if (Object.values(tempUser).some((v) => v === '')) {
@@ -49,10 +54,8 @@ function SignupContainer(props) {
   if (isRegistered) {
     return (
       <WrapperAuth>
-        <div className="row">
-          <AuthTitle>Registration request sent !</AuthTitle>
-        </div>
-        <div className="row">
+        <RegistrationSentTitle />
+        <div>
           An email will be sent to <i>{tempUser.username}</i> containing
           instructions which will allow you to finalize your registration.
         </div>
@@ -61,32 +64,22 @@ function SignupContainer(props) {
   }
   return (
     <WrapperAuth>
-      <div className="row">
-        <AuthTitle>Registration</AuthTitle>
-      </div>
+      <RegistrationTitle />
       <HookAlert />
       <AuthForm>
         <UsernameInput
-          value={tempUser.username}
-          onChange={(nextValue) => setValue('username', nextValue)}
+          value={tempUser[USERNAME]}
+          onChange={(nextValue) => setValue(USERNAME, nextValue)}
         />
         <PasswordInput
-          value={tempUser.password}
-          onChange={(nextValue) => setValue('password', nextValue)}
+          value={tempUser[PASSWORD]}
+          onChange={(nextValue) => setValue(PASSWORD, nextValue)}
         />
-        <AuthButton className="center" onClick={signUp} success>
-          Validate
-        </AuthButton>
+        <ValidateButton onClick={signUp} />
       </AuthForm>
-      <AuthButton className="center" onClick={switchAuth}>
-        I already have an account ?
-      </AuthButton>
+      <ExistingAccountLink to={AUTH_LOGIN} />
     </WrapperAuth>
   )
-}
-
-SignupContainer.propTypes = {
-  switchAuth: PropTypes.func.isRequired,
 }
 
 export default SignupContainer

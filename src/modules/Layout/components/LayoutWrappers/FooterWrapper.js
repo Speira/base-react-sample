@@ -1,15 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import BaseWrapper from '~components/Wrapper'
+import Wrapper from '~components/Wrapper'
 
 /**
- * Wrapper
+ * ColoredWrapper
  * @component
  *
  */
-const Wrapper = styled(BaseWrapper)`
-  height: 100px;
-  width: 100%;
+const ColoredWrapper = styled(Wrapper)`
   background-color: ${({ theme }) => theme.COLORS.SECONDARY};
 `
 
@@ -19,7 +17,11 @@ const Wrapper = styled(BaseWrapper)`
  *
  */
 function FooterWrapper(props) {
-  return <Wrapper {...props} />
+  const options = {
+    height: '100px',
+    width: '100%',
+  }
+  return <ColoredWrapper options={options} {...props} />
 }
 
 export default FooterWrapper

@@ -1,4 +1,10 @@
 import styled from 'styled-components'
+import { getStatusColor } from '~utils/functions'
+import constants from '~utils/constants'
+
+const {
+  STATUS: { WARNING, DANGER },
+} = constants
 
 /**
  * BaseInput
@@ -6,15 +12,18 @@ import styled from 'styled-components'
  *
  */
 const BaseInput = styled.input.attrs((props) => {
-  const { color, theme } = props
-  const themeColor = theme.COLORS[color.toUpperCase()]
+  const { status, theme } = props
+  const statusColor = getStatusColor({ theme, status })
+  const style = {}
+  if ([DANGER, WARNING].includes(status)) {
+    style.outline = `2px solid ${statusColor}`
+  }
   return {
-    style: {
-      border: `2px solid ${themeColor}`,
-    },
+    style,
   }
 })`
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND};
+  border: none;
   border-radius: 2px;
   margin: auto;
   outline: none;

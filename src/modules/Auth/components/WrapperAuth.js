@@ -9,7 +9,7 @@ const AdaptedWrapper = styled(Wrapper)`
   border-radius: 4px;
   display: flex;
   padding: 0 3% 2em 3%;
-  background-color: ${({ theme }) => theme.COLORS.BACKGROUND};
+  background-color: ${({ theme }) => theme.COLORS.SECONDARY};
   box-shadow: 0 2px -1px ${({ theme }) => theme.COLORS.BACKGROUND};
   min-height: 5em;
   label {
@@ -26,6 +26,9 @@ const AdaptedWrapper = styled(Wrapper)`
   }
   @media (min-width: 1024px) {
     margin: 0 20%;
+  }
+  @media (min-width: 1600px) {
+    margin: 0 30%;
   }
 `
 

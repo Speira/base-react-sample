@@ -1,11 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import constants from '~utils/constants'
 
-import { colorsThemesList } from '~contexts/ThemeContext'
 import { withAsyncErrorHandling } from '~contexts/ErrorContext'
 import useTimeoutOverride from '~hooks/useTimeoutOverride'
 
 import BaseInput, { BaseTextarea } from './style'
+
+const { FIELD_TYPES, STATUS } = constants
 
 /**
  * Input
@@ -14,16 +16,15 @@ import BaseInput, { BaseTextarea } from './style'
  */
 function Input(props) {
   const {
-    color,
+    className,
     isAsync,
-    isCheckbox,
     isLongtext,
-    isNumber,
     onChange,
-    password,
+    placeholder,
+    status,
+    type,
     value,
     width,
-    ...rest
   } = props
   const [localValue, setLocalValue] = React.useState(value)
   const { overrideTimeout, cancelTimeout } = useTimeoutOverride()
@@ -49,23 +50,22 @@ function Input(props) {
     if (!isAsync) onChange(nextValue)
   }
 
-  let InputComponent = BaseInput
-  let type = 'text'
-  if (isCheckbox) type = 'checkbox'
-  if (isNumber) type = 'number'
-  if (password) type = 'password'
-  if (isLongtext) InputComponent = BaseTextarea
+  const InputComponent = isLongtext ? BaseTextarea : BaseInput
 
   React.useEffect(() => setLocalValue(value), [value])
+  const inputValue =
+    type === FIELD_TYPES.CHECKBOX
+      ? { checked: !!localValue }
+      : { value: localValue }
   return (
     <InputComponent
-      {...rest}
-      checked={!!localValue}
-      color={color}
+      {...inputValue}
+      className={className}
       onBlur={handleBlur}
       onChange={handleChange}
+      placeholder={placeholder}
+      status={status}
       type={type}
-      value={localValue}
       width={width}
     />
   )
@@ -73,35 +73,29 @@ function Input(props) {
 
 Input.defaultProps = {
   className: '',
-  color: colorsThemesList[0],
   isAsync: false,
-  isCheckbox: false,
   isLongtext: false,
-  isNumber: false,
   onBlur: () => null,
   onChange: () => null,
-  password: false,
+  placeholder: '',
+  status: STATUS.INFO,
+  type: FIELD_TYPES.TEXT,
   value: '',
   width: '',
 }
 Input.propTypes = {
+  className: PropTypes.string,
   /**
    * isAsync : weither the value should handle change asynchronously, usefull
    * whene an update performs many treatments
    */
   isAsync: PropTypes.bool,
-  className: PropTypes.string,
-  /**
-   * color : color of the theme, including status (danger,info,success,warning)
-   * and theme (primary, secondary ,...)
-   */
-  color: PropTypes.oneOf(colorsThemesList),
-  isCheckbox: PropTypes.bool,
   isLongtext: PropTypes.bool,
-  isNumber: PropTypes.bool,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
-  password: PropTypes.bool,
+  placeholder: PropTypes.string,
+  status: PropTypes.oneOf(Object.values(STATUS)),
+  type: PropTypes.oneOf(Object.values(FIELD_TYPES)),
   value: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.number,

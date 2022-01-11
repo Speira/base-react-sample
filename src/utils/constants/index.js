@@ -9,6 +9,16 @@ export default {
     NOT_FOUND: '404',
     SERVER: '500',
   },
+  FIELDS: {
+    USERNAME: 'username',
+    PASSWORD: 'password',
+  },
+  FIELD_TYPES: {
+    CHECKBOX: 'checkbox',
+    NUMBER: 'number',
+    PASSWORD: 'password',
+    TEXT: 'text',
+  },
   FONT_SIZES: {
     VERY_SMALL: '8px',
     SMALL: '12px',
@@ -35,6 +45,13 @@ export default {
     HOME: '/home',
     CATEGORY: '/category',
   },
+  POSITIONS: {
+    BOTTOM: 'bottom',
+    CENTER: 'center',
+    LEFT: 'left',
+    RIGHT: 'right',
+    TOP: 'top',
+  },
   STATUS: {
     INFO: 'info',
     DANGER: 'danger',
@@ -42,20 +59,21 @@ export default {
     WARNING: 'warning',
   },
   STORAGE_ITEMS: {
+    LANGUAGE: 'languageContextStorage',
     THEME: 'themeContextStorage',
   },
   THEMES: {
     DEFAULT: {
       COLORS: {
-        PRIMARY: '#e7eaf6',
-        SECONDARY: '#a2a8d3',
-        TERTIARY: '#38598b',
-        QUATERNARY: '#113f67',
+        PRIMARY: '#B983FF',
+        SECONDARY: '#94B3FD',
+        TERTIARY: '#94DAFF',
+        QUATERNARY: '#99FEFF',
         INFO: '#035397',
         SUCCESS: '#1C7947',
         WARNING: '#C36A2D',
         DANGER: '#A9333A',
-        BACKGROUND: '#fffdfbr',
+        BACKGROUND: '#f8f8fa',
         FOREGROUND: '#000000b3',
       },
       FONT_SIZES: {
@@ -72,10 +90,14 @@ export default {
     FRENCH: {
       NAME: 'FRENCH',
       VALUES: {
+        ACCOUNT_EXISTING: "J'ai dêjà un compte",
+        ACCOUNT_NO_EXISTING: "Je n'ai pas encore de compte",
         AUTH: 'Authentification',
         AUTH_FAILED: 'Identifiants incorrects',
         AUTH_ONGOING: 'Authentification en cours',
         BACK: 'Retour',
+        BUTTON: 'Bouton simple',
+        BUTTON_DANGER: 'Bouton causant une erreur',
         CANCEL: 'Annuler',
         EDIT: 'Éditer',
         ERROR_403: "Erreur 403: Droit d'accès insufissant !",
@@ -89,14 +111,19 @@ export default {
         HAVE_NO_ACCOUNT: "Je n'ai pas de compte",
         HOME: 'Accueil',
         LOGIN: 'Connexion',
+        LOGIN_ERROR: 'Erreur lors de la connexion',
         PASSWORD: 'Mot de passe',
+        PASSWORD_MISSING: 'Le mot de passe doit être renseigné',
+        PASSWORD_LACKS_CHARACTERS:
+          'Le mot de passe doit avoir plus de 8 caractères',
         PROFILE: 'Mon profile',
         SIGNUP: 'Création de compte',
         SIGNUP_MAIL_SENT: 'Demande de création de compte envoyée',
         SIGNUP_MAIL_WILL_BE_SENT: ({ username }) =>
           `Un email sera envoyé à ${username} pour finaliser l'inscription`,
         SIGNUP_ONGOING: 'Création de compte en cours',
-        USERNAME: "Nom d'utilisateur",
+        USERNAME: 'Identifiant',
+        USERNAME_MISSING: "L'identifiant doit être renseigné",
         VALIDATE: 'Valider',
       },
     },

@@ -1,14 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import BaseWrapper from '~components/Wrapper'
+import Wrapper from '~components/Wrapper'
 
-const Wrapper = styled(BaseWrapper)`
-  width: 100%;
-  display: flex;
+const ColoredWrapper = styled(Wrapper)`
   background-color: ${({ theme }) => theme.COLORS.PRIMARY};
-  min-height: 100vh;
-  flex-direction: column;
-  justify-content: space-between;
 `
 
 /**
@@ -17,7 +12,14 @@ const Wrapper = styled(BaseWrapper)`
  *
  */
 function BodyWrapper(props) {
-  return <Wrapper {...props} />
+  const options = {
+    width: '100%',
+    display: 'flex',
+    minHeight: '100vh',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  }
+  return <ColoredWrapper options={options} {...props} />
 }
 
 export default BodyWrapper

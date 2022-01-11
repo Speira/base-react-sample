@@ -1,80 +1,67 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-
 import { useAuth } from '~contexts/AuthContext'
-import useAlert from '~hooks/useAlert'
-import useRouter from '~hooks/useRouter'
-import DefaultUser from '~utils/constructors/DefaultUser'
-
-import WrapperAuth from '~Auth/components/WrapperAuth'
-import AuthButton from '~Auth/components/AuthButton'
-import AuthForm from '~Auth/components/AuthForm'
-import { UsernameInput, PasswordInput } from '~Auth/components/AuthInput'
-import AuthTitle from '~Auth/components/AuthTitle'
-import AuthLoading from '~Auth/components/AuthLoading'
-
 import constants from '~utils/constants'
+import { translate as t } from '~utils/functions'
+import DefaultUser from '~utils/constructors'
+import useAlert from '~hooks/useAlert'
 
-const { AUTH_PROFILE } = constants.PATHS
+import AuthForm from '~Auth/components/AuthForm'
+import AuthLoading from '~Auth/components/AuthLoading'
+import { LoginTitle } from '~Auth/components/AuthTitle'
+import WrapperAuth from '~Auth/components/WrapperAuth'
+import { NoAccountLink } from '~Auth/components/AuthLink'
+import { UsernameInput, PasswordInput } from '~Auth/components/AuthInput'
+import { ValidateButton } from '~Auth/components/AuthButton'
+
+const { AUTH_SIGNUP } = constants.PATHS
+const { USERNAME, PASSWORD } = constants.FIELDS
 
 /**
  * LoginContainer
- * @component
+ * @container
  *
  */
-function LoginContainer(props) {
+function LoginContainer() {
   const { signin } = useAuth()
   const { HookAlert, alertIncorrect, alertMissing } = useAlert()
-  const { switchAuth } = props
-  const { history } = useRouter()
-  const [tempUser, setTempUser] = React.useState(new DefaultUser())
+  const [username, setUsername] = React.useState('')
+  const [password, setPassword] = React.useState('')
   const [isLoading, toggleLoading] = React.useState(false)
-  const setValue = (field, value) =>
-    setTempUser(new DefaultUser({ ...tempUser, [field]: value }))
   const authenticateUser = () => {
-    if (Object.values(tempUser).some((v) => v === '')) {
-      return alertMissing()
+    const tempUser = new DefaultUser({
+      username,
+      password,
+    })
+    const authErrors = tempUser.getErrors()
+    if (authErrors.length) {
+      const alert = createAlert({
+        message: authErrors,
+        title: t`LOGIN_ERROR`,
+      })
+      return alert
     }
     toggleLoading(true)
-    return signin(tempUser)
-      .then(() => {
-        history.push(AUTH_PROFILE)
-      })
-      .catch(() => {
-        toggleLoading(false)
-        alertIncorrect()
-      })
+    return signin(tempUser).catch(() => {
+      toggleLoading(false)
+      alertIncorrect()
+    })
   }
+
   if (isLoading) {
     return <AuthLoading messageLogin />
   }
   return (
     <WrapperAuth>
-      <div className="row">
-        <AuthTitle>Authentication</AuthTitle>
-      </div>
+      <LoginTitle />
       <HookAlert />
       <AuthForm>
-        <UsernameInput
-          value={tempUser.username}
-          onChange={(nextValue) => setValue('username', nextValue)}
-        />
-        <PasswordInput
-          value={tempUser.password}
-          onChange={(nextValue) => setValue('password', nextValue)}
-        />
-        <AuthButton className="center" onClick={authenticateUser} success>
-          Validate
-        </AuthButton>
+        <UsernameInput value={username} onChange={setUsername} />
+        <PasswordInput value={password} onChange={setPassword} />
+        <ValidateButton onClick={authenticateUser} />
       </AuthForm>
-      <AuthButton className="center" onClick={switchAuth}>
-        I don&apos;t have any account ?
-      </AuthButton>
+      <NoAccountLink to={AUTH_SIGNUP} />
     </WrapperAuth>
   )
-}
-LoginContainer.propTypes = {
-  switchAuth: PropTypes.func.isRequired,
 }
 
 export default LoginContainer
