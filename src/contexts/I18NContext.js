@@ -17,7 +17,7 @@ function I18NProvider(props) {
   const getLanguage = () => localStorage.getItem(STORAGE_ITEMS.LANGUAGE)
 
   const changeLanguage = React.useCallback((language) => {
-    setLanguage(language)
+    setLangage(language)
     localStorage.setItem(STORAGE_ITEMS.LANGUAGE, language)
   }, [])
 

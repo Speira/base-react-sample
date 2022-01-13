@@ -1,6 +1,6 @@
 import constants from '~utils/constants'
 
-const { WORDS } = constants
+const { STORAGE_ITEMS, WORDS } = constants
 /**
  * translate
  * @param {String} word : refer to the key of the WORDS langage value set in constants

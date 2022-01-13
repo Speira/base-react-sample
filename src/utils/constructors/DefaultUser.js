@@ -1,4 +1,4 @@
-import { t } from '~utils/functions'
+import { translate as t } from '~utils/functions'
 
 /**
  * DefaultUser
@@ -14,7 +14,7 @@ function DefaultUser(obj = {}) {
     if (!username || username.trim() === '') errors.push(t`USERNAME_MISSING`)
     if (!password) errors.push(t`PASSWORD_MISSING`)
     if (password && password.length < 8)
-      error.push(t`PASSWORD_LACKS_CHARACTERS`)
+      errors.push(t`PASSWORD_LACKS_CHARACTERS`)
     return errors
   }
 }

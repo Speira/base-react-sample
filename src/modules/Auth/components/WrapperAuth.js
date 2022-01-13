@@ -1,5 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { translate as t } from '~utils/functions'
+
+import Title from '~components/Title'
 import Wrapper from '~components/Wrapper'
 
 const AdaptedWrapper = styled(Wrapper)`
@@ -38,7 +42,22 @@ const AdaptedWrapper = styled(Wrapper)`
  *
  */
 function WrapperAuth(props) {
-  return <AdaptedWrapper {...props} />
+  const { children, title } = props
+  return (
+    <AdaptedWrapper>
+      <div className="row">
+        <Title>{title}</Title>
+        {children}
+      </div>
+    </AdaptedWrapper>
+  )
 }
-
+WrapperAuth.propTypes = {
+  children: PropTypes.node.isRequired,
+  title: PropTypes.string.isRequired,
+}
 export default WrapperAuth
+
+export const LoginWrapper = (props) => (
+  <WrapperAuth {...props} title={t`LOGIN`} />
+)

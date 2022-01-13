@@ -1,20 +1,19 @@
 import React from 'react'
+
 import { useAuth } from '~contexts/AuthContext'
 import constants from '~utils/constants'
 import { translate as t } from '~utils/functions'
-import DefaultUser from '~utils/constructors'
+import DefaultUser from '~utils/constructors/DefaultUser'
 import useAlert from '~hooks/useAlert'
 
 import AuthForm from '~Auth/components/AuthForm'
 import AuthLoading from '~Auth/components/AuthLoading'
-import { LoginTitle } from '~Auth/components/AuthTitle'
-import WrapperAuth from '~Auth/components/WrapperAuth'
+import { LoginWrapper } from '~Auth/components/WrapperAuth'
 import { NoAccountLink } from '~Auth/components/AuthLink'
-import { UsernameInput, PasswordInput } from '~Auth/components/AuthInput'
+import { PasswordInput, UsernameInput } from '~Auth/components/AuthInput'
 import { ValidateButton } from '~Auth/components/AuthButton'
 
 const { AUTH_SIGNUP } = constants.PATHS
-const { USERNAME, PASSWORD } = constants.FIELDS
 
 /**
  * LoginContainer
@@ -23,10 +22,11 @@ const { USERNAME, PASSWORD } = constants.FIELDS
  */
 function LoginContainer() {
   const { signin } = useAuth()
-  const { HookAlert, alertIncorrect, alertMissing } = useAlert()
+  const { HookAlert, alertIncorrect } = useAlert()
   const [username, setUsername] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [isLoading, toggleLoading] = React.useState(false)
+  const createAlert = () => null
   const authenticateUser = () => {
     const tempUser = new DefaultUser({
       username,
@@ -51,8 +51,7 @@ function LoginContainer() {
     return <AuthLoading messageLogin />
   }
   return (
-    <WrapperAuth>
-      <LoginTitle />
+    <LoginWrapper>
       <HookAlert />
       <AuthForm>
         <UsernameInput value={username} onChange={setUsername} />
@@ -60,7 +59,7 @@ function LoginContainer() {
         <ValidateButton onClick={authenticateUser} />
       </AuthForm>
       <NoAccountLink to={AUTH_SIGNUP} />
-    </WrapperAuth>
+    </LoginWrapper>
   )
 }
 
