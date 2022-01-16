@@ -1,8 +1,8 @@
 /**
  * adaptBoolProps
- * @function
+ *
  * @desc : change bool props to number
- * @param {Object}
+ * @param {Object} params
  * @return {Object}
  */
 export default function adaptBoolProps(params) {

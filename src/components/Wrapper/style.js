@@ -5,7 +5,7 @@ import styled from 'styled-components'
  * @component
  *
  */
-const BaseWrapper = styled.section.attrs(({ options }) => ({
+const BaseWrapper = styled.div.attrs(({ options }) => ({
   style: { ...options },
 }))``
 
@@ -30,11 +30,11 @@ export const BaseWrapperNav = styled.nav.attrs(({ options }) => ({
 }))``
 
 /**
- * BaseWrapperDiv
+ * BaseWrapperSection
  * @component
  *
  */
-export const BaseWrapperDiv = styled.div.attrs(({ options }) => ({
+export const BaseWrapperSection = styled.section.attrs(({ options }) => ({
   style: { ...options },
 }))``
 

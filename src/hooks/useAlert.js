@@ -23,7 +23,7 @@ function useAlert() {
   }, [])
 
   return {
-    createAlert(params) {
+    setAlert(params) {
       setAlert(createAlert(params))
     },
     clearAlert: closeAlert,

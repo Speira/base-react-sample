@@ -19,7 +19,6 @@ const ToolAction = (props) => {
       const selection = window.getSelection().toString()
       // eslint-disable-next-line
       const linkURL = prompt('Enter a URL:', 'https://')
-      console.log(selection)
       document.execCommand(
         'insertHTML',
         false,

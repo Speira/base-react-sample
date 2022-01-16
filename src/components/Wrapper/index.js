@@ -4,12 +4,12 @@ import constants from '~utils/constants'
 import BaseWrapper, {
   BaseWrapperArticle,
   BaseWrapperAside,
-  BaseWrapperDiv,
   BaseWrapperNav,
+  BaseWrapperSection,
 } from './style'
 
 const { HTML_WRAPPER_TAGS } = constants
-const { ARTICLE, ASIDE, DIV, SECTION, NAV } = HTML_WRAPPER_TAGS
+const { ARTICLE, ASIDE, SECTION, NAV } = HTML_WRAPPER_TAGS
 
 /**
  * Wrapper
@@ -21,7 +21,7 @@ function Wrapper(props) {
   let Component = BaseWrapper
   if (type === ARTICLE) Component = BaseWrapperArticle
   if (type === ASIDE) Component = BaseWrapperAside
-  if (type === DIV) Component = BaseWrapperDiv
+  if (type === SECTION) Component = BaseWrapperSection
   if (type === NAV) Component = BaseWrapperNav
   return <Component options={options} {...props} />
 }

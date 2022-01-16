@@ -40,7 +40,7 @@ const CollapsedBox = (props) => {
     document.addEventListener('selectionchange', handleSelection)
     return () =>
       document.removeEventListener('selectionchange', handleSelection)
-  }, [isSelecting])
+  }, [isSelecting]) // eslint-disable-line
 
   if (collapsedMode === 'createLink') {
     const addedClass = (isVisible && 'visible') || ''

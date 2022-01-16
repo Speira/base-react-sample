@@ -41,8 +41,6 @@ function Wysiwyg(props) {
         range.setEndAfter(tabNode)
         sel.removeAllRanges()
         sel.addRange(range)
-      } else {
-        console.log(range.toString())
       }
     }
   }
@@ -51,7 +49,7 @@ function Wysiwyg(props) {
 
   const handleMouseUp = () => toggleSelecting(false)
 
-  const resetCollapse = React.useCallback(() => setCollapsedMode(''))
+  const resetCollapse = () => setCollapsedMode('')
 
   const showCollapse = (type) => () => {
     const nextMode = collapsedMode === type ? '' : type

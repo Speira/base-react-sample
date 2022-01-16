@@ -1,29 +1,34 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Switch } from 'react-router-dom'
 import constants from '~utils/constants'
-import Auth from '~Auth'
-import Home from '~Home'
-import Layout from '~Layout'
-import ErrorHandler, { NotFound } from '~ErrorHandler'
+
+import AuthModule from '~AuthModule'
+import HomeModule from '~HomeModule'
+import LayoutModule from '~LayoutModule'
+import ErrorModule, { NotFoundContainer } from '~ErrorModule'
+
+import AppRoute from 'AppRoute'
 
 const { AUTH, DEFAULT } = constants.PATHS
 
 /**
- * description
- * modules that start by uppercase ( example ~Auth) are located at src/modules
+ *
+ * App
+ * @container
+ *
  */
 function App() {
   return (
     <Router>
-      <ErrorHandler>
-        <Layout>
+      <ErrorModule>
+        <LayoutModule>
           <Switch>
-            <Route exact path={DEFAULT} component={Home} />
-            <Route path={AUTH} component={Auth} />
-            <Route component={NotFound} />
+            <AppRoute exact path={DEFAULT} component={HomeModule} />
+            <AppRoute exact path={AUTH} component={AuthModule} />
+            <AppRoute component={NotFoundContainer} />
           </Switch>
-        </Layout>
-      </ErrorHandler>
+        </LayoutModule>
+      </ErrorModule>
     </Router>
   )
 }

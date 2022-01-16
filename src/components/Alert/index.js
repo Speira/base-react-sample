@@ -30,7 +30,7 @@ function Alert(props) {
       {Array.isArray(message) ? (
         <ul>
           {message.map((row) => (
-            <li>{row}</li>
+            <li key={row}>{row}</li>
           ))}
         </ul>
       ) : (
