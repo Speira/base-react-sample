@@ -5,10 +5,27 @@ const animatetop = keyframes`
   to {top: 0; opacity: 1}
 `
 
+const animeButton = keyframes`
+  0% {
+    transform: scale(1,1)
+    }
+  50% {
+    transform: scale(1,1)
+  }
+
+  75%{
+    transform: scale(0.75,0.75)
+  }
+  100%{
+    transform: scale(1,1)
+  }
+
+`
+
 const BaseModal = styled.div.attrs((props) => {
-  const { display } = props
+  const { visible } = props
   const style = {}
-  style.display = display ? 'block' : 'none'
+  style.display = visible ? 'block' : 'none'
   return {
     style,
   }
@@ -24,19 +41,19 @@ const BaseModal = styled.div.attrs((props) => {
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
   .content {
     position: relative;
-    background-color: ${({ theme }) => theme.COLORS.PRIMARY};
+    background-color: ${({ theme }) => theme.COLORS.STATIC.PRIMARY};
     margin: 15% auto;
+    min-height: 5em;
     padding: 0;
     width: 60%;
-    border: 1px solid #888;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 2px 2px 14px -2px ${({ theme }) => theme.COLORS.STATIC.DARK};
     animation-name: ${animatetop};
     animation-duration: 0.4s;
     .header {
       padding: 2px 16px;
       min-height: 3em;
-      background-color: ${({ theme }) => theme.COLORS.TERTIARY};
-      color: ${({ theme }) => theme.COLORS.FOREGROUND};
+      background-color: ${({ theme }) => theme.COLORS.STATIC.TERTIARY};
+      color: ${({ theme }) => theme.COLORS.STATIC.FOREGROUND};
     }
     .body {
       padding: 1em 2em;
@@ -47,7 +64,7 @@ const BaseModal = styled.div.attrs((props) => {
       justify-content: space-around;
       padding: 2px 16px;
       min-height: 3em;
-      background-color: ${({ theme }) => theme.COLORS.TERTIARY};
+      background-color: ${({ theme }) => theme.COLORS.STATIC.TERTIARY};
       button {
         margin: 0 1em;
         width: 8em;
@@ -55,10 +72,16 @@ const BaseModal = styled.div.attrs((props) => {
     }
   }
   .close {
-    color: #aaa;
+    cursor: pointer;
     float: right;
-    font-size: 28px;
-    font-weight: bold;
+    background-color: transparent;
+    border: 1px solid ${({ theme }) => theme.COLORS.STATIC.LIGHT};
+    box-shadow: 1px 1px 1px 1px ${({ theme }) => theme.COLORS.STATIC.DARK};
+    border-radius: 3px;
+    animation: ${animeButton} 1.2s;
+  }
+  .close:hover {
+    opacity: 0.5;
   }
 
   .close:hover,

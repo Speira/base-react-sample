@@ -78,7 +78,7 @@ Input.defaultProps = {
   onBlur: () => null,
   onChange: () => null,
   placeholder: '',
-  status: STATUS.INFO,
+  status: '',
   type: FIELD_TYPES.TEXT,
   value: '',
   width: '',

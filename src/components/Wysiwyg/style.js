@@ -56,18 +56,18 @@ const BaseWysiwyg = styled.div`
     justify-content: center;
     position: relative;
     transition: 0.2s ease all;
-    color: ${({ theme }) => theme.COLORS.FOREGROUND};
+    color: ${({ theme }) => theme.COLORS.STATIC.FOREGROUND};
     cursor: pointer;
     text-decoration: none;
   }
   .toolbar .line .box .btn:hover {
-    background-color: ${({ theme }) => theme.COLORS.PRIMARY};
+    background-color: ${({ theme }) => theme.COLORS.STATIC.PRIMARY};
   }
   .toolbar.line .box .btn:active {
     color: ${({ theme }) => theme.COLORS.SUCCESS};
   }
   .toolbar .line .box .btn:visited {
-    color: ${({ theme }) => theme.COLORS.FOREGROUND};
+    color: ${({ theme }) => theme.COLORS.STATIC.FOREGROUND};
   }
   .toolbar .line .box .btn i,
   .toolbar .line .box .btn span {
@@ -84,7 +84,7 @@ const BaseWysiwyg = styled.div`
     display: none;
     padding: 0.5em;
     background: ${({ theme }) =>
-      `linear-gradient(45deg,${theme.COLORS.BACKGROUND}, transparent)`};
+      `linear-gradient(45deg,${theme.COLORS.STATIC.BACKGROUND}, transparent)`};
     border-radius: 4px;
     flex-direction: column;
     button {
@@ -94,8 +94,10 @@ const BaseWysiwyg = styled.div`
     button:disabled {
       opacity: 0.5;
     }
-    border-left: ${({ theme }) => `1px solid ${theme.COLORS.FOREGROUND}`};
-    border-bottom: ${({ theme }) => `1px solid ${theme.COLORS.FOREGROUND}`};
+    border-left: ${({ theme }) =>
+      `1px solid ${theme.COLORS.STATIC.FOREGROUND}`};
+    border-bottom: ${({ theme }) =>
+      `1px solid ${theme.COLORS.STATIC.FOREGROUND}`};
   }
   .textbox.visible {
     display: flex;

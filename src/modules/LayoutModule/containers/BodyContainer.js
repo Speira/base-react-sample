@@ -1,5 +1,5 @@
 import React from 'react'
-import { BodyWrapper } from '~LayoutModule/components/LayoutWrapper'
+import LayoutWrapperBody from '~LayoutModule/components/LayoutWrapperBody'
 
 /**
  * BodyContainer
@@ -7,7 +7,7 @@ import { BodyWrapper } from '~LayoutModule/components/LayoutWrapper'
  *
  */
 function BodyContainer(props) {
-  return <BodyWrapper {...props} />
+  return <LayoutWrapperBody {...props} />
 }
 
 export default BodyContainer

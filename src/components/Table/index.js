@@ -10,12 +10,21 @@ import BaseTable from './style'
  *
  * @desc :: used for Tables, must be used with TableRow and TableRowItem
  *
- * @see src/components/TableRow
- * @see src/components/TableRowItem
+ * @see See src/components/TableRow
+ * @see See src/components/TableRowItem
  *
  */
 function Table(props) {
-  const { children, triggerOffset, ...rest } = props
+  const {
+    children,
+    columns,
+    maxHeight,
+    maxWidth,
+    minHeight,
+    minWidth,
+    triggerOffset,
+    ...rest
+  } = props
   const ref = React.useRef(null)
   const { isScrolling } = useScroll({
     trigger: triggerOffset,
@@ -23,9 +32,16 @@ function Table(props) {
   })
 
   return (
-    <BaseTable ref={ref} {...rest}>
+    <BaseTable
+      ref={ref}
+      maxHeight={maxHeight}
+      maxWidth={maxWidth}
+      minHeight={minHeight}
+      minWidth={minWidth}
+      {...rest}>
       {React.Children.map(children, (element) =>
         React.cloneElement(element, {
+          columns,
           isTableScrolling: isScrolling,
         }),
       )}
@@ -35,16 +51,23 @@ function Table(props) {
 Table.defaultProps = {
   children: undefined,
   className: '',
-  height: '',
+  columns: '',
+  maxHeight: '',
+  maxWidth: '',
+  minHeight: '',
+  minWidth: '',
   triggerOffset: 50,
-  width: '',
 }
 Table.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  height: PropTypes.string,
-  triggerOffset: PropTypes.number, // The trigger to the scroll behaviors
-  width: PropTypes.string,
+  columns: PropTypes.string,
+  maxHeight: PropTypes.string,
+  minHeight: PropTypes.string,
+  maxWidth: PropTypes.string,
+  minWidth: PropTypes.string,
+  /** The trigger to the scroll behaviors (num) */
+  triggerOffset: PropTypes.number,
 }
 
 export default Table

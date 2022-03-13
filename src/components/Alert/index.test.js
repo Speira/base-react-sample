@@ -24,7 +24,7 @@ describe('render', () => {
   it('Alert onClose handler behaviors', () => {
     expect(onClose).not.toHaveBeenCalled()
     expect(wrapper.props().active).toEqual(1)
-    wrapper.find('#closebtn').simulate('click')
+    wrapper.find('button.closebtn').simulate('click')
     expect(onClose).toHaveBeenCalled()
     expect(wrapper.props().active).toEqual(0)
   })

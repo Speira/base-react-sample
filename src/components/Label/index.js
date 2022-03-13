@@ -8,17 +8,25 @@ import BaseLabel from './style'
  *
  */
 function Label(props) {
-  const { children, ...rest } = props
-
-  return <BaseLabel {...rest}>{children}</BaseLabel>
+  const { children, label, required, ...rest } = props
+  return (
+    <BaseLabel {...rest}>
+      {label && <span>{`${label}${required ? ' (*)' : ''}`}&nbsp;:&nbsp;</span>}
+      {children}
+    </BaseLabel>
+  )
 }
 Label.defaultProps = {
   children: undefined,
   className: '',
+  required: false,
+  label: '',
 }
 Label.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  required: PropTypes.bool,
+  label: PropTypes.string,
 }
 
 export default Label

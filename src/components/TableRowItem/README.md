@@ -1,5 +1,1 @@
-Simple Input example:
-
-```js
-<TableRowItem />
-```
+See Table

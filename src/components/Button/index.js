@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withAsyncErrorHandling } from '~contexts/ErrorContext'
 import constants from '~utils/constants'
+import { getActiveKeys } from '~utils/functions'
 import BaseButton from './style'
 
 const { STATUS } = constants
@@ -12,25 +13,26 @@ const { STATUS } = constants
  *
  */
 function Button(props) {
-  const { children, status, unboxed, active, rounded, ...rest } = props
-
-  const styledProps = { ...rest }
-  if (rounded) styledProps.className = `${styledProps.className} rounded`
-  if (unboxed) styledProps.className = `${styledProps.className} unboxed`
-
+  const {
+    children,
+    className: initialClassName,
+    status,
+    rounded,
+    unboxed,
+    ...rest
+  } = props
+  const className = `${initialClassName} ${getActiveKeys({ rounded, unboxed })}`
   return (
-    <BaseButton status={status} active={active ? 1 : 0} {...styledProps}>
+    <BaseButton className={className} status={status} {...rest}>
       {children}
     </BaseButton>
   )
 }
 Button.defaultProps = {
-  active: false,
   children: undefined,
   className: '',
   disabled: false,
   height: '',
-  onBlur: () => null,
   onClick: () => null,
   rounded: false,
   status: STATUS.INFO,
@@ -39,12 +41,10 @@ Button.defaultProps = {
   width: '',
 }
 Button.propTypes = {
-  active: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
   disabled: PropTypes.bool,
   height: PropTypes.string,
-  onBlur: PropTypes.func,
   onClick: PropTypes.func,
   rounded: PropTypes.bool,
   status: PropTypes.oneOf(Object.values(STATUS)),

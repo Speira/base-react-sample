@@ -3,7 +3,7 @@ import { useAuth } from '~contexts/AuthContext'
 import constants from '~/utils/constants'
 import useRouter from '~hooks/useRouter'
 
-import { HeaderWrapper } from '~LayoutModule/components/LayoutWrapper'
+import LayoutWrapperHeader from '~LayoutModule/components/LayoutWrapperHeader'
 import { BrandLink } from '~LayoutModule/components/LayoutLink'
 import {
   HomeLink,
@@ -28,7 +28,7 @@ function HeaderContainer() {
     logout()
   }
   return (
-    <HeaderWrapper>
+    <LayoutWrapperHeader>
       <BrandLink to={DEFAULT} />
       <a href="https://base-react-style.speira.me/" target="blank">
         You can see all styles availables on this website here ! &#x2197;
@@ -52,7 +52,7 @@ function HeaderContainer() {
           active={pathname === '/a-no-exist-url'}
         />
       </nav>
-    </HeaderWrapper>
+    </LayoutWrapperHeader>
   )
 }
 

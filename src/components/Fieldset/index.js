@@ -1,11 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import constants from '~utils/constants'
+import { getActiveKeys } from '~utils/functions'
 import BaseFieldset from './style'
-
-const {
-  POSITIONS: { CENTER, LEFT, RIGHT },
-} = constants
 
 /**
  * Fieldset
@@ -13,29 +9,56 @@ const {
  *
  */
 function Fieldset(props) {
-  const { children, position, legend, ...rest } = props
+  const {
+    children,
+    className: initialClassName,
+    legend,
+    left,
+    right,
+    column,
+    row,
+    center,
+    ...rest
+  } = props
 
-  const styledProps = { ...rest }
-  styledProps.className = `${styledProps.className} ${position}`
-
+  const className = `${initialClassName} ${getActiveKeys({
+    left,
+    center,
+    right,
+    column,
+    row,
+  })}`
   return (
-    <BaseFieldset {...styledProps}>
+    <BaseFieldset className={className} {...rest}>
       {legend && <legend>{legend}</legend>}
-      {children}
+      <div className="fieldset-content">{children}</div>
     </BaseFieldset>
   )
 }
 Fieldset.defaultProps = {
+  center: false,
   children: undefined,
   className: '',
+  column: false,
+  left: false,
   legend: '',
-  position: LEFT,
+  right: false,
+  row: false,
 }
 Fieldset.propTypes = {
+  /** text alignement */
+  center: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
+  /** children direction */
+  column: PropTypes.bool,
+  /** text alignement */
+  left: PropTypes.bool,
   legend: PropTypes.string,
-  position: PropTypes.oneOf([CENTER, LEFT, RIGHT]),
+  /** text alignement */
+  right: PropTypes.bool,
+  /** children direction */
+  row: PropTypes.bool,
 }
 
 export default Fieldset

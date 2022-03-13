@@ -1,19 +1,48 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withAsyncErrorHandling } from '~contexts/ErrorContext'
-import { adaptBoolProps } from '~utils/functions'
+import { getActiveKeys } from '~utils/functions'
+import constants from '~utils/constants'
 import BaseLink from './style'
 
+const { STATUS } = constants
 /**
  * Link
  * @component
  *
  */
 function Link(props) {
-  const { boxed, className, href, to, ...rest } = props
-  const adaptedParams = adaptBoolProps(rest)
-  adaptedParams.className = `${className} ${boxed && 'boxed'}`
-  return <BaseLink {...adaptedParams} to={to || href} />
+  const {
+    active,
+    boxed,
+    className: initialClassName,
+    href,
+    to,
+    primary,
+    quaternary,
+    secondary,
+    status,
+    tertiary,
+    ...rest
+  } = props
+
+  const className = `${initialClassName} ${getActiveKeys({
+    boxed,
+    primary,
+    quaternary,
+    secondary,
+    tertiary,
+  })}`
+
+  return (
+    <BaseLink
+      {...rest}
+      status={status}
+      className={className}
+      to={to || href}
+      active={active ? 1 : 0}
+    />
+  )
 }
 Link.defaultProps = {
   active: false,
@@ -25,6 +54,7 @@ Link.defaultProps = {
   secondary: false,
   tertiary: false,
   size: '',
+  status: STATUS.INFO,
   to: '',
 }
 Link.propTypes = {
@@ -37,6 +67,7 @@ Link.propTypes = {
   secondary: PropTypes.bool,
   tertiary: PropTypes.bool,
   size: PropTypes.string,
+  status: PropTypes.oneOf(Object.values(STATUS)),
   to: PropTypes.string,
 }
 

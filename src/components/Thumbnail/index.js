@@ -8,16 +8,12 @@ import BaseThumbnail from './style'
  *
  */
 function Thumbnail(props) {
-  const { children, ...rest } = props
-
-  return <BaseThumbnail {...rest}>{children}</BaseThumbnail>
+  return <BaseThumbnail {...props} />
 }
 Thumbnail.defaultProps = {
-  children: undefined,
   className: '',
 }
 Thumbnail.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
 }
 

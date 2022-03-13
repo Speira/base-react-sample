@@ -5,6 +5,12 @@ import AuthProvider from '~contexts/AuthContext'
 import ErrorProvider from '~contexts/ErrorContext'
 import I18NProvider from '~contexts/I18NContext'
 
+/**
+ * contexts
+ * @context
+ * @desc ::: Merge all contexts into one, easier to use
+ *
+ */
 function Contexts({ children }) {
   return (
     <I18NProvider>

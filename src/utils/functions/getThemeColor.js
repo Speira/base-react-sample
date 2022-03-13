@@ -13,9 +13,9 @@
  */
 export default function getThemeColor(params) {
   const { primary, secondary, tertiary, quaternary, theme } = params
-  if (primary) return theme.COLORS.PRIMARY
-  if (secondary) return theme.COLORS.SECONDARY
-  if (tertiary) return theme.COLORS.TERTIARY
-  if (quaternary) return theme.COLORS.QUATERNARY
+  if (primary) return theme.COLORS.STATIC.PRIMARY
+  if (secondary) return theme.COLORS.STATIC.SECONDARY
+  if (tertiary) return theme.COLORS.STATIC.TERTIARY
+  if (quaternary) return theme.COLORS.STATIC.QUATERNARY
   return 'transparent'
 }

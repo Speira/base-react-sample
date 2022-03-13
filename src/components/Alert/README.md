@@ -1,18 +1,22 @@
+```js static
+import Alert from '~components/Alert'
+
+function DisplayAlert() {
+  return <Alert message="Message" title="Title" status="info" />
+}
+```
+
 Simple Alert example:
 
 ```js
-<Alert
-  isOpen
-  message="An error has crept into the application settings. Please try again. If the problem persists, please contact your administrator. Our developers will deal with your problem as soon as possible. "
-/>
+<Alert message="Test message" />
 ```
 
 Warning Alert example:
 
 ```js
 <Alert
-  type="warning"
-  isOpen
+  status="warning"
   title="Attention, some warnings appear:"
   message={['first warning', 'second warning', 'third warning']}
 />
@@ -21,16 +25,15 @@ Warning Alert example:
 Info Alert example:
 
 ```js
-<Alert type="info" isOpen message="Example" />
+<Alert status="info" message="Example" />
 ```
 
 Success Alert example:
 
 ```js
 <Alert
-  type="success"
-  isOpen
+  status="success"
   title="Congratulation !"
-  message="Your are now part of our community"
+  message="Your are now a member of our community"
 />
 ```

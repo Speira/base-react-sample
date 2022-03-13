@@ -2,9 +2,7 @@ import styled from 'styled-components'
 import { getStatusColor } from '~utils/functions'
 import constants from '~utils/constants'
 
-const {
-  STATUS: { WARNING, DANGER },
-} = constants
+const { STATUS } = constants
 
 /**
  * BaseInput
@@ -13,16 +11,17 @@ const {
  */
 const BaseInput = styled.input.attrs((props) => {
   const { status, theme } = props
-  const statusColor = getStatusColor({ theme, status })
   const style = {}
-  if ([DANGER, WARNING].includes(status)) {
-    style.outline = `2px solid ${statusColor}`
+  if (status) {
+    const statusColor = getStatusColor({ theme, status })
+    const size = status === STATUS.DANGER ? '2px' : '1px'
+    style.outline = `${size} solid ${statusColor}`
   }
   return {
     style,
   }
 })`
-  background-color: ${({ theme }) => theme.COLORS.BACKGROUND};
+  background-color: ${({ theme }) => theme.COLORS.STATIC.LIGHT};
   border: none;
   border-radius: 2px;
   margin: auto;
@@ -39,7 +38,7 @@ const BaseInput = styled.input.attrs((props) => {
   &:hover {
   }
   &:focus {
-    box-shadow: 0 0 4px 0px ${({ theme }) => theme.COLORS.PRIMARY};
+    box-shadow: 0 0 4px 0px ${({ theme }) => theme.COLORS.STATIC.PRIMARY};
   }
   &:disabled {
     box-shadow: none;
@@ -54,22 +53,27 @@ const BaseInput = styled.input.attrs((props) => {
     top: 0;
     left: 0;
     transition: none;
-    background-color: ${({ theme }) => theme.COLORS.FOREGROUND};
+    background-color: ${({ theme }) => theme.COLORS.STATIC.DARK};
   }
 `
 
 export default BaseInput
 
+/**
+ * BaseTextarea
+ * @component
+ *
+ */
 export const BaseTextarea = styled.textarea.attrs((props) => {
-  const { color, theme } = props
-  const themeColor = theme.COLORS[color.toUpperCase()]
+  const { status, theme } = props
+  const statusColor = getStatusColor({ theme, status })
+  const style = {}
+  if (status) style.outline = `1px solid ${statusColor}`
   return {
-    style: {
-      border: `1px solid ${themeColor}`,
-    },
+    style,
   }
 })`
-  background-color: ${({ theme }) => theme.COLORS.BACKGROUND};
+  background-color: ${({ theme }) => theme.COLORS.STATIC.LIGHT};
   border-radius: 4px;
   border: none;
   margin: auto;
@@ -79,6 +83,6 @@ export const BaseTextarea = styled.textarea.attrs((props) => {
   vertical-align: middle;
   &:focus {
     outline: none;
-    box-shadow: 0 0 4px 0px ${({ theme }) => theme.COLORS.PRIMARY};
+    box-shadow: 0 0 4px 0px ${({ theme }) => theme.COLORS.STATIC.PRIMARY};
   }
 `

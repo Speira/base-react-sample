@@ -7,30 +7,26 @@ import BaseModal from './style'
  * @component
  *
  * @desc ::
- *    Modal is a Singleton initialized in ModalContext
  *    DO NOT CALL THIS COMPONENT, call 'activeModal' method instead
  *    provided by "useModal()" loccated in contexts/ModalContext
  *
- * @see src/contexts/ModalContext
+ * @see see src/contexts/ModalContext
  *
  */
 function Modal(props) {
-  const { children, open, closeModal, ...rest } = props
-  const [isOpen, setIsOpen] = React.useState(open)
-  const toggleOpen = () => setIsOpen(!isOpen)
+  const { children, isOpen, noCloseButton, onCloseClick, ...rest } = props
+  const closeModal = () => {
+    onCloseClick()
+  }
 
-  const display = isOpen ? 1 : 0
-  React.useEffect(() => {
-    if (open !== isOpen) {
-      toggleOpen()
-    }
-  })
   return (
-    <BaseModal display={display} {...rest}>
+    <BaseModal visible={isOpen ? 1 : 0} {...rest}>
       <div className="content">
-        <button type="button" className="close" onClick={closeModal}>
-          &times;
-        </button>
+        {!noCloseButton && (
+          <button type="button" className="close" onClick={closeModal}>
+            &times;
+          </button>
+        )}
         {children}
       </div>
     </BaseModal>
@@ -39,14 +35,16 @@ function Modal(props) {
 Modal.defaultProps = {
   children: undefined,
   className: '',
-  open: false,
-  closeModal: () => null,
+  isOpen: false,
+  noCloseButton: false,
+  onCloseClick: () => null,
 }
 Modal.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  open: PropTypes.bool,
-  closeModal: PropTypes.func,
+  isOpen: PropTypes.bool,
+  noCloseButton: PropTypes.bool,
+  onCloseClick: PropTypes.func,
 }
 
 export default Modal

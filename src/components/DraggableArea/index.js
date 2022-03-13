@@ -5,7 +5,7 @@ import BaseDraggableArea from './style'
 /**
  * DraggableArea
  * @component
- *
+ * @desc ::  Upload a file in the component
  */
 function DraggableArea(props) {
   const {
@@ -64,6 +64,7 @@ DraggableArea.defaultProps = {
 DraggableArea.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  /** When true we can click to add file in it */
   clickable: PropTypes.bool,
   onDragEnd: PropTypes.func,
   onDragOver: PropTypes.func,

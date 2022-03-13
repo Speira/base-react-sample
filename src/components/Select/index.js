@@ -1,31 +1,61 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
-import { colorsThemesList } from '~contexts/ThemeContext'
+import { getActiveKeys, translate as t } from '~utils/functions'
+import constants from '~utils/constants'
 import BaseSelect from './style'
 
+const { STATUS } = constants
+
 /**
+ *
  * Select
  * @component
  *
+ * @desc :: Component for selects
+ *
  */
 function Select(props) {
-  const { options, onChange, value, color, className } = props
+  const {
+    className: initialClassName,
+    options,
+    primary,
+    quaternary,
+    secondary,
+    status,
+    tertiary,
+    onChange,
+    value,
+    ...rest
+  } = props
+
+  const localOptions = options.map((opt) =>
+    typeof opt === 'string' ? { key: opt, label: opt } : opt,
+  )
+
+  const className = `${initialClassName} ${getActiveKeys({
+    primary,
+    secondary,
+    tertiary,
+    quaternary,
+  })}`
+
   const handleChange = (e) => {
     onChange(e.target.value)
   }
+
   return (
     <BaseSelect
       className={className}
-      color={color}
       onChange={handleChange}
-      value={value}>
-      <option value="" disabled hidden>
-        Choose :
+      status={status}
+      value={value}
+      {...rest}>
+      <option value="" disabled>
+        {t`SELECT`}&nbsp;
       </option>
-      {options.map(({ key, title }) => (
-        <option key={`${key}-${title}`} title={title} value={key}>
-          {title}
+      {localOptions.map(({ key, label }) => (
+        <option key={`${key}-${label}`} title={label} value={key}>
+          {label}
         </option>
       ))}
     </BaseSelect>
@@ -33,21 +63,32 @@ function Select(props) {
 }
 Select.defaultProps = {
   className: '',
-  color: colorsThemesList[0],
   onChange: () => null,
   options: [],
+  primary: false,
+  quaternary: false,
+  secondary: false,
+  tertiary: false,
+  status: '',
   value: '',
 }
 Select.propTypes = {
   className: PropTypes.string,
-  color: PropTypes.oneOf(colorsThemesList),
   onChange: PropTypes.func,
   options: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string,
-      key: PropTypes.string,
-    }),
+    PropTypes.oneOfType([
+      PropTypes.shape({
+        key: PropTypes.string,
+        label: PropTypes.string,
+      }),
+      PropTypes.string,
+    ]),
   ),
+  primary: PropTypes.bool,
+  quaternary: PropTypes.bool,
+  secondary: PropTypes.bool,
+  status: PropTypes.oneOf([...Object.values(STATUS), '']),
+  tertiary: PropTypes.bool,
   value: PropTypes.string,
 }
 

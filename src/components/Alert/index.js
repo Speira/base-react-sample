@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import constants from '~utils/constants'
+
 import BaseAlert from './style'
 
 const { STATUS } = constants
@@ -40,14 +41,16 @@ function Alert(props) {
   )
 }
 Alert.defaultProps = {
-  className: '',
-  message: 'Alert !',
+  message: '',
   onClose: () => null,
   title: '',
   status: STATUS.DANGER,
 }
 Alert.propTypes = {
-  className: PropTypes.string,
+  /**
+   * message: message of the alert, when a message is set, the alert appears
+   *         it closes when the message is void
+   */
   message: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),

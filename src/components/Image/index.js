@@ -8,16 +8,14 @@ import BaseImage from './style'
  *
  */
 function Image(props) {
-  const { children, ...rest } = props
+  const { ...rest } = props
 
-  return <BaseImage {...rest}>{children}</BaseImage>
+  return <BaseImage {...rest} />
 }
 Image.defaultProps = {
-  children: undefined,
   className: '',
 }
 Image.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
 }
 

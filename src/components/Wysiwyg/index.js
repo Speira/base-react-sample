@@ -82,6 +82,7 @@ function Wysiwyg(props) {
               <ToolGroup icon="color_lens">
                 {Object.entries(TEXT_COLORS).map(([nm, col]) => (
                   <ToolAction
+                    key={nm}
                     action="foreColor"
                     img="stop_circle"
                     argv={col}

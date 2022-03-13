@@ -11,11 +11,11 @@ import Link from '~components/Link'
  */
 function LayoutNavLink(props) {
   const { active, label, to, ...rest } = props
-  const style = {}
-  if (active) style.tertiary = true
-  else style.secondary = true
+  const addedProps = {}
+  if (active) addedProps.tertiary = true
+  else addedProps.secondary = true
   return (
-    <Link to={to} {...style} {...rest} boxed>
+    <Link to={to} {...addedProps} {...rest} boxed>
       {label}
     </Link>
   )

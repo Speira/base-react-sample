@@ -1,5 +1,5 @@
 Simple Thumbnail example:
 
 ```js
-<Thumbnail>Thumbnail elements</Thumbnail>
+<Thumbnail src="https://via.placeholder.com/150" />
 ```

@@ -3,15 +3,19 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 # speira-base-react
 
 ## Added modules
+
 default packages:
+
 ```bash
-yarn add babel-plugin-module-resolver normalize.css prop-types react-router-dom styled-components react-is 
+yarn add babel-plugin-module-resolver normalize.css prop-types react-router-dom styled-components react-is styled-icons
 ```
 
 development packages:
+
 ```bash
 yarn add -D babel-plugin-styled-components prettier eslint-config-airbnb eslint-config-prettier eslint-import-resolver-babel-module eslint-plugin-prettier react-styleguidist enzyme enzyme-adapter-react-16
 ```
+
 ## Structure
 
 This project has a module oriented conception, that main all functionalities are
@@ -29,10 +33,12 @@ Paths to modules are often absolute and configured in the .babelrc file.
 ## Start the project
 
 First you have to clone this project:
+
 ```bash
 git clone https://github.com/Speira/base-react-sample.git
 cd base-react-sample
 ```
+
 ```bash
  yarn
 ```
@@ -54,4 +60,3 @@ For the unit tests:
 ```
 yarn test
 ```
-

@@ -6,8 +6,7 @@ import constants from '~utils/constants'
 const ThemeContext = React.createContext()
 const themes = constants.THEMES
 const STORAGE_ITEM = constants.STORAGE_ITEMS.THEME
-const defaultTheme = Object.values(themes)[0]
-const defaultThemeKey = Object.keys(themes)[0]
+const [defaultThemeKey, defaultTheme] = Object.entries(themes)[0] // THEMES.DEFAULT
 
 export const colorsThemesList = Object.keys(
   constants.THEMES.DEFAULT.COLORS,
@@ -15,11 +14,11 @@ export const colorsThemesList = Object.keys(
 
 /**
  * ThemeProvider
- * @component
  * @context
- * @desc use localStorage to persist theme key, and StyledThemeProvider
- * provide this theme (@see THEMES in src/utils/constants) as props for all
- * styled components
+ *
+ * @desc ::: use localStorage to persist theme key, and StyledThemeProvider
+ *      provide this theme (@see THEMES in src/utils/constants) as props for all
+ *      styled components (located in src/components)
  *
  */
 function ThemeProvider(props) {

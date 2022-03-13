@@ -5,20 +5,20 @@ import styled from 'styled-components'
  * @component
  *
  */
-const BaseTable = styled.section`
+const BaseTable = styled.div`
   border-radius: 4px;
-  border: 2px solid ${({ theme }) => theme.COLORS.PRIMARY};
-  box-shadow: 0 0 12px -3px ${({ theme }) => theme.COLORS.TERTIARY} inset;
-  padding: 0em;
-  max-width: 100%;
+  border: 2px solid ${({ theme }) => theme.COLORS.STATIC.PRIMARY};
+  box-shadow: 0 0 12px -3px ${({ theme }) => theme.COLORS.DYNAMIC.TERTIARY} inset;
   display: inline-block;
-  max-height: ${({ height }) => height || '300px'};
-  min-height: 200px;
+  max-height: ${({ maxHeight }) => maxHeight || 'auto'};
+  max-width: ${({ maxWidth }) => maxWidth || '90%'};
+  min-height: ${({ minHeight }) => minHeight || '200px'};
+  min-width: ${({ minWidth }) => minWidth || 'auto'};
   overflow: hidden auto;
+  padding: 0em;
   position: relative;
   @media (min-width: 768px) {
-    max-width: ${({ width }) => width || '88%'};
-    max-height: ${({ height }) => height || '500px'};
+    max-width: '88%';
   }
 `
 

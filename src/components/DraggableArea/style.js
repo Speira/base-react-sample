@@ -1,9 +1,14 @@
 import styled from 'styled-components'
 
+/**
+ * BaseDraggableArea
+ * @component
+ *
+ */
 const BaseDraggableArea = styled.div.attrs((props) => {
-  const { dragging, theme } = props
-  const style = {}
-  if (dragging) style.outline = `2px solid ${theme.COLORS.PRIMARY}`
+  const { dragging, style: initialStyle = {}, theme } = props
+  const style = { ...initialStyle }
+  if (dragging) style.outline = `2px solid ${theme.COLORS.STATIC.DARK}`
   return {
     style,
   }
@@ -11,9 +16,9 @@ const BaseDraggableArea = styled.div.attrs((props) => {
   width: auto;
   padding: 1em 2em;
   cursor: move;
-  background-color: ${({ theme }) => theme.COLORS.BACKGROUND};
-  box-shadow: 0 0 2px -1px ${({ theme }) => theme.COLORS.PRIMARY};
-  border: 1px solid ${({ theme }) => theme.COLORS.PRIMARY};
+  background-color: ${({ theme }) => theme.COLORS.STATIC.LIGHT};
+  box-shadow: 0 0 2px -1px ${({ theme }) => theme.COLORS.STATIC.PRIMARY};
+  border: 1px solid ${({ theme }) => theme.COLORS.STATIC.PRIMARY};
   border-radius: 4px;
   .placeholder {
     font-style: italic;

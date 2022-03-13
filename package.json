@@ -8,7 +8,7 @@
     "lint": "NODE_ENV=development eslint src",
     "start": "yarn lint && yarn clean-cache && node scripts/start.js",
     "styleguide": "styleguidist server",
-    "styleguidebuild": "styleguidist build",
+    "styleguide:build": "styleguidist build",
     "test": "node scripts/test.js --env=jsdom"
   },
   "devDependencies": {
@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@babel/core": "7.4.3",
+    "@styled-icons/bootstrap": "^10.34.0",
     "@svgr/webpack": "4.1.0",
     "@testing-library/react": "^10.0.3",
     "@typescript-eslint/eslint-plugin": "1.6.0",

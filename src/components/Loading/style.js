@@ -15,11 +15,13 @@ const BaseLoading = styled.div`
     font-weight: 300;
   }
   .loader {
-    border: 16px solid ${({ theme }) => theme.COLORS.INFO};
-    border-top: 16px solid ${({ theme }) => theme.COLORS.SUCCESS}; /* Blue */
+    border: 1em solid ${({ theme }) => theme.COLORS.DYNAMIC.INFO};
+    border-top: 1em solid ${({ theme }) => theme.COLORS.DYNAMIC.SUCCESS};
+    border-right: 1em solid ${({ theme }) => theme.COLORS.DYNAMIC.WARNING};
+    border-bottom: 1em solid ${({ theme }) => theme.COLORS.DYNAMIC.DANGER};
     border-radius: 50%;
-    width: 120px;
-    height: 120px;
+    width: 8em;
+    height: 8em;
     animation: spin 2s linear infinite;
     @keyframes spin {
       0% {

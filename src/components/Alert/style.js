@@ -9,21 +9,22 @@ import { getStatusColor } from '~utils/functions'
 const BaseAlert = styled.div.attrs((props) => {
   const { theme, status, active } = props
   const color = getStatusColor({ theme, status })
-  const bgColor = getStatusColor({ theme, status, alpha: 0.2 })
+  const bgColor = getStatusColor({ theme, status, alpha: 0.17 })
   return {
     style: {
       backgroundColor: bgColor,
-      boxShadow: `0 0 3px -1px ${color}`,
+      boxShadow: `2px 2px 2px -1px ${color}`,
       color,
       height: active ? 'auto' : '0',
       margin: active ? '0.5em 0 1em' : '0',
-      padding: active ? '0.5em' : '0',
+      padding: active ? '0.9em' : '0',
       transform: active ? 'scale(1,1)' : 'scale(1,0)',
     },
   }
 })`
-  border-radius: 2px;
-  color: ${({ theme }) => theme.COLORS.FOREGROUND};
+  border-radius: 3px;
+  color: ${({ theme }) => theme.COLORS.STATIC.DARK};
+  text-shadow: 1px 1px 0px ${({ theme }) => theme.COLORS.STATIC.LIGHT};
   font-family: arial;
   font-size: 0.9em;
   font-weight: 600;
@@ -34,8 +35,12 @@ const BaseAlert = styled.div.attrs((props) => {
     cursor: pointer;
     float: right;
     background-color: transparent;
-    border: none;
-    outline: none;
+    border: 1px solid ${({ theme }) => theme.COLORS.STATIC.LIGHT};
+    box-shadow: 1px 1px 1px 1px ${({ theme }) => theme.COLORS.STATIC.DARK};
+    border-radius: 3px;
+  }
+  .closebtn:hover {
+    opacity: 0.5;
   }
   strong {
     display: block;

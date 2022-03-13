@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { getThemeColor } from '~utils/functions'
+import { getStatusColor } from '~utils/functions'
 
 /**
  * BaseLink
@@ -8,33 +8,22 @@ import { getThemeColor } from '~utils/functions'
  *
  */
 const BaseLink = styled(Link).attrs((props) => {
-  const {
-    className,
-    active,
-    primary,
-    quaternary,
-    secondary,
-    tertiary,
-    theme,
-  } = props
+  const { className, active, status, theme } = props
   if (className.includes('boxed')) {
-    const backgroundColor = getThemeColor({
-      primary,
-      quaternary,
-      secondary,
-      tertiary,
-      theme,
-    })
-    const color = active ? theme.COLORS.BACKGROUND : theme.COLORS.FOREGROUND
-    return {
-      style: {
-        backgroundColor,
-        color,
-      },
+    const style = {}
+    if (active) {
+      style.backgroundColor = getStatusColor({ theme, status })
     }
+    style.color = active ? theme.COLORS.STATIC.LIGHT : theme.COLORS.STATIC.DARK
+    style.boxShadow = active
+      ? `0px 0px 1px 1px ${theme.COLORS.STATIC.DARK} inset`
+      : `1px 1px 0px 0px ${theme.COLORS.STATIC.DARK}`
+    return { style }
   }
   return {
-    style: { color: theme.COLORS.FOREGROUND, textDecoration: 'underline' },
+    style: {
+      color: theme.COLORS.STATIC.DARK,
+    },
   }
 })`
   cursor: pointer;
@@ -43,14 +32,28 @@ const BaseLink = styled(Link).attrs((props) => {
   padding: 5px;
   margin: 0 4px;
   font-size: ${({ size }) => size || '1em'};
-  &:disabled {
-    opacity: 0.6;
-    cursor: text;
+  text-decoration: underline;
+  &:active {
+    opacity: 0.5;
   }
+
   &.boxed {
     font-weight: 600;
     border-radius: 4px;
     box-shadow: 1px 1px 2px -1px;
+    text-decoration: none;
+  }
+  &.boxed.primary {
+    background-color: ${({ theme }) => theme.COLORS.STATIC.PRIMARY};
+  }
+  &.boxed.secondary {
+    background-color: ${({ theme }) => theme.COLORS.STATIC.SECONDARY};
+  }
+  &.boxed.tertiary {
+    background-color: ${({ theme }) => theme.COLORS.STATIC.TERTIARY};
+  }
+  &.boxed.quaternary {
+    background-color: ${({ theme }) => theme.COLORS.STATIC.QUATERNARY};
   }
   @media (min-width: 768px) {
     padding: 8px;

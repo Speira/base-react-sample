@@ -1,8 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { colorsThemesList } from '~contexts/ThemeContext'
+import constants from '~utils/constants'
+import { getActiveKeys } from '~utils/functions'
 import { withAsyncErrorHandling } from '~contexts/ErrorContext'
 import BaseDropdown, { DropdownButton, DropdownContent } from './style'
+
+const { STATUS } = constants
 
 /**
  * Dropdown
@@ -10,8 +13,20 @@ import BaseDropdown, { DropdownButton, DropdownContent } from './style'
  *
  */
 function Dropdown(props) {
-  const { items, handler, color, ...rest } = props
+  const {
+    className: initialClassName,
+    items,
+    onClick,
+    primary,
+    quaternary,
+    secondary,
+    status,
+    tertiary,
+    ...rest
+  } = props
+
   const [isOpen, setIsOpen] = React.useState(false)
+
   const toggleOpen = (nextState) => {
     const time = isOpen ? 150 : 0
     setTimeout(() => {
@@ -19,18 +34,33 @@ function Dropdown(props) {
     }, time)
   }
   const closeContent = () => toggleOpen(false)
+
+  const className = `${initialClassName} ${getActiveKeys({
+    primary,
+    secondary,
+    tertiary,
+    quaternary,
+  })}`
+
   return (
-    <BaseDropdown {...rest} onBlur={closeContent}>
-      <DropdownButton onClick={toggleOpen} color={color}>
-        Dropdown
+    <BaseDropdown {...rest} status={status} onBlur={closeContent}>
+      <DropdownButton
+        className={className}
+        onClick={toggleOpen}
+        status={status}>
+        <span>Dropdown</span>
+        <span className="material-icons arrow">expand_more</span>
       </DropdownButton>
-      <DropdownContent opened={isOpen ? 1 : 0} color={color}>
+      <DropdownContent
+        className={className}
+        opened={isOpen ? 1 : 0}
+        status={status}>
         {items.map((itemsElement) => (
           <button
             className="item"
             key={itemsElement}
             type="button"
-            onClick={handler}>
+            onClick={onClick}>
             {itemsElement}
           </button>
         ))}
@@ -39,13 +69,29 @@ function Dropdown(props) {
   )
 }
 Dropdown.defaultProps = {
-  handler: () => null,
-  color: colorsThemesList[0],
+  className: '',
+  onClick: () => null,
+  primary: false,
+  quaternary: false,
+  secondary: false,
+  status: '',
+  tertiary: false,
 }
 Dropdown.propTypes = {
+  /** HTML class */
+  className: PropTypes.string,
   items: PropTypes.arrayOf(PropTypes.string).isRequired,
-  color: PropTypes.oneOf(colorsThemesList),
-  handler: PropTypes.func,
+  onClick: PropTypes.func,
+  /** primary: theme static color (background) */
+  primary: PropTypes.bool,
+  /** quaternary: theme static color (background) */
+  quaternary: PropTypes.bool,
+  /** secondary: theme static color (background) */
+  secondary: PropTypes.bool,
+  /** Status */
+  status: PropTypes.oneOf(Object.values(STATUS)),
+  /** tertiary: theme static color (background) */
+  tertiary: PropTypes.bool,
 }
 
 export default withAsyncErrorHandling(Dropdown)

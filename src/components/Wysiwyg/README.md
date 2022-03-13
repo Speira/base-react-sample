@@ -1,5 +1,13 @@
-Simple Textarea example:
+```js static
+import Wysiwyg from '~components/Wysiwyg'
+
+function DisplayWysiwig() {
+  return <Wysiwyg value="Inner HTML value" onChange={() => null} />
+}
+```
+
+Simple Wysiwyg example:
 
 ```js
-<Textarea>Textarea elements</Textarea>
+<Wysiwyg>Wysiwyg elements</Wysiwyg>
 ```

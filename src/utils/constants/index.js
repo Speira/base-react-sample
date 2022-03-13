@@ -1,3 +1,5 @@
+import I18N_FRENCH from './i18n/french.json'
+
 /**
  * constants
  * @desc ::  constants provided accross all files
@@ -36,21 +38,14 @@ export default {
   },
   PATHS: {
     AUTH: '/auth',
-    AUTH_PROFILE: '/auth/profile',
     AUTH_LOGIN: '/auth/login',
+    AUTH_PROFILE: '/auth/profile',
     AUTH_SIGNUP: '/auth/signup',
-    CONTACT: '/contact',
-    FORBIDDEN: '/unauthorized',
-    DEFAULT: '/',
-    HOME: '/home',
     CATEGORY: '/category',
-  },
-  POSITIONS: {
-    BOTTOM: 'bottom',
-    CENTER: 'center',
-    LEFT: 'left',
-    RIGHT: 'right',
-    TOP: 'top',
+    CONTACT: '/contact',
+    DEFAULT: '/',
+    FORBIDDEN: '/unauthorized',
+    HOME: '/home',
   },
   RESTRICTIONS: {
     AUTHENTICATED: 'authenticated',
@@ -68,16 +63,20 @@ export default {
   THEMES: {
     DEFAULT: {
       COLORS: {
-        PRIMARY: '#B983FF',
-        SECONDARY: '#94B3FD',
-        TERTIARY: '#94DAFF',
-        QUATERNARY: '#99FEFF',
-        INFO: '#035397',
-        SUCCESS: '#1C7947',
-        WARNING: '#C36A2D',
-        DANGER: '#A9333A',
-        BACKGROUND: '#f8f8fa',
-        FOREGROUND: '#000000b3',
+        STATIC: {
+          PRIMARY: '#B983FF',
+          SECONDARY: '#94B3FD',
+          TERTIARY: '#94DAFF',
+          QUATERNARY: '#99FEFF',
+          LIGHT: '#f8f8fa',
+          DARK: '#000000b3',
+        },
+        DYNAMIC: {
+          INFO: '#035397',
+          SUCCESS: '#1C7947',
+          WARNING: '#C36A2D',
+          DANGER: '#A9333A',
+        },
       },
       FONT_SIZES: {
         VERY_SMALL: '8px',
@@ -89,54 +88,16 @@ export default {
       },
     },
   },
+  TEXT_COLORS: {
+    blue: 'blue',
+    black: 'black',
+    green: 'green',
+    red: 'red',
+  },
   WORDS: {
     FRENCH: {
       NAME: 'FRENCH',
-      VALUES: {
-        ACCOUNT_EXISTING: "J'ai dêjà un compte",
-        ACCOUNT_NO_EXISTING: "Je n'ai pas encore de compte",
-        AUTH: 'Authentification',
-        AUTH_FAILED: 'Identifiants incorrects',
-        AUTH_ONGOING: 'Authentification en cours',
-        BACK: 'Retour',
-        BACK_HOME: "Revenir à l'accueil",
-        BUTTON: 'Bouton simple',
-        BUTTON_DANGER: 'Bouton causant une erreur',
-        CANCEL: 'Annuler',
-        EDIT: 'Éditer',
-        ERROR_403: "Erreur 403: Droit d'accès insufissant !",
-        ERROR_403_MESSAGE:
-          "Vous n'avez pas les droits necessaires pour accéder à cette page.",
-        ERROR_404: 'Erreur 404: Page demandée introuvable !',
-        ERROR_404_MESSAGE: "Cette page n'existe pas.",
-        ERROR_500: 'Erreur 500: Erreur serveur !',
-        ERROR_500_MESSAGE: "Merci de contacter l'administrateur du site.",
-        FIELDS_MISSING: 'Des champs sont manquants',
-        FIELDS_INCORRECT: 'Des champs sont incorrects',
-        HAVE_ACCOUNT: "J'ai déjà un compte",
-        HAVE_NO_ACCOUNT: "Je n'ai pas de compte",
-        HOME: 'Accueil',
-        NO_EXISTENT_PAGE: 'Page inexistante',
-        LOGIN: 'Connexion',
-        LOGIN_ERROR: 'Erreur lors de la connexion',
-        LOGIN_ONGOING: 'Connexion en cours ...',
-        LOGIN_SUCCESS: 'Connecté',
-        LOGOUT: 'Déconnexion',
-        PASSWORD: 'Mot de passe',
-        PASSWORD_MISSING: 'Le mot de passe doit être renseigné',
-        PASSWORD_LACKS_CHARACTERS:
-          'Le mot de passe doit avoir plus de 8 caractères',
-        PROFILE: 'Mon profile',
-        SIGNUP: 'Création de compte',
-        SIGNUP_ERROR: 'Erreur lors de la création de compte',
-        SIGNUP_ONGOING: 'Création de compte en cours ...',
-        SIGNUP_MAIL_SENT: 'Demande de création de compte envoyée',
-        SIGNUP_MAIL_WILL_BE_SENT: ({ username }) =>
-          `Un email sera envoyé à ${username} pour finaliser l'inscription`,
-        USERNAME: 'Identifiant',
-        USERNAME_MISSING: "L'identifiant doit être renseigné",
-        VALIDATE: 'Valider',
-      },
+      VALUES: I18N_FRENCH,
     },
     ENGLISH: {
       NAME: 'ENGLISH',

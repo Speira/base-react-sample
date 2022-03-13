@@ -1,9 +1,14 @@
 import styled from 'styled-components'
 
+/**
+ * BaseTextarea
+ * @component
+ *
+ */
 const BaseTextarea = styled.textarea`
   border-radius: 4px;
   border: none;
-  box-shadow: 0 0 2px -1px ${({ theme }) => theme.COLORS.PRIMARY};
+  box-shadow: 0 0 2px -1px ${({ theme }) => theme.COLORS.STATIC.DARK};
   margin: 0 1em;
   min-height: 4em;
   min-width: 400px;

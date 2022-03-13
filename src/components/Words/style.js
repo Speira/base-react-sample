@@ -5,7 +5,7 @@ import styled from 'styled-components'
  * @component
  *
  */
-const BaseWords = styled.div`
+const BaseWords = styled.p`
   display: block;
 `
 

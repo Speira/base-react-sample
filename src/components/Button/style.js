@@ -21,7 +21,7 @@ const BaseButton = styled.button.attrs((props) => {
   height: ${({ height }) => height || 'auto'};
   border: none;
   border-radius: 4px;
-  box-shadow: 1px 1px 2px -1px ${({ theme }) => theme.COLORS.FOREGROUND},
+  box-shadow: 1px 1px 2px -1px ${({ theme }) => theme.COLORS.STATIC.DARK},
     -1px -1px 2px 0px currentcolor inset;
   cursor: pointer;
   position: relative;
@@ -41,13 +41,14 @@ const BaseButton = styled.button.attrs((props) => {
   &:active {
     opacity: 0.5;
     transform: scale(0.96);
-    transform-origin: bottom right;
-    box-shadow: 0px 0px 1px -1px ${({ theme }) => theme.COLORS.FOREGROUND},
+    transform-origin: bottom center;
+    box-shadow: 0px 0px 1px -1px ${({ theme }) => theme.COLORS.STATIC.DARK},
       0px 0px 3px 0px currentcolor inset;
   }
   &:disabled {
     box-shadow: none;
     opacity: 0.6;
+    cursor: text;
   }
   &:after {
     content: '';
