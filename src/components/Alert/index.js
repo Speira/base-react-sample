@@ -1,6 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import BaseAlert from './style';
+import React from 'react'
+import PropTypes from 'prop-types'
+import constants from '~utils/constants'
+
+import BaseAlert from './style'
+
+const { STATUS } = constants
 
 /**
  * Alert
@@ -8,18 +12,18 @@ import BaseAlert from './style';
  *
  */
 function Alert(props) {
-  const { message, onClose, title, type, ...rest } = props;
-  const isOpen = message !== '';
-  const [isAlertOpen, toggleOpen] = React.useState(isOpen);
+  const { message, onClose, title, status, ...rest } = props
+  const isOpen = message.length !== 0
+  const [isAlertOpen, toggleOpen] = React.useState(isOpen)
   const closeAlert = () => {
-    toggleOpen(false);
-    onClose();
-  };
+    toggleOpen(false)
+    onClose()
+  }
   React.useEffect(() => {
-    toggleOpen(isOpen);
-  }, [isOpen, message, type]);
+    toggleOpen(isOpen)
+  }, [isOpen, message, status])
   return (
-    <BaseAlert {...rest} variant={type} active={isAlertOpen ? 1 : 0}>
+    <BaseAlert {...rest} status={status} active={isAlertOpen ? 1 : 0}>
       <button type="button" className="closebtn" onClick={closeAlert}>
         &times;
       </button>
@@ -27,31 +31,33 @@ function Alert(props) {
       {Array.isArray(message) ? (
         <ul>
           {message.map((row) => (
-            <li>{row}</li>
+            <li key={row}>{row}</li>
           ))}
         </ul>
       ) : (
         <span className="text-message">{message}</span>
       )}
     </BaseAlert>
-  );
+  )
 }
 Alert.defaultProps = {
-  className: '',
-  message: 'Alert !',
+  message: '',
   onClose: () => null,
   title: '',
-  type: 'danger',
-};
+  status: STATUS.DANGER,
+}
 Alert.propTypes = {
-  className: PropTypes.string,
+  /**
+   * message: message of the alert, when a message is set, the alert appears
+   *         it closes when the message is void
+   */
   message: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
   ]),
   onClose: PropTypes.func,
   title: PropTypes.string,
-  type: PropTypes.oneOf(['info', 'warning', 'success', 'danger']),
-};
+  status: PropTypes.oneOf(Object.values(STATUS)),
+}
 
-export default Alert;
+export default Alert

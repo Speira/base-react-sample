@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
+import { getStatusColor } from '~utils/functions'
+import constants from '~utils/constants'
+
+const { STATUS } = constants
 
 /**
  * BaseInput
@@ -6,20 +10,24 @@ import styled from 'styled-components';
  *
  */
 const BaseInput = styled.input.attrs((props) => {
-  const { color, theme } = props;
-  const themeColor = theme.COLORS[color.toUpperCase()];
+  const { status, theme } = props
+  const style = {}
+  if (status) {
+    const statusColor = getStatusColor({ theme, status })
+    const size = status === STATUS.DANGER ? '2px' : '1px'
+    style.outline = `${size} solid ${statusColor}`
+  }
   return {
-    style: {
-      border: `1px solid ${themeColor}`,
-    },
-  };
+    style,
+  }
 })`
+  background-color: ${({ theme }) => theme.COLORS.STATIC.LIGHT};
+  border: none;
   border-radius: 2px;
-  cursor: pointer;
-  margin: 0 1em;
+  margin: auto;
   outline: none;
-  padding: 0.4em;
   position: relative;
+  padding: 0.4em;
   transition: all 0.18s ease-in-out;
   width: ${({ width }) => width || 'auto'};
   &:after {
@@ -30,13 +38,51 @@ const BaseInput = styled.input.attrs((props) => {
   &:hover {
   }
   &:focus {
-    box-shadow: 0px 0px 4px -2px;
+    box-shadow: 0 0 4px 0px ${({ theme }) => theme.COLORS.STATIC.PRIMARY};
   }
   &:disabled {
     box-shadow: none;
     opacity: 0.6;
     cursor: text;
   }
-`;
+  &:disabled:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transition: none;
+    background-color: ${({ theme }) => theme.COLORS.STATIC.DARK};
+  }
+`
 
-export default BaseInput;
+export default BaseInput
+
+/**
+ * BaseTextarea
+ * @component
+ *
+ */
+export const BaseTextarea = styled.textarea.attrs((props) => {
+  const { status, theme } = props
+  const statusColor = getStatusColor({ theme, status })
+  const style = {}
+  if (status) style.outline = `1px solid ${statusColor}`
+  return {
+    style,
+  }
+})`
+  background-color: ${({ theme }) => theme.COLORS.STATIC.LIGHT};
+  border-radius: 4px;
+  border: none;
+  margin: auto;
+  min-height: 4em;
+  min-width: 400px;
+  padding: 0.8em;
+  vertical-align: middle;
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 4px 0px ${({ theme }) => theme.COLORS.STATIC.PRIMARY};
+  }
+`

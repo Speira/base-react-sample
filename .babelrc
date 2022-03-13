@@ -10,16 +10,15 @@
           "./src"
         ],
         "alias": {
-          "~": "./src",
+          "~": "./src/",
           "~components": "./src/components",
           "~contexts": "./src/contexts",
           "~hooks": "./src/hooks",
           "~utils": "./src/utils",
-          /* *****  modules *****  */
-          "~Auth": "./src/modules/Auth",
-          "~ErrorHandler": "./src/modules/ErrorHandler",
-          "~Home": "./src/modules/Home",
-          "~Layout": "./src/modules/Layout",
+          "~AuthModule": "./src/modules/AuthModule",
+          "~ErrorModule": "./src/modules/ErrorModule",
+          "~HomeModule": "./src/modules/HomeModule",
+          "~LayoutModule": "./src/modules/LayoutModule"
         }
       }
     ],

@@ -1,35 +1,25 @@
+import I18N_FRENCH from './i18n/french.json'
+
 /**
  * constants
  * @desc ::  constants provided accross all files
  *
  */
 export default {
-  ALERTS: {
-    DEFAULT: {
-      message: '',
-      title: '',
-      type: 'info',
-    },
-    IS_MISSING: {
-      message: 'Some required fields are missing',
-      title: '',
-      type: 'danger',
-    },
-    IS_INCORRECT: {
-      message: 'Incorrect Ids',
-      title: '',
-      type: 'danger',
-    },
-    IS_LOADING: {
-      message: 'Loading ...',
-      title: '',
-      type: 'info',
-    },
-  },
   ERRORS: {
     CLIENT: '400',
     NOT_FOUND: '404',
     SERVER: '500',
+  },
+  FIELDS: {
+    USERNAME: 'username',
+    PASSWORD: 'password',
+  },
+  FIELD_TYPES: {
+    CHECKBOX: 'checkbox',
+    NUMBER: 'number',
+    PASSWORD: 'password',
+    TEXT: 'text',
   },
   FONT_SIZES: {
     VERY_SMALL: '8px',
@@ -39,32 +29,79 @@ export default {
     BIG: '24px',
     VERY_BIG: '28px',
   },
+  HTML_WRAPPER_TAGS: {
+    ARTICLE: 'article',
+    ASIDE: 'aside',
+    DIV: 'div',
+    SECTION: 'section',
+    NAV: 'nav',
+  },
   PATHS: {
     AUTH: '/auth',
+    AUTH_LOGIN: '/auth/login',
     AUTH_PROFILE: '/auth/profile',
+    AUTH_SIGNUP: '/auth/signup',
+    CATEGORY: '/category',
     CONTACT: '/contact',
-    FORBIDDEN: '/unauthorized',
     DEFAULT: '/',
+    FORBIDDEN: '/unauthorized',
     HOME: '/home',
-    LOGIN: 'login',
+  },
+  RESTRICTIONS: {
+    AUTHENTICATED: 'authenticated',
+  },
+  STATUS: {
+    INFO: 'info',
+    DANGER: 'danger',
+    SUCCESS: 'success',
+    WARNING: 'warning',
   },
   STORAGE_ITEMS: {
+    LANGUAGE: 'languageContextStorage',
     THEME: 'themeContextStorage',
   },
   THEMES: {
     DEFAULT: {
       COLORS: {
-        PRIMARY: '#e7eaf6',
-        SECONDARY: '#a2a8d3',
-        TERTIARY: '#38598b',
-        QUATERNARY: '#113f67',
-        INFO: '#a1eafb',
-        SUCCESS: '#cfee91',
-        WARNING: '#fcc88a',
-        DANGER: '#f59292',
-        BACKGROUND: '#fffdfb',
-        FOREGROUND: '#000000b3',
+        STATIC: {
+          PRIMARY: '#B983FF',
+          SECONDARY: '#94B3FD',
+          TERTIARY: '#94DAFF',
+          QUATERNARY: '#99FEFF',
+          LIGHT: '#f8f8fa',
+          DARK: '#000000b3',
+        },
+        DYNAMIC: {
+          INFO: '#035397',
+          SUCCESS: '#1C7947',
+          WARNING: '#C36A2D',
+          DANGER: '#A9333A',
+        },
+      },
+      FONT_SIZES: {
+        VERY_SMALL: '8px',
+        SMALL: '12px',
+        MEDIUM: '16px',
+        SEMI_BIG: '20px',
+        BIG: '24px',
+        VERY_BIG: '28px',
       },
     },
   },
-};
+  TEXT_COLORS: {
+    blue: 'blue',
+    black: 'black',
+    green: 'green',
+    red: 'red',
+  },
+  WORDS: {
+    FRENCH: {
+      NAME: 'FRENCH',
+      VALUES: I18N_FRENCH,
+    },
+    ENGLISH: {
+      NAME: 'ENGLISH',
+      VALUES: {},
+    },
+  },
+}

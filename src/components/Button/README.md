@@ -1,43 +1,42 @@
+```js static
+import Button from '~components/Button'
+
+function DisplayButton() {
+  const executeFunction = () => null
+  return <Button onClick={executeFunction}>button text</Button>
+}
+```
+
 Simple Button example:
 
 ```js
-<Button color="info">Hello world</Button>
+<Button status="info">Hello world</Button>
 ```
 
 ```js
-<Button color="success" variant="rounded" height="2.5em">
+<Button disabled>Disabled button</Button>
+```
+
+```js
+<Button unboxed>Unboxed button</Button>
+```
+
+```js
+<Button rounded height="5em" width="5em">
+  Rounded button
+</Button>
+```
+
+```js
+<Button status="success" height="2.5em" width="5em">
   yes !
 </Button>
 ```
 
 ```js
-<Button color="warning">Hello world</Button>
+<Button status="warning">Warning button</Button>
 ```
 
 ```js
-<Button color="danger">Hello world</Button>
-```
-
-```js
-<Button color="primary" disabled>
-  Hello world
-</Button>
-```
-
-```js
-<Button color="secondary" inversed>
-  Hello world
-</Button>
-```
-
-```js
-<Button color="tertiary" height="4em" inversed variant="rounded">
-  Hello world
-</Button>
-```
-
-```js
-<Button color="quaternary" inversed>
-  Hello world
-</Button>
+<Button status="danger">Danger button</Button>
 ```

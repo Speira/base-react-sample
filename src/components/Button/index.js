@@ -1,8 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { colorsThemesList } from '~contexts/ThemeContext';
-import { withAsyncErrorHandling } from '~contexts/ErrorContext';
-import BaseButton, { RoundedButton } from './style';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withAsyncErrorHandling } from '~contexts/ErrorContext'
+import constants from '~utils/constants'
+import { getActiveKeys } from '~utils/functions'
+import BaseButton from './style'
+
+const { STATUS } = constants
 
 /**
  * Button
@@ -10,35 +13,44 @@ import BaseButton, { RoundedButton } from './style';
  *
  */
 function Button(props) {
-  const { inversed, variant, ...rest } = props;
-  let ComponentButton = BaseButton;
-  if (variant === 'rounded') ComponentButton = RoundedButton;
-  return <ComponentButton inversed={inversed ? 1 : 0} {...rest} />;
+  const {
+    children,
+    className: initialClassName,
+    status,
+    rounded,
+    unboxed,
+    ...rest
+  } = props
+  const className = `${initialClassName} ${getActiveKeys({ rounded, unboxed })}`
+  return (
+    <BaseButton className={className} status={status} {...rest}>
+      {children}
+    </BaseButton>
+  )
 }
 Button.defaultProps = {
+  children: undefined,
   className: '',
-  color: colorsThemesList[0],
   disabled: false,
   height: '',
-  inversed: false,
-  onBlur: () => null,
   onClick: () => null,
+  rounded: false,
+  status: STATUS.INFO,
   type: 'button',
-  variant: '',
+  unboxed: false,
   width: '',
-};
+}
 Button.propTypes = {
+  children: PropTypes.node,
   className: PropTypes.string,
-  /** colors are located in src/utils/constants file */
-  color: PropTypes.oneOf(colorsThemesList),
   disabled: PropTypes.bool,
   height: PropTypes.string,
-  inversed: PropTypes.bool,
-  onBlur: PropTypes.func,
   onClick: PropTypes.func,
+  rounded: PropTypes.bool,
+  status: PropTypes.oneOf(Object.values(STATUS)),
   type: PropTypes.string,
-  variant: PropTypes.oneOf(['', 'rounded']),
+  unboxed: PropTypes.bool,
   width: PropTypes.string,
-};
+}
 
-export default withAsyncErrorHandling(Button);
+export default withAsyncErrorHandling(Button)

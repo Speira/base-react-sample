@@ -1,12 +1,12 @@
-import React from 'react';
-import { shallow } from 'enzyme';
+import React from 'react'
+import { shallow } from 'enzyme'
 
-import Wrapper from './index';
+import Wrapper from './index'
 
-const wrapper = shallow(<Wrapper />);
+const wrapper = shallow(<Wrapper />)
 
 describe('render', () => {
   it('Wrapper must be rendered', () => {
-    expect(wrapper).toBeDefined();
-  });
-});
+    expect(wrapper).toBeDefined()
+  })
+})

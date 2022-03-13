@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/build/main.ee00898e.js",
-    "runtime~main.js": "/build/bundle.d954338a.js",
-    "build/2.6f9fe8e1.js": "/build/2.6f9fe8e1.js",
-    "build/2.6f9fe8e1.js.LICENSE": "/build/2.6f9fe8e1.js.LICENSE",
+    "main.js": "/build/main.b1b94096.js",
+    "runtime~main.js": "/build/bundle.eb0d65b1.js",
+    "build/2.842a004e.js": "/build/2.842a004e.js",
+    "build/2.842a004e.js.LICENSE.txt": "/build/2.842a004e.js.LICENSE.txt",
     "index.html": "/index.html",
-    "precache-manifest.7273c4d25895d0c89de063a46962131b.js": "/precache-manifest.7273c4d25895d0c89de063a46962131b.js",
+    "precache-manifest.8dedac7a876adf8117d5cb8926ca685a.js": "/precache-manifest.8dedac7a876adf8117d5cb8926ca685a.js",
     "service-worker.js": "/service-worker.js"
   }
 }

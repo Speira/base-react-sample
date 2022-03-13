@@ -1,36 +1,63 @@
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+import { getStatusColor } from '~utils/functions'
 
 /**
  * BaseLink
  * @component
  *
  */
-const BaseLink = styled(Link)`
-  cursor: pointer;
-  text-decoration: none;
-  padding: 8px;
-  margin: 0 4px;
-  color: ${({ theme }) => theme.COLORS.FOREGROUND};
-  font-size: ${({ size }) => size || '1em'};
-  &:disabled {
-    opacity: 0.6;
+const BaseLink = styled(Link).attrs((props) => {
+  const { className, active, status, theme } = props
+  if (className.includes('boxed')) {
+    const style = {}
+    if (active) {
+      style.backgroundColor = getStatusColor({ theme, status })
+    }
+    style.color = active ? theme.COLORS.STATIC.LIGHT : theme.COLORS.STATIC.DARK
+    style.boxShadow = active
+      ? `0px 0px 1px 1px ${theme.COLORS.STATIC.DARK} inset`
+      : `1px 1px 0px 0px ${theme.COLORS.STATIC.DARK}`
+    return { style }
   }
-`;
+  return {
+    style: {
+      color: theme.COLORS.STATIC.DARK,
+    },
+  }
+})`
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  padding: 5px;
+  margin: 0 4px;
+  font-size: ${({ size }) => size || '1em'};
+  text-decoration: underline;
+  &:active {
+    opacity: 0.5;
+  }
 
-export default BaseLink;
+  &.boxed {
+    font-weight: 600;
+    border-radius: 4px;
+    box-shadow: 1px 1px 2px -1px;
+    text-decoration: none;
+  }
+  &.boxed.primary {
+    background-color: ${({ theme }) => theme.COLORS.STATIC.PRIMARY};
+  }
+  &.boxed.secondary {
+    background-color: ${({ theme }) => theme.COLORS.STATIC.SECONDARY};
+  }
+  &.boxed.tertiary {
+    background-color: ${({ theme }) => theme.COLORS.STATIC.TERTIARY};
+  }
+  &.boxed.quaternary {
+    background-color: ${({ theme }) => theme.COLORS.STATIC.QUATERNARY};
+  }
+  @media (min-width: 768px) {
+    padding: 8px;
+  }
+`
 
-/**
- * BoxedLink
- * @component
- *
- */
-export const BoxedLink = styled(BaseLink).attrs(({ active, theme }) => ({
-  style: {
-    backgroundColor: active ? theme.COLORS.QUATERNARY : theme.COLORS.TERTIARY,
-  },
-}))`
-  font-weight: 600;
-  color: ${({ theme }) => theme.COLORS.BACKGROUND};
-  border-radius: 4px;
-`;
+export default BaseLink

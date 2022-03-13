@@ -1,27 +1,36 @@
-import React from 'react';
-import Alert from '~components/Alert';
-import CONSTANTS from '~utils/constants';
-
-const { ALERTS } = CONSTANTS;
-const { DEFAULT, IS_MISSING, IS_INCORRECT, IS_LOADING } = ALERTS;
+import React from 'react'
+import Alert from '~components/Alert'
+import { createAlert } from '~utils/functions'
 
 /**
  * useAlert
- * @component
+ * @hook
+ * @return {Object}
+ *         {Function} Object.createAlert | An alert builder
+ *                  {String} Object.setAlert.message | Alert content
+ *                  {String ?} Object.setAlert.title | Alert title
+ *                  {String} Object.setAlert.status | define the color of the alert
+ *         {Function} clearAlert | An alert cleaner
+ *         {Component} HookAlert | it display the Alert (it does not need any argument)
  *
  */
 function useAlert() {
-  const [alert, setAlert] = React.useState(DEFAULT);
-  const closeAlert = () => setAlert(DEFAULT);
+  const [alert, setAlert] = React.useState(createAlert())
+  const closeAlert = () => setAlert(createAlert())
+
+  React.useEffect(() => {
+    return () => closeAlert()
+  }, [])
+
   return {
-    alertMissing: () => setAlert(IS_MISSING),
-    alertLoading: () => setAlert(IS_LOADING),
-    alertIncorrect: () => setAlert(IS_INCORRECT),
+    setAlert(params) {
+      setAlert(createAlert(params))
+    },
     clearAlert: closeAlert,
     HookAlert: (alertProps) => (
       <Alert {...alertProps} onClose={closeAlert} {...alert} />
     ),
-  };
+  }
 }
 
-export default useAlert;
+export default useAlert

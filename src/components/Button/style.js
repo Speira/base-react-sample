@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
+import { getStatusColor } from '~utils/functions'
 
 /**
  * BaseButton
@@ -6,33 +7,48 @@ import styled from 'styled-components';
  *
  */
 const BaseButton = styled.button.attrs((props) => {
-  const { color, theme, inversed } = props;
-  const themeColor = theme.COLORS[color.toUpperCase()];
+  const { status, theme } = props
+  const color = getStatusColor({ status, theme })
+  const backgroundColor = getStatusColor({ status, theme, alpha: 0.15 })
   return {
     style: {
-      color: inversed ? theme.COLORS.BACKGROUND : theme.COLORS.FOREGROUND,
-      backgroundColor: themeColor,
+      backgroundColor,
+      color,
     },
-  };
+  }
 })`
   width: ${({ width }) => width || 'auto'};
   height: ${({ height }) => height || 'auto'};
   border: none;
-  border-radius: 2px;
-  box-shadow: 1px 1px 2px -1px black;
+  border-radius: 4px;
+  box-shadow: 1px 1px 2px -1px ${({ theme }) => theme.COLORS.STATIC.DARK},
+    -1px -1px 2px 0px currentcolor inset;
   cursor: pointer;
   position: relative;
   outline: none;
-  transition: all 0.18s ease-in-out;
+  transition: all 0.05s ease-in-out;
   padding: 0.5em;
+  font-size: 1em;
+  &.rounded {
+    border-radius: 100%;
+  }
+  &.unboxed {
+    border: none;
+    box-shadow: none;
+  }
   &:hover {
   }
   &:active {
     opacity: 0.5;
+    transform: scale(0.96);
+    transform-origin: bottom center;
+    box-shadow: 0px 0px 1px -1px ${({ theme }) => theme.COLORS.STATIC.DARK},
+      0px 0px 3px 0px currentcolor inset;
   }
   &:disabled {
     box-shadow: none;
     opacity: 0.6;
+    cursor: text;
   }
   &:after {
     content: '';
@@ -56,10 +72,6 @@ const BaseButton = styled.button.attrs((props) => {
   &:disabled:after {
     transform: none;
   }
-`;
+`
 
-export default BaseButton;
-
-export const RoundedButton = styled(BaseButton)`
-  border-radius: 100%;
-`;
+export default BaseButton

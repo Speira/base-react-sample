@@ -1,36 +1,40 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import constants from '~utils/constants';
-import Auth, { ProfileContainer } from '~Auth';
-import Home from '~Home';
-import Layout from '~Layout';
-import ErrorHandler, { NotFound } from '~ErrorHandler';
-import { AuthenticatedRoute } from '~utils/routes';
+import React from 'react'
+import { BrowserRouter as Router, Switch } from 'react-router-dom'
+import constants from '~utils/constants'
 
-const { AUTH, DEFAULT, AUTH_PROFILE } = constants.PATHS;
+import Contexts from '~contexts'
+
+import AuthModule from '~AuthModule'
+import HomeModule from '~HomeModule'
+import LayoutModule from '~LayoutModule'
+import ErrorModule, { NotFoundContainer } from '~ErrorModule'
+
+import AppRoute from 'AppRoute'
+
+const { AUTH, DEFAULT } = constants.PATHS
 
 /**
- * description
- * modules that start by uppercase ( example ~Auth) are located at src/modules
+ *
+ * App
+ * @container
+ *
  */
 function App() {
   return (
-    <Router>
-      <ErrorHandler>
-        <Layout>
-          <Switch>
-            <Route exact path={DEFAULT} component={Home} />
-            <Route exact path={AUTH} component={Auth} />
-            <AuthenticatedRoute
-              path={AUTH_PROFILE}
-              component={ProfileContainer}
-            />
-            <Route component={NotFound} />
-          </Switch>
-        </Layout>
-      </ErrorHandler>
-    </Router>
-  );
+    <Contexts>
+      <Router>
+        <ErrorModule>
+          <LayoutModule>
+            <Switch>
+              <AppRoute exact path={DEFAULT} component={HomeModule} />
+              <AppRoute exact path={AUTH} component={AuthModule} />
+              <AppRoute component={NotFoundContainer} />
+            </Switch>
+          </LayoutModule>
+        </ErrorModule>
+      </Router>
+    </Contexts>
+  )
 }
 
-export default App;
+export default App
