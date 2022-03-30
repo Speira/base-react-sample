@@ -2,19 +2,20 @@ import React from 'react'
 
 import { useAuth } from '~contexts/AuthContext'
 import constants from '~utils/constants'
-import { translate as t } from '~utils/functions'
-import DefaultUser from '~utils/constructors/DefaultUser'
+import { DefaultUser, translate as t, handleEnterPress } from '~utils/functions'
 import useAlert from '~hooks/useAlert'
 
-import AuthForm from '~AuthModule/components/AuthForm'
-import { LoginLoading } from '~AuthModule/components/AuthLoading'
-import { LoginWrapper } from '~AuthModule/components/WrapperAuth'
-import { NoAccountLink } from '~AuthModule/components/AuthLink'
-import { PasswordInput, UsernameInput } from '~AuthModule/components/AuthInput'
-import { ValidateButton } from '~AuthModule/components/AuthButton'
+import {
+  LoginLoading,
+  LoginWrapper,
+  NoAccountLink,
+  PasswordInput,
+  SendingForm,
+  UsernameInput,
+  ValidateButton,
+} from '~AuthModule/builders'
 
 const { PATHS, STATUS } = constants
-const { AUTH_SIGNUP } = PATHS
 
 /**
  * LoginContainer
@@ -56,12 +57,12 @@ function LoginContainer() {
   return (
     <LoginWrapper>
       <HookAlert />
-      <AuthForm>
+      <SendingForm onKeyPress={handleEnterPress(authenticateUser)}>
         <UsernameInput value={username} onChange={setUsername} />
         <PasswordInput value={password} onChange={setPassword} />
         <ValidateButton onClick={authenticateUser} />
-      </AuthForm>
-      <NoAccountLink to={AUTH_SIGNUP} />
+      </SendingForm>
+      <NoAccountLink to={PATHS.AUTH_SIGNUP} />
     </LoginWrapper>
   )
 }

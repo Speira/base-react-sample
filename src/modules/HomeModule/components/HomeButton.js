@@ -5,7 +5,7 @@ import { translate as t } from '~utils/functions'
 
 import Button from '~components/Button'
 
-const { DANGER, SUCCESS } = constants.STATUS
+const { STATUS } = constants
 
 /**
  * HomeButton
@@ -28,9 +28,9 @@ HomeButton.propTypes = {
 export default HomeButton
 
 export const DefaultButton = (props) => (
-  <HomeButton label={t`BUTTON`} status={SUCCESS} {...props} />
+  <HomeButton label={t`BUTTON`} status={STATUS.INFO} {...props} />
 )
 
 export const DangerButton = (props) => (
-  <HomeButton label={t`BUTTON_DANGER`} status={DANGER} {...props} />
+  <HomeButton label={t`BUTTON_DANGER`} status={STATUS.DANGER} {...props} />
 )

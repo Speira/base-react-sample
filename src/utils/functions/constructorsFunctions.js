@@ -1,3 +1,65 @@
+import constants from '~utils/constants'
+import { translate as t } from '~utils/functions'
+
+const { FIELDS, STATUS } = constants
+
+/**
+ * createAlert
+ * @factory
+ * @param {Object} obj
+ */
+export function createAlert(obj = {}) {
+  const { message = '', title = '', status = STATUS.DANGER } = obj
+  return {
+    message,
+    title,
+    status,
+  }
+}
+
+/**
+ * createUser
+ * @factory
+ * @return {Object}
+ */
+export function createUser(obj = {}) {
+  return {
+    [FIELDS.PASSWORD]: obj[FIELDS.PASSWORD] || '',
+    [FIELDS.USERNAME]: obj[FIELDS.USERNAME] || '',
+  }
+}
+
+/**
+ * DefaultUser
+ * @constructor
+ * @param {Object} obj
+ */
+export function DefaultUser(obj = {}) {
+  const { password, username } = obj
+  this.username = username || ''
+  this.password = password || ''
+  this.getErrors = () => {
+    const errors = []
+    if (!username || username.trim() === '') errors.push(t`USERNAME_MISSING`)
+    if (!password) errors.push(t`PASSWORD_MISSING`)
+    if (password && password.length < 8)
+      errors.push(t`PASSWORD_LACKS_CHARACTERS`)
+    return errors
+  }
+}
+
+/**
+ * DefaultAlert
+ * @constructor
+ * @param {Object} obj
+ */
+export function DefaultAlert(obj = {}) {
+  const { message, title, type } = obj
+  this.message = message || ''
+  this.title = title || ''
+  this.type = type || 'infos'
+}
+
 /**
  * DefaultTheme
  * @constructor
@@ -17,7 +79,7 @@
  *      - {Array of  6 String} obj.fontSizes :: sizes
  *
  */
-function DefaultTheme(obj = {}) {
+export function DefaultTheme(obj = {}) {
   const {
     statusColors = {},
     templateColors = [],
@@ -45,5 +107,3 @@ function DefaultTheme(obj = {}) {
     VERY_BIG: fontSizes[5] || '28px',
   }
 }
-
-export default DefaultTheme

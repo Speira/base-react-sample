@@ -9,15 +9,25 @@ const { HTML_WRAPPER_TAGS, STATUS } = constants
 /**
  * Wrapper
  * @component
+ *
  * @desc
  *    Wrapper is the only component that has not limit for customization.
- *    It also support media queries throught the use of xs,sm,..., keys in its
- *    style props
+ *    It also supports media queries in the style prop.
+ *
+ *    style prop can have any css prop (in camelCase) plus media queries when
+ *    it receives an media query object (xs, ..,lg) instead of a css
+ *    string property. basic css prop can be passed directly or through "base"
+ *    object in the style prop.
+ *
+ *    depending on the tag prop, it can provide an adapted HTML element defined
+ *    in HTML_WRAPPER_TAGS constants
+ *
  */
 function Wrapper(props) {
   const {
     children,
     className: initialClassName,
+    onKeyPress,
     primary,
     quaternary,
     secondary,
@@ -55,8 +65,16 @@ function Wrapper(props) {
     quaternary,
   })}`
 
+  const eventHandlers = {}
+  if (typeof onKeyPress === 'function') eventHandlers.onKeyPress = onKeyPress
+
   return (
-    <BaseWrapper {...rest} className={className} design={design} tag={tag}>
+    <BaseWrapper
+      {...rest}
+      {...eventHandlers}
+      className={className}
+      design={design}
+      tag={tag}>
       {children}
     </BaseWrapper>
   )
@@ -65,6 +83,7 @@ function Wrapper(props) {
 Wrapper.defaultProps = {
   children: undefined,
   className: '',
+  onKeyPress: null,
   primary: false,
   quaternary: false,
   secondary: false,
@@ -79,6 +98,7 @@ Wrapper.propTypes = {
   children: PropTypes.node,
   /** HTML class */
   className: PropTypes.string,
+  onKeyPress: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   /** primary: theme static color (background) */
   primary: PropTypes.bool,
   /** quaternary: theme static color (background) */

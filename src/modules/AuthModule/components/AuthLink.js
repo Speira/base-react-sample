@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { translate as t } from '~utils/functions'
 
 import Link from '~components/Link'
 
@@ -21,10 +20,3 @@ AuthLink.propTypes = {
 }
 
 export default AuthLink
-
-export const NoAccountLink = (props) => (
-  <AuthLink {...props} label={t`ACCOUNT_NO_EXISTING`} />
-)
-export const ExistingAccountLink = (props) => (
-  <AuthLink {...props} label={t`ACCOUNT_EXISTING`} />
-)

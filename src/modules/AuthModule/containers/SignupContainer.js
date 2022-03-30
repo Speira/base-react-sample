@@ -1,22 +1,21 @@
 import React from 'react'
 import { useAuth } from '~contexts/AuthContext'
 import constants from '~utils/constants'
-import { translate as t } from '~utils/functions'
+import { DefaultUser, translate as t } from '~utils/functions'
 import useAlert from '~hooks/useAlert'
-import DefaultUser from '~utils/constructors/DefaultUser'
 
-import AuthForm from '~AuthModule/components/AuthForm'
-import { ExistingAccountLink } from '~AuthModule/components/AuthLink'
 import {
+  ExistingAccountLink,
+  PasswordInput,
   RegistrationSentWrapper,
+  SendingForm,
+  SignupLoading,
   SignupWrapper,
-} from '~AuthModule/components/WrapperAuth'
-import { SignupLoading } from '~AuthModule/components/AuthLoading'
-import { UsernameInput, PasswordInput } from '~AuthModule/components/AuthInput'
-import { ValidateButton } from '~AuthModule/components/AuthButton'
+  UsernameInput,
+  ValidateButton,
+} from '~AuthModule/builders'
 
 const { PATHS, STATUS } = constants
-const { AUTH_LOGIN } = PATHS
 
 /**
  * SignupContainer
@@ -32,8 +31,8 @@ function SignupContainer() {
   const [isRegistered, toggleRegistered] = React.useState(false)
   const signUp = () => {
     const tempUser = new DefaultUser({
-      username,
       password,
+      username,
     })
     const authErrorsList = tempUser.getErrors()
     if (authErrorsList.length) {
@@ -65,12 +64,12 @@ function SignupContainer() {
   return (
     <SignupWrapper>
       <HookAlert />
-      <AuthForm>
+      <SendingForm>
         <UsernameInput value={username} onChange={setUsername} />
         <PasswordInput value={password} onChange={setPassword} />
         <ValidateButton onClick={signUp} />
-      </AuthForm>
-      <ExistingAccountLink to={AUTH_LOGIN} />
+      </SendingForm>
+      <ExistingAccountLink to={PATHS.AUTH_LOGIN} />
     </SignupWrapper>
   )
 }

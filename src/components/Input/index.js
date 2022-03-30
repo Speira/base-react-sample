@@ -94,7 +94,7 @@ Input.propTypes = {
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
-  status: PropTypes.oneOf(Object.values(STATUS)),
+  status: PropTypes.oneOf([...Object.values(STATUS), '']),
   type: PropTypes.oneOf(Object.values(FIELD_TYPES)),
   value: PropTypes.oneOfType([
     PropTypes.bool,

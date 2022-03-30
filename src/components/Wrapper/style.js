@@ -5,7 +5,7 @@ import { getStatusColor } from '~utils/functions'
 import constants from '~utils/constants'
 
 const { HTML_WRAPPER_TAGS } = constants
-const { ARTICLE, ASIDE, SECTION, NAV } = HTML_WRAPPER_TAGS
+const { ARTICLE, ASIDE, FORM, NAV, SECTION } = HTML_WRAPPER_TAGS
 
 /**
  * HTMLBaseWrapper
@@ -15,13 +15,14 @@ const { ARTICLE, ASIDE, SECTION, NAV } = HTML_WRAPPER_TAGS
  *
  */
 function HTMLBaseWrapper(props) {
-  const { tag, staticContext, ...rest } = props
-  let HTMLComponent = (p) => <div {...p} />
-  if (tag === ARTICLE) HTMLComponent = (p) => <article {...p} />
-  if (tag === ASIDE) HTMLComponent = (p) => <aside {...p} />
-  if (tag === SECTION) HTMLComponent = (p) => <section {...p} />
-  if (tag === NAV) HTMLComponent = (p) => <nav {...p} />
-  return <HTMLComponent {...rest} />
+  const { tag, ...rest } = props
+  let Wrapper = styled.div``
+  if (tag === ARTICLE) Wrapper = styled.article``
+  if (tag === ASIDE) Wrapper = styled.aside``
+  if (tag === FORM) Wrapper = styled.form``
+  if (tag === NAV) Wrapper = styled.nav``
+  if (tag === SECTION) Wrapper = styled.section``
+  return <Wrapper {...rest} />
 }
 HTMLBaseWrapper.defaultProps = { tag: '' }
 HTMLBaseWrapper.propTypes = {

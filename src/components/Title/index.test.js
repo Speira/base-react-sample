@@ -1,6 +1,5 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { colorsThemesList } from '~contexts/ThemeContext'
 
 import Title from './index'
 

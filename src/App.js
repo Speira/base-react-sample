@@ -16,7 +16,6 @@ const { AUTH, DEFAULT } = constants.PATHS
 /**
  *
  * App
- * @container
  *
  */
 function App() {
@@ -27,7 +26,7 @@ function App() {
           <LayoutModule>
             <Switch>
               <AppRoute exact path={DEFAULT} component={HomeModule} />
-              <AppRoute exact path={AUTH} component={AuthModule} />
+              <AppRoute path={AUTH} component={AuthModule} />
               <AppRoute component={NotFoundContainer} />
             </Switch>
           </LayoutModule>

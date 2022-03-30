@@ -24,7 +24,7 @@ const AdaptedWrapper = styled(Wrapper)`
  */
 const FullPageWrapper = styled(AdaptedWrapper)`
   height: 100vh;
-  background-color: ${({ theme }) => theme.COLORS.SECONDARY};
+  background-color: ${({ theme }) => theme.COLORS.STATIC.SECONDARY};
   font-size: 1.5em;
 `
 

@@ -15,16 +15,17 @@ const BaseAlert = styled.div.attrs((props) => {
       backgroundColor: bgColor,
       boxShadow: `2px 2px 2px -1px ${color}`,
       color,
-      height: active ? 'auto' : '0',
       margin: active ? '0.5em 0 1em' : '0',
       padding: active ? '0.9em' : '0',
       transform: active ? 'scale(1,1)' : 'scale(1,0)',
+      display: active ? 'block' : 'none',
     },
   }
 })`
   border-radius: 3px;
   color: ${({ theme }) => theme.COLORS.STATIC.DARK};
-  text-shadow: 1px 1px 0px ${({ theme }) => theme.COLORS.STATIC.LIGHT};
+  text-shadow: 0px 0px 0.5px ${({ theme }) => theme.COLORS.STATIC.LIGHT};
+  height: auto;
   font-family: arial;
   font-size: 0.9em;
   font-weight: 600;
