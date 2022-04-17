@@ -1,30 +1,15 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This app was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 # speira-base-react
 
-## Added modules
+## Description
 
-default packages:
+This Skeletton is a module oriented conception. It can be used as skeletton for new React JS App.
+- All bundles (modules) are isolated. They provide their containers to the src/App.js file.
+- Modules use the same view components (src/components) prepared and customized in their own components (src/modules/[moduleNAme]/components) in order to be used in their containers (src/modules/[moduleNAme]/containers).
+- Modules are allowed to communicate each other only by using contexts (src/contexts).
+- Modules use the same utilities (src/utils) containing commons functions and constants, they also share the same customs hooks (src/hooks).
 
-```bash
-yarn add babel-plugin-module-resolver normalize.css prop-types react-router-dom styled-components react-is @styled-icons/bootstrap
-```
-
-development packages:
-
-```bash
-yarn add -D babel-plugin-styled-components prettier eslint-config-airbnb eslint-config-prettier eslint-import-resolver-babel-module eslint-plugin-prettier react-styleguidist enzyme enzyme-adapter-react-16
-```
-
-## Structure
-
-This project has a module oriented conception, that main all functionalities are
-first isolated (in modules folder) and then provided to the src/App.js file.
-They use the same view components (src/components) and can communicate each other
-only with the help of contexts (src/contexts).
-
-Some utilities (src/utils) are provided for third party service, constants,
-functions etc...
 
 ```mermaid
 graph TD
@@ -41,22 +26,18 @@ graph TD
 
 ## Setup
 
-Paths to modules are often absolute and configured in the .babelrc file.
-
-## Start the project
-
-First you have to clone this project:
+1- First you have to clone this project:
 
 ```bash
 git clone https://github.com/Speira/base-react-sample.git
 ```
 
-Create your projec with create-react-app:
+2- Create your project with create-react-app:
 
 ```bash
  create-react-app [projectName]
 ```
-Copy the structure:
+3- Copy the structure:
 
 ```bash
  cp base-react-sample/{.babelrc, .editorconfig,.eslintignore,.eslintrc.js,.gitignore,.prettierrc, jsonconfig.json} ./projectName
@@ -67,9 +48,20 @@ Copy the structure:
  cd ./projectName && yarn
 ```
 
-Install the added modules (see the "Added modules" section).
+4- Install the added modules (see the "Added modules" section).
 
---
+Needed packages:
+```bash
+yarn add babel-plugin-module-resolver normalize.css prop-types react-router-dom styled-components react-is @styled-icons/bootstrap
+```
+
+Development packages:
+
+```bash
+yarn add -D babel-plugin-styled-components prettier eslint-config-airbnb eslint-config-prettier eslint-import-resolver-babel-module eslint-plugin-prettier react-styleguidist enzyme enzyme-adapter-react-16
+```
+
+## Launch
 
 For the styleguide (listening to the port 6060):
 
