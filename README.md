@@ -26,6 +26,19 @@ only with the help of contexts (src/contexts).
 Some utilities (src/utils) are provided for third party service, constants,
 functions etc...
 
+```mermaid
+graph TD
+  Contexts --> App.js
+  App.js --> modules/moduleName;
+  modules/moduleName --> modules/moduleName/containers;
+  modules/moduleName/containers --> modules/moduleName/components;
+  modules/moduleName/components --> components;
+  utils & hooks --> modules/moduleName/containers;
+  utils & hooks --> modules/moduleName/components;
+  utils & hooks --> components;
+  
+```
+
 ## Setup
 
 Paths to modules are often absolute and configured in the .babelrc file.
