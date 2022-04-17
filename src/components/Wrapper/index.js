@@ -118,6 +118,18 @@ Wrapper.propTypes = {
    *
    *    - style.realtime is an inline style, it is used for performance when
    *      a css data changes often.
+   *
+   *    ex:
+   *      style={{
+   *        display: 'flex',
+   *        justifyContent: 'center',
+   *        margin: '2em',
+   *        xs:{
+   *          display: 'grid',
+   *          gridTemplateRows: '1fr 1fr',
+   *          margin: '0',
+   *        }
+   *      }}
    */
   style: PropTypes.shape({
     base: PropTypes.objectOf(PropTypes.string),

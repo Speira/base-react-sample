@@ -11,16 +11,21 @@ import AuthWrapper from '~AuthModule/components/AuthWrapper'
 
 const { STATUS } = constants
 
-/* AuthButton */
+/* *********************** AuthButton *************************** */
 
 export const ValidateButton = (props) => (
   <AuthButton {...props} label={t`VALIDATE`} status={STATUS.INFO} />
 )
 
-/* AuthInput */
+/* *********************** AuthInput *************************** */
 
 export const UsernameInput = (props) => (
-  <AuthInput label={t`USERNAME`} placeholder="example@example.com" {...props} />
+  <AuthInput
+    label={t`USERNAME`}
+    placeholder="example@example.com"
+    type="email"
+    {...props}
+  />
 )
 
 export const PasswordInput = (props) => (
@@ -32,11 +37,11 @@ export const PasswordInput = (props) => (
   />
 )
 
-/* AuthForm */
+/* *********************** AuthForm *************************** */
 
 export const SendingForm = (props) => <AuthForm {...props} />
 
-/* AuthLink */
+/* *********************** AuthLink *************************** */
 
 export const NoAccountLink = (props) => (
   <AuthLink {...props} label={t`ACCOUNT_NO_EXISTING`} />
@@ -45,7 +50,7 @@ export const ExistingAccountLink = (props) => (
   <AuthLink {...props} label={t`ACCOUNT_EXISTING`} />
 )
 
-/* AuthLoading */
+/* *********************** AuthLoading *************************** */
 
 export const LoginLoading = (props) => (
   <AuthLoading {...props} label={t`LOGIN_ONGOING`} />
@@ -55,7 +60,7 @@ export const SignupLoading = (props) => (
   <AuthLoading {...props} label={t`SIGNUP_ONGOING`} />
 )
 
-/* AuthWrapper */
+/* *********************** AuthWrapper *************************** */
 
 export const LoginWrapper = (props) => (
   <AuthWrapper {...props} title={t`LOGIN`} />

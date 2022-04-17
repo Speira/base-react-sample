@@ -3,12 +3,12 @@ import React from 'react'
 import { translate as t } from '~utils/functions'
 import constants from '~utils/constants'
 
-import LayoutLink from '~LayoutModule/components/LayoutLink'
-import LayoutWrapper from '~LayoutModule/components/LayoutWrapper'
+import LayoutLink from './LayoutLink'
+import LayoutWrapper from './LayoutWrapper'
 
 const { HTML_WRAPPER_TAGS } = constants
 
-/** LayoutLink */
+/* *********************** LayoutLink ************************* */
 
 export const HomeLink = (props) => (
   <LayoutLink {...props} label={t`HOME`} boxed />
@@ -34,7 +34,7 @@ export const NoPageLink = (props) => (
   <LayoutLink {...props} label={t`NO_EXISTENT_PAGE`} boxed />
 )
 
-/** LayoutWrapper */
+/* *********************** LayoutWrapper *************************** */
 
 export const HeaderWrapper = (props) => (
   <LayoutWrapper

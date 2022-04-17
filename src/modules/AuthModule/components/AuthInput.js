@@ -23,6 +23,7 @@ function AuthInput(props) {
 AuthInput.defaultProps = {}
 AuthInput.propTypes = {
   label: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 }
 
 export default AuthInput

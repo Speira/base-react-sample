@@ -1,8 +1,6 @@
 import React from 'react'
-import fakeAuthUser, {
-  fakeCreateUser,
-  fakeUpdateUser,
-} from '~utils/api/authAPI'
+
+import { authUserAPI, createUserAPI, updateUserAPI } from '~utils/functions'
 
 const AuthContext = React.createContext()
 
@@ -37,7 +35,7 @@ function AuthProvider(props) {
     signin(reqUser) {
       return new Promise((resolve, reject) => {
         if (!reqUser) reject()
-        fakeAuthUser(reqUser)
+        authUserAPI(reqUser)
           .then((authenicatedUser) => {
             setUser(authenicatedUser)
             resolve(authenicatedUser)
@@ -55,7 +53,7 @@ function AuthProvider(props) {
     signup(reqUser) {
       return new Promise((resolve, reject) => {
         if (!reqUser) reject()
-        fakeCreateUser(reqUser)
+        createUserAPI(reqUser)
           .then((authenicatedUser) => {
             setUser({})
             resolve(authenicatedUser)
@@ -71,7 +69,7 @@ function AuthProvider(props) {
     update(reqUser) {
       return new Promise((resolve, reject) => {
         if (!reqUser) reject()
-        fakeUpdateUser(reqUser)
+        updateUserAPI(reqUser)
           .then((updatedUser) => {
             setUser(updatedUser)
             resolve(updatedUser)

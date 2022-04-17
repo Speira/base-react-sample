@@ -17,7 +17,7 @@ export const handleEnterPress = (callback) => (keyEvent) => {
 /**
  * adaptBoolProps
  *
- * @desc : change bool props to number
+ * @desc : change bool props to number 0 or 1
  * @param {Object} params
  * @return {Object}
  */

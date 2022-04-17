@@ -2,6 +2,7 @@ import React from 'react'
 import { useAuth } from '~contexts/AuthContext'
 import constants from '~/utils/constants'
 import useRouter from '~hooks/useRouter'
+import { translate as t } from '~utils/functions'
 
 import {
   BrandLink,
@@ -12,13 +13,13 @@ import {
   NavWrapper,
   NoPageLink,
   ProfileLink,
-} from '~LayoutModule/builders'
+} from '~LayoutModule/components'
 
 const { AUTH, AUTH_PROFILE, AUTH_SIGNUP, DEFAULT } = constants.PATHS
 
 const ExternLink = () => (
   <a href="https://base-react-style.speira.me/" target="blank">
-    You can see all styles availables on this website here ! &#x2197;
+    {t`ALL_STYLES_AVAILABLES_HERE`} &#x2197;
   </a>
 )
 

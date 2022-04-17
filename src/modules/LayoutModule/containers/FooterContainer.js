@@ -1,5 +1,5 @@
 import React from 'react'
-import { FooterWrapper } from '~LayoutModule/builders'
+import { FooterWrapper } from '~LayoutModule/components'
 
 /**
  * FooterContainer

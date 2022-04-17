@@ -15,14 +15,15 @@ class ErrorBoundary extends React.PureComponent {
   }
 
   static getDerivedStateFromError(error) {
-    console.error('derived', error)
+    const { logError } = this.props
+    logError(error)
     return { hasSyncError: true }
   }
 
   componentDidCatch(error, info) {
-    const { handleSyncError } = this.props
+    const { handleSyncError, logError } = this.props
     handleSyncError(info)
-    console.error(error)
+    logError(error)
   }
 
   render() {
@@ -36,6 +37,7 @@ class ErrorBoundary extends React.PureComponent {
 ErrorBoundary.propTypes = {
   children: PropTypes.node.isRequired,
   handleSyncError: PropTypes.func.isRequired,
+  logError: PropTypes.func.isRequired,
   hasAsyncError: PropTypes.bool.isRequired,
 }
 

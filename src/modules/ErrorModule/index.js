@@ -12,17 +12,17 @@ const { SERVER } = constants.ERRORS
  *
  */
 function ErrorModule(props) {
-  const { setError, hasError } = useError()
+  const { setError, hasError, logError } = useError()
   const handleSyncError = () =>
     setError({
       type: SERVER,
-      message: 'Oops something went wrong, please contact the developer.',
     })
   return (
     <ErrorBoundary
       {...props}
       hasAsyncError={hasError}
       handleSyncError={handleSyncError}
+      logError={logError}
     />
   )
 }

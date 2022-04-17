@@ -2,8 +2,7 @@ import React from 'react'
 import constants from '~utils/constants'
 import { useError } from '~contexts/ErrorContext'
 
-import { ServerErrorWrapper } from '~ErrorModule/components/WrapperError'
-import { BackErrorLink } from '~ErrorModule/components/ErrorLink'
+import { BackErrorLink, ServerErrorWrapper } from '~ErrorModule/components'
 
 const { PATHS } = constants
 
@@ -13,9 +12,9 @@ const { PATHS } = constants
  *
  */
 function ServerErrorContainer() {
-  const { errorMessage, resetError } = useError()
+  const { resetError } = useError()
   return (
-    <ServerErrorWrapper fullpage details={errorMessage}>
+    <ServerErrorWrapper isFullpage>
       <BackErrorLink to={PATHS.DEFAULT} onClick={resetError} />
     </ServerErrorWrapper>
   )

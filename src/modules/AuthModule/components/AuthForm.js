@@ -12,9 +12,10 @@ const { HTML_WRAPPER_TAGS } = constants
  *
  */
 function AuthForm(props) {
-  const { style, ...rest } = props
+  const { children, style, ...rest } = props
   return (
     <Wrapper
+      {...rest}
       tag={HTML_WRAPPER_TAGS.FORM}
       style={{
         display: 'flex',
@@ -22,15 +23,16 @@ function AuthForm(props) {
         gridRowGap: '1em',
         margin: '0 0 0.5em',
         ...style,
-      }}
-      {...rest}
-    />
+      }}>
+      {children}
+    </Wrapper>
   )
 }
 AuthForm.defaultProps = {
   style: {},
 }
 AuthForm.propTypes = {
+  children: PropTypes.node.isRequired,
   style: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   ),

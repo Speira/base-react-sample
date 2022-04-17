@@ -13,9 +13,10 @@ import {
   SignupWrapper,
   UsernameInput,
   ValidateButton,
-} from '~AuthModule/builders'
+} from '~AuthModule/components'
 
-const { PATHS, STATUS } = constants
+const { FIELDS, PATHS, STATUS } = constants
+const { PASSWORD, USERNAME } = FIELDS
 
 /**
  * SignupContainer
@@ -25,15 +26,18 @@ const { PATHS, STATUS } = constants
 function SignupContainer() {
   const { signup } = useAuth()
   const { HookAlert, setAlert, clearAlert } = useAlert()
-  const [username, setUsername] = React.useState('')
-  const [password, setPassword] = React.useState('')
+  const [inputs, setInputs] = React.useState(new DefaultUser())
   const [isLoading, toggleLoading] = React.useState(false)
   const [isRegistered, toggleRegistered] = React.useState(false)
+
+  const setUser = (field) => (value) =>
+    setInputs((sync) => ({ ...sync, [field]: value }))
+
+  /**
+   * signUp
+   */
   const signUp = () => {
-    const tempUser = new DefaultUser({
-      password,
-      username,
-    })
+    const tempUser = new DefaultUser(inputs)
     const authErrorsList = tempUser.getErrors()
     if (authErrorsList.length) {
       return setAlert({ message: authErrorsList })
@@ -51,13 +55,14 @@ function SignupContainer() {
         setAlert({ message: t`SIGNUP_ERROR` })
       })
   }
+
   if (isLoading) {
     return <SignupLoading />
   }
   if (isRegistered) {
     return (
       <RegistrationSentWrapper>
-        <div>{t`SIGNUP_MAIL_WILL_BE_SENT`(username)}</div>
+        <div>{t`SIGNUP_MAIL_WILL_BE_SENT`(inputs[USERNAME])}</div>
       </RegistrationSentWrapper>
     )
   }
@@ -65,8 +70,8 @@ function SignupContainer() {
     <SignupWrapper>
       <HookAlert />
       <SendingForm>
-        <UsernameInput value={username} onChange={setUsername} />
-        <PasswordInput value={password} onChange={setPassword} />
+        <UsernameInput value={inputs[USERNAME]} onChange={setUser(USERNAME)} />
+        <PasswordInput value={inputs[PASSWORD]} onChange={setUser(PASSWORD)} />
         <ValidateButton onClick={signUp} />
       </SendingForm>
       <ExistingAccountLink to={PATHS.AUTH_LOGIN} />

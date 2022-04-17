@@ -7,25 +7,32 @@ import constants from '~utils/constants'
 const { HTML_WRAPPER_TAGS } = constants
 const { ARTICLE, ASIDE, FORM, NAV, SECTION } = HTML_WRAPPER_TAGS
 
+const Article = styled.article``
+const Aside = styled.aside``
+const Div = styled.div``
+const Form = styled.form``
+const Nav = styled.nav``
+const Section = styled.section``
+
 /**
- * HTMLBaseWrapper
+ * DomElement
  * @component
  * @desc ::: provide the right html element depending on the tag
  *           passed as parameter
  *
  */
-function HTMLBaseWrapper(props) {
+function DomElement(props) {
   const { tag, ...rest } = props
-  let Wrapper = styled.div``
-  if (tag === ARTICLE) Wrapper = styled.article``
-  if (tag === ASIDE) Wrapper = styled.aside``
-  if (tag === FORM) Wrapper = styled.form``
-  if (tag === NAV) Wrapper = styled.nav``
-  if (tag === SECTION) Wrapper = styled.section``
+  let Wrapper = Div
+  if (tag === ARTICLE) Wrapper = Article
+  if (tag === ASIDE) Wrapper = Aside
+  if (tag === FORM) Wrapper = Form
+  if (tag === NAV) Wrapper = Nav
+  if (tag === SECTION) Wrapper = Section
   return <Wrapper {...rest} />
 }
-HTMLBaseWrapper.defaultProps = { tag: '' }
-HTMLBaseWrapper.propTypes = {
+DomElement.defaultProps = { tag: '' }
+DomElement.propTypes = {
   tag: PropTypes.oneOf(Object.values(HTML_WRAPPER_TAGS)),
 }
 
@@ -34,7 +41,7 @@ HTMLBaseWrapper.propTypes = {
  * @component
  *
  */
-const BaseWrapper = styled(HTMLBaseWrapper).attrs((props) => {
+const BaseWrapper = styled(DomElement).attrs((props) => {
   const { design, status, theme } = props
   const style = { ...design.realtime }
   if (status) {

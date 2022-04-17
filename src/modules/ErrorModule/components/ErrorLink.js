@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { translate as t } from '~utils/functions'
 import Link from '~components/Link'
 
 /**
@@ -23,7 +22,3 @@ ErrorLink.propTypes = {
 }
 
 export default ErrorLink
-
-export const BackErrorLink = (props) => (
-  <ErrorLink label={t`BACK_HOME`} {...props} />
-)

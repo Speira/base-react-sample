@@ -37,8 +37,8 @@ function AuthWrapper(props) {
       {...rest}>
       <div className="row">
         <Title>{title}</Title>
-        {children}
       </div>
+      {children}
     </Wrapper>
   )
 }

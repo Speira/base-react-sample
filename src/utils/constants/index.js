@@ -15,12 +15,6 @@ export default {
     USERNAME: 'username',
     PASSWORD: 'password',
   },
-  FIELD_TYPES: {
-    CHECKBOX: 'checkbox',
-    NUMBER: 'number',
-    PASSWORD: 'password',
-    TEXT: 'text',
-  },
   FONT_SIZES: {
     VERY_SMALL: '8px',
     SMALL: '12px',
