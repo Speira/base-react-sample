@@ -49,12 +49,27 @@ First you have to clone this project:
 
 ```bash
 git clone https://github.com/Speira/base-react-sample.git
-cd base-react-sample
+```
+
+Create your projec with create-react-app:
+
+```bash
+ create-react-app [projectName]
+```
+Copy the structure:
+
+```bash
+ cp base-react-sample/{.babelrc, .editorconfig,.eslintignore,.eslintrc.js,.gitignore,.prettierrc, jsonconfig.json} ./projectName
+ cp -r base-react-sample/src/{App.js, AppRoute.js components,contexts,hooks, modules, utils} ./projectName/src
 ```
 
 ```bash
- yarn
+ cd ./projectName && yarn
 ```
+
+Install the added modules (see the "Added modules" section).
+
+--
 
 For the styleguide (listening to the port 6060):
 
