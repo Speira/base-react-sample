@@ -66,7 +66,7 @@ Title.propTypes = {
   margin: PropTypes.string,
   padding: PropTypes.string,
   right: PropTypes.bool,
-  status: PropTypes.oneOf(Object.values(STATUS)),
+  status: PropTypes.oneOf([...Object.values(STATUS), '']),
   type: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4']),
 }
 

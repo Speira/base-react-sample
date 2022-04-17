@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import constants from '~utils/constants'
 
+import constants from '~utils/constants'
 import { withAsyncErrorHandling } from '~contexts/ErrorContext'
 import useTimeoutOverride from '~hooks/useTimeoutOverride'
 
-import BaseInput, { BaseTextarea } from './style'
+import BaseInput from './style'
 
-const { FIELD_TYPES, STATUS } = constants
+const { STATUS } = constants
 
 /**
  * Input
@@ -16,86 +16,70 @@ const { FIELD_TYPES, STATUS } = constants
  */
 function Input(props) {
   const {
-    className,
     isAsync,
-    isLongtext,
+    onBlur,
     onChange,
     placeholder,
     status,
     type,
     value,
     width,
+    ...rest
   } = props
-  const [localValue, setLocalValue] = React.useState(value)
+
   const { overrideTimeout, cancelTimeout } = useTimeoutOverride()
 
-  const sendValue = (val) => {
-    onChange(val)
-    if (isAsync) cancelTimeout()
+  const eventAdapter = (event) => {
+    if (event.target.type === 'checkbox') return event.target.checked
+    return event.target.value
   }
 
-  const handleBlur = () => sendValue(localValue)
-
-  const handleChange = (e) => {
-    let nextValue = ''
-    if (e.target.type === 'checkbox') {
-      nextValue = e.target.checked
-      setLocalValue(nextValue)
-    } else {
-      nextValue = e.target.value
-      setLocalValue(nextValue)
-      const callback = () => sendValue(nextValue)
-      if (isAsync) overrideTimeout({ callback, timer: 1200 })
+  const handleChange = (event) => {
+    const callback = () => {
+      onChange(eventAdapter(event))
+      if (isAsync) cancelTimeout()
     }
-    if (!isAsync) onChange(nextValue)
+    if (isAsync) overrideTimeout({ timer: 1200, callback })
+    else callback()
   }
 
-  const InputComponent = isLongtext ? BaseTextarea : BaseInput
+  const handleblur = (event) => onBlur(eventAdapter(event))
 
-  React.useEffect(() => setLocalValue(value), [value])
-  const inputValue =
-    type === FIELD_TYPES.CHECKBOX
-      ? { checked: !!localValue }
-      : { value: localValue }
   return (
-    <InputComponent
-      {...inputValue}
-      className={className}
-      onBlur={handleBlur}
+    <BaseInput
+      {...rest}
+      onBlur={handleblur}
       onChange={handleChange}
       placeholder={placeholder}
       status={status}
       type={type}
+      value={value}
       width={width}
     />
   )
 }
 
 Input.defaultProps = {
-  className: '',
   isAsync: false,
-  isLongtext: false,
   onBlur: () => null,
   onChange: () => null,
   placeholder: '',
   status: '',
-  type: FIELD_TYPES.TEXT,
+  type: 'text',
   value: '',
   width: '',
 }
 Input.propTypes = {
-  className: PropTypes.string,
   /**
-   * isAsync : weither the value should handle change asynchronously, usefull
-   * whene an update performs many treatments
+   * isAsync : is used to prevent instant update, for example when we need to
+   *           perform an heavy task after onChange occurs
    */
   isAsync: PropTypes.bool,
-  isLongtext: PropTypes.bool,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
-  status: PropTypes.oneOf(Object.values(STATUS)),
-  type: PropTypes.oneOf(Object.values(FIELD_TYPES)),
+  status: PropTypes.oneOf([...Object.values(STATUS), '']),
+  type: PropTypes.string,
   value: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.number,

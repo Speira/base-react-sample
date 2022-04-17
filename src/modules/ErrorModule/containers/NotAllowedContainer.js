@@ -1,8 +1,7 @@
 import React from 'react'
 import constants from '~utils/constants'
 
-import { NotAllowedWrapper } from '~ErrorModule/components/WrapperError'
-import { BackErrorLink } from '~ErrorModule/components/ErrorLink'
+import { BackErrorLink, NotAllowedWrapper } from '~ErrorModule/components'
 
 const { PATHS } = constants
 

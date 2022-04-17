@@ -1,32 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
-import { translate as t } from '~utils/functions'
+import { useTheme } from '~contexts/ThemeContext'
 
 import Title from '~components/Title'
 import Wrapper from '~components/Wrapper'
-
-/**
- * AdaptedWrapper
- * @component
- *
- */
-const AdaptedWrapper = styled(Wrapper)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`
-/**
- * FullPageWrapper
- * @component
- *
- */
-const FullPageWrapper = styled(AdaptedWrapper)`
-  height: 100vh;
-  background-color: ${({ theme }) => theme.COLORS.SECONDARY};
-  font-size: 1.5em;
-`
 
 /**
  * WrapperError
@@ -34,54 +11,39 @@ const FullPageWrapper = styled(AdaptedWrapper)`
  *
  */
 function WrapperError(props) {
-  const { details, message, fullpage, children, title, ...rest } = props
-
-  let StyledWrapper = AdaptedWrapper
-  if (fullpage) StyledWrapper = FullPageWrapper
+  const { message, isFullpage, children, title, ...rest } = props
+  const { colors } = useTheme()
+  let style = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
+  if (isFullpage) {
+    style = {
+      ...style,
+      height: '100vh',
+      backgroundColor: colors.STATIC.SECONDARY,
+      fontSize: '1.5em',
+    }
+  }
 
   return (
-    <StyledWrapper {...rest}>
+    <Wrapper style={style} {...rest}>
       <Title>{title}</Title>
       <p>{message}</p>
-      {details && <p>{details}</p>}
       {children}
-    </StyledWrapper>
+    </Wrapper>
   )
 }
 WrapperError.defaultProps = {
-  details: '',
-  fullpage: false,
+  isFullpage: false,
 }
 WrapperError.propTypes = {
   children: PropTypes.node.isRequired,
-  details: PropTypes.string,
-  fullpage: PropTypes.bool,
+  isFullpage: PropTypes.bool,
   message: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 }
 
 export default WrapperError
-
-export const ServerErrorWrapper = (props) => (
-  <WrapperError
-    message={t`ERROR_500_MESSAGE`}
-    title={t`ERROR_500`}
-    {...props}
-  />
-)
-
-export const NotAllowedWrapper = (props) => (
-  <WrapperError
-    message={t`ERROR_403_MESSAGE`}
-    title={t`ERROR_403`}
-    {...props}
-  />
-)
-
-export const NotFoundWrapper = (props) => (
-  <WrapperError
-    message={t`ERROR_404_MESSAGE`}
-    title={t`ERROR_404`}
-    {...props}
-  />
-)

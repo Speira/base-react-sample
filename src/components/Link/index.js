@@ -6,6 +6,7 @@ import constants from '~utils/constants'
 import BaseLink from './style'
 
 const { STATUS } = constants
+
 /**
  * Link
  * @component
@@ -13,7 +14,6 @@ const { STATUS } = constants
  */
 function Link(props) {
   const {
-    active,
     boxed,
     className: initialClassName,
     href,
@@ -35,17 +35,10 @@ function Link(props) {
   })}`
 
   return (
-    <BaseLink
-      {...rest}
-      status={status}
-      className={className}
-      to={to || href}
-      active={active ? 1 : 0}
-    />
+    <BaseLink {...rest} status={status} className={className} to={to || href} />
   )
 }
 Link.defaultProps = {
-  active: false,
   boxed: false,
   className: '',
   href: '#',
@@ -54,11 +47,10 @@ Link.defaultProps = {
   secondary: false,
   tertiary: false,
   size: '',
-  status: STATUS.INFO,
+  status: '',
   to: '',
 }
 Link.propTypes = {
-  active: PropTypes.bool,
   boxed: PropTypes.bool,
   className: PropTypes.string,
   href: PropTypes.string,
@@ -67,7 +59,7 @@ Link.propTypes = {
   secondary: PropTypes.bool,
   tertiary: PropTypes.bool,
   size: PropTypes.string,
-  status: PropTypes.oneOf(Object.values(STATUS)),
+  status: PropTypes.oneOf([...Object.values(STATUS), '']),
   to: PropTypes.string,
 }
 

@@ -22,7 +22,5 @@ function AuthModule() {
     </Switch>
   )
 }
-export { default as LoginContainer } from '~AuthModule/containers/LoginContainer'
-export { default as SignupContainer } from '~AuthModule/containers/SignupContainer'
 
 export default AuthModule

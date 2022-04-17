@@ -1,5 +1,5 @@
 import React from 'react'
-import LayoutWrapperFooter from '~LayoutModule/components/LayoutWrapperFooter'
+import { FooterWrapper } from '~LayoutModule/components'
 
 /**
  * FooterContainer
@@ -7,7 +7,7 @@ import LayoutWrapperFooter from '~LayoutModule/components/LayoutWrapperFooter'
  *
  */
 function FooterContainer() {
-  return <LayoutWrapperFooter>Footer</LayoutWrapperFooter>
+  return <FooterWrapper>Footer</FooterWrapper>
 }
 
 export default FooterContainer

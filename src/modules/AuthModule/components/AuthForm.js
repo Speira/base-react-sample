@@ -1,7 +1,10 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
+import constants from '~utils/constants'
+import PropTypes from 'prop-types'
 
-import BaseForm from '~components/Form'
+import Wrapper from '~components/Wrapper'
+
+const { HTML_WRAPPER_TAGS } = constants
 
 /**
  * AuthForm
@@ -9,9 +12,30 @@ import BaseForm from '~components/Form'
  *
  */
 function AuthForm(props) {
-  return <BaseForm className="column" width="24em" {...props} />
+  const { children, style, ...rest } = props
+  return (
+    <Wrapper
+      {...rest}
+      tag={HTML_WRAPPER_TAGS.FORM}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gridRowGap: '1em',
+        margin: '0 0 0.5em',
+        ...style,
+      }}>
+      {children}
+    </Wrapper>
+  )
 }
-AuthForm.defaultProps = {}
-AuthForm.propTypes = {}
+AuthForm.defaultProps = {
+  style: {},
+}
+AuthForm.propTypes = {
+  children: PropTypes.node.isRequired,
+  style: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  ),
+}
 
 export default AuthForm

@@ -8,14 +8,14 @@ import { getStatusColor } from '~utils/functions'
  *
  */
 const BaseLink = styled(Link).attrs((props) => {
-  const { className, active, status, theme } = props
+  const { className, status, theme } = props
   if (className.includes('boxed')) {
     const style = {}
-    if (active) {
+    if (status) {
       style.backgroundColor = getStatusColor({ theme, status })
     }
-    style.color = active ? theme.COLORS.STATIC.LIGHT : theme.COLORS.STATIC.DARK
-    style.boxShadow = active
+    style.color = status ? theme.COLORS.STATIC.LIGHT : theme.COLORS.STATIC.DARK
+    style.boxShadow = status
       ? `0px 0px 1px 1px ${theme.COLORS.STATIC.DARK} inset`
       : `1px 1px 0px 0px ${theme.COLORS.STATIC.DARK}`
     return { style }

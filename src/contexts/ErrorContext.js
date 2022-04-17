@@ -13,21 +13,20 @@ const ErrorContext = React.createContext()
  */
 function ErrorProvider(props) {
   const [errorType, setErrorType] = React.useState(null)
-  const [errorMessage, setErrorMessage] = React.useState('')
   const value = {
-    errorMessage,
     errorType,
     hasError: errorType !== null,
     isClientError: errorType === CLIENT,
     isNotFoundError: errorType === NOT_FOUND,
     isServerError: errorType === SERVER,
+    logError(error) {
+      console.error(error)
+    },
     resetError() {
       setErrorType(null)
-      setErrorMessage('')
     },
-    setError({ type, message }) {
+    setError({ type }) {
       setErrorType(type)
-      setErrorMessage(message)
     },
   }
 
@@ -52,19 +51,13 @@ export const useError = () => {
  *
  */
 export const withAsyncErrorHandling = (Component) => (props) => {
-  const { setError } = useError()
+  const { setError, logError } = useError()
   const safeFn = (fn) => (params) => {
     try {
       fn(params)
     } catch (e) {
-      console.error(
-        'Error Caught in contexts/ErrorContext withAsyncErrorHandling function: \n',
-        e,
-      )
-      setError({
-        type: SERVER,
-        message: 'Oops something get wrong, please contact the developer.',
-      })
+      logError(e)
+      setError({ type: SERVER })
     }
   }
   const adaptedProps = { ...props }

@@ -15,12 +15,6 @@ export default {
     USERNAME: 'username',
     PASSWORD: 'password',
   },
-  FIELD_TYPES: {
-    CHECKBOX: 'checkbox',
-    NUMBER: 'number',
-    PASSWORD: 'password',
-    TEXT: 'text',
-  },
   FONT_SIZES: {
     VERY_SMALL: '8px',
     SMALL: '12px',
@@ -33,8 +27,14 @@ export default {
     ARTICLE: 'article',
     ASIDE: 'aside',
     DIV: 'div',
+    FORM: 'form',
     SECTION: 'section',
     NAV: 'nav',
+  },
+  KEYBOARD: {
+    KEYS: {
+      ENTER: 'Enter',
+    },
   },
   PATHS: {
     AUTH: '/auth',
@@ -64,10 +64,10 @@ export default {
     DEFAULT: {
       COLORS: {
         STATIC: {
-          PRIMARY: '#B983FF',
-          SECONDARY: '#94B3FD',
-          TERTIARY: '#94DAFF',
-          QUATERNARY: '#99FEFF',
+          PRIMARY: '#F4FCD9',
+          SECONDARY: '#C5D8A4',
+          TERTIARY: '#BB9981',
+          QUATERNARY: '#534340',
           LIGHT: '#f8f8fa',
           DARK: '#000000b3',
         },

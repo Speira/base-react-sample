@@ -2,20 +2,21 @@ import React from 'react'
 
 import { useAuth } from '~contexts/AuthContext'
 import constants from '~utils/constants'
-import { translate as t } from '~utils/functions'
-import DefaultUser from '~utils/constructors/DefaultUser'
+import { DefaultUser, translate as t, handleEnterPress } from '~utils/functions'
 import useAlert from '~hooks/useAlert'
 
-import AuthForm from '~AuthModule/components/AuthForm'
-import { LoginLoading } from '~AuthModule/components/AuthLoading'
-import { LoginWrapper } from '~AuthModule/components/WrapperAuth'
-import { NoAccountLink } from '~AuthModule/components/AuthLink'
-import { PasswordInput, UsernameInput } from '~AuthModule/components/AuthInput'
-import { ValidateButton } from '~AuthModule/components/AuthButton'
+import {
+  LoginLoading,
+  LoginWrapper,
+  NoAccountLink,
+  PasswordInput,
+  SendingForm,
+  UsernameInput,
+  ValidateButton,
+} from '~AuthModule/components'
 
-const { PATHS, STATUS } = constants
-const { AUTH_SIGNUP } = PATHS
-
+const { FIELDS, PATHS, STATUS } = constants
+const { PASSWORD, USERNAME } = FIELDS
 /**
  * LoginContainer
  * @container
@@ -24,15 +25,17 @@ const { AUTH_SIGNUP } = PATHS
 function LoginContainer() {
   const { signin } = useAuth()
   const { clearAlert, HookAlert, setAlert } = useAlert()
-  const [username, setUsername] = React.useState('')
-  const [password, setPassword] = React.useState('')
   const [isLoading, toggleLoading] = React.useState(false)
+  const [inputs, setInputs] = React.useState(new DefaultUser())
 
+  const setUser = (field) => (value) =>
+    setInputs((sync) => ({ ...sync, [field]: value }))
+
+  /**
+   * authenticateUser
+   */
   const authenticateUser = () => {
-    const tempUser = new DefaultUser({
-      username,
-      password,
-    })
+    const tempUser = new DefaultUser(inputs)
     const authErrorsList = tempUser.getErrors()
     if (authErrorsList.length) {
       return setAlert({ message: authErrorsList })
@@ -46,7 +49,7 @@ function LoginContainer() {
       })
       .catch(() => {
         toggleLoading(false)
-        setAlert({ message: t`LOGIN_ERROR` })
+        setAlert({ message: t`AUTH_FAILED` })
       })
   }
 
@@ -56,12 +59,12 @@ function LoginContainer() {
   return (
     <LoginWrapper>
       <HookAlert />
-      <AuthForm>
-        <UsernameInput value={username} onChange={setUsername} />
-        <PasswordInput value={password} onChange={setPassword} />
+      <SendingForm onKeyPress={handleEnterPress(authenticateUser)}>
+        <UsernameInput value={inputs[USERNAME]} onChange={setUser(USERNAME)} />
+        <PasswordInput value={inputs[PASSWORD]} onChange={setUser(PASSWORD)} />
         <ValidateButton onClick={authenticateUser} />
-      </AuthForm>
-      <NoAccountLink to={AUTH_SIGNUP} />
+      </SendingForm>
+      <NoAccountLink to={PATHS.AUTH_SIGNUP} />
     </LoginWrapper>
   )
 }

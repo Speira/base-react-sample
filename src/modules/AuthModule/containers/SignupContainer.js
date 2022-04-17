@@ -1,22 +1,22 @@
 import React from 'react'
 import { useAuth } from '~contexts/AuthContext'
 import constants from '~utils/constants'
-import { translate as t } from '~utils/functions'
+import { DefaultUser, translate as t } from '~utils/functions'
 import useAlert from '~hooks/useAlert'
-import DefaultUser from '~utils/constructors/DefaultUser'
 
-import AuthForm from '~AuthModule/components/AuthForm'
-import { ExistingAccountLink } from '~AuthModule/components/AuthLink'
 import {
+  ExistingAccountLink,
+  PasswordInput,
   RegistrationSentWrapper,
+  SendingForm,
+  SignupLoading,
   SignupWrapper,
-} from '~AuthModule/components/WrapperAuth'
-import { SignupLoading } from '~AuthModule/components/AuthLoading'
-import { UsernameInput, PasswordInput } from '~AuthModule/components/AuthInput'
-import { ValidateButton } from '~AuthModule/components/AuthButton'
+  UsernameInput,
+  ValidateButton,
+} from '~AuthModule/components'
 
-const { PATHS, STATUS } = constants
-const { AUTH_LOGIN } = PATHS
+const { FIELDS, PATHS, STATUS } = constants
+const { PASSWORD, USERNAME } = FIELDS
 
 /**
  * SignupContainer
@@ -26,15 +26,18 @@ const { AUTH_LOGIN } = PATHS
 function SignupContainer() {
   const { signup } = useAuth()
   const { HookAlert, setAlert, clearAlert } = useAlert()
-  const [username, setUsername] = React.useState('')
-  const [password, setPassword] = React.useState('')
+  const [inputs, setInputs] = React.useState(new DefaultUser())
   const [isLoading, toggleLoading] = React.useState(false)
   const [isRegistered, toggleRegistered] = React.useState(false)
+
+  const setUser = (field) => (value) =>
+    setInputs((sync) => ({ ...sync, [field]: value }))
+
+  /**
+   * signUp
+   */
   const signUp = () => {
-    const tempUser = new DefaultUser({
-      username,
-      password,
-    })
+    const tempUser = new DefaultUser(inputs)
     const authErrorsList = tempUser.getErrors()
     if (authErrorsList.length) {
       return setAlert({ message: authErrorsList })
@@ -52,25 +55,26 @@ function SignupContainer() {
         setAlert({ message: t`SIGNUP_ERROR` })
       })
   }
+
   if (isLoading) {
     return <SignupLoading />
   }
   if (isRegistered) {
     return (
       <RegistrationSentWrapper>
-        <div>{t`SIGNUP_MAIL_WILL_BE_SENT`(username)}</div>
+        <div>{t`SIGNUP_MAIL_WILL_BE_SENT`(inputs[USERNAME])}</div>
       </RegistrationSentWrapper>
     )
   }
   return (
     <SignupWrapper>
       <HookAlert />
-      <AuthForm>
-        <UsernameInput value={username} onChange={setUsername} />
-        <PasswordInput value={password} onChange={setPassword} />
+      <SendingForm>
+        <UsernameInput value={inputs[USERNAME]} onChange={setUser(USERNAME)} />
+        <PasswordInput value={inputs[PASSWORD]} onChange={setUser(PASSWORD)} />
         <ValidateButton onClick={signUp} />
-      </AuthForm>
-      <ExistingAccountLink to={AUTH_LOGIN} />
+      </SendingForm>
+      <ExistingAccountLink to={PATHS.AUTH_LOGIN} />
     </SignupWrapper>
   )
 }

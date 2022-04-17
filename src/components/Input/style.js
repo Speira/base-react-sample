@@ -10,7 +10,7 @@ const { STATUS } = constants
  *
  */
 const BaseInput = styled.input.attrs((props) => {
-  const { status, theme } = props
+  const { status, theme, ...rest } = props
   const style = {}
   if (status) {
     const statusColor = getStatusColor({ theme, status })
@@ -18,6 +18,7 @@ const BaseInput = styled.input.attrs((props) => {
     style.outline = `${size} solid ${statusColor}`
   }
   return {
+    ...rest,
     style,
   }
 })`
@@ -59,30 +60,4 @@ const BaseInput = styled.input.attrs((props) => {
 
 export default BaseInput
 
-/**
- * BaseTextarea
- * @component
- *
- */
-export const BaseTextarea = styled.textarea.attrs((props) => {
-  const { status, theme } = props
-  const statusColor = getStatusColor({ theme, status })
-  const style = {}
-  if (status) style.outline = `1px solid ${statusColor}`
-  return {
-    style,
-  }
-})`
-  background-color: ${({ theme }) => theme.COLORS.STATIC.LIGHT};
-  border-radius: 4px;
-  border: none;
-  margin: auto;
-  min-height: 4em;
-  min-width: 400px;
-  padding: 0.8em;
-  vertical-align: middle;
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 4px 0px ${({ theme }) => theme.COLORS.STATIC.PRIMARY};
-  }
-`
+export const BaseTextarea = styled.textarea``

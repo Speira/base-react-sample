@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { translate as t } from '~utils/functions'
+import constants from '~utils/constants'
 import Link from '~components/Link'
+
+const { STATUS } = constants
 
 /**
  * LayoutLink.
@@ -10,17 +12,27 @@ import Link from '~components/Link'
  * @param {} props
  */
 function LayoutLink(props) {
-  const { to, label } = props
+  const { isActive, label, size, to, ...rest } = props
   return (
-    <Link to={to} size="2em">
+    <Link
+      secondary
+      status={isActive ? STATUS.INFO : ''}
+      to={to}
+      size={size}
+      {...rest}>
       {label}
     </Link>
   )
 }
+LayoutLink.defaultProps = {
+  isActive: false,
+  size: '',
+  to: '',
+}
 LayoutLink.propTypes = {
+  isActive: PropTypes.bool,
   label: PropTypes.string.isRequired,
-  to: PropTypes.string.isRequired,
+  size: PropTypes.string,
+  to: PropTypes.string,
 }
 export default LayoutLink
-
-export const BrandLink = (props) => <LayoutLink {...props} label={t`HOME`} />
