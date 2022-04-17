@@ -7,7 +7,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 default packages:
 
 ```bash
-yarn add babel-plugin-module-resolver normalize.css prop-types react-router-dom styled-components react-is styled-icons
+yarn add babel-plugin-module-resolver normalize.css prop-types react-router-dom styled-components react-is @styled-icons/bootstrap
 ```
 
 development packages:
