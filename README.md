@@ -36,12 +36,13 @@ git clone https://github.com/Speira/base-react-sample.git
 
 ```bash
  create-react-app [projectName]
+ cd [projectName]
 ```
 3- Copy the structure:
 
 ```bash
- cp base-react-sample/{.babelrc, .editorconfig,.eslintignore,.eslintrc.js,.gitignore,.prettierrc, jsonconfig.json} ./projectName
- cp -r base-react-sample/src/{App.js, AppRoute.js components,contexts,hooks, modules, utils} ./projectName/src
+ cp base-react-sample/{.babelrc,.editorconfig,.eslintignore,.eslintrc.js,.gitignore,.prettierrc,jsonconfig.json} .
+ cp -r base-react-sample/src/{App.js,AppRoute.js,components,contexts,hooks,modules,utils} ./src
 ```
 
 ```bash
