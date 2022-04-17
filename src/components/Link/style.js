@@ -42,6 +42,10 @@ const BaseLink = styled(Link).attrs((props) => {
     border-radius: 4px;
     box-shadow: 1px 1px 2px -1px;
     text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
   }
   &.boxed.primary {
     background-color: ${({ theme }) => theme.COLORS.STATIC.PRIMARY};

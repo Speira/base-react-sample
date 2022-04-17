@@ -10,7 +10,7 @@ import Link from '~components/Link'
 function ErrorLink(props) {
   const { label, to, ...rest } = props
   return (
-    <Link {...rest} to={to} tertiary size="0.8em">
+    <Link {...rest} to={to} tertiary size="1em">
       {label}
     </Link>
   )
