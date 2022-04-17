@@ -58,9 +58,6 @@ export const BodyWrapper = (props) => (
       justifyContent: 'space-between',
       minHeight: '100vh',
       width: '100%',
-      xs: {
-        justifyContent: 'space-around',
-      },
     }}
     {...props}
   />
@@ -75,5 +72,9 @@ export const FooterWrapper = (props) => (
 )
 
 export const NavWrapper = (props) => (
-  <LayoutWrapper tag={HTML_WRAPPER_TAGS.NAV} {...props} />
+  <LayoutWrapper
+    tag={HTML_WRAPPER_TAGS.NAV}
+    style={{ display: 'flex' }}
+    {...props}
+  />
 )

@@ -9,7 +9,7 @@ import { getStatusColor } from '~utils/functions'
 const BaseButton = styled.button.attrs((props) => {
   const { status, theme } = props
   const color = getStatusColor({ status, theme })
-  const backgroundColor = getStatusColor({ status, theme, alpha: 0.15 })
+  const backgroundColor = getStatusColor({ status, theme, alpha: 0.12 })
   return {
     style: {
       backgroundColor,
