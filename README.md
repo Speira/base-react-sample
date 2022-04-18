@@ -42,7 +42,7 @@ git clone https://github.com/Speira/base-react-sample.git
 
 ```bash
  cp base-react-sample/{.babelrc,.editorconfig,.eslintignore,.eslintrc.js,.gitignore,.prettierrc,jsonconfig.json} .
- cp -r base-react-sample/src/{App.js,AppRoute.js,components,contexts,hooks,modules,utils} ./src
+ cp -r base-react-sample/src/{App.js,AppRoute.js,components,contexts,hooks,index.css,modules,utils} ./src
 ```
 
 ```bash
