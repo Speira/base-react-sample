@@ -53,7 +53,7 @@ git clone https://github.com/Speira/base-react-sample.git
 
 Needed packages:
 ```bash
-yarn add babel-plugin-module-resolver normalize.css prop-types react-router-dom styled-components react-is @styled-icons/bootstrap
+yarn add babel-plugin-module-resolver normalize.css prop-types react-router-dom styled-components react-is @styled-icons/bootstrap query-string
 ```
 
 Development packages:
