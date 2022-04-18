@@ -59,7 +59,7 @@ yarn add babel-plugin-module-resolver normalize.css prop-types react-router-dom 
 Development packages:
 
 ```bash
-yarn add -D babel-plugin-styled-components prettier eslint-config-airbnb eslint-config-prettier eslint-import-resolver-babel-module eslint-plugin-import eslint-plugin-prettier react-styleguidist enzyme enzyme-adapter-react-16 babel-eslint
+yarn add -D babel-plugin-styled-components prettier eslint-config-airbnb eslint-config-prettier eslint-import-resolver-babel-module eslint-plugin-import eslint-plugin-prettier react-styleguidist enzyme enzyme-adapter-react-16
 ```
 
 ## Launch
