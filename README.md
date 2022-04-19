@@ -45,10 +45,6 @@ git clone https://github.com/Speira/base-react-sample.git
  cp -r base-react-sample/src/{App.js,AppRoute.js,components,contexts,hooks,index.css,modules,utils} ./src
 ```
 
-```bash
- cd ./projectName && yarn
-```
-
 4- Install the added modules (see the "Added modules" section).
 
 Needed packages:
