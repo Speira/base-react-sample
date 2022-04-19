@@ -41,8 +41,8 @@ git clone https://github.com/Speira/base-react-sample.git
 3- Copy the structure:
 
 ```bash
- cp base-react-sample/{.babelrc,.editorconfig,.eslintignore,.eslintrc.js,.gitignore,.prettierrc,jsonconfig.json,styleguide.config.js} .
- cp -r base-react-sample/src/{App.js,AppRoute.js,components,contexts,hooks,index.css,modules,utils} ./src
+ cp ../base-react-sample/{.babelrc,.editorconfig,.eslintignore,.eslintrc.js,.gitignore,.prettierrc,jsonconfig.json,styleguide.config.js} .
+ cp -r ../base-react-sample/src/{App.js,AppRoute.js,components,contexts,hooks,index.css,modules,utils} ./src
 ```
 
 4- Install the added modules (see the "Added modules" section).
