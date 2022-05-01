@@ -13,13 +13,12 @@ This Skeletton is a module oriented conception. It can be used as skeletton for 
 
 ```mermaid
 graph TD
-  Contexts --> App.js
-  App.js --> modules/moduleName;
-  modules/moduleName --> modules/moduleName/containers;
-  modules/moduleName/containers --> modules/moduleName/components;
-  modules/moduleName/components --> components;
-  utils & hooks --> modules/moduleName/containers;
-  utils & hooks --> modules/moduleName/components;
+  index.js --> App.js
+  App.js --> modules/__namespace__/containers;
+  modules/__namespace__/containers --> modules/__namespace__/components;
+  modules/__namespace__/components --> components;
+  utils & hooks --> modules/__namespace__/containers;
+  utils & hooks --> modules/__namespace__/components;
   utils & hooks --> components;
   
 ```
@@ -41,8 +40,7 @@ git clone https://github.com/Speira/base-react-sample.git
 3- Copy the structure:
 
 ```bash
- cp ../base-react-sample/{.babelrc,.editorconfig,.eslintignore,.eslintrc.js,.gitignore,.prettierrc,jsonconfig.json,styleguide.config.js} .
- cp -r ../base-react-sample/src/{App.js,AppRoute.js,components,contexts,hooks,index.css,modules,utils} ./src
+ cp ../base-react-sample/{.babelrc,.editorconfig,.eslintignore,.eslintrc.js,.gitignore,.prettierrc,jsonconfig.json,styleguide.config.js} . && cp -r ../base-react-sample/src/{App.js,AppRoute.js,components,contexts,hooks,index.css,modules,utils} ./src
 ```
 
 4- Install the added modules (see the "Added modules" section).
