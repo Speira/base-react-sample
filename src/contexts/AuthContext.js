@@ -1,7 +1,5 @@
 import React from 'react'
 
-import { authUserAPI, createUserAPI, updateUserAPI } from '~utils/functions'
-
 const AuthContext = React.createContext()
 
 /**
@@ -11,73 +9,15 @@ const AuthContext = React.createContext()
  *
  */
 function AuthProvider(props) {
-  const [user, setUser] = React.useState({})
-  const value = {
-    user,
-    isAuthenticated: !!user.username,
-    /**
-     * logout
-     * @desc logout an user
-     */
-    logout() {
-      return new Promise((resolve) => {
-        setUser({})
-        resolve()
-      })
-    },
-    /**
-     * signin
-     * @param {Object} reqUser
-     * @param {String} reqUser.name
-     * @param {String} reqUser.password
-     * @desc allow to auth an registered user
-     */
-    signin(reqUser) {
-      return new Promise((resolve, reject) => {
-        if (!reqUser) reject()
-        authUserAPI(reqUser)
-          .then((authenicatedUser) => {
-            setUser(authenicatedUser)
-            resolve(authenicatedUser)
-          })
-          .catch((err) => reject(err))
-      })
-    },
-    /**
-     * signup
-     * @param {Object} reqUser
-     * @param {String} reqUser.name
-     * @param {String} reqUser.password
-     * @desc allow to register an new user
-     */
-    signup(reqUser) {
-      return new Promise((resolve, reject) => {
-        if (!reqUser) reject()
-        createUserAPI(reqUser)
-          .then((authenicatedUser) => {
-            setUser({})
-            resolve(authenicatedUser)
-          })
-          .catch((err) => reject(err))
-      })
-    },
-    /**
-     * update
-     * @param {Object} reqUser
-     * @desc allow to update an existing user
-     */
-    update(reqUser) {
-      return new Promise((resolve, reject) => {
-        if (!reqUser) reject()
-        updateUserAPI(reqUser)
-          .then((updatedUser) => {
-            setUser(updatedUser)
-            resolve(updatedUser)
-          })
-          .catch((err) => reject(err))
-      })
-    },
-  }
+  const [authUser, setAuthUser] = React.useState({})
+  const value = React.useMemo(
+    () => ({
+      authUser,
+      setAuthUser,
+      isAuthenticated: !!authUser.username,
+    }),
+    [authUser],
+  )
 
   return <AuthContext.Provider {...props} value={value} />
 }

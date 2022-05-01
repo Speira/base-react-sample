@@ -32,7 +32,8 @@ function DisplayResponsibleWrapper(props) {
         md: { padding: '2em' },
         lg: { width: '25em' },
         xl: { minHeight: '10%' },
-      }}>
+      }}
+    >
       Content
     </Wrapper>
   )
@@ -55,7 +56,8 @@ Wrapper with border:
     border: '1px solid black',
     borderRadius: '1em',
     padding: '1em',
-  }}>
+  }}
+>
   Content
 </Wrapper>
 ```
@@ -72,7 +74,8 @@ Wrapper Primary:
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-  }}>
+  }}
+>
   Content
 </Wrapper>
 ```
@@ -91,7 +94,8 @@ Wrapper secondary:
     alignItems: 'center',
     borderRadius: '2em',
     boxShadow: '1px 1px 1px black',
-  }}>
+  }}
+>
   Content
 </Wrapper>
 ```
@@ -108,7 +112,8 @@ Wrapper tertiary:
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-  }}>
+  }}
+>
   Content
 </Wrapper>
 ```
@@ -125,7 +130,8 @@ Wrapper quaternary:
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-  }}>
+  }}
+>
   Content
 </Wrapper>
 ```
@@ -142,7 +148,8 @@ Wrapper status="info":
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-  }}>
+  }}
+>
   Content
 </Wrapper>
 ```
@@ -159,7 +166,8 @@ Wrapper status="danger":
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-  }}>
+  }}
+>
   Content
 </Wrapper>
 ```
@@ -176,7 +184,8 @@ Wrapper status="warning":
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-  }}>
+  }}
+>
   Content
 </Wrapper>
 ```
@@ -193,7 +202,8 @@ Wrapper status="success":
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-  }}>
+  }}
+>
   Content
 </Wrapper>
 ```

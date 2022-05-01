@@ -17,11 +17,13 @@ import {
 
 const { AUTH, AUTH_PROFILE, AUTH_SIGNUP, DEFAULT } = constants.PATHS
 
-const ExternLink = () => (
-  <a href="https://base-react-style.speira.me/" target="blank">
-    {t`ALL_STYLES_AVAILABLES_HERE`} &#x2197;
-  </a>
-)
+function ExternLink() {
+  return (
+    <a href="https://base-react-style.speira.me/" target="blank">
+      {t`ALL_STYLES_AVAILABLES_HERE`} &#x2197;
+    </a>
+  )
+}
 
 /**
  * HeaderContainer

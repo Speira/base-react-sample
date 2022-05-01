@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
  * @component
  *
  */
-const ToolAction = (props) => {
+function ToolAction(props) {
   const { action, argv, cls, img, txt } = props
 
   const execDefaultAction = (e) => {

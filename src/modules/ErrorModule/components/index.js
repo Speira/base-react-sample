@@ -6,32 +6,38 @@ import ErrorLink from './ErrorLink'
 
 /* ***************************** WrapperError ************************** */
 
-export const ServerErrorWrapper = (props) => (
-  <WrapperError
-    message={t`ERROR_500_MESSAGE`}
-    title={t`ERROR_500`}
-    {...props}
-  />
-)
+export function ServerErrorWrapper(props) {
+  return (
+    <WrapperError
+      message={t`ERROR_500_MESSAGE`}
+      title={t`ERROR_500`}
+      {...props}
+    />
+  )
+}
 
-export const NotAllowedWrapper = (props) => (
-  <WrapperError
-    message={t`ERROR_403_MESSAGE`}
-    title={t`ERROR_403`}
-    {...props}
-  />
-)
+export function NotAllowedWrapper(props) {
+  return (
+    <WrapperError
+      message={t`ERROR_403_MESSAGE`}
+      title={t`ERROR_403`}
+      {...props}
+    />
+  )
+}
 
-export const NotFoundWrapper = (props) => (
-  <WrapperError
-    message={t`ERROR_404_MESSAGE`}
-    title={t`ERROR_404`}
-    {...props}
-  />
-)
+export function NotFoundWrapper(props) {
+  return (
+    <WrapperError
+      message={t`ERROR_404_MESSAGE`}
+      title={t`ERROR_404`}
+      {...props}
+    />
+  )
+}
 
 /* ***************************** ErrorLink ************************** */
 
-export const BackErrorLink = (props) => (
-  <ErrorLink label={t`BACK_HOME`} {...props} />
-)
+export function BackErrorLink(props) {
+  return <ErrorLink label={t`BACK_HOME`} {...props} />
+}

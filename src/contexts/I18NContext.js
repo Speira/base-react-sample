@@ -21,47 +21,50 @@ function I18NProvider(props) {
     localStorage.setItem(STORAGE_ITEMS.LANGUAGE, language)
   }, [])
 
-  const value = {
-    /**
-     * areWordsSet
-     * @function
-     * @desc ::
-     *     Check if all the translations are indicated in each langages
-     * @return Boolean
-     *
-     */
-    areWordsSet() {
-      const arrayWords = Object.values(WORDS)
-      return arrayWords.reduce((acc, cur, index) => {
-        if (acc === false) return false
-        const accStr = JSON.stringify(Object.keys(acc.VALUES))
-        const curStr = JSON.stringify(Object.keys(cur.VALUES))
-        if (accStr === curStr) {
-          return index === arrayWords.length - 1 ? true : cur
-        }
-        return false
-      })
-    },
-    words: WORDS[langage].VALUES,
-    /**
-     * setEnglish
-     * @function
-     * @desc ::: set the translation to English
-     *
-     */
-    setEnglish() {
-      if (langage !== WORDS.ENGLISH.NAME) changeLanguage(WORDS.ENGLISH.NAME)
-    },
-    /**
-     * setFrench
-     * @function
-     * @desc ::: set the translation to French
-     *
-     */
-    setFrench() {
-      if (langage !== WORDS.FRENCH.NAME) changeLanguage(WORDS.FRENCH.NAME)
-    },
-  }
+  const value = React.useMemo(
+    () => ({
+      /**
+       * areWordsSet
+       * @function
+       * @desc ::
+       *     Check if all the translations are indicated in each langages
+       * @return Boolean
+       *
+       */
+      areWordsSet() {
+        const arrayWords = Object.values(WORDS)
+        return arrayWords.reduce((acc, cur, index) => {
+          if (acc === false) return false
+          const accStr = JSON.stringify(Object.keys(acc.VALUES))
+          const curStr = JSON.stringify(Object.keys(cur.VALUES))
+          if (accStr === curStr) {
+            return index === arrayWords.length - 1 ? true : cur
+          }
+          return false
+        })
+      },
+      words: WORDS[langage].VALUES,
+      /**
+       * setEnglish
+       * @function
+       * @desc ::: set the translation to English
+       *
+       */
+      setEnglish() {
+        if (langage !== WORDS.ENGLISH.NAME) changeLanguage(WORDS.ENGLISH.NAME)
+      },
+      /**
+       * setFrench
+       * @function
+       * @desc ::: set the translation to French
+       *
+       */
+      setFrench() {
+        if (langage !== WORDS.FRENCH.NAME) changeLanguage(WORDS.FRENCH.NAME)
+      },
+    }),
+    [changeLanguage, langage],
+  )
 
   React.useEffect(() => {
     const lang = getLanguage()
@@ -93,9 +96,10 @@ export const useI18N = () => {
  * @return {React Component}
  *
  */
-export const withI18NWords = (Component) => (props) => {
-  const { words } = useI18N()
-  return <Component {...props} words={words} />
-}
+export const withI18NWords = (Component) =>
+  function TranslatedComponent(props) {
+    const { words } = useI18N()
+    return <Component {...props} words={words} />
+  }
 
 export default I18NProvider

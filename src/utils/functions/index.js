@@ -6,9 +6,8 @@ export {
   DefaultUser,
   createAlert,
   createUser,
-} from './constructorsFunctions'
+} from './constructors'
 export { handleEnterPress, adaptBoolProps } from './DOMFunctions'
 export { checkEmptyObject, getActiveKeys } from './JSFunctions'
-export { getStatusColor, getThemeColor } from './styleFunctions'
 export { checkAccess, translate } from './businessFunctions'
-export { authUserAPI, createUserAPI, updateUserAPI } from './api'
+export { getStatusColor, getThemeColor } from './styleFunctions'

@@ -1,5 +1,8 @@
 import React from 'react'
+
+import useRouter from '~hooks/useRouter'
 import { useAuth } from '~contexts/AuthContext'
+import { useAPI } from '~contexts/APIContext'
 import constants from '~utils/constants'
 import { DefaultUser, translate as t } from '~utils/functions'
 import useAlert from '~hooks/useAlert'
@@ -24,7 +27,9 @@ const { PASSWORD, USERNAME } = FIELDS
  *
  */
 function SignupContainer() {
-  const { signup } = useAuth()
+  const { backToReferer } = useRouter()
+  const { isAuthenticated, setAuthUser } = useAuth()
+  const { sendRequest } = useAPI()
   const { HookAlert, setAlert, clearAlert } = useAlert()
   const [inputs, setInputs] = React.useState(new DefaultUser())
   const [isLoading, toggleLoading] = React.useState(false)
@@ -43,9 +48,10 @@ function SignupContainer() {
       return setAlert({ message: authErrorsList })
     }
     toggleLoading(true)
-    return signup(tempUser)
-      .then(() => {
+    return sendRequest(tempUser)
+      .then((data) => {
         setAlert({ message: t`LOGIN_SUCCESS`, status: STATUS.SUCCESS })
+        setAuthUser(data)
         toggleLoading(false)
         toggleRegistered(true)
         setTimeout(() => clearAlert(), 4000)
@@ -65,6 +71,9 @@ function SignupContainer() {
         <div>{t`SIGNUP_MAIL_WILL_BE_SENT`(inputs[USERNAME])}</div>
       </RegistrationSentWrapper>
     )
+  }
+  if (isAuthenticated) {
+    backToReferer()
   }
   return (
     <SignupWrapper>

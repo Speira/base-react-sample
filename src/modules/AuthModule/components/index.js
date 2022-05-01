@@ -13,61 +13,67 @@ const { STATUS } = constants
 
 /* *********************** AuthButton *************************** */
 
-export const ValidateButton = (props) => (
-  <AuthButton {...props} label={t`VALIDATE`} status={STATUS.INFO} />
-)
+export function ValidateButton(props) {
+  return <AuthButton {...props} label={t`VALIDATE`} status={STATUS.INFO} />
+}
 
 /* *********************** AuthInput *************************** */
 
-export const UsernameInput = (props) => (
-  <AuthInput
-    label={t`USERNAME`}
-    placeholder="example@example.com"
-    type="email"
-    {...props}
-  />
-)
+export function UsernameInput(props) {
+  return (
+    <AuthInput
+      label={t`USERNAME`}
+      placeholder="example@example.com"
+      type="email"
+      {...props}
+    />
+  )
+}
 
-export const PasswordInput = (props) => (
-  <AuthInput
-    label={t`PASSWORD`}
-    placeholder={t`PASSWORD`}
-    type="password"
-    {...props}
-  />
-)
+export function PasswordInput(props) {
+  return (
+    <AuthInput
+      label={t`PASSWORD`}
+      placeholder={t`PASSWORD`}
+      type="password"
+      {...props}
+    />
+  )
+}
 
 /* *********************** AuthForm *************************** */
 
-export const SendingForm = (props) => <AuthForm {...props} />
+export function SendingForm(props) {
+  return <AuthForm {...props} />
+}
 
 /* *********************** AuthLink *************************** */
 
-export const NoAccountLink = (props) => (
-  <AuthLink {...props} label={t`ACCOUNT_NO_EXISTING`} />
-)
-export const ExistingAccountLink = (props) => (
-  <AuthLink {...props} label={t`ACCOUNT_EXISTING`} />
-)
+export function NoAccountLink(props) {
+  return <AuthLink {...props} label={t`ACCOUNT_NO_EXISTING`} />
+}
+export function ExistingAccountLink(props) {
+  return <AuthLink {...props} label={t`ACCOUNT_EXISTING`} />
+}
 
 /* *********************** AuthLoading *************************** */
 
-export const LoginLoading = (props) => (
-  <AuthLoading {...props} label={t`LOGIN_ONGOING`} />
-)
+export function LoginLoading(props) {
+  return <AuthLoading {...props} label={t`LOGIN_ONGOING`} />
+}
 
-export const SignupLoading = (props) => (
-  <AuthLoading {...props} label={t`SIGNUP_ONGOING`} />
-)
+export function SignupLoading(props) {
+  return <AuthLoading {...props} label={t`SIGNUP_ONGOING`} />
+}
 
 /* *********************** AuthWrapper *************************** */
 
-export const LoginWrapper = (props) => (
-  <AuthWrapper {...props} title={t`LOGIN`} />
-)
-export const SignupWrapper = (props) => (
-  <AuthWrapper {...props} title={t`SIGNUP`} />
-)
-export const RegistrationSentWrapper = (props) => (
-  <AuthWrapper {...props} title={t`SIGNUP_MAIL_SENT`} />
-)
+export function LoginWrapper(props) {
+  return <AuthWrapper {...props} title={t`LOGIN`} />
+}
+export function SignupWrapper(props) {
+  return <AuthWrapper {...props} title={t`SIGNUP`} />
+}
+export function RegistrationSentWrapper(props) {
+  return <AuthWrapper {...props} title={t`SIGNUP_MAIL_SENT`} />
+}

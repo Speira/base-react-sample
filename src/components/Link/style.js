@@ -17,7 +17,7 @@ const BaseLink = styled(Link).attrs((props) => {
     style.color = status ? theme.COLORS.STATIC.LIGHT : theme.COLORS.STATIC.DARK
     style.boxShadow = status
       ? `0px 0px 1px 1px ${theme.COLORS.STATIC.DARK} inset`
-      : `1px 1px 0px 0px ${theme.COLORS.STATIC.DARK}`
+      : `1px 1px 0px 0px ${theme.COLORS.STATIC.DARK}, -1px 0px 1px 1px${theme.COLORS.STATIC.LIGHT} `
     return { style }
   }
   return {

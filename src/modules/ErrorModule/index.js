@@ -6,12 +6,12 @@ import ErrorBoundary from './ErrorBoundary'
 const { SERVER } = constants.ERRORS
 
 /**
- * ErrorModule
+ * ErrorContainer
  * @desc :::
  *    Hook adapted function for connecting ErrorBoundary with useError context
  *
  */
-function ErrorModule(props) {
+export function ErrorContainer(props) {
   const { setError, hasError, logError } = useError()
   const handleSyncError = () =>
     setError({
@@ -28,4 +28,4 @@ function ErrorModule(props) {
 }
 export { default as NotFoundContainer } from './containers/NotFoundContainer'
 export { default as NotAllowedContainer } from './containers/NotAllowedContainer'
-export default ErrorModule
+export default () => null

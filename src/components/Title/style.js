@@ -8,7 +8,7 @@ import { getStatusColor } from '~utils/functions'
  * @component
  *
  */
-const TitleElement = (props) => {
+function TitleElement(props) {
   const { type, ...rest } = props
   let Title = (p) => <h1 {...p} /> // eslint-disable-line
   if (type === 'h2') Title = (p) => <h2 {...rest} /> // eslint-disable-line

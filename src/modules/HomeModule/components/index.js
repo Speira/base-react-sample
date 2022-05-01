@@ -8,13 +8,15 @@ const { STATUS } = constants
 
 /* ************************** HomeButton ********************** */
 
-export const DefaultButton = (props) => (
-  <HomeButton label={t`BUTTON`} status={STATUS.INFO} {...props} />
-)
+export function DefaultButton(props) {
+  return <HomeButton label={t`BUTTON`} status={STATUS.INFO} {...props} />
+}
 
-export const DangerButton = (props) => (
-  <HomeButton label={t`BUTTON_DANGER`} status={STATUS.DANGER} {...props} />
-)
+export function DangerButton(props) {
+  return (
+    <HomeButton label={t`BUTTON_DANGER`} status={STATUS.DANGER} {...props} />
+  )
+}
 
 /* ************************** HomeWrapper ********************** */
 

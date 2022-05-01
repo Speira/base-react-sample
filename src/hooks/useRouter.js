@@ -1,44 +1,46 @@
 import { useMemo } from 'react'
 import {
   useParams,
+  useNavigate,
   useLocation,
-  useHistory,
-  useRouteMatch,
+  useResolvedPath,
+  useMatch,
 } from 'react-router-dom'
 import queryString from 'query-string'
+
+import constants from '~utils/constants'
+
+const { PATHS } = constants
 
 /**
  * useRouter
  * @hook
+ *
+ * @param {Object}  obj
+ * @param {String}  obj.to
+ * @param {Boolean} obj.isStrictMatch
  * @desc ::
  *     create a single router object for convenience
- * @return Object
- *         {Function} Object.push
- *         {Function} Object.replace
- *         {String Object.pathname
- *         {Object} Object.query |
- *                      Merge params and parsed query string into
- *                      single query object so that they can be used
- *                      interchangeablely, ex :
- *                      '/:topic?sort=popular' -> { topic: 'react', sort: 'popular' }
- *         {Object} Object.history
- *         {Object} Object.location
- *         {Object} Object.match
  */
-export default function useRouter() {
-  const history = useHistory()
+export default function useRouter(obj = {}) {
+  const { to = '', isStrictMatch = false } = obj
   const location = useLocation()
-  const match = useRouteMatch()
+  const navigate = useNavigate()
   const params = useParams()
+  const resolved = useResolvedPath(to)
+  const referer = location.state?.from?.pathname || PATHS.DEFAULT
+  const isURLMatching = useMatch({
+    path: resolved.pathname,
+    end: isStrictMatch,
+  })
   return useMemo(() => {
     return {
-      history,
+      isURLMatching,
       location,
-      match,
+      navigate,
       pathname: location.pathname,
-      push: history.push,
       query: { ...queryString.parse(location.search), ...params },
-      replace: history.replace,
+      backToReferer: () => navigate(referer, { replace: true }),
     }
-  }, [history, location, match, params])
+  }, [location, navigate, referer, isURLMatching, params])
 }

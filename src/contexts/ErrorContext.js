@@ -13,22 +13,25 @@ const ErrorContext = React.createContext()
  */
 function ErrorProvider(props) {
   const [errorType, setErrorType] = React.useState(null)
-  const value = {
-    errorType,
-    hasError: errorType !== null,
-    isClientError: errorType === CLIENT,
-    isNotFoundError: errorType === NOT_FOUND,
-    isServerError: errorType === SERVER,
-    logError(error) {
-      console.error(error)
-    },
-    resetError() {
-      setErrorType(null)
-    },
-    setError({ type }) {
-      setErrorType(type)
-    },
-  }
+  const value = React.useMemo(
+    () => ({
+      errorType,
+      hasError: errorType !== null,
+      isClientError: errorType === CLIENT,
+      isNotFoundError: errorType === NOT_FOUND,
+      isServerError: errorType === SERVER,
+      logError(error) {
+        console.error(error)
+      },
+      resetError() {
+        setErrorType(null)
+      },
+      setError({ type }) {
+        setErrorType(type)
+      },
+    }),
+    [errorType],
+  )
 
   return <ErrorContext.Provider {...props} value={value} />
 }
@@ -50,54 +53,55 @@ export const useError = () => {
  * @return Component
  *
  */
-export const withAsyncErrorHandling = (Component) => (props) => {
-  const { setError, logError } = useError()
-  const safeFn = (fn) => (params) => {
-    try {
-      fn(params)
-    } catch (e) {
-      logError(e)
-      setError({ type: SERVER })
+export const withAsyncErrorHandling = (Component) =>
+  function HandledComponent(props) {
+    const { setError, logError } = useError()
+    const safeFn = (fn) => (params) => {
+      try {
+        fn(params)
+      } catch (e) {
+        logError(e)
+        setError({ type: SERVER })
+      }
     }
+    const adaptedProps = { ...props }
+    const eventsList = [
+      'onBlur',
+      'onChange',
+      'onClick',
+      'onContextMenu',
+      'onDoubleClick',
+      'onDrag',
+      'onDragEnd',
+      'onDragEnter',
+      'onDragExit',
+      'onDragLeave',
+      'onDragOver',
+      'onDragStart',
+      'onDrop',
+      'onFocus',
+      'onInput',
+      'onInvalid',
+      'onKeyDown',
+      'onKeyPress',
+      'onKeyUp',
+      'onMouseDown',
+      'onMouseEnter',
+      'onMouseLeave',
+      'onMouseMove',
+      'onMouseOut',
+      'onMouseOver',
+      'onMouseUp',
+      'onSelect',
+      'onSubmit',
+    ]
+    eventsList.forEach((e) => {
+      // eslint-disable-next-line react/destructuring-assignment
+      if (typeof props[e] === 'function') {
+        adaptedProps[e] = safeFn(props[e]) // eslint-disable-line react/destructuring-assignment
+      }
+    })
+    return <Component {...adaptedProps} />
   }
-  const adaptedProps = { ...props }
-  const eventsList = [
-    'onBlur',
-    'onChange',
-    'onClick',
-    'onContextMenu',
-    'onDoubleClick',
-    'onDrag',
-    'onDragEnd',
-    'onDragEnter',
-    'onDragExit',
-    'onDragLeave',
-    'onDragOver',
-    'onDragStart',
-    'onDrop',
-    'onFocus',
-    'onInput',
-    'onInvalid',
-    'onKeyDown',
-    'onKeyPress',
-    'onKeyUp',
-    'onMouseDown',
-    'onMouseEnter',
-    'onMouseLeave',
-    'onMouseMove',
-    'onMouseOut',
-    'onMouseOver',
-    'onMouseUp',
-    'onSelect',
-    'onSubmit',
-  ]
-  eventsList.forEach((e) => {
-    const handler = props[e]
-    if (typeof handler === 'function') {
-      adaptedProps[e] = safeFn(handler)
-    }
-  })
-  return <Component {...adaptedProps} />
-}
 
 export default ErrorProvider

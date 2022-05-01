@@ -25,13 +25,16 @@ function ThemeProvider(props) {
   const loadedThemeKey = localStorage.getItem(STORAGE_ITEM)
   const loadedTheme = loadedThemeKey && themes[loadedThemeKey]
   const [theme, setTheme] = React.useState(loadedTheme || defaultTheme)
-  const value = {
-    colors: theme.COLORS,
-    switchToDefault() {
-      setTheme(defaultTheme)
-      localStorage.setItem(STORAGE_ITEM, defaultThemeKey)
-    },
-  }
+  const value = React.useMemo(
+    () => ({
+      colors: theme.COLORS,
+      switchToDefault() {
+        setTheme(defaultTheme)
+        localStorage.setItem(STORAGE_ITEM, defaultThemeKey)
+      },
+    }),
+    [theme],
+  )
   return (
     <StyledThemeProvider theme={theme}>
       <ThemeContext.Provider {...props} value={value} />

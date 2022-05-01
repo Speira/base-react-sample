@@ -1,26 +1,4 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import FooterContainer from '~LayoutModule/containers/FooterContainer'
-import HeaderContainer from '~LayoutModule/containers/HeaderContainer'
-import BodyContainer from '~LayoutModule/containers/BodyContainer'
-
-/**
- * LayoutModule
- * @component
- *
- */
-function LayoutModule(props) {
-  const { children } = props
-  return (
-    <BodyContainer>
-      <HeaderContainer />
-      {children}
-      <FooterContainer />
-    </BodyContainer>
-  )
-}
-LayoutModule.propTypes = {
-  children: PropTypes.node.isRequired,
-}
-
-export default LayoutModule
+export { default as FooterContainer } from './containers/FooterContainer'
+export { default as HeaderContainer } from './containers/HeaderContainer'
+export { default as BodyContainer } from './containers/BodyContainer'
+export default () => null

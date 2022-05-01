@@ -10,71 +10,95 @@ const { HTML_WRAPPER_TAGS } = constants
 
 /* *********************** LayoutLink ************************* */
 
-export const HomeLink = (props) => (
-  <LayoutLink {...props} label={t`HOME`} boxed />
-)
+export function HomeLink(props) {
+  return <LayoutLink {...props} label={t`HOME`} boxed />
+}
 
-export const BrandLink = (props) => (
-  <LayoutLink {...props} label={t`HOME`} size="2em" />
-)
+export function BrandLink(props) {
+  return <LayoutLink {...props} label={t`HOME`} size="2em" />
+}
 
-export const LoginLink = (props) => (
-  <LayoutLink {...props} label={`${t`LOGIN`}/${t`SIGNUP`}`} boxed />
-)
+export function LoginLink(props) {
+  return <LayoutLink {...props} label={`${t`LOGIN`}/${t`SIGNUP`}`} boxed />
+}
 
-export const LogoutLink = (props) => (
-  <LayoutLink {...props} label={t`LOGOUT`} boxed />
-)
+export function LogoutLink(props) {
+  return <LayoutLink {...props} label={t`LOGOUT`} boxed />
+}
 
-export const ProfileLink = (props) => (
-  <LayoutLink {...props} label={t`PROFILE`} boxed />
-)
+export function ProfileLink(props) {
+  return <LayoutLink {...props} label={t`PROFILE`} boxed />
+}
 
-export const NoPageLink = (props) => (
-  <LayoutLink {...props} label={t`NO_EXISTENT_PAGE`} boxed />
-)
+export function NoPageLink(props) {
+  return <LayoutLink {...props} label={t`NO_EXISTENT_PAGE`} boxed />
+}
 
 /* *********************** LayoutWrapper *************************** */
 
-export const HeaderWrapper = (props) => (
-  <LayoutWrapper
-    style={{
-      alignItems: 'center',
-      display: 'flex',
-      height: '72px',
-      justifyContent: 'space-between',
-      padding: '0 1em',
-    }}
-    {...props}
-  />
-)
+export function HeaderWrapper(props) {
+  return (
+    <LayoutWrapper
+      secondary
+      style={{
+        alignItems: 'center',
+        boxShadow: '0px 1px 4px -2px',
+        display: 'flex',
+        height: '72px',
+        justifyContent: 'space-between',
+        padding: '0 1em',
+        xs: {
+          height: 'auto',
+          minHeight: '72px',
+        },
+      }}
+      {...props}
+    />
+  )
+}
 
-export const BodyWrapper = (props) => (
-  <LayoutWrapper
-    primary
-    style={{
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-      minHeight: '100vh',
-      width: '100%',
-    }}
-    {...props}
-  />
-)
+export function BodyWrapper(props) {
+  return (
+    <LayoutWrapper
+      primary
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        minHeight: '100vh',
+        width: '100%',
+        xs: {
+          fontSize: '1.4em',
+        },
+      }}
+      {...props}
+    />
+  )
+}
 
-export const FooterWrapper = (props) => (
-  <LayoutWrapper
-    secondary
-    style={{ height: '100px', width: '100%' }}
-    {...props}
-  />
-)
+export function FooterWrapper(props) {
+  return (
+    <LayoutWrapper
+      secondary
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        boxShadow: '0px -1px 4px -2px',
+        height: '100px',
+        width: '100%',
+      }}
+      {...props}
+    />
+  )
+}
 
-export const NavWrapper = (props) => (
-  <LayoutWrapper
-    tag={HTML_WRAPPER_TAGS.NAV}
-    style={{ display: 'flex' }}
-    {...props}
-  />
-)
+export function NavWrapper(props) {
+  return (
+    <LayoutWrapper
+      tag={HTML_WRAPPER_TAGS.NAV}
+      style={{ display: 'flex' }}
+      {...props}
+    />
+  )
+}

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
  * @component
  *
  */
-const CollapsedBox = (props) => {
+function CollapsedBox(props) {
   const { collapsedMode, isSelecting, reset } = props
 
   const initialSelection = window.getSelection()
