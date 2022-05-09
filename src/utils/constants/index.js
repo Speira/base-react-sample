@@ -1,3 +1,4 @@
+import styled from 'styled-components'
 import I18N_FRENCH from './i18n/french.json'
 
 /**
@@ -22,14 +23,6 @@ export default {
     SEMI_BIG: '20px',
     BIG: '24px',
     VERY_BIG: '28px',
-  },
-  HTML_WRAPPER_TAGS: {
-    ARTICLE: 'article',
-    ASIDE: 'aside',
-    DIV: 'div',
-    FORM: 'form',
-    SECTION: 'section',
-    NAV: 'nav',
   },
   KEYBOARD: {
     KEYS: {
@@ -59,6 +52,12 @@ export default {
   STORAGE_ITEMS: {
     LANGUAGE: 'languageContextStorage',
     THEME: 'themeContextStorage',
+  },
+  STYLED: {
+    ...Object.keys(styled).reduce(
+      (acc, html) => ({ ...acc, [html]: styled[html]`` }),
+      {},
+    ),
   },
   THEMES: {
     DEFAULT: {

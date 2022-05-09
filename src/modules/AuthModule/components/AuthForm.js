@@ -1,10 +1,7 @@
 import React from 'react'
-import constants from '~utils/constants'
 import PropTypes from 'prop-types'
 
 import Wrapper from '~components/Wrapper'
-
-const { HTML_WRAPPER_TAGS } = constants
 
 /**
  * AuthForm
@@ -16,7 +13,7 @@ function AuthForm(props) {
   return (
     <Wrapper
       {...rest}
-      tag={HTML_WRAPPER_TAGS.FORM}
+      tag="form"
       style={{
         display: 'flex',
         flexDirection: 'column',

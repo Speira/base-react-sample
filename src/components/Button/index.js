@@ -32,25 +32,21 @@ Button.defaultProps = {
   children: undefined,
   className: '',
   disabled: false,
-  height: '',
   onClick: () => null,
   rounded: false,
   status: STATUS.INFO,
   type: 'button',
   unboxed: false,
-  width: '',
 }
 Button.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   disabled: PropTypes.bool,
-  height: PropTypes.string,
   onClick: PropTypes.func,
   rounded: PropTypes.bool,
   status: PropTypes.oneOf(Object.values(STATUS)),
   type: PropTypes.string,
   unboxed: PropTypes.bool,
-  width: PropTypes.string,
 }
 
 export default withAsyncErrorHandling(Button)

@@ -1,18 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { getStatusColor } from '~utils/functions'
 import constants from '~utils/constants'
 
-const { HTML_WRAPPER_TAGS } = constants
-const { ARTICLE, ASIDE, FORM, NAV, SECTION } = HTML_WRAPPER_TAGS
-
-const Article = styled.article``
-const Aside = styled.aside``
-const Div = styled.div``
-const Form = styled.form``
-const Nav = styled.nav``
-const Section = styled.section``
+const { STYLED } = constants
 
 /**
  * DomElement
@@ -23,18 +14,10 @@ const Section = styled.section``
  */
 function DomElement(props) {
   const { tag, ...rest } = props
-  let Wrapper = Div
-  if (tag === ARTICLE) Wrapper = Article
-  if (tag === ASIDE) Wrapper = Aside
-  if (tag === FORM) Wrapper = Form
-  if (tag === NAV) Wrapper = Nav
-  if (tag === SECTION) Wrapper = Section
+  const Wrapper = STYLED[tag] || STYLED.div
   return <Wrapper {...rest} />
 }
-DomElement.defaultProps = { tag: '' }
-DomElement.propTypes = {
-  tag: PropTypes.oneOf(Object.values(HTML_WRAPPER_TAGS)),
-}
+DomElement.propTypes = { tag: PropTypes.string.isRequired }
 
 /**
  * BaseWrapper
@@ -42,13 +25,8 @@ DomElement.propTypes = {
  *
  */
 const BaseWrapper = styled(DomElement).attrs((props) => {
-  const { design, status, theme } = props
-  const style = { ...design.realtime }
-  if (status) {
-    style.backgroundColor =
-      getStatusColor({ theme, status, alpha: 0.2 }) || 'transparent'
-  }
-  return { style }
+  const { design } = props
+  return { style: { ...design.realtime } }
 })`
   ${({ design }) => design.base}
   &.primary {

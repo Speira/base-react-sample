@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Wrapper from '~components/Wrapper'
 import { getStatusColor } from '~utils/functions'
 
 /**
@@ -6,19 +7,19 @@ import { getStatusColor } from '~utils/functions'
  * @component
  *
  */
-const BaseButton = styled.button.attrs((props) => {
+const BaseButton = styled(Wrapper).attrs((props) => {
   const { status, theme } = props
   const color = getStatusColor({ status, theme })
   const backgroundColor = getStatusColor({ status, theme, alpha: 0.12 })
   return {
+    tag: 'button',
+    type: 'button',
     style: {
       backgroundColor,
       color,
     },
   }
 })`
-  width: ${({ width }) => width || 'auto'};
-  height: ${({ height }) => height || 'auto'};
   border: none;
   border-radius: 4px;
   box-shadow: 1px 1px 2px -1px ${({ theme }) => theme.COLORS.STATIC.DARK},

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import constants from '~utils/constants'
 
-import BaseAlert from './style'
+import BaseAlert, { AlertCloseBtn } from './style'
 
 const { STATUS } = constants
 
@@ -22,11 +22,12 @@ function Alert(props) {
   React.useEffect(() => {
     toggleOpen(isOpen)
   }, [isOpen, message, status])
+  const activeState = isAlertOpen ? 1 : 0
   return (
-    <BaseAlert {...rest} status={status} active={isAlertOpen ? 1 : 0}>
-      <button type="button" className="closebtn" onClick={closeAlert}>
+    <BaseAlert tag="section" {...rest} status={status} active={activeState}>
+      <AlertCloseBtn active={activeState} onClick={closeAlert}>
         &times;
-      </button>
+      </AlertCloseBtn>
       {title && <strong>{title}</strong>}
       {Array.isArray(message) ? (
         <ul>
@@ -45,6 +46,7 @@ Alert.defaultProps = {
   onClose: () => null,
   title: '',
   status: STATUS.DANGER,
+  style: {},
 }
 Alert.propTypes = {
   /**
@@ -58,6 +60,9 @@ Alert.propTypes = {
   onClose: PropTypes.func,
   title: PropTypes.string,
   status: PropTypes.oneOf(Object.values(STATUS)),
+  style: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  ),
 }
 
 export default Alert

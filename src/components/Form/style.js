@@ -1,11 +1,12 @@
 import styled from 'styled-components'
+import Wrapper from '~components/Wrapper'
 
 /**
  * BaseForm
  * @component
  *
  */
-const BaseForm = styled.form`
+const BaseForm = styled(Wrapper)`
   width: ${({ width }) => width || 'auto'};
   padding: 1.5em 3%;
   transition: height 1s;
@@ -20,18 +21,6 @@ const BaseForm = styled.form`
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  &.primary {
-    background-color: ${({ theme }) => theme.COLORS.STATIC.PRIMARY};
-  }
-  &.secondary {
-    background-color: ${({ theme }) => theme.COLORS.STATIC.SECONDARY};
-  }
-  &.tertiary {
-    background-color: ${({ theme }) => theme.COLORS.STATIC.TERTIARY};
-  }
-  &.quaternary {
-    background-color: ${({ theme }) => theme.COLORS.STATIC.QUATERNARY};
   }
 `
 

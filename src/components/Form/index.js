@@ -29,7 +29,7 @@ function Form(props) {
     tertiary,
   })}`
   return (
-    <BaseForm {...rest} className={className}>
+    <BaseForm {...rest} tag="form" className={className}>
       {children}
     </BaseForm>
   )

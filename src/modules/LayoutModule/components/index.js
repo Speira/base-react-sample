@@ -1,12 +1,9 @@
 import React from 'react'
 
 import { translate as t } from '~utils/functions'
-import constants from '~utils/constants'
 
 import LayoutLink from './LayoutLink'
 import LayoutWrapper from './LayoutWrapper'
-
-const { HTML_WRAPPER_TAGS } = constants
 
 /* *********************** LayoutLink ************************* */
 
@@ -94,11 +91,5 @@ export function FooterWrapper(props) {
 }
 
 export function NavWrapper(props) {
-  return (
-    <LayoutWrapper
-      tag={HTML_WRAPPER_TAGS.NAV}
-      style={{ display: 'flex' }}
-      {...props}
-    />
-  )
+  return <LayoutWrapper tag="nav" style={{ display: 'flex' }} {...props} />
 }

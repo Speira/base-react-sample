@@ -4,7 +4,7 @@ import constants from '~utils/constants'
 import { getActiveKeys } from '~utils/functions'
 import BaseWrapper from './style'
 
-const { HTML_WRAPPER_TAGS, STATUS } = constants
+const { STATUS } = constants
 
 /**
  * Wrapper
@@ -19,8 +19,7 @@ const { HTML_WRAPPER_TAGS, STATUS } = constants
  *    string property. basic css prop can be passed directly or through "base"
  *    object in the style prop.
  *
- *    depending on the tag prop, it can provide an adapted HTML element defined
- *    in HTML_WRAPPER_TAGS constants
+ *    depending on the tag prop, it can provide an adapted HTML element
  *
  */
 function Wrapper(props) {
@@ -88,8 +87,8 @@ Wrapper.defaultProps = {
   quaternary: false,
   secondary: false,
   status: '',
-  style: { default: {}, realtime: {}, xs: {}, sm: {}, md: {}, lg: {}, xl: {} },
-  tag: HTML_WRAPPER_TAGS.DIV,
+  style: { base: {}, realtime: {}, xs: {}, sm: {}, md: {}, lg: {}, xl: {} },
+  tag: 'div',
   tertiary: false,
 }
 
@@ -141,7 +140,7 @@ Wrapper.propTypes = {
     xl: PropTypes.objectOf(PropTypes.string),
   }),
   /** tag: HMTL tag, call the right html element, default is div */
-  tag: PropTypes.oneOf(Object.values(HTML_WRAPPER_TAGS)),
+  tag: PropTypes.string,
   /** tertiary: theme static color (background) */
   tertiary: PropTypes.bool,
 }

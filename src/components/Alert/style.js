@@ -1,48 +1,67 @@
 import styled from 'styled-components'
+import Wrapper from '~components/Wrapper'
 import { getStatusColor } from '~utils/functions'
+
+/**
+ * AlertCloseBtn
+ * @component
+ *
+ */
+export const AlertCloseBtn = styled(Wrapper).attrs((props) => {
+  const { active, style, theme } = props
+  return {
+    type: 'button',
+    tag: 'button',
+    style: {
+      ...style,
+      cursor: 'pointer',
+      float: 'right',
+      backgroundColor: 'transparent',
+      border: `1px solid ${theme.COLORS.STATIC.LIGHT}`,
+      color: 'currentcolor',
+      boxShadow: '1px 1px 1px 1px currentcolor',
+      borderRadius: '3px',
+      realtime: {
+        display: active ? 'block' : 'none',
+      },
+    },
+  }
+})`
+  &:hover {
+    opacity: 0.5;
+  }
+`
 
 /**
  * BaseAlert
  * @component
  *
  */
-const BaseAlert = styled.div.attrs((props) => {
-  const { theme, status, active } = props
+const BaseAlert = styled(Wrapper).attrs((props) => {
+  const { active, status, theme } = props
   const color = getStatusColor({ theme, status })
   const bgColor = getStatusColor({ theme, status, alpha: 0.17 })
   return {
     style: {
-      backgroundColor: bgColor,
-      boxShadow: `2px 2px 2px -1px ${color}`,
-      color,
-      margin: active ? '0.5em 0 1em' : '0',
-      padding: active ? '0.9em' : '0',
-      transform: active ? 'scale(1,1)' : 'scale(1,0)',
-      display: active ? 'block' : 'none',
+      realtime: {
+        backgroundColor: bgColor,
+        boxShadow: `2px 2px 2px -1px ${color}`,
+        color,
+        margin: active ? '0.5em 0 1em' : '0em',
+        padding: active ? '0.9em' : '0em',
+        transform: active ? 'scale(1,1)' : 'scale(1,0)',
+      },
     },
   }
 })`
   border-radius: 3px;
-  color: ${({ theme }) => theme.COLORS.STATIC.DARK};
   text-shadow: 0px 0px 0.5px ${({ theme }) => theme.COLORS.STATIC.LIGHT};
-  height: auto;
   font-family: arial;
-  font-size: 0.9em;
+  font-size: 1em;
   font-weight: 600;
   position: relative;
-  transition: all 0.18s ease-in-out;
+  transition: all 0.3s ease-in-out;
   transform-origin: top;
-  .closebtn {
-    cursor: pointer;
-    float: right;
-    background-color: transparent;
-    border: 1px solid ${({ theme }) => theme.COLORS.STATIC.LIGHT};
-    box-shadow: 1px 1px 1px 1px ${({ theme }) => theme.COLORS.STATIC.DARK};
-    border-radius: 3px;
-  }
-  .closebtn:hover {
-    opacity: 0.5;
-  }
   strong {
     display: block;
     margin-bottom: 0.5em;
