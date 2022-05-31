@@ -12,25 +12,25 @@ const { STATUS } = constants
  *
  * @desc
  *    Wrapper is the only component that has not limit for customization.
- *    It also supports media queries in the style prop.
+ *    It also supports media queries in the customStyle prop.
  *
- *    style prop can have any css prop (in camelCase) plus media queries when
+ *    Style prop can have any css prop (in camelCase) plus media queries when
  *    it receives an media query object (xs, ..,lg) instead of a css
- *    string property. basic css prop can be passed directly or through "base"
- *    object in the style prop.
+ *    string property.
  *
- *    depending on the tag prop, it can provide an adapted HTML element
+ *    Depending on the tag prop, it provides a corresponding HTML element
  *
  */
 function Wrapper(props) {
   const {
     children,
     className: initialClassName,
+    customStyle,
     onKeyPress,
     primary,
     quaternary,
     secondary,
-    style: initialStyle,
+    style,
     tag,
     tertiary,
     ...rest
@@ -43,13 +43,11 @@ function Wrapper(props) {
     lg = {},
     xl = {},
     base = {},
-    realtime = {},
-    ...restStyle
-  } = initialStyle
+    ...restCustomStyle
+  } = customStyle
 
   const design = {
-    base: { ...restStyle, ...base },
-    realtime,
+    base: { ...restCustomStyle, ...base },
     xs,
     sm,
     md,
@@ -73,6 +71,7 @@ function Wrapper(props) {
       {...eventHandlers}
       className={className}
       design={design}
+      style={style}
       tag={tag}>
       {children}
     </BaseWrapper>
@@ -82,12 +81,20 @@ function Wrapper(props) {
 Wrapper.defaultProps = {
   children: undefined,
   className: '',
+  customStyle: {
+    base: {},
+    xs: {},
+    sm: {},
+    md: {},
+    lg: {},
+    xl: {},
+  },
   onKeyPress: null,
   primary: false,
   quaternary: false,
   secondary: false,
   status: '',
-  style: { base: {}, realtime: {}, xs: {}, sm: {}, md: {}, lg: {}, xl: {} },
+  style: {},
   tag: 'div',
   tertiary: false,
 }
@@ -97,27 +104,12 @@ Wrapper.propTypes = {
   children: PropTypes.node,
   /** HTML class */
   className: PropTypes.string,
-  onKeyPress: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  /** primary: theme static color (background) */
-  primary: PropTypes.bool,
-  /** quaternary: theme static color (background) */
-  quaternary: PropTypes.bool,
-  /** secondary: theme static color (background) */
-  secondary: PropTypes.bool,
-  /** status: theme dynamic color (background), it overwrittes theme static
-   * color if indicated
-   */
-  status: PropTypes.oneOf([...Object.values(STATUS), '']),
   /**
-   * style:
+   * customStyle:
    *    Style for the component including media queries,
    *    - style.default must be filled, then the style.default is overwritten
    *    by the xs, sm, md, lg or xl when the media width matches the
    *    corresponding value..
-   *
-   *    - style.realtime is an inline style, it is used for performance when
-   *      a css data changes often.
-   *
    *    ex:
    *      style={{
    *        display: 'flex',
@@ -130,15 +122,26 @@ Wrapper.propTypes = {
    *        }
    *      }}
    */
-  style: PropTypes.shape({
+  customStyle: PropTypes.shape({
     base: PropTypes.objectOf(PropTypes.string),
-    realtime: PropTypes.objectOf(PropTypes.string),
     xs: PropTypes.objectOf(PropTypes.string),
     sm: PropTypes.objectOf(PropTypes.string),
     md: PropTypes.objectOf(PropTypes.string),
     lg: PropTypes.objectOf(PropTypes.string),
     xl: PropTypes.objectOf(PropTypes.string),
   }),
+  onKeyPress: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  /** primary: theme static color (background) */
+  primary: PropTypes.bool,
+  /** quaternary: theme static color (background) */
+  quaternary: PropTypes.bool,
+  /** secondary: theme static color (background) */
+  secondary: PropTypes.bool,
+  /** status: theme dynamic color (background), it overwrittes theme static
+   * color if indicated
+   */
+  status: PropTypes.oneOf([...Object.values(STATUS), '']),
+  style: PropTypes.objectOf(PropTypes.string),
   /** tag: HMTL tag, call the right html element, default is div */
   tag: PropTypes.string,
   /** tertiary: theme static color (background) */

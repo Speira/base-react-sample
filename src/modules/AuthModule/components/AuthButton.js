@@ -15,7 +15,7 @@ const { STATUS } = constants
 function AuthButton(props) {
   const { label, onClick, status } = props
   return (
-    <Wrapper style={{ textAlign: 'center' }}>
+    <Wrapper customStyle={{ textAlign: 'center' }}>
       <Button status={status} onClick={onClick}>
         {label}
       </Button>

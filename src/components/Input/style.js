@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { getStatusColor } from '~utils/functions'
 import constants from '~utils/constants'
+import Wrapper from '~components/Wrapper'
 
 const { STATUS } = constants
 
@@ -9,7 +10,7 @@ const { STATUS } = constants
  * @component
  *
  */
-const BaseInput = styled.input.attrs((props) => {
+const BaseInput = styled(Wrapper).attrs((props) => {
   const { status, theme, ...rest } = props
   const style = {}
   if (status) {
@@ -19,6 +20,7 @@ const BaseInput = styled.input.attrs((props) => {
   }
   return {
     ...rest,
+    tag: 'input',
     style,
   }
 })`

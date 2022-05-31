@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Wrapper from '~components/Wrapper'
 import { getStatusColor } from '~utils/functions'
 
 /**
@@ -7,7 +8,7 @@ import { getStatusColor } from '~utils/functions'
  * @component
  *
  */
-export const DropdownButton = styled.button.attrs((props) => {
+export const DropdownButton = styled(Wrapper).attrs((props) => {
   const { status, theme } = props
   const style = {}
   if (status) {
@@ -15,6 +16,7 @@ export const DropdownButton = styled.button.attrs((props) => {
     style.backgroundColor = color
   }
   return {
+    tag: 'button',
     type: 'button',
     style,
   }
@@ -24,18 +26,6 @@ export const DropdownButton = styled.button.attrs((props) => {
   font-size: 1em;
   border: none;
   cursor: pointer;
-  &.primary {
-    background-color: ${({ theme }) => theme.COLORS.STATIC.PRIMARY};
-  }
-  &.secondary {
-    background-color: ${({ theme }) => theme.COLORS.STATIC.SECONDARY};
-  }
-  &.tertiary {
-    background-color: ${({ theme }) => theme.COLORS.STATIC.TERTIARY};
-  }
-  &.quaternary {
-    background-color: ${({ theme }) => theme.COLORS.STATIC.QUATERNARY};
-  }
   &:hover {
     opacity: 0.8;
   }
@@ -58,7 +48,7 @@ export const DropdownButton = styled.button.attrs((props) => {
  * @component
  *
  */
-export const DropdownContent = styled.div.attrs((props) => {
+export const DropdownContent = styled(Wrapper).attrs((props) => {
   const { opened } = props
   return {
     style: {
@@ -88,27 +78,6 @@ export const DropdownContent = styled.div.attrs((props) => {
   }
   .item:hover {
     background-color: ${({ theme }) => theme.COLORS.STATIC.DARK};
-  }
-
-  &.primary {
-    .item:hover {
-      background-color: ${({ theme }) => theme.COLORS.STATIC.PRIMARY};
-    }
-  }
-  &.secondary {
-    .item:hover {
-      background-color: ${({ theme }) => theme.COLORS.STATIC.SECONDARY};
-    }
-  }
-  &.tertiary {
-    .item:hover {
-      background-color: ${({ theme }) => theme.COLORS.STATIC.TERTIARY};
-    }
-  }
-  &.quaternary {
-    .item:hover {
-      background-color: ${({ theme }) => theme.COLORS.STATIC.QUATERNARY};
-    }
   }
 `
 

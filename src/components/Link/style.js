@@ -1,30 +1,30 @@
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { getStatusColor } from '~utils/functions'
+import Wrapper from '~components/Wrapper'
 
 /**
  * BaseLink
  * @component
  *
  */
-const BaseLink = styled(Link).attrs((props) => {
+const BaseLink = styled(Wrapper).attrs((props) => {
   const { className, status, theme } = props
+  const attrs = { tag: 'link', style: {} }
   if (className.includes('boxed')) {
-    const style = {}
     if (status) {
-      style.backgroundColor = getStatusColor({ theme, status })
+      attrs.style.backgroundColor = getStatusColor({ theme, status })
     }
-    style.color = status ? theme.COLORS.STATIC.LIGHT : theme.COLORS.STATIC.DARK
-    style.boxShadow = status
+    attrs.style.color = status
+      ? theme.COLORS.STATIC.LIGHT
+      : theme.COLORS.STATIC.DARK
+    attrs.style.boxShadow = status
       ? `0px 0px 1px 1px ${theme.COLORS.STATIC.DARK} inset`
-      : `1px 1px 0px 0px ${theme.COLORS.STATIC.DARK}, -1px 0px 1px 1px${theme.COLORS.STATIC.LIGHT} `
-    return { style }
+      : `1px 1px 0px 0px ${theme.COLORS.STATIC.DARK}, 
+        -1px 0px 1px 1px${theme.COLORS.STATIC.LIGHT} `
+    return attrs
   }
-  return {
-    style: {
-      color: theme.COLORS.STATIC.DARK,
-    },
-  }
+  attrs.style.color = theme.COLORS.STATIC.DARK
+  return attrs
 })`
   cursor: pointer;
   display: inline-block;

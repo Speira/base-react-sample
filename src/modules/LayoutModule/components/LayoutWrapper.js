@@ -10,7 +10,7 @@ import Wrapper from '~components/Wrapper'
 function LayoutWrapper(props) {
   const { children, style, ...rest } = props
   return (
-    <Wrapper style={{ ...style }} {...rest}>
+    <Wrapper customStyle={{ ...style }} {...rest}>
       {children}
     </Wrapper>
   )

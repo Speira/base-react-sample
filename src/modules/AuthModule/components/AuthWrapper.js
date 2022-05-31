@@ -16,7 +16,7 @@ function AuthWrapper(props) {
   return (
     <Wrapper
       secondary
-      style={{
+      customStyle={{
         borderRadius: '4px',
         boxShadow: `2px -2px 4px -2px ${colors.STATIC.DARK}`,
         display: 'flex',

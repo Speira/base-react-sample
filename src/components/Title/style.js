@@ -1,32 +1,17 @@
-import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { getStatusColor } from '~utils/functions'
-
-/**
- * TitleElement
- * @component
- *
- */
-function TitleElement(props) {
-  const { type, ...rest } = props
-  let Title = (p) => <h1 {...p} /> // eslint-disable-line
-  if (type === 'h2') Title = (p) => <h2 {...rest} /> // eslint-disable-line
-  if (type === 'h3') Title = (p) => <h3 {...rest} /> // eslint-disable-line
-  if (type === 'h4') Title = (p) => <h4 {...rest} /> // eslint-disable-line
-  return <Title {...rest} /> // eslint-disable-line
-}
-TitleElement.propTypes = { type: PropTypes.string.isRequired }
+import Wrapper from '~components/Wrapper'
 
 /**
  * BaseTitle
  * @component
  *
  */
-const BaseTitle = styled(TitleElement).attrs((props) => {
-  const { style = {}, status, theme } = props
+const BaseTitle = styled(Wrapper).attrs((props) => {
+  const { style = {}, status, theme, type } = props
   if (status) style.color = getStatusColor({ theme, status })
   return {
+    tag: type,
     style,
   }
 })`

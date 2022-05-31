@@ -1,13 +1,17 @@
-export default () => null
+/**
+ * testFunction
+ * @params {ANY} param
+ */
+export default function testFunction(param = null) {
+  return param
+}
 
-export {
-  DefaultAlert,
-  DefaultTheme,
-  DefaultUser,
-  createAlert,
-  createUser,
-} from './constructors'
-export { handleEnterPress, adaptBoolProps } from './DOMFunctions'
-export { checkEmptyObject, getActiveKeys } from './JSFunctions'
-export { checkAccess, translate } from './businessFunctions'
-export { getStatusColor, getThemeColor } from './styleFunctions'
+export { default as DefaultAlert, createAlert } from './DefaultAlert'
+export { default as DefaultUser, createUser } from './DefaultUser'
+export { default as adaptBoolProps } from './adaptBoolProps'
+export { default as checkAccess } from './checkAccess'
+export { default as checkEmptyObject } from './checkEmptyObject'
+export { default as getActiveKeys } from './getActiveKeys'
+export { default as getStatusColor } from './getStatusColor'
+export { default as handleEnterPress } from './handleEnterPress'
+export { default as translate } from './translate'

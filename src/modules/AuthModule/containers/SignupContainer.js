@@ -43,10 +43,12 @@ function SignupContainer() {
    */
   const signUp = () => {
     const tempUser = new DefaultUser(inputs)
-    const authErrorsList = tempUser.getErrors()
-    if (authErrorsList.length) {
-      return setAlert({ message: authErrorsList })
-    }
+    const error = tempUser.getError()
+    const errors = []
+    if (error.username.missing) errors.push(t`USERNAME_MISSING`)
+    if (error.password.missing) errors.push(t`PASSWORD_MISSING`)
+    if (error.password.length) errors.push(t`PASSWORD_LACKS_CHARACTERS`)
+    if (errors.length) return setAlert({ message: errors })
     toggleLoading(true)
     return sendRequest(tempUser)
       .then((data) => {

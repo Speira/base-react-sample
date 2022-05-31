@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Wrapper from '~components/Wrapper'
 import { getStatusColor } from '~utils/functions'
 
 /**
@@ -6,7 +7,7 @@ import { getStatusColor } from '~utils/functions'
  * @component
  *
  */
-const BaseTableRowItem = styled.div.attrs((props) => {
+const BaseTableRowItem = styled(Wrapper).attrs((props) => {
   const { status, theme } = props
   const style = {}
   if (status) {

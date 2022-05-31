@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import constants from '~utils/constants'
 
@@ -14,7 +15,9 @@ const { STYLED } = constants
  */
 function DomElement(props) {
   const { tag, ...rest } = props
-  const Wrapper = STYLED[tag] || STYLED.div
+  let Wrapper = null
+  if (tag === 'link') Wrapper = Link
+  else Wrapper = STYLED[tag] || STYLED.div
   return <Wrapper {...rest} />
 }
 DomElement.propTypes = { tag: PropTypes.string.isRequired }
@@ -24,10 +27,7 @@ DomElement.propTypes = { tag: PropTypes.string.isRequired }
  * @component
  *
  */
-const BaseWrapper = styled(DomElement).attrs((props) => {
-  const { design } = props
-  return { style: { ...design.realtime } }
-})`
+const BaseWrapper = styled(DomElement)`
   ${({ design }) => design.base}
   &.primary {
     background-color: ${({ theme }) => theme.COLORS.STATIC.PRIMARY};

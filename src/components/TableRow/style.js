@@ -1,11 +1,12 @@
 import styled from 'styled-components'
+import Wrapper from '~components/Wrapper'
 
 /**
  * BaseTableRow
  * @component
  *
  */
-const BaseTableRow = styled.div.attrs((props) => {
+const BaseTableRow = styled(Wrapper).attrs((props) => {
   const { scrolltop, theme } = props
   const attrs = {}
   const headScrollingStyle = {

@@ -6,7 +6,9 @@ import Wrapper from '~components/Wrapper'
  * @component
  *
  */
-const BaseForm = styled(Wrapper)`
+const BaseForm = styled(Wrapper).attrs(() => {
+  return { tag: 'form' }
+})`
   width: ${({ width }) => width || 'auto'};
   padding: 1.5em 3%;
   transition: height 1s;

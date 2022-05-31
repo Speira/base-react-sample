@@ -1,15 +1,17 @@
 import styled from 'styled-components'
+import Wrapper from '~components/Wrapper'
 
 /**
  * BaseDraggableArea
  * @component
  *
  */
-const BaseDraggableArea = styled.div.attrs((props) => {
+const BaseDraggableArea = styled(Wrapper).attrs((props) => {
   const { dragging, style: initialStyle = {}, theme } = props
   const style = { ...initialStyle }
   if (dragging) style.outline = `2px solid ${theme.COLORS.STATIC.DARK}`
   return {
+    tag: 'div',
     style,
   }
 })`

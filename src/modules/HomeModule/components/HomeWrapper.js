@@ -12,7 +12,7 @@ function HomeWrapper(props) {
   return (
     <Wrapper
       {...rest}
-      style={{
+      customStyle={{
         padding: '3%',
         display: 'flex',
         flexDirection: 'column',

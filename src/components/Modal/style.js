@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components'
+import Wrapper from '~components/Wrapper'
 
 const animatetop = keyframes`
   from {top: -300px; opacity: 0}
@@ -22,7 +23,7 @@ const animeButton = keyframes`
 
 `
 
-const BaseModal = styled.div.attrs((props) => {
+const BaseModal = styled(Wrapper).attrs((props) => {
   const { visible } = props
   const style = {}
   style.display = visible ? 'block' : 'none'

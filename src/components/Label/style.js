@@ -1,5 +1,13 @@
 import styled from 'styled-components'
+import Wrapper from '~components/Wrapper'
 
-const BaseLabel = styled.label``
+/**
+ * BaseLabel
+ * @component
+ *
+ */
+const BaseLabel = styled(Wrapper).attrs(() => ({
+  tag: 'label',
+}))``
 
 export default BaseLabel

@@ -14,7 +14,7 @@ function AuthForm(props) {
     <Wrapper
       {...rest}
       tag="form"
-      style={{
+      customStyle={{
         display: 'flex',
         flexDirection: 'column',
         gridRowGap: '1em',

@@ -1,11 +1,12 @@
 import styled from 'styled-components'
+import Wrapper from '~components/Wrapper'
 
 /**
  * BaseTable
  * @component
  *
  */
-const BaseTable = styled.div`
+const BaseTable = styled(Wrapper)`
   border-radius: 4px;
   border: 2px solid ${({ theme }) => theme.COLORS.STATIC.PRIMARY};
   box-shadow: 0 0 12px -3px ${({ theme }) => theme.COLORS.DYNAMIC.TERTIARY} inset;

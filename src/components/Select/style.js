@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Wrapper from '~components/Wrapper'
 import { getStatusColor } from '~utils/functions'
 
 /**
@@ -6,12 +7,13 @@ import { getStatusColor } from '~utils/functions'
  * @component
  *
  */
-const BaseSelect = styled.select.attrs((props) => {
+const BaseSelect = styled(Wrapper).attrs((props) => {
   const { status, theme } = props
   const color = getStatusColor({ theme, status })
   const style = {}
   if (status) style.border = `1px solid ${color}`
   return {
+    tag: 'select',
     style,
   }
 })`
@@ -27,18 +29,6 @@ const BaseSelect = styled.select.attrs((props) => {
   font-size: 1em;
   box-shadow: 1px 1px 2px 0px ${({ theme }) => theme.COLORS.STATIC.DARK};
   cursor: pointer;
-  &.primary {
-    background-color: ${({ theme }) => theme.COLORS.STATIC.PRIMARY};
-  }
-  &.secondary {
-    background-color: ${({ theme }) => theme.COLORS.STATIC.SECONDARY};
-  }
-  &.tertiary {
-    background-color: ${({ theme }) => theme.COLORS.STATIC.TERTIARY};
-  }
-  &.quaternary {
-    background-color: ${({ theme }) => theme.COLORS.STATIC.QUATERNARY};
-  }
 `
 
 export default BaseSelect

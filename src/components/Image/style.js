@@ -1,6 +1,16 @@
 import styled from 'styled-components'
+import Wrapper from '~components/Wrapper'
 
-const BaseImage = styled.img`
+/**
+ * BaseImage
+ * @component
+ *
+ */
+const BaseImage = styled(Wrapper).attrs(() => {
+  return {
+    tag: 'img',
+  }
+})`
   width: ${({ width }) => width || 'auto'};
 `
 

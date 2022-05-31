@@ -8,25 +8,22 @@ import { getStatusColor } from '~utils/functions'
  *
  */
 export const AlertCloseBtn = styled(Wrapper).attrs((props) => {
-  const { active, style, theme } = props
+  const { active } = props
   return {
     type: 'button',
     tag: 'button',
     style: {
-      ...style,
-      cursor: 'pointer',
-      float: 'right',
-      backgroundColor: 'transparent',
-      border: `1px solid ${theme.COLORS.STATIC.LIGHT}`,
-      color: 'currentcolor',
-      boxShadow: '1px 1px 1px 1px currentcolor',
-      borderRadius: '3px',
-      realtime: {
-        display: active ? 'block' : 'none',
-      },
+      display: active ? 'block' : 'none',
     },
   }
 })`
+  cursor: pointer;
+  float: right;
+  background-color: transparent;
+  border: 1px solid ${({ theme }) => theme.COLORS.STATIC.LIGHT};
+  color: currentcolor;
+  box-shadow: 1px 1px 1px 1px currentcolor;
+  border-radius: 3px;
   &:hover {
     opacity: 0.5;
   }
@@ -42,15 +39,14 @@ const BaseAlert = styled(Wrapper).attrs((props) => {
   const color = getStatusColor({ theme, status })
   const bgColor = getStatusColor({ theme, status, alpha: 0.17 })
   return {
+    tag: 'section',
     style: {
-      realtime: {
-        backgroundColor: bgColor,
-        boxShadow: `2px 2px 2px -1px ${color}`,
-        color,
-        margin: active ? '0.5em 0 1em' : '0em',
-        padding: active ? '0.9em' : '0em',
-        transform: active ? 'scale(1,1)' : 'scale(1,0)',
-      },
+      backgroundColor: bgColor,
+      boxShadow: `2px 2px 2px -1px ${color}`,
+      color,
+      margin: active ? '0.5em 0 1em' : '0em',
+      padding: active ? '0.9em' : '0em',
+      transform: active ? 'scale(1,1)' : 'scale(1,0)',
     },
   }
 })`

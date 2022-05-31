@@ -1,11 +1,16 @@
 import styled from 'styled-components'
+import Wrapper from '~components/Wrapper'
 
 /**
  * BaseFieldset
  * @component
  *
  */
-const BaseFieldset = styled.fieldset`
+const BaseFieldset = styled(Wrapper).attrs(() => {
+  return {
+    tag: 'fieldset',
+  }
+})`
   width: 100%;
   max-width: 50em;
   border-color: ${({ theme }) => theme.COLORS.STATIC.DARK};

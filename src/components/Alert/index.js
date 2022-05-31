@@ -24,7 +24,7 @@ function Alert(props) {
   }, [isOpen, message, status])
   const activeState = isAlertOpen ? 1 : 0
   return (
-    <BaseAlert tag="section" {...rest} status={status} active={activeState}>
+    <BaseAlert {...rest} status={status} active={activeState}>
       <AlertCloseBtn active={activeState} onClick={closeAlert}>
         &times;
       </AlertCloseBtn>

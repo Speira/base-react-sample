@@ -16,7 +16,7 @@ describe('render', () => {
       expect.stringContaining(message),
     )
   })
-  it('Alert must have a type', () => {
+  it('Alert must have a status', () => {
     expect(['info', 'warning', 'success', 'danger']).toEqual(
       expect.arrayContaining([wrapper.props().status]),
     )

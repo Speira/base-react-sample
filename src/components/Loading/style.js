@@ -1,11 +1,12 @@
 import styled from 'styled-components'
+import Wrapper from '~components/Wrapper'
 
 /**
  * BaseLoading
  * @component
  *
  */
-const BaseLoading = styled.div`
+const BaseLoading = styled(Wrapper)`
   display: flex;
   flex-direction: column;
   justify-content: center;

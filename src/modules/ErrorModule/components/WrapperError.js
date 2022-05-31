@@ -29,7 +29,7 @@ function WrapperError(props) {
   }
 
   return (
-    <Wrapper style={style} {...rest}>
+    <Wrapper customStyle={style} {...rest}>
       <Title>{title}</Title>
       <p>{message}</p>
       {children}
