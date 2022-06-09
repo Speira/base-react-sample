@@ -3,11 +3,11 @@ import { shallow } from 'enzyme'
 
 import Alert from './index'
 
-const message = 'test'
-const onClose = jest.fn()
-const wrapper = shallow(<Alert onClose={onClose} message={message} />)
+describe('render Alert', () => {
+  const message = 'test'
+  const onClose = jest.fn()
+  const wrapper = shallow(<Alert onClose={onClose} message={message} />)
 
-describe('render', () => {
   it('Alert must be rendered', () => {
     expect(wrapper).toBeDefined()
   })
@@ -24,7 +24,7 @@ describe('render', () => {
   it('Alert onClose handler behaviors', () => {
     expect(onClose).not.toHaveBeenCalled()
     expect(wrapper.props().active).toEqual(1)
-    wrapper.find('button.closebtn').simulate('click')
+    wrapper.find('.close-alert').simulate('click')
     expect(onClose).toHaveBeenCalled()
     expect(wrapper.props().active).toEqual(0)
   })

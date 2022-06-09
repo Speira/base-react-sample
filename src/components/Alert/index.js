@@ -25,7 +25,10 @@ function Alert(props) {
   const activeState = isAlertOpen ? 1 : 0
   return (
     <BaseAlert {...rest} status={status} active={activeState}>
-      <AlertCloseBtn active={activeState} onClick={closeAlert}>
+      <AlertCloseBtn
+        className="close-alert"
+        active={activeState}
+        onClick={closeAlert}>
         &times;
       </AlertCloseBtn>
       {title && <strong>{title}</strong>}
