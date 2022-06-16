@@ -7,16 +7,18 @@ import constants from '~utils/constants'
 import { DefaultUser, translate as t } from '~utils/functions'
 import useAlert from '~hooks/useAlert'
 
+import { ValidateButton } from '~AuthModule/factory/AuthButtonFactory'
+import { SendingForm } from '~AuthModule/factory/AuthFormFactory'
 import {
-  ExistingAccountLink,
   PasswordInput,
-  RegistrationSentWrapper,
-  SendingForm,
-  SignupLoading,
-  SignupWrapper,
   UsernameInput,
-  ValidateButton,
-} from '~AuthModule/components'
+} from '~AuthModule/factory/AuthInputFactory'
+import { ExistingAccountLink } from '~AuthModule/factory/AuthLinkFactory'
+import { SignupLoading } from '~AuthModule/factory/AuthLoadingFactory'
+import {
+  RegistrationSentWrapper,
+  SignupWrapper,
+} from '~AuthModule/factory/AuthWrapperFactory'
 
 const { FIELDS, PATHS, STATUS } = constants
 const { PASSWORD, USERNAME } = FIELDS
@@ -47,7 +49,7 @@ function SignupContainer() {
     const errors = []
     if (error.username.missing) errors.push(t`USERNAME_MISSING`)
     if (error.password.missing) errors.push(t`PASSWORD_MISSING`)
-    if (error.password.length) errors.push(t`PASSWORD_LACKS_CHARACTERS`)
+    else if (error.password.length) errors.push(t`PASSWORD_LACKS_CHARACTERS`)
     if (errors.length) return setAlert({ message: errors })
     toggleLoading(true)
     return sendRequest(tempUser)

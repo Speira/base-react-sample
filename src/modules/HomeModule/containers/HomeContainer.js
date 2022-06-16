@@ -1,10 +1,11 @@
 import React from 'react'
 
+import HomeWrapper from '~HomeModule/components/HomeWrapper'
+
 import {
   DefaultButton,
   DangerButton,
-  HomeWrapper,
-} from '~HomeModule/components'
+} from '~HomeModule/factory/SimpleButtonFactory'
 
 /**
  * HomeContainer

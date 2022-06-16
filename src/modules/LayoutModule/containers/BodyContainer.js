@@ -1,5 +1,5 @@
 import React from 'react'
-import { BodyWrapper } from '~LayoutModule/components'
+import BodyWrapper from '~LayoutModule/components/BodyWrapper'
 
 /**
  * BodyContainer

@@ -7,15 +7,15 @@ import constants from '~utils/constants'
 import { DefaultUser, translate as t, handleEnterPress } from '~utils/functions'
 import useAlert from '~hooks/useAlert'
 
+import { ValidateButton } from '~AuthModule/factory/AuthButtonFactory'
+import { SendingForm } from '~AuthModule/factory/AuthFormFactory'
 import {
-  LoginLoading,
-  LoginWrapper,
-  NoAccountLink,
   PasswordInput,
-  SendingForm,
   UsernameInput,
-  ValidateButton,
-} from '~AuthModule/components'
+} from '~AuthModule/factory/AuthInputFactory'
+import { NoAccountLink } from '~AuthModule/factory/AuthLinkFactory'
+import { LoginLoading } from '~AuthModule/factory/AuthLoadingFactory'
+import { LoginWrapper } from '~AuthModule/factory/AuthWrapperFactory'
 
 const { FIELDS, PATHS } = constants
 const { PASSWORD, USERNAME } = FIELDS

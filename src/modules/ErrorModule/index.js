@@ -2,6 +2,7 @@ import React from 'react'
 import { useError } from '~contexts/ErrorContext'
 import constants from '~utils/constants'
 import ErrorBoundary from './ErrorBoundary'
+import ClientErrorContainer from './containers/ClientErrorContainer'
 
 const { SERVER } = constants.ERRORS
 
@@ -11,7 +12,7 @@ const { SERVER } = constants.ERRORS
  *    Hook adapted function for connecting ErrorBoundary with useError context
  *
  */
-export function ErrorContainer(props) {
+export default function ErrorContainer(props) {
   const { setError, hasError, logError } = useError()
   const handleSyncError = () =>
     setError({
@@ -26,6 +27,10 @@ export function ErrorContainer(props) {
     />
   )
 }
-export { default as NotFoundContainer } from './containers/NotFoundContainer'
-export { default as NotAllowedContainer } from './containers/NotAllowedContainer'
-export default () => null
+
+export function NotFoundContainer(props) {
+  return <ClientErrorContainer {...props} />
+}
+export function NotAllowedContainer(props) {
+  return <ClientErrorContainer notAllowed {...props} />
+}

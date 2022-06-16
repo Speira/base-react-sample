@@ -1,8 +1,10 @@
 import React from 'react'
 import constants from '~utils/constants'
 import { useError } from '~contexts/ErrorContext'
+import { translate as t } from '~utils/functions'
 
-import { BackErrorLink, ServerErrorWrapper } from '~ErrorModule/components'
+import ErrorLink from '~ErrorModule/components/ErrorLink'
+import FullpageWrapper from '~ErrorModule/components/FullpageWrapper'
 
 const { PATHS } = constants
 
@@ -14,9 +16,9 @@ const { PATHS } = constants
 function ServerErrorContainer() {
   const { resetError } = useError()
   return (
-    <ServerErrorWrapper isFullpage>
-      <BackErrorLink to={PATHS.DEFAULT} onClick={resetError} />
-    </ServerErrorWrapper>
+    <FullpageWrapper message={t`ERROR_500_MESSAGE`} title={t`ERROR_500`}>
+      <ErrorLink to={PATHS.DEFAULT} onClick={resetError} label={t`BACK_HOME`} />
+    </FullpageWrapper>
   )
 }
 

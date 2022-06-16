@@ -12,7 +12,7 @@ import Contexts from '~contexts'
 import { LoginContainer, SignupContainer } from '~AuthModule'
 import { HomeContainer } from '~HomeModule'
 import * as LayoutModule from '~LayoutModule'
-import { ErrorContainer, NotFoundContainer } from '~ErrorModule'
+import ErrorContainer, { NotFoundContainer } from '~ErrorModule'
 
 const { AUTH, AUTH_LOGIN, AUTH_SIGNUP, DEFAULT } = constants.PATHS
 

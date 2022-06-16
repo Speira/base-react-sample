@@ -4,16 +4,16 @@ import constants from '~/utils/constants'
 import useRouter from '~hooks/useRouter'
 import { translate as t } from '~utils/functions'
 
+import HeaderWrapper from '~LayoutModule/components/HeaderWrapper'
+import NavWrapper from '~LayoutModule/components/NavWrapper'
 import {
   BrandLink,
-  HeaderWrapper,
   HomeLink,
   LoginLink,
   LogoutLink,
-  NavWrapper,
   NoPageLink,
   ProfileLink,
-} from '~LayoutModule/components'
+} from '~LayoutModule/factory/NavLinkFactory'
 
 const { AUTH, AUTH_PROFILE, AUTH_SIGNUP, DEFAULT } = constants.PATHS
 
