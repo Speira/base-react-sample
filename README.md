@@ -64,7 +64,7 @@ NB: You will have to remove the following sections from your package.json:
  * eslintConfig
  * babel
  
-And then add this to your jest config part in package.json
+And then add this to your jest config part in package.json (to sync the babel module resolver config with jest)
 ```
 "jest": {
 ...
