@@ -89,6 +89,7 @@ You should also update your srcipt section as below:
     }
 
 ```
+6- Setup your test:
 
 Your src/setupTests.js must include the enzyme adapter:
 ```js
@@ -97,6 +98,28 @@ import Adapter from 'enzyme-adapter-react-16'
 import { configure } from 'enzyme'
 
 configure({ adapter: new Adapter() })
+```
+
+Your src/App.test.js should look like as follow: 
+
+```js
+import React from 'react'
+import { shallow } from 'enzyme'
+import App from './App'
+
+describe('render', () => {
+  const wrapper = shallow(<App />)
+
+  it('App should be defined', () => {
+    expect(wrapper).toBeDefined()
+  })
+  it('App must have Contexts wrapper', () => {
+    expect(wrapper.find('Contexts')).toHaveLength(1)
+  })
+  it('App must have a single ErrorContainer ', () => {
+    expect(wrapper.find('ErrorContainer')).toHaveLength(1)
+  })
+})
 ```
 
 You can autoformat all the files inside the src folder (according to your prettierrc file) with this command:
