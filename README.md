@@ -70,15 +70,6 @@ Add this to your jest config part in package.json
 }
 ```
 
-Your src/setupTests.js should include the enzyme adapter:
-```js
-...
-import Adapter from 'enzyme-adapter-react-16'
-import { configure } from 'enzyme'
-
-configure({ adapter: new Adapter() })
-```
-
 You will have to remove the eslintConfig and babel section from the package.json config file
 And also set to the scripts section :
 
@@ -93,6 +84,15 @@ And also set to the scripts section :
     "test": "node scripts/test.js --env=jsdom"
     }
 
+```
+
+Your src/setupTests.js should include the enzyme adapter:
+```js
+...
+import Adapter from 'enzyme-adapter-react-16'
+import { configure } from 'enzyme'
+
+configure({ adapter: new Adapter() })
 ```
 
 Then you can format all the files inside the src folder with this command:
