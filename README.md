@@ -70,6 +70,15 @@ Add this to your jest config part in package.json
 }
 ```
 
+Your src/setupTests.js should include the enzyme adapter:
+```js
+import Adapter from 'enzyme-adapter-react-16'
+import { configure } from 'enzyme'
+import '@testing-library/jest-dom/extend-expect'
+
+configure({ adapter: new Adapter() })
+```
+
 You will have to remove the eslintConfig and babel section from the package.json config file
 And also set to the scripts section :
 
