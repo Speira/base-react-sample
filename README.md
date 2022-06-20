@@ -58,8 +58,13 @@ Development packages:
 yarn add -D babel-plugin-styled-components prettier eslint-config-airbnb eslint-config-prettier eslint-import-resolver-babel-module eslint-plugin-import eslint-plugin-prettier react-styleguidist enzyme enzyme-adapter-react-16
 ```
 
-Add this to your jest config part in package.json
+5- Update your package.json
 
+NB: You will have to remove the following sections from your package.json: 
+ * eslintConfig
+ * babel
+ 
+And then add this to your jest config part in package.json
 ```
 "jest": {
 ...
@@ -70,8 +75,7 @@ Add this to your jest config part in package.json
 }
 ```
 
-You will have to remove the eslintConfig and babel section from the package.json config file
-And also set to the scripts section :
+You should also update your srcipt section as below:
 
 ```
 "scripts":{
@@ -86,7 +90,7 @@ And also set to the scripts section :
 
 ```
 
-Your src/setupTests.js should include the enzyme adapter:
+Your src/setupTests.js must include the enzyme adapter:
 ```js
 ...
 import Adapter from 'enzyme-adapter-react-16'
@@ -95,7 +99,7 @@ import { configure } from 'enzyme'
 configure({ adapter: new Adapter() })
 ```
 
-Then you can format all the files inside the src folder with this command:
+You can autoformat all the files inside the src folder (according to your prettierrc file) with this command:
 
 ```bash
 yarn prettier --write src
