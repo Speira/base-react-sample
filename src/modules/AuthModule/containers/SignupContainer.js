@@ -7,18 +7,13 @@ import constants from '~utils/constants'
 import { DefaultUser, translate as t } from '~utils/functions'
 import useAlert from '~hooks/useAlert'
 
-import { ValidateButton } from '~AuthModule/factory/AuthButtonFactory'
-import { SendingForm } from '~AuthModule/factory/AuthFormFactory'
-import {
-  PasswordInput,
-  UsernameInput,
-} from '~AuthModule/factory/AuthInputFactory'
-import { ExistingAccountLink } from '~AuthModule/factory/AuthLinkFactory'
-import { SignupLoading } from '~AuthModule/factory/AuthLoadingFactory'
-import {
-  RegistrationSentWrapper,
-  SignupWrapper,
-} from '~AuthModule/factory/AuthWrapperFactory'
+import Link from '~components/Link'
+
+import AuthInputs from '~AuthModule/components/AuthInputs'
+import AuthWrapper from '~AuthModule/components/AuthWrapper'
+import AuthForm from '~AuthModule/components/AuthForm'
+import AuthButton from '~AuthModule/components/AuthButton'
+import Loading from '~components/Loading'
 
 const { FIELDS, PATHS, STATUS } = constants
 const { PASSWORD, USERNAME } = FIELDS
@@ -67,28 +62,32 @@ function SignupContainer() {
   }
 
   if (isLoading) {
-    return <SignupLoading />
+    return <Loading message={t`SIGNUP_ONGOING`} />
   }
   if (isRegistered) {
     return (
-      <RegistrationSentWrapper>
+      <AuthWrapper title={t`SIGNUP_MAIL_SENT`}>
         <div>{t`SIGNUP_MAIL_WILL_BE_SENT`(inputs[USERNAME])}</div>
-      </RegistrationSentWrapper>
+      </AuthWrapper>
     )
   }
   if (isAuthenticated) {
     backToReferer()
   }
   return (
-    <SignupWrapper>
+    <AuthWrapper title={t`SIGNUP`}>
       <HookAlert />
-      <SendingForm>
-        <UsernameInput value={inputs[USERNAME]} onChange={setUser(USERNAME)} />
-        <PasswordInput value={inputs[PASSWORD]} onChange={setUser(PASSWORD)} />
-        <ValidateButton onClick={signUp} />
-      </SendingForm>
-      <ExistingAccountLink to={PATHS.AUTH_LOGIN} />
-    </SignupWrapper>
+      <AuthForm>
+        <AuthInputs
+          password={inputs[PASSWORD]}
+          setPassword={setUser(PASSWORD)}
+          setUsername={setUser(USERNAME)}
+          username={inputs[USERNAME]}
+        />
+        <AuthButton onClick={signUp} label={t`VALIDATE`} />
+      </AuthForm>
+      <Link to={PATHS.AUTH_LOGIN}>{t`ACCOUNT_EXISTING`}</Link>
+    </AuthWrapper>
   )
 }
 

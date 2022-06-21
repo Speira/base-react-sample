@@ -7,15 +7,13 @@ import constants from '~utils/constants'
 import { DefaultUser, translate as t, handleEnterPress } from '~utils/functions'
 import useAlert from '~hooks/useAlert'
 
-import { ValidateButton } from '~AuthModule/factory/AuthButtonFactory'
-import { SendingForm } from '~AuthModule/factory/AuthFormFactory'
-import {
-  PasswordInput,
-  UsernameInput,
-} from '~AuthModule/factory/AuthInputFactory'
-import { NoAccountLink } from '~AuthModule/factory/AuthLinkFactory'
-import { LoginLoading } from '~AuthModule/factory/AuthLoadingFactory'
-import { LoginWrapper } from '~AuthModule/factory/AuthWrapperFactory'
+import Link from '~components/Link'
+
+import AuthInputs from '~AuthModule/components/AuthInputs'
+import AuthWrapper from '~AuthModule/components/AuthWrapper'
+import AuthForm from '~AuthModule/components/AuthForm'
+import AuthButton from '~AuthModule/components/AuthButton'
+import Loading from '~components/Loading'
 
 const { FIELDS, PATHS } = constants
 const { PASSWORD, USERNAME } = FIELDS
@@ -66,18 +64,22 @@ function LoginContainer() {
     backToReferer()
   }
   if (isLoading) {
-    return <LoginLoading />
+    return <Loading message={t`LOGIN_ONGOING`} />
   }
   return (
-    <LoginWrapper>
+    <AuthWrapper title={t`LOGIN`}>
       <HookAlert />
-      <SendingForm onKeyPress={handleEnterPress(authenticateUser)}>
-        <UsernameInput value={inputs[USERNAME]} onChange={setUser(USERNAME)} />
-        <PasswordInput value={inputs[PASSWORD]} onChange={setUser(PASSWORD)} />
-        <ValidateButton onClick={authenticateUser} />
-      </SendingForm>
-      <NoAccountLink to={PATHS.AUTH_SIGNUP} />
-    </LoginWrapper>
+      <AuthForm onKeyPress={handleEnterPress(authenticateUser)}>
+        <AuthInputs
+          password={inputs[PASSWORD]}
+          setPassword={setUser(PASSWORD)}
+          setUsername={setUser(USERNAME)}
+          username={inputs[USERNAME]}
+        />
+        <AuthButton onClick={authenticateUser} label={t`VALIDATE`} />
+      </AuthForm>
+      <Link to={PATHS.AUTH_SIGNUP}>{t`ACCOUNT_NO_EXISTING`}</Link>
+    </AuthWrapper>
   )
 }
 

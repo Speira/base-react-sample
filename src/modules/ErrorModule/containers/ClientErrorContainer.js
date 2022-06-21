@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { translate as t } from '~utils/functions'
 import constants from '~utils/constants'
 
+import Link from '~components/Link'
 import SmallWrapper from '~ErrorModule/components/SmallWrapper'
-import ErrorLink from '~ErrorModule/components/ErrorLink'
 
 const { PATHS } = constants
 
@@ -21,7 +21,7 @@ export default function ClientErrorContainer(props) {
   }
   return (
     <SmallWrapper message={opt.message} title={opt.title}>
-      <ErrorLink to={PATHS.DEFAULT} />
+      <Link to={PATHS.DEFAULT} tertiary>{t`BACK_HOME`}</Link>
     </SmallWrapper>
   )
 }

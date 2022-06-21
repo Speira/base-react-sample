@@ -6,24 +6,25 @@ import Input from '~components/Input'
 import Label from '~components/Label'
 
 /**
- * AuthInput
+ * InputField
  * @component
  *
  */
-function AuthInput(props) {
-  const { label, ...rest } = props
+export default function InputField(props) {
+  const { label, width, ...rest } = props
   return (
     <Label>
       <Fieldset legend={label}>
-        <Input {...rest} width="96%" />
+        <Input {...rest} width={width} />
       </Fieldset>
     </Label>
   )
 }
-AuthInput.defaultProps = {}
-AuthInput.propTypes = {
-  label: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+InputField.defaultProps = {
+  label: '',
+  width: '100%',
 }
-
-export default AuthInput
+InputField.propTypes = {
+  label: PropTypes.string,
+  width: PropTypes.string,
+}

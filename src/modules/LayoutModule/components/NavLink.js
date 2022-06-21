@@ -14,12 +14,7 @@ const { STATUS } = constants
 function NavLink(props) {
   const { isActive, label, size, to, ...rest } = props
   return (
-    <Link
-      secondary
-      status={isActive ? STATUS.INFO : ''}
-      to={to}
-      size={size}
-      {...rest}>
+    <Link status={isActive ? STATUS.INFO : ''} to={to} size={size} {...rest}>
       {label}
     </Link>
   )

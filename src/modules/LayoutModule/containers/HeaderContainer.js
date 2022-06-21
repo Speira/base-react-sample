@@ -1,29 +1,16 @@
 import React from 'react'
+import { translate as t } from '~utils/functions'
 import { useAuth } from '~contexts/AuthContext'
 import constants from '~/utils/constants'
 import useRouter from '~hooks/useRouter'
-import { translate as t } from '~utils/functions'
+
+import Link from '~components/Link'
 
 import HeaderWrapper from '~LayoutModule/components/HeaderWrapper'
 import NavWrapper from '~LayoutModule/components/NavWrapper'
-import {
-  BrandLink,
-  HomeLink,
-  LoginLink,
-  LogoutLink,
-  NoPageLink,
-  ProfileLink,
-} from '~LayoutModule/factory/NavLinkFactory'
 
-const { AUTH, AUTH_PROFILE, AUTH_SIGNUP, DEFAULT } = constants.PATHS
-
-function ExternLink() {
-  return (
-    <a href="https://base-react-style.speira.me/" target="blank">
-      {t`ALL_STYLES_AVAILABLES_HERE`} &#x2197;
-    </a>
-  )
-}
+const { PATHS, STATUS } = constants
+const { AUTH, AUTH_PROFILE, AUTH_SIGNUP, DEFAULT } = PATHS
 
 /**
  * HeaderContainer
@@ -38,24 +25,41 @@ function HeaderContainer() {
     e.preventDefault()
     logout()
   }
+  const getActiveStatus = (uri, isNotExact) => {
+    const refStatus = STATUS.INFO
+    if (isNotExact) return pathname.startsWith(uri) ? refStatus : ''
+    return pathname === uri ? refStatus : ''
+  }
+
   return (
     <HeaderWrapper>
-      <BrandLink to={DEFAULT} />
-      <ExternLink />
+      <Link to={DEFAULT}>{t`HOME`} </Link>
       <NavWrapper>
-        <HomeLink to={DEFAULT} isActive={pathname === DEFAULT} />
+        <Link boxed to={DEFAULT} status={getActiveStatus(DEFAULT)}>
+          {t`HOME`}
+        </Link>
         {isAuthenticated ? (
-          <LogoutLink
-            isActive={pathname === AUTH_SIGNUP}
-            onClick={disconnect}
-          />
+          <Link
+            boxed
+            status={getActiveStatus(AUTH_SIGNUP)}
+            onClick={disconnect}>
+            {t`LOGOUT`}
+          </Link>
         ) : (
-          <LoginLink isActive={pathname.startsWith(AUTH)} to={AUTH} />
+          <Link boxed status={getActiveStatus(AUTH, true)} to={AUTH}>
+            {`${t`LOGIN`}/${t`SIGNUP`}`}
+          </Link>
         )}
         {isAuthenticated && (
-          <ProfileLink isActive={pathname === AUTH_PROFILE} to={AUTH_PROFILE} />
+          <Link
+            boxed
+            status={getActiveStatus(AUTH_PROFILE)}
+            to={AUTH_PROFILE}>{t`PROFILE`}</Link>
         )}
-        <NoPageLink isActive={pathname === '/fake-url'} to="/fake-url" />
+        <Link
+          boxed
+          status={getActiveStatus('/fake-url')}
+          to="/fake-url">{t`NO_EXISTENT_PAGE`}</Link>
       </NavWrapper>
     </HeaderWrapper>
   )

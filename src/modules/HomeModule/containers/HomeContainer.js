@@ -1,11 +1,10 @@
 import React from 'react'
-
+import { translate as t } from '~utils/functions'
+import constants from '~utils/constants'
+import Button from '~components/Button'
 import HomeWrapper from '~HomeModule/components/HomeWrapper'
 
-import {
-  DefaultButton,
-  DangerButton,
-} from '~HomeModule/factory/SimpleButtonFactory'
+const { STATUS } = constants
 
 /**
  * HomeContainer
@@ -13,13 +12,14 @@ import {
  *
  */
 function HomeContainer(props) {
-  // eslint-disable-next-line
-  const errorClick = () => undefinedFunction()
+  const errorClick = () => undefinedFunction() //eslint-disable-line
   return (
     <HomeWrapper {...props}>
-      <DefaultButton />
+      <Button status={STATUS.INFO}>{t`BUTTON`}</Button>
       <br />
-      <DangerButton onClick={errorClick} />
+      <Button
+        onClick={errorClick}
+        status={STATUS.DANGER}>{t`BUTTON_DANGER`}</Button>
     </HomeWrapper>
   )
 }

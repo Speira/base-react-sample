@@ -2,12 +2,12 @@ import React from 'react'
 import Wrapper from '~components/Wrapper'
 
 /**
- * WrapperBody
+ * BodyWrapper
  * @component
  * @module Layout
  *
  */
-export default function WrapperBody(props) {
+export default function BodyWrapper(props) {
   return (
     <Wrapper
       primary
