@@ -15,49 +15,43 @@ const { STATUS } = constants
 function Link(props) {
   const {
     boxed,
+    children,
     className: initialClassName,
     href,
     to,
-    primary,
-    quaternary,
-    secondary,
     status,
-    tertiary,
     ...rest
   } = props
 
-  const className = `${initialClassName} ${getActiveKeys({
+  const className = `${initialClassName}${getActiveKeys({
     boxed,
-    primary,
-    quaternary,
-    secondary,
-    tertiary,
   })}`
 
   return (
-    <BaseLink {...rest} status={status} className={className} to={to || href} />
+    <BaseLink
+      {...rest}
+      tag="link"
+      status={status}
+      className={className}
+      to={to || href}>
+      {children}
+    </BaseLink>
   )
 }
 Link.defaultProps = {
   boxed: false,
+  children: undefined,
   className: '',
   href: '#',
-  primary: false,
-  quaternary: false,
-  secondary: false,
-  tertiary: false,
   size: '',
   status: '',
   to: '',
 }
 Link.propTypes = {
   boxed: PropTypes.bool,
+  children: PropTypes.node,
   className: PropTypes.string,
   href: PropTypes.string,
-  primary: PropTypes.bool,
-  quaternary: PropTypes.bool,
-  secondary: PropTypes.bool,
-  tertiary: PropTypes.bool,
   size: PropTypes.string,
   status: PropTypes.oneOf([...Object.values(STATUS), '']),
   to: PropTypes.string,

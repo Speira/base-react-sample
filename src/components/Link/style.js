@@ -19,7 +19,7 @@ const BaseLink = styled(Wrapper).attrs((props) => {
       : theme.COLORS.STATIC.DARK
     attrs.style.boxShadow = status
       ? `0px 0px 1px 1px ${theme.COLORS.STATIC.DARK} inset`
-      : `1px 1px 0px 0px ${theme.COLORS.STATIC.DARK}, 
+      : `1px 1px 0px 0px ${theme.COLORS.STATIC.DARK},
         -1px 0px 1px 1px${theme.COLORS.STATIC.LIGHT} `
     return attrs
   }
@@ -46,18 +46,6 @@ const BaseLink = styled(Wrapper).attrs((props) => {
     justify-content: center;
     align-items: center;
     align-content: center;
-  }
-  &.boxed.primary {
-    background-color: ${({ theme }) => theme.COLORS.STATIC.PRIMARY};
-  }
-  &.boxed.secondary {
-    background-color: ${({ theme }) => theme.COLORS.STATIC.SECONDARY};
-  }
-  &.boxed.tertiary {
-    background-color: ${({ theme }) => theme.COLORS.STATIC.TERTIARY};
-  }
-  &.boxed.quaternary {
-    background-color: ${({ theme }) => theme.COLORS.STATIC.QUATERNARY};
   }
   @media (min-width: 768px) {
     padding: 8px;

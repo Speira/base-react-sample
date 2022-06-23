@@ -13,9 +13,10 @@ function HomeWrapper(props) {
     <Wrapper
       {...rest}
       customStyle={{
-        padding: '3%',
+        padding: '0',
         display: 'flex',
         flexDirection: 'column',
+        justifyContent: 'flex-start',
         alignItems: 'center',
       }}>
       {children}

@@ -66,6 +66,10 @@ const BaseWrapper = styled(DomElement)`
   @media only screen and (min-width: 1200px) {
     ${({ design }) => design.xl}
   }
+
+  @media only screen and (min-width: 1440px) {
+    ${({ design }) => design.xxl}
+  }
 `
 
 export default BaseWrapper

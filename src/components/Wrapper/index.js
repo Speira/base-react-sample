@@ -42,6 +42,7 @@ function Wrapper(props) {
     md = {},
     lg = {},
     xl = {},
+    xxl = {},
     base = {},
     ...restCustomStyle
   } = customStyle
@@ -53,6 +54,7 @@ function Wrapper(props) {
     md,
     lg,
     xl,
+    xxl,
   }
 
   const className = `${initialClassName} ${getActiveKeys({
@@ -88,6 +90,7 @@ Wrapper.defaultProps = {
     md: {},
     lg: {},
     xl: {},
+    xxl: {},
   },
   onKeyPress: null,
   primary: false,
@@ -129,6 +132,7 @@ Wrapper.propTypes = {
     md: PropTypes.objectOf(PropTypes.string),
     lg: PropTypes.objectOf(PropTypes.string),
     xl: PropTypes.objectOf(PropTypes.string),
+    xxl: PropTypes.objectOf(PropTypes.string),
   }),
   onKeyPress: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   /** primary: theme static color (background) */
