@@ -28,7 +28,7 @@ export default function NavBarContainer() {
     return pathname === uri ? refStatus : ''
   }
   return (
-    <NavBar>
+    <NavBar className="bg-secondary">
       <Link to={DEFAULT}>{t`HOME`} </Link>
       <div className="flex">
         <Link boxed to={DEFAULT} status={getActiveStatus(DEFAULT)}>

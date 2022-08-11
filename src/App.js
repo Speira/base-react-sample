@@ -10,10 +10,10 @@ import constants from '~utils/constants'
 import Contexts from '~contexts'
 
 import { LoginContainer, SignupContainer } from '~AuthModule'
-import { HomeContainer } from '~HomeModule'
 import ErrorContainer, { NotFoundContainer } from '~ErrorModule'
 import NavbarContainer from '~containers/NavbarContainer'
 import FooterContainer from '~containers/FooterContainer'
+import HomeContainer from '~containers/HomeContainer'
 import Layout from '~components/Layout'
 import 'normalize.css'
 import GlobalStyle from './globalStyle'
@@ -31,7 +31,7 @@ function App() {
       <GlobalStyle />
       <Router>
         <ErrorContainer>
-          <Layout>
+          <Layout className="bg-primary">
             <NavbarContainer />
             <Routes>
               <Route path={DEFAULT} element={<HomeContainer />} />

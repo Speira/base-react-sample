@@ -23,7 +23,7 @@ function NavBar(props) {
     <StyledNavBar
       {...rest}
       className={`${className}
-        bg-primary flex align-items-center justify-content-between padding`}>
+        flex align-items-center justify-content-between padding`}>
       {children}
     </StyledNavBar>
   )

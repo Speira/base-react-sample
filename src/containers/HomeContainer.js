@@ -2,7 +2,7 @@ import React from 'react'
 import { translate as t } from '~utils/functions'
 import constants from '~utils/constants'
 import Button from '~components/Button'
-import HomeWrapper from '~HomeModule/components/HomeWrapper'
+import Wrapper from '~components/Wrapper'
 
 const { STATUS } = constants
 
@@ -11,16 +11,16 @@ const { STATUS } = constants
  * @component
  *
  */
-function HomeContainer(props) {
+function HomeContainer() {
   const errorClick = () => undefinedFunction() //eslint-disable-line
   return (
-    <HomeWrapper {...props}>
+    <Wrapper className="flex-column justify-content-start align-items-center">
       <Button status={STATUS.INFO}>{t`BUTTON`}</Button>
       <br />
       <Button
         onClick={errorClick}
         status={STATUS.DANGER}>{t`BUTTON_DANGER`}</Button>
-    </HomeWrapper>
+    </Wrapper>
   )
 }
 

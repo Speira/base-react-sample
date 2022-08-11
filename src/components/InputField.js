@@ -8,7 +8,9 @@ import Label from '~components/Label'
 /**
  * InputField
  * @component
- *
+ * @see #Input
+ * @see #Label
+ * @see #Fieldset
  */
 export default function InputField(props) {
   const { label, width, ...rest } = props

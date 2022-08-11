@@ -8,7 +8,7 @@ import Footer from '~components/Footer'
  *
  */
 function FooterContainer() {
-  return <Footer>Footer content</Footer>
+  return <Footer className="bg-secondary">Footer content</Footer>
 }
 
 export default FooterContainer

@@ -143,11 +143,11 @@ const GlobalStyle = createGlobalStyle`
   /* **********************  spacing  *********************** */
   /* ******************************************************** */
 
-  .padding: { padding: 0.5em 3%; }
-  .margin: { margin: 0.5em; }
-  .margin-auto: { margin: auto; }
-  .full-width: { width: 100%; }
-  .full-height: { height: 100%; }
+  .padding { padding: 0.5em 3%; }
+  .margin { margin: 0.5em; }
+  .margin-auto { margin: auto; }
+  .full-width { width: 100%; }
+  .full-height { height: 100%; }
 
   /* ******************************************************** */
   /* ******************  Text orientation  ****************** */
@@ -163,9 +163,7 @@ const GlobalStyle = createGlobalStyle`
   /* ******************  flexbox classes  ****************** */
   /* ******************************************************** */
 
-  .flex {
-    display: flex;
-  }
+  .flex { display: flex; }
   .flex-column {
     display: flex;
     flex-direction: column;
@@ -185,7 +183,6 @@ const GlobalStyle = createGlobalStyle`
  .align-content-center { align-content: center; }
  .align-content-start { align-content: flex-start; }
  .align-content-end { align-content: flex-end; }
-
 
 `
 

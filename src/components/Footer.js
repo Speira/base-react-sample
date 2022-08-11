@@ -21,7 +21,7 @@ function Footer(props) {
   return (
     <StyledFooter
       className={`${className}
-     bg-primary flex justify-content-center align-items-center full-width`}
+     flex justify-content-center align-items-center full-width`}
       {...rest}>
       {children}
     </StyledFooter>
