@@ -1,9 +1,10 @@
+import React from 'react'
+import PropTypes from 'prop-types'
 import styled, { keyframes } from 'styled-components'
 
 /**
  * spin
  * @keyframes
- *
  */
 const spin = keyframes`
   0% {
@@ -15,11 +16,10 @@ const spin = keyframes`
 `
 
 /**
- * BaseLoading
+ * StyledLoading
  * @component
- *
  */
-const BaseLoading = styled.div`
+const StyledLoading = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -39,5 +39,26 @@ const BaseLoading = styled.div`
     animation: ${spin} 2s linear infinite;
   }
 `
+/**
+ * Loading
+ * @component
+ */
+function Loading(props) {
+  const { message, ...rest } = props
+  return (
+    <StyledLoading {...rest}>
+      <div className="loader-message">{message}</div>
+      <div className="loader" />
+    </StyledLoading>
+  )
+}
+Loading.defaultProps = {
+  className: '',
+  message: '',
+}
+Loading.propTypes = {
+  className: PropTypes.string,
+  message: PropTypes.string,
+}
 
-export default BaseLoading
+export default Loading

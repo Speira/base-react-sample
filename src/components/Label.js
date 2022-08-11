@@ -1,6 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import StyledLabel from './style'
+import styled from 'styled-components'
+
+/**
+ * StyledLabel
+ * @component
+ *
+ */
+const StyledLabel = styled.label``
 
 /**
  * Label

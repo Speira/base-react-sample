@@ -1,7 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import BaseImage from './style'
+import styled from 'styled-components'
 
+/**
+ * BaseImage
+ * @component
+ *
+ */
+const BaseImage = styled.img`
+  width: ${({ width }) => width || 'auto'};
+`
 /**
  * Image
  * @component

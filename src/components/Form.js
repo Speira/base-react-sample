@@ -1,7 +1,29 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import { getActiveKeys } from '~utils/functions'
-import BaseForm from './style'
+
+/**
+ * StyledForm
+ * @component
+ *
+ */
+const StyledForm = styled.form`
+  padding: 1.5em 3%;
+  transition: height 1s;
+  border-radius: 8px;
+  box-shadow: 0px 0px 4px -2px var(--color-dark);
+  &.column {
+    display: grid;
+    grid-template-rows: auto;
+    grid-row-gap: 1em;
+  }
+  &.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`
 
 /**
  * Form
@@ -15,9 +37,9 @@ function Form(props) {
     row,
   })}`
   return (
-    <BaseForm {...rest} className={className}>
+    <StyledForm {...rest} className={className}>
       {children}
-    </BaseForm>
+    </StyledForm>
   )
 }
 Form.defaultProps = {
