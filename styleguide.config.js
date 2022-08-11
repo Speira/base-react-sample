@@ -1,7 +1,7 @@
 const path = require('path')
 
 module.exports = {
-  components: 'src/components/**/index.js',
+  components: 'src/components/*.js',
   webpackConfig: require('./config/webpack.config.js'),
   template: {
     head: {
@@ -17,7 +17,8 @@ module.exports = {
     Wrapper: path.join(__dirname, 'src/contexts'),
   },
   getExampleFilename(componentPath) {
-    // src/components/Alert/index.js
-    return componentPath.replace(/\.jsx?$/, '.examples.md')
+    return componentPath.replace(/components\/(.+).js/g, (matching, p1) => {
+      return `components/__docs__/${p1}.doc.md`
+    })
   },
 }
