@@ -1,17 +1,14 @@
 import styled from 'styled-components'
-import Wrapper from '~components/Wrapper'
 
 /**
- * BaseTextarea
+ * StyledTextarea
  * @component
  *
  */
-const BaseTextarea = styled(Wrapper).attrs(() => ({
-  tag: 'textarea',
-}))`
+const StyledTextarea = styled.textarea`
   border-radius: 4px;
   border: none;
-  box-shadow: 0 0 2px -1px ${({ theme }) => theme.COLORS.STATIC.DARK};
+  box-shadow: 0 0 2px -1px var(--color-dark);
   margin: 0 1em;
   min-height: 4em;
   min-width: 400px;
@@ -23,4 +20,4 @@ const BaseTextarea = styled(Wrapper).attrs(() => ({
   }
 `
 
-export default BaseTextarea
+export default StyledTextarea

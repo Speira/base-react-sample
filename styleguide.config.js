@@ -16,4 +16,8 @@ module.exports = {
   styleguideComponents: {
     Wrapper: path.join(__dirname, 'src/contexts'),
   },
+  getExampleFilename(componentPath) {
+    // src/components/Alert/index.js
+    return componentPath.replace(/\.jsx?$/, '.examples.md')
+  },
 }

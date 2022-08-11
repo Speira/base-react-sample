@@ -2,8 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withAsyncErrorHandling } from '~contexts/ErrorContext'
 import constants from '~utils/constants'
-import { getActiveKeys } from '~utils/functions'
-import BaseButton from './style'
+import StyledButton from './style'
 
 const { STATUS } = constants
 
@@ -13,22 +12,14 @@ const { STATUS } = constants
  *
  */
 function Button(props) {
-  const {
-    children,
-    className: initialClassName,
-    status,
-    rounded,
-    unboxed,
-    ...rest
-  } = props
-  const className = `${initialClassName} ${getActiveKeys({
-    rounded,
-    unboxed,
-  })}`
+  const { children, className: initialClassName, status, ...rest } = props
   return (
-    <BaseButton className={className} status={status} {...rest}>
+    <StyledButton
+      className={`${initialClassName} bg-${status} text-light`}
+      status={status}
+      {...rest}>
       {children}
-    </BaseButton>
+    </StyledButton>
   )
 }
 Button.defaultProps = {
@@ -36,20 +27,16 @@ Button.defaultProps = {
   className: '',
   disabled: false,
   onClick: () => null,
-  rounded: false,
   status: STATUS.INFO,
   type: 'button',
-  unboxed: false,
 }
 Button.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
-  rounded: PropTypes.bool,
   status: PropTypes.oneOf(Object.values(STATUS)),
   type: PropTypes.string,
-  unboxed: PropTypes.bool,
 }
 
 export default withAsyncErrorHandling(Button)

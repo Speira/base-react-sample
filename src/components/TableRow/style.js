@@ -1,39 +1,32 @@
 import styled from 'styled-components'
-import Wrapper from '~components/Wrapper'
 
 /**
- * BaseTableRow
+ * StyledTableRow
  * @component
  *
  */
-const BaseTableRow = styled(Wrapper).attrs((props) => {
-  const { scrolltop, theme } = props
-  const attrs = {}
-  const headScrollingStyle = {
-    position: 'sticky',
-    top: 0,
-    backgroundColor: theme.COLORS.STATIC.PRIMARY,
-    opacity: 0.95,
-    boxShadow: `0 0 20px -3px ${theme.COLORS.STATIC.DARK}`,
-    height: '3em',
-  }
-  if (scrolltop) attrs.style = { ...headScrollingStyle }
-  return attrs
-})`
+const StyledTableRow = styled.div`
   display: grid;
-  grid-template-columns: ${({ gridColumns }) => gridColumns || '1fr'};
-  border-bottom: 1px solid ${({ theme }) => theme.COLORS.STATIC.SECONDARY};
-  min-height: ${({ height }) => height || '4em'};
+  border-bottom: 1px solid var(--color-secondary);
+  min-height: 4em;
   transition: opacity, top,
     background-color 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
   &:nth-child(odd) {
-    background-color: ${({ theme }) => theme.COLORS.STATIC.SECONDARY};
+    background-color: var(--color-secondary);
   }
   &.head {
     background-color: transparent;
-    border-bottom: 2px solid ${({ theme }) => theme.COLORS.STATIC.PRIMARY};
+    border-bottom: 2px solid var(--color-primary);
     z-index: 1;
+  }
+  &.sticky {
+    position: sticky;
+    top: 0;
+    background-color: var(--color-primary);
+    opacity: 0.95;
+    box-shadow: 0 0 20px -3px var(--color-dark);
+    height: 3em;
   }
 `
 
-export default BaseTableRow
+export default StyledTableRow

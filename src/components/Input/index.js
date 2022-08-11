@@ -5,7 +5,7 @@ import constants from '~utils/constants'
 import { withAsyncErrorHandling } from '~contexts/ErrorContext'
 import useTimeoutOverride from '~hooks/useTimeoutOverride'
 
-import BaseInput from './style'
+import StyledInput from './style'
 
 const { STATUS } = constants
 
@@ -13,9 +13,15 @@ const { STATUS } = constants
  * Input
  * @component
  *
+ * @desc ::
+ *      We can set isAsync at true to improve performance when we want to
+ *      execute an heavy task on each value update
+ *
+ *
  */
 function Input(props) {
   const {
+    className,
     isAsync,
     onBlur,
     onChange,
@@ -46,12 +52,14 @@ function Input(props) {
   const handleblur = (event) => onBlur(eventAdapter(event))
 
   return (
-    <BaseInput
+    <StyledInput
       {...rest}
+      className={`${className} ${
+        status && `border ${status} border-${status} text-${status}`
+      }`}
       onBlur={handleblur}
       onChange={handleChange}
       placeholder={placeholder}
-      status={status}
       type={type}
       value={value}
       width={width}
@@ -60,6 +68,7 @@ function Input(props) {
 }
 
 Input.defaultProps = {
+  className: '',
   isAsync: false,
   onBlur: () => null,
   onChange: () => null,
@@ -70,10 +79,7 @@ Input.defaultProps = {
   width: '',
 }
 Input.propTypes = {
-  /**
-   * isAsync : is used to prevent instant update, for example when we need to
-   *           perform an heavy task after onChange occurs
-   */
+  className: PropTypes.string,
   isAsync: PropTypes.bool,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,

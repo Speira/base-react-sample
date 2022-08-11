@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import BaseLabel from './style'
+import StyledLabel from './style'
 
 /**
  * Label
@@ -10,10 +10,10 @@ import BaseLabel from './style'
 function Label(props) {
   const { children, label, required, ...rest } = props
   return (
-    <BaseLabel {...rest}>
+    <StyledLabel {...rest}>
       {label && <span>{`${label}${required ? ' (*)' : ''}`}&nbsp;:&nbsp;</span>}
       {children}
-    </BaseLabel>
+    </StyledLabel>
   )
 }
 Label.defaultProps = {

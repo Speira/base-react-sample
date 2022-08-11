@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { getActiveKeys } from '~utils/functions'
-import BaseTableRow from './style'
+import StyledTableRow from './style'
 
 /**
  *
@@ -18,16 +17,16 @@ import BaseTableRow from './style'
 function TableRow(props) {
   const {
     children,
-    className: initialClassName,
+    className,
     columns,
+    height,
     isHead,
     isTableScrolling,
     ...rest
   } = props
   const [isSticky, setIsSticky] = React.useState(false)
 
-  const className = `${initialClassName} ${getActiveKeys({ head: isHead })}`
-  const gridColumns = React.useMemo(() => {
+  const gridTemplateColumns = React.useMemo(() => {
     if (columns) return columns
     return `repeat(${React.Children.count(children)}, 1fr)`
   }, [children, columns])
@@ -39,13 +38,12 @@ function TableRow(props) {
   }, [isHead, isSticky, isTableScrolling])
 
   return (
-    <BaseTableRow
-      className={className}
-      gridColumns={gridColumns}
-      scrolltop={(isSticky && 1) || 0}
-      {...rest}>
+    <StyledTableRow
+      {...rest}
+      style={{ gridTemplateColumns, height }}
+      className={`${className} ${isHead && 'head'} ${isSticky && 'sticky'}`}>
       {children}
-    </BaseTableRow>
+    </StyledTableRow>
   )
 }
 TableRow.defaultProps = {
@@ -59,10 +57,10 @@ TableRow.defaultProps = {
 TableRow.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  columns: PropTypes.string, // provided by src/Table component
+  columns: PropTypes.string, // provided by parent src/Table component
   height: PropTypes.string,
   isHead: PropTypes.bool,
-  isTableScrolling: PropTypes.bool, // provided by src/Table component
+  isTableScrolling: PropTypes.bool, // provided by parent src/Table component
 }
 
 export default TableRow

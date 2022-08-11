@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withAsyncErrorHandling } from '~contexts/ErrorContext'
-import { getActiveKeys } from '~utils/functions'
 import constants from '~utils/constants'
 import BaseLink from './style'
 
@@ -23,9 +22,10 @@ function Link(props) {
     ...rest
   } = props
 
-  const className = `${initialClassName}${getActiveKeys({
-    boxed,
-  })}`
+  const hasBG = boxed && status
+  const className = `${initialClassName} ${boxed && 'boxed'} ${
+    hasBG && `bg-light-${status}`
+  }`
 
   return (
     <BaseLink

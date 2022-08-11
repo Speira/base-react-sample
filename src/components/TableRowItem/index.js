@@ -1,10 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { getActiveKeys } from '~utils/functions'
-import constants from '~utils/constants'
-import BaseTableRowItem from './style'
-
-const { STATUS } = constants
+import StyledTableRowItem from './style'
 
 /**
  * TableRowItem
@@ -18,32 +14,10 @@ const { STATUS } = constants
  *
  */
 function TableRowItem(props) {
-  const {
-    isCenter,
-    className: initialClassName,
-    handleClick,
-    isHead,
-    primary,
-    quaternary,
-    secondary,
-    status,
-    tertiary,
-    ...rest
-  } = props
-
-  const className = `${initialClassName} ${getActiveKeys({
-    head: isHead,
-    center: isCenter,
-    primary,
-    quaternary,
-    secondary,
-    tertiary,
-  })}`
-
+  const { isCenter, className, handleClick, isHead, ...rest } = props
   return (
-    <BaseTableRowItem
-      status={status}
-      className={className}
+    <StyledTableRowItem
+      className={`${className} ${isHead && 'head'} ${isCenter && 'center'}`}
       onClick={handleClick}
       {...rest}
     />
@@ -54,27 +28,12 @@ TableRowItem.defaultProps = {
   handleClick: () => null,
   isCenter: false,
   isHead: false,
-  primary: false,
-  quaternary: false,
-  secondary: false,
-  status: '',
-  tertiary: false,
 }
 TableRowItem.propTypes = {
   className: PropTypes.string,
   handleClick: PropTypes.func,
   isCenter: PropTypes.bool,
   isHead: PropTypes.bool,
-  /** primary: theme static color (background) */
-  primary: PropTypes.bool,
-  /** quaternary: theme static color (background) */
-  quaternary: PropTypes.bool,
-  /** secondary: theme static color (background) */
-  secondary: PropTypes.bool,
-  /** Status */
-  status: PropTypes.oneOf([...Object.values(STATUS), '']),
-  /** tertiary: theme static color (background) */
-  tertiary: PropTypes.bool,
 }
 
 export default TableRowItem

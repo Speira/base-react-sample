@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import BaseTextarea from './style'
+import StyledTextarea from './style'
 
 /**
  * Textarea
@@ -10,7 +10,7 @@ import BaseTextarea from './style'
 function Textarea(props) {
   const { children, ...rest } = props
 
-  return <BaseTextarea {...rest}>{children}</BaseTextarea>
+  return <StyledTextarea {...rest}>{children}</StyledTextarea>
 }
 Textarea.defaultProps = {
   children: undefined,

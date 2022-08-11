@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import BaseModal from './style'
+import StyledModal from './style'
 
 /**
  * Modal
@@ -20,16 +20,16 @@ function Modal(props) {
   }
 
   return (
-    <BaseModal visible={isOpen ? 1 : 0} {...rest}>
+    <StyledModal {...rest} className={isOpen && 'open'}>
       <div className="content">
         {!noCloseButton && (
-          <button type="button" className="close" onClick={closeModal}>
+          <button type="button" className="close-button" onClick={closeModal}>
             &times;
           </button>
         )}
         {children}
       </div>
-    </BaseModal>
+    </StyledModal>
   )
 }
 Modal.defaultProps = {

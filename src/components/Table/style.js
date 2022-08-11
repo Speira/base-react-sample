@@ -1,26 +1,28 @@
 import styled from 'styled-components'
-import Wrapper from '~components/Wrapper'
+import constants from '~utils/constants'
+
+const { MEDIA_QUERIES } = constants
 
 /**
- * BaseTable
+ * StyledTable
  * @component
  *
  */
-const BaseTable = styled(Wrapper)`
+const StyledTable = styled.div`
   border-radius: 4px;
-  border: 2px solid ${({ theme }) => theme.COLORS.STATIC.PRIMARY};
-  box-shadow: 0 0 12px -3px ${({ theme }) => theme.COLORS.DYNAMIC.TERTIARY} inset;
+  border: 2px solid var(--color-primary);
+  box-shadow: 0 0 12px -3px var(--color-dark) inset;
   display: inline-block;
-  max-height: ${({ maxHeight }) => maxHeight || 'auto'};
-  max-width: ${({ maxWidth }) => maxWidth || '90%'};
-  min-height: ${({ minHeight }) => minHeight || '200px'};
-  min-width: ${({ minWidth }) => minWidth || 'auto'};
+  max-height: auto;
+  max-width: 90%;
+  min-height: 200px;
+  min-width: auto;
   overflow: hidden auto;
   padding: 0em;
   position: relative;
-  @media (min-width: 768px) {
+  @media (min-width: ${MEDIA_QUERIES.MD}) {
     max-width: '88%';
   }
 `
 
-export default BaseTable
+export default StyledTable

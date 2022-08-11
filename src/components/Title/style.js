@@ -1,40 +1,29 @@
 import styled from 'styled-components'
-import { getStatusColor } from '~utils/functions'
-import Wrapper from '~components/Wrapper'
 
 /**
- * BaseTitle
+ * StyledH1
  * @component
- *
  */
-const BaseTitle = styled(Wrapper).attrs((props) => {
-  const { style = {}, status, theme, type } = props
-  if (status) style.color = getStatusColor({ theme, status })
-  return {
-    tag: type,
-    style,
-  }
-})`
-  font-size: ${({ size }) => size || '2.5em'};
-  margin: ${({ margin }) => margin || '0 0 0.5em'};
-  padding: ${({ padding }) => padding || '0.5em'};
-  color: ${({ theme }) => theme.COLORS.STATIC.DARK};
-  &.inline {
-    display: inline-block;
-  }
-  &.left {
-    text-align: left;
-  }
-  &.center {
-    text-align: center;
-  }
-  &.right {
-    text-align: right;
-  }
-  &.light {
-    color: ${({ theme }) => theme.COLORS.STATIC.LIGHT};
-    text-shadow: 1px 1px 0px ${({ theme }) => theme.COLORS.STATIC.DARK};
-  }
+export default styled.h1`
+  font-size: 2.5em;
+  margin: 0 0 0.5em;
+  padding: 0.5em;
 `
-
-export default BaseTitle
+/**
+ * StyledH2
+ * @component
+ */
+export const StyledH2 = styled.h2`
+  font-size: 1.5em;
+  margin: 0 0 0.5em;
+  padding: 0.5em;
+`
+/**
+ * StyledH3
+ * @component
+ */
+export const StyledH3 = styled.h2`
+  font-size: 1.5em;
+  margin: 0 0 0.5em;
+  padding: 0.5em;
+`

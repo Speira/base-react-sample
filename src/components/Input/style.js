@@ -1,47 +1,30 @@
 import styled from 'styled-components'
-import { getStatusColor } from '~utils/functions'
-import constants from '~utils/constants'
-import Wrapper from '~components/Wrapper'
-
-const { STATUS } = constants
 
 /**
- * BaseInput
+ * StyledInput
  * @component
  *
  */
-const BaseInput = styled(Wrapper).attrs((props) => {
-  const { status, theme, ...rest } = props
-  const style = {}
-  if (status) {
-    const statusColor = getStatusColor({ theme, status })
-    const size = status === STATUS.DANGER ? '2px' : '1px'
-    style.outline = `${size} solid ${statusColor}`
-  }
-  return {
-    ...rest,
-    tag: 'input',
-    style,
-  }
-})`
-  background-color: ${({ theme }) => theme.COLORS.STATIC.LIGHT};
-  border: none;
+const StyledInput = styled.input`
+  background-color: var(--color-light);
+  border-width: 0;
+  border-style: solid;
   border-radius: 2px;
   margin: auto;
   outline: none;
   position: relative;
   padding: 0.4em;
   transition: all 0.18s ease-in-out;
-  width: ${({ width }) => width || 'auto'};
-  &:after {
-    content: '';
+  &.border {
+    border-width: 1px;
   }
-  &:focus:after {
+  &.danger {
+    border-width: 2px;
   }
   &:hover {
   }
   &:focus {
-    box-shadow: 0 0 4px 0px ${({ theme }) => theme.COLORS.STATIC.PRIMARY};
+    box-shadow: 0 0 3px -1px currentcolor inset;
   }
   &:disabled {
     box-shadow: none;
@@ -56,10 +39,8 @@ const BaseInput = styled(Wrapper).attrs((props) => {
     top: 0;
     left: 0;
     transition: none;
-    background-color: ${({ theme }) => theme.COLORS.STATIC.DARK};
+    background-color: var(--color-dark);
   }
 `
 
-export default BaseInput
-
-export const BaseTextarea = styled.textarea``
+export default StyledInput

@@ -29,6 +29,12 @@ export default {
       ENTER: 'Enter',
     },
   },
+  MEDIA_QUERIES: {
+    SM: '600px',
+    MD: '768px',
+    LG: '992px',
+    XL: '1200px',
+  },
   PATHS: {
     AUTH: '/auth',
     AUTH_LOGIN: '/auth/login',
@@ -71,10 +77,10 @@ export default {
           DARK: '#000000b3',
         },
         DYNAMIC: {
-          INFO: '#035397',
-          SUCCESS: '#1C7947',
-          WARNING: '#C36A2D',
-          DANGER: '#A9333A',
+          INFO: '#035AA6',
+          SUCCESS: '#2B7A0B',
+          WARNING: '#B3541E',
+          DANGER: '#990000',
         },
       },
       FONT_SIZES: {

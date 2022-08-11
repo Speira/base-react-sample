@@ -1,21 +1,18 @@
 import styled from 'styled-components'
-import Wrapper from '~components/Wrapper'
 
 /**
- * BaseThumbnail
+ * StyledThumbnail
  * @component
  *
  */
-const BaseThumbnail = styled(Wrapper).attrs(() => ({
-  tag: 'img',
-}))`
+const StyledThumbnail = styled.img`
   border: 1px solid #ddd; /* Gray border */
   border-radius: 4px; /* Rounded border */
   padding: 5px; /* Some padding */
   width: 150px; /* Set a small width */
   &:hover {
-    box-shadow: 0 0 2px 1px ${({ theme }) => theme.COLORS.FOREGROUND};
+    box-shadow: 0 0 2px 1px var(--color-dark);
   }
 `
 
-export default BaseThumbnail
+export default StyledThumbnail

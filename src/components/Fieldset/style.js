@@ -1,19 +1,14 @@
 import styled from 'styled-components'
-import Wrapper from '~components/Wrapper'
 
 /**
- * BaseFieldset
+ * StyledFieldset
  * @component
  *
  */
-const BaseFieldset = styled(Wrapper).attrs(() => {
-  return {
-    tag: 'fieldset',
-  }
-})`
+const StyledFieldset = styled.fieldset`
   width: 100%;
   max-width: 50em;
-  border-color: ${({ theme }) => theme.COLORS.STATIC.DARK};
+  border-color: var(--color-dark);
   border-width: 0.5px;
   padding: 0.7em;
   &.left legend {
@@ -37,4 +32,4 @@ const BaseFieldset = styled(Wrapper).attrs(() => {
   }
 `
 
-export default BaseFieldset
+export default StyledFieldset

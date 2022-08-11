@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import BaseDraggableArea from './style'
+import StyledDraggableArea from './style'
 
 /**
  * DraggableArea
@@ -31,15 +31,16 @@ function DraggableArea(props) {
     }
   }
   return (
-    <BaseDraggableArea
+    <StyledDraggableArea
+      {...rest}
+      className={`bg-light ${isDragging && 'dragging'}`}
       draggable="true"
       dragging={(isDragging && 1) || 0}
       onClick={syncClick}
       onDragEnd={(e) => handleAction(e, onDragEnd, false)}
       onDragOver={(e) => handleAction(e, onDragOver, true)}
       onDragStart={onDragStart}
-      onDrop={(e) => handleAction(e, onDrop, false)}
-      {...rest}>
+      onDrop={(e) => handleAction(e, onDrop, false)}>
       <span className="placeholder">{placeholder}</span>
       <input
         className="upload"
@@ -48,7 +49,7 @@ function DraggableArea(props) {
         onChange={(e) => handleAction(e, onDrop, false)}
       />
       {children}
-    </BaseDraggableArea>
+    </StyledDraggableArea>
   )
 }
 DraggableArea.defaultProps = {

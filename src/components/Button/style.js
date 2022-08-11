@@ -1,28 +1,15 @@
 import styled from 'styled-components'
-import Wrapper from '~components/Wrapper'
-import { getStatusColor } from '~utils/functions'
 
 /**
- * BaseButton
+ * StyledButton
  * @component
  *
  */
-const BaseButton = styled(Wrapper).attrs((props) => {
-  const { status, theme } = props
-  const backgroundColor = getStatusColor({ status, theme })
-  return {
-    tag: 'button',
-    type: 'button',
-    style: {
-      backgroundColor,
-      color: theme.COLORS.STATIC.LIGHT,
-    },
-  }
-})`
+const StyledButton = styled.button`
   border: none;
   border-radius: 4px;
-  box-shadow: 1px 1px 2px -1px ${({ theme }) => theme.COLORS.STATIC.DARK},
-    -1px -1px 2px 0px ${({ theme }) => theme.COLORS.STATIC.DARK} inset;
+  box-shadow: 1px 1px 2px -1px var(--color-dark),
+    -1px -1px 2px 0px var(--color-dark) inset;
   cursor: pointer;
   position: relative;
   outline: none;
@@ -30,20 +17,13 @@ const BaseButton = styled(Wrapper).attrs((props) => {
   padding: 0.5em;
   margin: 0.5em;
   font-size: 1em;
-  &.rounded {
-    border-radius: 100%;
-  }
-  &.unboxed {
-    border: none;
-    box-shadow: none;
-  }
   &:hover {
   }
   &:active {
     opacity: 0.5;
     transform: scale(0.96);
     transform-origin: bottom center;
-    box-shadow: 0px 0px 1px -1px ${({ theme }) => theme.COLORS.STATIC.DARK},
+    box-shadow: 0px 0px 1px -1px var(--color-dark),
       0px 0px 3px -1px currentcolor inset;
   }
   &:disabled {
@@ -77,6 +57,15 @@ const BaseButton = styled(Wrapper).attrs((props) => {
   &:disabled:after {
     transform: none;
   }
+
+  /* css classes variations */
+  &.rounded {
+    border-radius: 100%;
+  }
+  &.unboxed {
+    border: none;
+    box-shadow: none;
+  }
 `
 
-export default BaseButton
+export default StyledButton

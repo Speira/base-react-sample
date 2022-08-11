@@ -13,6 +13,8 @@ import { LoginContainer, SignupContainer } from '~AuthModule'
 import { HomeContainer } from '~HomeModule'
 import * as LayoutModule from '~LayoutModule'
 import ErrorContainer, { NotFoundContainer } from '~ErrorModule'
+import 'normalize.css'
+import GlobalStyle from './globalStyle'
 
 const { AUTH, AUTH_LOGIN, AUTH_SIGNUP, DEFAULT } = constants.PATHS
 
@@ -24,6 +26,7 @@ const { AUTH, AUTH_LOGIN, AUTH_SIGNUP, DEFAULT } = constants.PATHS
 function App() {
   return (
     <Contexts>
+      <GlobalStyle />
       <Router>
         <ErrorContainer>
           <LayoutModule.BodyContainer>

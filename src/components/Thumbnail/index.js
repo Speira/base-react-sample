@@ -1,6 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import BaseThumbnail from './style'
+// import PropTypes from 'prop-types'
+import StyledThumbnail from './style'
 
 /**
  * Thumbnail
@@ -8,13 +8,7 @@ import BaseThumbnail from './style'
  *
  */
 function Thumbnail(props) {
-  return <BaseThumbnail {...props} />
-}
-Thumbnail.defaultProps = {
-  className: '',
-}
-Thumbnail.propTypes = {
-  className: PropTypes.string,
+  return <StyledThumbnail {...props} />
 }
 
 export default Thumbnail

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Wrapper from '~components/Wrapper'
+import Form from '~components/Form'
 
 /**
  * AuthForm
@@ -11,18 +11,9 @@ import Wrapper from '~components/Wrapper'
 function AuthForm(props) {
   const { children, style, ...rest } = props
   return (
-    <Wrapper
-      {...rest}
-      tag="form"
-      customStyle={{
-        display: 'flex',
-        flexDirection: 'column',
-        gridRowGap: '1em',
-        margin: '0 0 0.5em',
-        ...style,
-      }}>
+    <Form {...rest} tag="form">
       {children}
-    </Wrapper>
+    </Form>
   )
 }
 AuthForm.defaultProps = {

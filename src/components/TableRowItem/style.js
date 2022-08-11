@@ -1,27 +1,15 @@
 import styled from 'styled-components'
-import Wrapper from '~components/Wrapper'
-import { getStatusColor } from '~utils/functions'
 
 /**
- * BaseTableRowItem
+ * StyledTableRowItem
  * @component
  *
  */
-const BaseTableRowItem = styled(Wrapper).attrs((props) => {
-  const { status, theme } = props
-  const style = {}
-  if (status) {
-    const color = getStatusColor({ status, theme, alpha: 0.2 })
-    style.backgroundColor = color
-  }
-  return {
-    style,
-  }
-})`
+const StyledTableRowItem = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  box-shadow: -1px 0 4px -2px ${({ theme }) => theme.COLORS.STATIC.DARK};
+  box-shadow: -1px 0 4px -2px var(--color-dark);
   padding: 4px;
   overflow-x: auto;
   &.head {
@@ -35,18 +23,6 @@ const BaseTableRowItem = styled(Wrapper).attrs((props) => {
   &:first-child {
     border-left: none;
   }
-  &.primary {
-    box-shadow: -1px 0 4px -2px ${({ theme }) => theme.COLORS.STATIC.PRIMARY};
-  }
-  &.secondary {
-    box-shadow: -1px 0 4px -2px ${({ theme }) => theme.COLORS.STATIC.SECONDARY};
-  }
-  &.tertiary {
-    box-shadow: -1px 0 4px -2px ${({ theme }) => theme.COLORS.STATIC.TERTIARY};
-  }
-  &.quaternary {
-    box-shadow: -1px 0 4px -2px ${({ theme }) => theme.COLORS.STATIC.QUATERNARY};
-  }
 `
 
-export default BaseTableRowItem
+export default StyledTableRowItem

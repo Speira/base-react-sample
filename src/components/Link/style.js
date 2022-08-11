@@ -1,38 +1,22 @@
 import styled from 'styled-components'
-import { getStatusColor } from '~utils/functions'
-import Wrapper from '~components/Wrapper'
+import { Link } from 'react-router-dom'
+import constants from '~utils/constants'
+
+const { MEDIA_QUERIES } = constants
 
 /**
- * BaseLink
+ * StyledLink
  * @component
  *
  */
-const BaseLink = styled(Wrapper).attrs((props) => {
-  const { className, status, theme } = props
-  const attrs = { tag: 'link', style: {} }
-  if (className.includes('boxed')) {
-    if (status) {
-      attrs.style.backgroundColor = getStatusColor({ theme, status })
-    }
-    attrs.style.color = status
-      ? theme.COLORS.STATIC.LIGHT
-      : theme.COLORS.STATIC.DARK
-    attrs.style.boxShadow = status
-      ? `0px 0px 1px 1px ${theme.COLORS.STATIC.DARK} inset`
-      : `1px 1px 0px 0px ${theme.COLORS.STATIC.DARK},
-        -1px 0px 1px 1px${theme.COLORS.STATIC.LIGHT} `
-    return attrs
-  }
-  attrs.style.color = theme.COLORS.STATIC.DARK
-  return attrs
-})`
+const StyledLink = styled(Link)`
   cursor: pointer;
   display: inline-block;
   text-decoration: none;
   padding: 5px;
   margin: 0 4px;
-  font-size: ${({ size }) => size || '1em'};
   text-decoration: underline;
+  color: var(--bg-text-color);
   &:active {
     opacity: 0.5;
   }
@@ -40,16 +24,22 @@ const BaseLink = styled(Wrapper).attrs((props) => {
   &.boxed {
     font-weight: 600;
     border-radius: 4px;
-    box-shadow: 1px 1px 2px -1px;
+    box-shadow: 1px 1px 1px 1px currentcolor;
     text-decoration: none;
     display: flex;
     justify-content: center;
     align-items: center;
     align-content: center;
   }
-  @media (min-width: 768px) {
+  &.boxed:hover {
+    transition: all 0.3s;
+    box-shadow: 1px 1px 2px 2px currentcolor;
+    transform: translateZ(1em);
+    opacity: 0.8;
+  }
+  @media only screen and (min-width: ${MEDIA_QUERIES.MD}) {
     padding: 8px;
   }
 `
 
-export default BaseLink
+export default StyledLink

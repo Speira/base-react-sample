@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import useScroll from '~hooks/useScroll'
-import BaseTable from './style'
+import StyledTable from './style'
 
 /**
  *
@@ -32,12 +32,14 @@ function Table(props) {
   })
 
   return (
-    <BaseTable
+    <StyledTable
       ref={ref}
-      maxHeight={maxHeight}
-      maxWidth={maxWidth}
-      minHeight={minHeight}
-      minWidth={minWidth}
+      style={{
+        maxHeight,
+        maxWidth,
+        minHeight,
+        minWidth,
+      }}
       {...rest}>
       {React.Children.map(children, (element) =>
         React.cloneElement(element, {
@@ -45,7 +47,7 @@ function Table(props) {
           isTableScrolling: isScrolling,
         }),
       )}
-    </BaseTable>
+    </StyledTable>
   )
 }
 Table.defaultProps = {

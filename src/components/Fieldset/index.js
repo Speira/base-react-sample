@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { getActiveKeys } from '~utils/functions'
-import BaseFieldset from './style'
+import StyledFieldset from './style'
 
 /**
  * Fieldset
@@ -29,10 +29,10 @@ function Fieldset(props) {
     row,
   })}`
   return (
-    <BaseFieldset className={className} {...rest}>
+    <StyledFieldset className={className} {...rest}>
       {legend && <legend>{legend}</legend>}
       <div className="fieldset-content">{children}</div>
-    </BaseFieldset>
+    </StyledFieldset>
   )
 }
 Fieldset.defaultProps = {
