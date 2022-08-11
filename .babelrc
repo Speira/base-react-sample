@@ -12,6 +12,7 @@
         "alias": {
           "~": "./src/",
           "~components": "./src/components",
+          "~containers": "./src/containers",
           "~contexts": "./src/contexts",
           "~hooks": "./src/hooks",
           "~utils": "./src/utils",

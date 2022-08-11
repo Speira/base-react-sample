@@ -5,20 +5,17 @@ import constants from '~/utils/constants'
 import useRouter from '~hooks/useRouter'
 
 import Link from '~components/Link'
-
-import HeaderWrapper from '~LayoutModule/components/HeaderWrapper'
-import NavWrapper from '~LayoutModule/components/NavWrapper'
+import NavBar from '~components/NavBar'
 
 const { PATHS, STATUS } = constants
 const { AUTH, AUTH_PROFILE, AUTH_SIGNUP, DEFAULT } = PATHS
 
 /**
- * HeaderContainer
+ * NavBarContainer
  * @container
- * @desc ::: Header of the whole App
  *
  */
-function HeaderContainer() {
+export default function NavBarContainer() {
   const { pathname } = useRouter()
   const { isAuthenticated, logout } = useAuth()
   const disconnect = (e) => {
@@ -30,11 +27,10 @@ function HeaderContainer() {
     if (isNotExact) return pathname.startsWith(uri) ? refStatus : ''
     return pathname === uri ? refStatus : ''
   }
-
   return (
-    <HeaderWrapper>
+    <NavBar>
       <Link to={DEFAULT}>{t`HOME`} </Link>
-      <NavWrapper>
+      <div className="flex">
         <Link boxed to={DEFAULT} status={getActiveStatus(DEFAULT)}>
           {t`HOME`}
         </Link>
@@ -60,9 +56,7 @@ function HeaderContainer() {
           boxed
           status={getActiveStatus('/fake-url')}
           to="/fake-url">{t`NO_EXISTENT_PAGE`}</Link>
-      </NavWrapper>
-    </HeaderWrapper>
+      </div>
+    </NavBar>
   )
 }
-
-export default HeaderContainer

@@ -3,9 +3,9 @@ import { shallow } from 'enzyme'
 import * as AuthContext from '~contexts/AuthContext'
 import * as useRouter from '~hooks/useRouter'
 
-import HeaderContainer from '~LayoutModule/containers/HeaderContainer'
+import NavbarContainer from '~containers/NavbarContainer'
 
-describe('render HeaderContainer', () => {
+describe('render NavbarContainer', () => {
   const isAuthenticated = jest.fn()
   const logout = jest.fn()
   const pathname = '/auth'
@@ -15,9 +15,9 @@ describe('render HeaderContainer', () => {
     .mockReturnValue({ isAuthenticated, logout })
 
   jest.spyOn(useRouter, 'default').mockReturnValue({ pathname })
-  const wrapper = shallow(<HeaderContainer />)
+  const wrapper = shallow(<NavbarContainer />)
 
-  it('HeaderContainer must be rendered', () => {
+  it('NavbarContainer must be rendered', () => {
     expect(wrapper).toBeDefined()
   })
 })

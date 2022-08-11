@@ -11,8 +11,10 @@ import Contexts from '~contexts'
 
 import { LoginContainer, SignupContainer } from '~AuthModule'
 import { HomeContainer } from '~HomeModule'
-import * as LayoutModule from '~LayoutModule'
 import ErrorContainer, { NotFoundContainer } from '~ErrorModule'
+import NavbarContainer from '~containers/NavbarContainer'
+import FooterContainer from '~containers/FooterContainer'
+import Layout from '~components/Layout'
 import 'normalize.css'
 import GlobalStyle from './globalStyle'
 
@@ -29,8 +31,8 @@ function App() {
       <GlobalStyle />
       <Router>
         <ErrorContainer>
-          <LayoutModule.BodyContainer>
-            <LayoutModule.HeaderContainer />
+          <Layout>
+            <NavbarContainer />
             <Routes>
               <Route path={DEFAULT} element={<HomeContainer />} />
               <Route path={AUTH} element={<Outlet />}>
@@ -40,8 +42,8 @@ function App() {
               </Route>
               <Route path="*" element={<NotFoundContainer />} />
             </Routes>
-            <LayoutModule.FooterContainer />
-          </LayoutModule.BodyContainer>
+            <FooterContainer />
+          </Layout>
         </ErrorContainer>
       </Router>
     </Contexts>

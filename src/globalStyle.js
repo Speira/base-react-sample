@@ -146,7 +146,8 @@ const GlobalStyle = createGlobalStyle`
   .padding: { padding: 0.5em 3%; }
   .margin: { margin: 0.5em; }
   .margin-auto: { margin: auto; }
-  .max-width: { width: 100%; }
+  .full-width: { width: 100%; }
+  .full-height: { height: 100%; }
 
   /* ******************************************************** */
   /* ******************  Text orientation  ****************** */
