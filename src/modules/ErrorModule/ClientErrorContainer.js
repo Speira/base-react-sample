@@ -4,7 +4,8 @@ import { translate as t } from '~utils/functions'
 import constants from '~utils/constants'
 
 import Link from '~components/Link'
-import SmallWrapper from '~ErrorModule/components/SmallWrapper'
+import Title from '~components/Title'
+import Wrapper from '~components/Wrapper'
 
 const { PATHS } = constants
 
@@ -20,9 +21,14 @@ export default function ClientErrorContainer(props) {
     title: notAllowed ? t`ERROR_403` : t`ERROR_404`,
   }
   return (
-    <SmallWrapper message={opt.message} title={opt.title}>
+    <Wrapper
+      className="flex-column align-items-center justify-content-center"
+      message={opt.message}
+      title={opt.title}>
+      <Title>{opt.title}</Title>
+      <p>{opt.message}</p>
       <Link to={PATHS.DEFAULT} tertiary>{t`BACK_HOME`}</Link>
-    </SmallWrapper>
+    </Wrapper>
   )
 }
 ClientErrorContainer.defaultProps = {

@@ -4,7 +4,8 @@ import { useError } from '~contexts/ErrorContext'
 import { translate as t } from '~utils/functions'
 
 import Link from '~components/Link'
-import FullpageWrapper from '~ErrorModule/components/FullpageWrapper'
+import Title from '~components/Title'
+import Wrapper from '~components/Wrapper'
 
 const { PATHS } = constants
 
@@ -16,9 +17,13 @@ const { PATHS } = constants
 function ServerErrorContainer() {
   const { resetError } = useError()
   return (
-    <FullpageWrapper message={t`ERROR_500_MESSAGE`} title={t`ERROR_500`}>
+    <Wrapper
+      customStyle={{ height: '100vh' }}
+      className="bg-secondary flex-column align-items-center justify-content-center">
+      <Title>{t`ERROR_500`}</Title>
+      <p>{t`ERROR_500_MESSAGE`}</p>
       <Link to={PATHS.DEFAULT} onClick={resetError}>{t`BACK_HOME`}</Link>
-    </FullpageWrapper>
+    </Wrapper>
   )
 }
 

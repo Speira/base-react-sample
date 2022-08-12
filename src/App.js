@@ -10,7 +10,7 @@ import constants from '~utils/constants'
 import Contexts from '~contexts'
 
 import { LoginContainer, SignupContainer } from '~AuthModule'
-import ErrorContainer, { NotFoundContainer } from '~ErrorModule'
+import ErrorContainer, { ClientErrorContainer } from '~ErrorModule'
 import NavbarContainer from '~containers/NavbarContainer'
 import FooterContainer from '~containers/FooterContainer'
 import HomeContainer from '~containers/HomeContainer'
@@ -40,7 +40,7 @@ function App() {
                 <Route path={AUTH_LOGIN} element={<LoginContainer />} />
                 <Route path={AUTH_SIGNUP} element={<SignupContainer />} />
               </Route>
-              <Route path="*" element={<NotFoundContainer />} />
+              <Route path="*" element={<ClientErrorContainer notFound />} />
             </Routes>
             <FooterContainer />
           </Layout>

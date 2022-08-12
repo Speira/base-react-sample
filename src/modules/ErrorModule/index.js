@@ -1,8 +1,7 @@
 import React from 'react'
 import { useError } from '~contexts/ErrorContext'
 import constants from '~utils/constants'
-import ErrorBoundary from './ErrorBoundary'
-import ClientErrorContainer from './containers/ClientErrorContainer'
+import ErrorBoundary from '~ErrorModule/ErrorBoundary'
 
 const { SERVER } = constants.ERRORS
 
@@ -28,9 +27,4 @@ export default function ErrorContainer(props) {
   )
 }
 
-export function NotFoundContainer(props) {
-  return <ClientErrorContainer {...props} />
-}
-export function NotAllowedContainer(props) {
-  return <ClientErrorContainer notAllowed {...props} />
-}
+export { default as ClientErrorContainer } from './ClientErrorContainer'

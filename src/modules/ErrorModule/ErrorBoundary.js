@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ServerErrorContainer from '~ErrorModule/containers/ServerErrorContainer'
+import ServerErrorContainer from '~ErrorModule/ServerErrorContainer'
 
 /**
  * ErrorBoundary
