@@ -4,21 +4,22 @@ This app was bootstrapped with [Create React App](https://github.com/facebook/cr
 
 ## Description
 
-This Skeletton is a module oriented conception. It can be used as skeletton for new React JS App.
-
-- All bundles (modules) are isolated. They provide their containers to the src/App.js file.
-- Modules are allowed to communicate each other only by using contexts (src/contexts).
-- Modules use the same utilities (src/utils) containing commons functions and constants, they also share the same customs hooks (src/hooks).
+This architecture is a module oriented conception. It can be used as skeletton for new React JS App.
+- Root components (src/components) are simple stateless components.
+- Containers (src/containers) are more complexe, they can manage may root components.
+- Hooks (src/hooks) are React isolated behaviors, they can be reused to factorize containers.
+- Modules (src/modules/) are complexe isolated structures. They manage many containers and have their own namespace.
+- utils (src/utils) are common functions and constants callable from anywhere.
 
 ```mermaid
 graph TD
   App.js --> index.js
-  components/ExampleComponent --> App.js;
-  containers/ExampleContainer --> App.js;
-  modules/__namespace__/ExampleContainer --> App.js;
-  components/ExampleComponent --> containers/ExampleContainer;
-  components/ExampleComponent --> modules/__namespace__/ExampleContainer;
-  containers/ExampleContainer --> modules/__namespace__/ExampleContainer
+  components/__exampleComponent__ --> App.js;
+  containers/__exampleContainer__ --> App.js;
+  modules/__exampleModule__/__exampleContainer__ --> App.js;
+  components/__exampleComponent__ --> containers/__exampleContainer__;
+  components/__exampleComponent__ --> modules/__exampleModule__/__exampleContainer__;
+  containers/__exampleContainer__ --> modules/__exampleModule__/__exampleContainer__;
 
 ```
 
