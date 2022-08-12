@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { getActiveKeys } from '~utils/functions'
 
 /**
  * StyledForm
@@ -13,16 +12,6 @@ const StyledForm = styled.form`
   transition: height 1s;
   border-radius: 8px;
   box-shadow: 0px 0px 4px -2px var(--color-dark);
-  &.column {
-    display: grid;
-    grid-template-rows: auto;
-    grid-row-gap: 1em;
-  }
-  &.row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 `
 
 /**
@@ -32,10 +21,11 @@ const StyledForm = styled.form`
  */
 function Form(props) {
   const { children, className: initialClassName, column, row, ...rest } = props
-  const className = `${initialClassName} ${getActiveKeys({
-    column,
-    row,
-  })}`
+
+  const className = `${initialClassName} 
+    ${column && 'grid-auto-rows'}
+    ${row && 'flex-center'}
+   `
   return (
     <StyledForm {...rest} className={className}>
       {children}

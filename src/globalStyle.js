@@ -167,13 +167,18 @@ const GlobalStyle = createGlobalStyle`
  .float-right { float: right;}
 
   /* ******************************************************** */
-  /* ******************  flexbox classes  ****************** */
+  /* *******************  flexbox classes  ****************** */
   /* ******************************************************** */
 
   .flex { display: flex; }
   .flex-column {
     display: flex;
     flex-direction: column;
+  }
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
  .justify-content-center { justify-content: center; }
  .justify-content-start { justify-content: flex-start; }
@@ -190,9 +195,17 @@ const GlobalStyle = createGlobalStyle`
  .align-content-center { align-content: center; }
  .align-content-start { align-content: flex-start; }
  .align-content-end { align-content: flex-end; }
- .column {flex-direction: column;}
 
- 
+  /* ******************************************************** */
+  /* *********************  grid classes  ******************* */
+  /* ******************************************************** */
+
+  .grid-auto-rows {
+    display: grid;
+    grid-template-rows: auto;
+    grid-row-gap: 1em;
+  }
+
 `
 
 export default GlobalStyle
