@@ -101,10 +101,12 @@ export default {
   },
   WORDS: {
     FRENCH: {
+      id: 'fr',
       NAME: 'FRENCH',
       VALUES: I18N_FRENCH,
     },
     ENGLISH: {
+      id: 'en',
       NAME: 'ENGLISH',
       VALUES: {},
     },

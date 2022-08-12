@@ -1,5 +1,5 @@
 import React from 'react'
-import { translate as t } from '~utils/functions'
+import { useTranslation } from 'react-i18next'
 import { useAuth } from '~contexts/AuthContext'
 import constants from '~/utils/constants'
 import useRouter from '~hooks/useRouter'
@@ -16,6 +16,7 @@ const { AUTH, AUTH_PROFILE, AUTH_SIGNUP, DEFAULT } = PATHS
  *
  */
 export default function NavBarContainer() {
+  const { t } = useTranslation()
   const { pathname } = useRouter()
   const { isAuthenticated, logout } = useAuth()
   const disconnect = (e) => {

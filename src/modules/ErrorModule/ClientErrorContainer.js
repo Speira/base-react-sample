@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { translate as t } from '~utils/functions'
+import { useTranslation } from 'react-i18next'
 import constants from '~utils/constants'
 
 import Link from '~components/Link'
@@ -16,6 +16,7 @@ const { PATHS } = constants
  */
 export default function ClientErrorContainer(props) {
   const { notAllowed } = props
+  const { t } = useTranslation()
   const opt = {
     message: notAllowed ? t`ERROR_403_MESSAGE` : t`ERROR_404_MESSAGE`,
     title: notAllowed ? t`ERROR_403` : t`ERROR_404`,

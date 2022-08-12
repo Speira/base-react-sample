@@ -4,7 +4,8 @@ import useRouter from '~hooks/useRouter'
 import { useAuth } from '~contexts/AuthContext'
 import { useAPI } from '~contexts/APIContext'
 import constants from '~utils/constants'
-import { DefaultUser, translate as t } from '~utils/functions'
+import { DefaultUser } from '~utils/functions'
+import { useTranslation } from 'react-i18next'
 import useAlert from '~hooks/useAlert'
 
 import Button from '~components/Button'
@@ -25,6 +26,7 @@ const { INFO } = STATUS
  *
  */
 function SignupContainer() {
+  const { t } = useTranslation()
   const { backToReferer } = useRouter()
   const { isAuthenticated, setAuthUser } = useAuth()
   const { sendRequest } = useAPI()

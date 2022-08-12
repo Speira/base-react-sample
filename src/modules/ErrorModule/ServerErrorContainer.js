@@ -1,7 +1,7 @@
 import React from 'react'
 import constants from '~utils/constants'
 import { useError } from '~contexts/ErrorContext'
-import { translate as t } from '~utils/functions'
+import { useTranslation } from 'react-i18next'
 
 import Link from '~components/Link'
 import Title from '~components/Title'
@@ -15,6 +15,7 @@ const { PATHS } = constants
  *
  */
 function ServerErrorContainer() {
+  const { t } = useTranslation()
   const { resetError } = useError()
   return (
     <Wrapper

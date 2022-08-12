@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { translate as t } from '~utils/functions'
+import { useTranslation } from 'react-i18next'
 
 /**
  * StyledSelect
@@ -31,6 +31,7 @@ const StyledSelect = styled.select`
  */
 function Select(props) {
   const { className, options, onChange, value, ...rest } = props
+  const { t } = useTranslation()
   const localOptions = options.map((opt) =>
     typeof opt === 'string' ? { key: opt, label: opt } : opt,
   )
