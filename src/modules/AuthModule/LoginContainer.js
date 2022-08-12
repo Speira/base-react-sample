@@ -7,16 +7,17 @@ import constants from '~utils/constants'
 import { DefaultUser, translate as t, handleEnterPress } from '~utils/functions'
 import useAlert from '~hooks/useAlert'
 
+import Button from '~components/Button'
+import Form from '~components/Form'
+import InputField from '~components/InputField'
 import Link from '~components/Link'
-
-import AuthInputs from '~AuthModule/components/AuthInputs'
-import AuthWrapper from '~AuthModule/components/AuthWrapper'
-import AuthForm from '~AuthModule/components/AuthForm'
-import AuthButton from '~AuthModule/components/AuthButton'
 import Loading from '~components/Loading'
+import Title from '~components/Title'
+import AuthWrapper from './AuthWrapper'
 
-const { FIELDS, PATHS } = constants
+const { FIELDS, PATHS, STATUS } = constants
 const { PASSWORD, USERNAME } = FIELDS
+const { INFO } = STATUS
 
 /**
  * LoginContainer
@@ -35,9 +36,7 @@ function LoginContainer() {
   const setUser = (field) => (value) =>
     setInputs((sync) => ({ ...sync, [field]: value }))
 
-  /**
-   * authenticateUser
-   */
+  /** * authenticateUser */
   const authenticateUser = () => {
     toggleConnecting(true)
     const tempUser = new DefaultUser(inputs)
@@ -45,7 +44,7 @@ function LoginContainer() {
     const errors = []
     if (error.username.missing) errors.push(t`USERNAME_MISSING`)
     if (error.password.missing) errors.push(t`PASSWORD_MISSING`)
-    if (error.password.length) errors.push(t`PASSWORD_LACKS_CHARACTERS`)
+    else if (error.password.length) errors.push(t`PASSWORD_LACKS_CHARACTERS`)
     if (errors.length) return setAlert({ message: errors })
     toggleLoading(true)
     return sendRequest(tempUser)
@@ -67,17 +66,30 @@ function LoginContainer() {
     return <Loading message={t`LOGIN_ONGOING`} />
   }
   return (
-    <AuthWrapper title={t`LOGIN`}>
+    <AuthWrapper>
+      <Title>{t`LOGIN`}</Title>
       <HookAlert />
-      <AuthForm onKeyPress={handleEnterPress(authenticateUser)}>
-        <AuthInputs
-          password={inputs[PASSWORD]}
-          setPassword={setUser(PASSWORD)}
-          setUsername={setUser(USERNAME)}
-          username={inputs[USERNAME]}
+      <Form onKeyPress={handleEnterPress(authenticateUser)}>
+        <InputField
+          label={t`USERNAME`}
+          placeholder="example@example.com"
+          type="email"
+          value={inputs[USERNAME]}
+          onChange={setUser(USERNAME)}
         />
-        <AuthButton onClick={authenticateUser} label={t`VALIDATE`} />
-      </AuthForm>
+        <InputField
+          label={t`PASSWORD`}
+          placeholder={t`PASSWORD`}
+          type="password"
+          value={inputs[PASSWORD]}
+          onChange={setUser(PASSWORD)}
+        />
+        <div className="text-center">
+          <Button
+            onClick={authenticateUser}
+            status={INFO}>{t`VALIDATE`}</Button>
+        </div>
+      </Form>
       <Link to={PATHS.AUTH_SIGNUP}>{t`ACCOUNT_NO_EXISTING`}</Link>
     </AuthWrapper>
   )

@@ -139,15 +139,22 @@ const GlobalStyle = createGlobalStyle`
   .text-warning { color: var(--color-warning); }
   .text-danger { color: var(--color-danger); }
 
-  /* ******************************************************** */
-  /* **********************  spacing  *********************** */
-  /* ******************************************************** */
+  /* ********************************************************** */
+  /* **********************  box style  *********************** */
+  /* ********************************************************** */
 
   .padding { padding: 0.5em 3%; }
   .margin { margin: 0.5em; }
   .margin-auto { margin: auto; }
   .full-width { width: 100%; }
   .full-height { height: 100%; }
+  .radius {border-radius: 4px;}
+  .shadow-top-right { box-shadow: 2px -2px 4px -2px var(--bg-text-color);}
+  .box {
+     border-radius: 4px;
+     padding: 0.5em 3%;
+     margin: 0.5em;
+  }
 
   /* ******************************************************** */
   /* ******************  Text orientation  ****************** */
@@ -183,7 +190,9 @@ const GlobalStyle = createGlobalStyle`
  .align-content-center { align-content: center; }
  .align-content-start { align-content: flex-start; }
  .align-content-end { align-content: flex-end; }
+ .column {flex-direction: column;}
 
+ 
 `
 
 export default GlobalStyle

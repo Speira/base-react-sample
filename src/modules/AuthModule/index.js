@@ -1,4 +1,4 @@
-export { default as LoginContainer } from './containers/LoginContainer'
-export { default as SignupContainer } from './containers/SignupContainer'
-export { default as AuthorizationContainer } from './containers/AuthorizationContainer'
+export { default as LoginContainer } from './LoginContainer'
+export { default as SignupContainer } from './SignupContainer'
+export { default as AuthorizationContainer } from './AuthorizationContainer'
 export default () => null

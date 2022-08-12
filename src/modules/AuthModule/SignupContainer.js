@@ -7,16 +7,17 @@ import constants from '~utils/constants'
 import { DefaultUser, translate as t } from '~utils/functions'
 import useAlert from '~hooks/useAlert'
 
+import Button from '~components/Button'
+import Form from '~components/Form'
+import InputField from '~components/InputField'
 import Link from '~components/Link'
-
-import AuthInputs from '~AuthModule/components/AuthInputs'
-import AuthWrapper from '~AuthModule/components/AuthWrapper'
-import AuthForm from '~AuthModule/components/AuthForm'
-import AuthButton from '~AuthModule/components/AuthButton'
 import Loading from '~components/Loading'
+import Title from '~components/Title'
+import AuthWrapper from './AuthWrapper'
 
 const { FIELDS, PATHS, STATUS } = constants
 const { PASSWORD, USERNAME } = FIELDS
+const { INFO } = STATUS
 
 /**
  * SignupContainer
@@ -66,8 +67,9 @@ function SignupContainer() {
   }
   if (isRegistered) {
     return (
-      <AuthWrapper title={t`SIGNUP_MAIL_SENT`}>
-        <div>{t`SIGNUP_MAIL_WILL_BE_SENT`(inputs[USERNAME])}</div>
+      <AuthWrapper>
+        <Title>{t`SIGNUP_MAIL_SENT`}</Title>
+        <p>{t`SIGNUP_MAIL_WILL_BE_SENT`(inputs[USERNAME])}</p>
       </AuthWrapper>
     )
   }
@@ -75,17 +77,28 @@ function SignupContainer() {
     backToReferer()
   }
   return (
-    <AuthWrapper title={t`SIGNUP`}>
+    <AuthWrapper>
+      <Title>{t`SIGNUP`}</Title>
       <HookAlert />
-      <AuthForm>
-        <AuthInputs
-          password={inputs[PASSWORD]}
-          setPassword={setUser(PASSWORD)}
-          setUsername={setUser(USERNAME)}
-          username={inputs[USERNAME]}
+      <Form>
+        <InputField
+          label={t`USERNAME`}
+          placeholder="example@example.com"
+          type="email"
+          value={inputs[USERNAME]}
+          onChange={setUser(USERNAME)}
         />
-        <AuthButton onClick={signUp} label={t`VALIDATE`} />
-      </AuthForm>
+        <InputField
+          label={t`PASSWORD`}
+          placeholder={t`PASSWORD`}
+          type="password"
+          value={inputs[PASSWORD]}
+          onChange={setUser(PASSWORD)}
+        />
+        <div className="text-center">
+          <Button onClick={signUp} status={INFO}>{t`VALIDATE`}</Button>
+        </div>
+      </Form>
       <Link to={PATHS.AUTH_LOGIN}>{t`ACCOUNT_EXISTING`}</Link>
     </AuthWrapper>
   )

@@ -5,7 +5,7 @@ import * as AuthContext from '~contexts/AuthContext'
 import * as APIContext from '~contexts/APIContext'
 import * as useRouter from '~hooks/useRouter'
 
-import LoginContainer from '~AuthModule/containers/LoginContainer'
+import LoginContainer from '~AuthModule/LoginContainer'
 
 const mockSetState = jest.fn()
 
