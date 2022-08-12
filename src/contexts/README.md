@@ -1,4 +1,4 @@
 #Context
 
-Context are singleton used in the App, they can be called wherever
-and allow component to share information between themselves.
+Contexts follow the singleton pattern. they provide data and actions for all
+the calling containers.
