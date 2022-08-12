@@ -7,19 +7,18 @@ This app was bootstrapped with [Create React App](https://github.com/facebook/cr
 This Skeletton is a module oriented conception. It can be used as skeletton for new React JS App.
 
 - All bundles (modules) are isolated. They provide their containers to the src/App.js file.
-- Modules use the same view components (src/components) prepared and customized in their own components (src/modules/[moduleNAme]/components) in order to be used in their containers (src/modules/[moduleNAme]/containers).
 - Modules are allowed to communicate each other only by using contexts (src/contexts).
 - Modules use the same utilities (src/utils) containing commons functions and constants, they also share the same customs hooks (src/hooks).
 
 ```mermaid
 graph TD
-  index.js --> App.js
-  App.js --> modules/__namespace__/containers;
-  modules/__namespace__/containers --> modules/__namespace__/components;
-  modules/__namespace__/components --> components;
-  utils & hooks --> modules/__namespace__/containers;
-  utils & hooks --> modules/__namespace__/components;
-  utils & hooks --> components;
+  App.js --> index.js
+  components/ExampleComponent --> App.js;
+  containers/ExampleContainer --> App.js;
+  modules/__namespace__/ExampleContainer --> App.js;
+  components/ExampleComponent --> containers/ExampleContainer;
+  components/ExampleComponent --> modules/__namespace__/ExampleContainer;
+  containers/ExampleContainer --> modules/__namespace__/ExampleContainer
 
 ```
 
