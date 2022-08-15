@@ -28,7 +28,7 @@ export default function ClientErrorContainer(props) {
       title={opt.title}>
       <Title>{opt.title}</Title>
       <p>{opt.message}</p>
-      <Link to={PATHS.DEFAULT} tertiary>{t`BACK_HOME`}</Link>
+      <Link to={PATHS.DEFAULT} className="bg-tertiary">{t`BACK_HOME`}</Link>
     </Wrapper>
   )
 }

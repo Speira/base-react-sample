@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import ServerErrorContainer from '~ErrorModule/ServerErrorContainer'
 
 /**
- * ErrorBoundary
+ * ErrorBoundaryModule
  * @component
  * @desc ::: ErrorBoundray does not work with functional component
  *
  */
-class ErrorBoundary extends React.PureComponent {
+class ErrorBoundaryModule extends React.PureComponent {
   constructor(props) {
     super(props)
     this.state = { hasSyncError: false }
@@ -34,11 +34,11 @@ class ErrorBoundary extends React.PureComponent {
   }
 }
 
-ErrorBoundary.propTypes = {
+ErrorBoundaryModule.propTypes = {
   children: PropTypes.node.isRequired,
   handleSyncError: PropTypes.func.isRequired,
   logError: PropTypes.func.isRequired,
   hasAsyncError: PropTypes.bool.isRequired,
 }
 
-export default ErrorBoundary
+export default ErrorBoundaryModule
