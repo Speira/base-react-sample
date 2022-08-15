@@ -5,16 +5,19 @@ import {
   Routes,
   Route,
 } from 'react-router-dom'
-import constants from '~utils/constants'
 
+import constants from '~utils/constants'
 import Contexts from '~contexts'
 
 import { LoginContainer, SignupContainer } from '~AuthModule'
-import ErrorContainer, { ClientErrorContainer } from '~ErrorModule'
-import NavbarContainer from '~containers/NavbarContainer'
-import FooterContainer from '~containers/FooterContainer'
+import ErrorModule, { ClientErrorContainer } from '~ErrorModule'
+
 import HomeContainer from '~containers/HomeContainer'
+import FooterContainer from '~containers/FooterContainer'
+import NavbarContainer from '~containers/NavbarContainer'
+
 import Layout from '~components/Layout'
+
 import 'normalize.css'
 import GlobalStyle from './globalStyle'
 
@@ -30,7 +33,7 @@ function App() {
     <Contexts>
       <GlobalStyle />
       <Router>
-        <ErrorContainer>
+        <ErrorModule>
           <Layout className="bg-primary">
             <NavbarContainer />
             <Routes>
@@ -44,7 +47,7 @@ function App() {
             </Routes>
             <FooterContainer />
           </Layout>
-        </ErrorContainer>
+        </ErrorModule>
       </Router>
     </Contexts>
   )
