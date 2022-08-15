@@ -13,7 +13,11 @@ const { STATUS } = constants
  * @component
  *
  */
-const StyledInput = styled.input`
+const StyledInput = styled.input.attrs((props) => ({
+  style: {
+    width: props.width || 'auto',
+  },
+}))`
   background-color: var(--color-light);
   border-width: 0;
   border-style: solid;
