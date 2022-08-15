@@ -1,5 +1,8 @@
 import { createGlobalStyle } from 'styled-components'
 import { lightenColor } from '~utils/functions'
+import constants from '~utils/constants'
+
+const { MEDIA_QUERIES } = constants
 
 /**
  * GlobalStyle
@@ -155,6 +158,9 @@ const GlobalStyle = createGlobalStyle`
      padding: 0.5em 3%;
      margin: 0.5em;
   }
+  .relative {
+    position: relative;
+  }
 
   /* ******************************************************** */
   /* ******************  Text orientation  ****************** */
@@ -206,6 +212,17 @@ const GlobalStyle = createGlobalStyle`
     grid-row-gap: 1em;
   }
 
+  /* ******************************************************** */
+  /* *********************  respponsive   ******************* */
+  /* ******************************************************** */
+
+  @media only screen and (max-width: ${MEDIA_QUERIES.SM}){
+    .hide-xs { display: none; }
+  }
+
+  @media only screen and (min-width: ${MEDIA_QUERIES.SM}){
+    .hide-after-xs { display: none; }
+  }
 `
 
 export default GlobalStyle
